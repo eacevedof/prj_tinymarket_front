@@ -12,6 +12,7 @@ import ProductList from './components/product/product_list';
 import OrderDetail from "./components/order/order_detail"
 import objorder from "./models/order"
 import LocalDb from "./helpers/local_db"
+import E404 from "./components/errors/404/e404"
 import _ from "lodash"
 import "./index.css"
 
@@ -34,6 +35,7 @@ function App(){
   return (
     <Router>
       <Switch>
+
         <Route exact path="/">
           <ProductList order={order} set_order={set_order}/>
         </Route>        
@@ -42,6 +44,9 @@ function App(){
           <OrderDetail order={order} set_order={set_order}/>
         </Route>
                     
+        <Route path="/">
+          <E404/>
+        </Route>
       </Switch>
     </Router>
   );
