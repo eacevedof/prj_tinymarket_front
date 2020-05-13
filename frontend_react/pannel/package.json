@@ -17,14 +17,14 @@
     "sweetalert2": "^9.10.12",
     "sweetalert2-react-content": "^3.0.1"
   },
-  "homepage": "react",
+
   "scripts": {
     "start": "react-scripts start",
-    "build": "node ./scripts/build-non-split.js && npm run toprod",
+    "start": "sh -ac '. .env.local; react-scripts start'",
+    "build": "node ./scripts/build-non-split.js",
+    "build": "sh -ac '. .env; node ./scripts/build-non-split.js'",
     "build:clean": "cd build && mv static/js/*.js main.js && mv static/css/*.css main.css && rm -r static",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "toprod": "py.sh \"/Users/ioedu/projects/prj_tinymarket/frontend_react/pannel/.pysh\" index react"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
