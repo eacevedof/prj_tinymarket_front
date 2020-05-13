@@ -7,7 +7,7 @@ const Api = {
   //localip: get_localip(),
 
   get_async_products: async () => {
-    const url = `${BASE_URL}/products`
+    const url = `${BASE_URL}/api/v1/products`
     
     try {
       console.log("api.get_async_products...",url)

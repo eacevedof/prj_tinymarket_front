@@ -22,7 +22,7 @@ function Navbar({order}) {
       <div className="collapse navbar-collapse" id="navigation">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="navlink-active" to={"/react"}>
+              <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/"}>
                 <span><i className="nc-icon nc-bullet-list-67"></i>&nbsp;Products</span>
               </NavLink>
             </li>            

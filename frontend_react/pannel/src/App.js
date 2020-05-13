@@ -34,12 +34,14 @@ function App(){
   return (
     <Router>
       <Switch>
-        <Route path="/react">
+        <Route exact path="/">
           <ProductList order={order} set_order={set_order}/>
-        </Route>
+        </Route>        
+        
         <Route path="/order">
           <OrderDetail order={order} set_order={set_order}/>
-        </Route>          
+        </Route>
+                    
       </Switch>
     </Router>
   );

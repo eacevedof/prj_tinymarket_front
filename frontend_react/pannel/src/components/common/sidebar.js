@@ -12,7 +12,7 @@ function Sidebar() {
           </div>
           <ul className="nav">
               <li className="nav-item active">
-                <NavLink className="nav-link" to={"/react"}>
+                <NavLink className="nav-link" to={"/"}>
                   <i className="nc-icon nc-chart-pie-35"></i>
                   <b>Products</b>
                 </NavLink>
