@@ -22,7 +22,7 @@
     "start": "react-scripts start",
     "start": "sh -ac '. .env.local; react-scripts start'",
     "build": "node ./scripts/build-non-split.js",
-    "build": "sh -ac '. .env; node ./scripts/build-non-split.js'",
+    "build": "sh -ac '. .env.build; node ./scripts/build-non-split.js'",
     "build:clean": "cd build && mv static/js/*.js main.js && mv static/css/*.css main.css && rm -r static",
     "test": "react-scripts test"
   },
