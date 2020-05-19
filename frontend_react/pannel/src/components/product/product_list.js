@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import FormProductSearch from "./forms/form_product_search"
@@ -24,7 +24,7 @@ function ProductList({order,set_order}) {
   useEffect(()=>{
     console.log("productlist.useEffect search 1:",search)
     HrefDom.document_title("ECH | products")
-   async_load_products()
+    async_load_products()
   },[search])
 
   return (
