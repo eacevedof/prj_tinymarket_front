@@ -24,7 +24,7 @@ function App(){
   console.log("App.order ",order)
 
   useEffect(() => {
-    console.log("app.useffect")
+    console.log("app.useffect.search",search)
     if(order.products.length === 0){
       const dborder = LocalDb.select("order")
       if(!_.isEmpty(dborder)){

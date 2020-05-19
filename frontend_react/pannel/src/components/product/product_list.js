@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useRef} from 'react';
+import React, {useState, useEffect, useMemo, useCallback, useRef} from 'react';
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import FormProductSearch from "./forms/form_product_search"
@@ -21,10 +21,24 @@ function ProductList({order,set_order, search, set_search}) {
   }
 
   useEffect(()=>{
-    console.log("productlist.useEffect search 1:",search)
+    console.log("productlist.useEffect search",search)
     HrefDom.document_title("ECH | products")
+    //https://stackoverflow.com/questions/53446020/how-to-compare-oldvalues-and-newvalues-on-react-hooks-useeffect
     async_load_products(search)
+    return ()=>false
   },[search])
+  
+  // useMemo(() => {
+  //   console.log("productlist.useMemo search",search)
+  //   HrefDom.document_title("ECH | products")
+  //   async_load_products(search)    
+  // }, [search])
+
+  // useCallback(() => {
+  //   console.log("productlist.useMemo search",search)
+  //   HrefDom.document_title("ECH | products")
+  //   async_load_products(search)    
+  // }, [search])  
 
   return (
     <div className="wrapper">
