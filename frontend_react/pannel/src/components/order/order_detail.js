@@ -5,10 +5,12 @@ import OrderTable from "./order_table"
 import "../../index.css"
 import HrefDom from "../../helpers/href_dom"
 
-function OrderDetail({order,set_order}) {
+function OrderDetail({order,set_order,search}) {
 
   useEffect(()=>{
     console.log("orderdetail.useffect.order",order)
+    console.log("orderdetail.useffect.search",search)
+    
     HrefDom.document_title("ECH | Order")
   },[])
 

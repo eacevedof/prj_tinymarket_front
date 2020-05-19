@@ -24,6 +24,7 @@ const ProductTable = ({order, set_order, products, search}) => {
 
   useEffect(() => {
     console.log("producttable.useEffect.order",order)
+    console.log("producttable.useEffect.products",products)
   },[products]);
 
 
@@ -77,9 +78,9 @@ const ProductTable = ({order, set_order, products, search}) => {
     <NumberModal product={selproduct} order={order} set_order={set_order} />
     <div className="card strpied-tabled-with-hover">
       <div className="card-header ">
-          <h4 className="card-title">Products</h4>
+        <h4 className="card-title">Items <small>({products.length})</small></h4>
           {
-            search !== "" ? <p className="card-category">Filtered by {search}</p> : null
+            search !== "" ? <p className="card-category">Filtered by: <span className="text-info">{search}</span></p> : null
           }
       </div>
       <div className="card-body table-full-width table-responsive">

@@ -1,17 +1,18 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useRef} from 'react';
 import LocalDb from "../../../helpers/local_db"
 //import styles from "./formsearch.module.css"
 
 function FormProductSearch({search,set_search}) {
 
   const [txtsearch, set_txtsearch] = useState(search)
+  const inputtxtsearch = useRef(null)
 
   const on_submit = (e)=>{
     e.preventDefault()
     console.log("on submit search")
     console.log("onsubmit.txtsearch setting to search",txtsearch)
     set_search(txtsearch)
-    LocalDb.save("txtsearch",txtsearch)
+    //LocalDb.save("txtsearch",txtsearch)
   }
 
   const on_search_change = (e)=>{
@@ -21,14 +22,15 @@ function FormProductSearch({search,set_search}) {
   }
 
   const reset = (e)=>{
-    set_search("")
+    //set_search("")
     set_txtsearch("")
-    LocalDb.save("txtsearch","")
+    inputtxtsearch.current.focus()
+    //LocalDb.save("txtsearch","")
   }
 
   useEffect(() => {
     console.log("(no hay logica) formproductsearch.useEffect search",search)
-    set_txtsearch(LocalDb.select("txtsearch"))
+    set_txtsearch(search)
   }, []);
 
   return (
@@ -50,6 +52,7 @@ function FormProductSearch({search,set_search}) {
           <label className="sr-only" htmlFor="txt-search">Search</label>
           <div className="input-group mb-2">
             <input 
+              ref={inputtxtsearch}
               id="txt-search"
               type="text"
               className="form-control" 

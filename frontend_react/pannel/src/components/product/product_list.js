@@ -8,13 +8,12 @@ import LocalDb from "../../helpers/local_db"
 import HrefDom from "../../helpers/href_dom"
 import Api from "../../providers/api"
 
-function ProductList({order,set_order}) {
+function ProductList({order,set_order, search, set_search}) {
   
   const [products, set_products] = useState([])
-  const [search, set_search] = useState("")
+  
+  async function async_load_products(s){
 
-  async function async_load_products(){
-    const s = LocalDb.select("txtsearch")
     const response = await Api.get_async_products(s)
     if(response)
       if(response.status === 200)
@@ -24,7 +23,7 @@ function ProductList({order,set_order}) {
   useEffect(()=>{
     console.log("productlist.useEffect search 1:",search)
     HrefDom.document_title("ECH | products")
-    async_load_products()
+    async_load_products(search)
   },[search])
 
   return (

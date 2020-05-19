@@ -19,6 +19,8 @@ import "./index.css"
 function App(){
 
   const [order, set_order] = useState(objorder)
+  const [search, set_search] = useState("")
+
   console.log("App.order ",order)
 
   useEffect(() => {
@@ -37,11 +39,11 @@ function App(){
       <Switch>
 
         <Route exact path="/">
-          <ProductList order={order} set_order={set_order}/>
+          <ProductList order={order} set_order={set_order} search={search} set_search={set_search}/>
         </Route>        
         
         <Route path="/order">
-          <OrderDetail order={order} set_order={set_order}/>
+          <OrderDetail order={order} set_order={set_order} search={search}/>
         </Route>
                     
         <Route path="*" status={404}>
