@@ -90,7 +90,7 @@ const OrderTable = ({order,set_order}) => {
         <b>{product.description}</b><br/>
         <sub>{product.description_full}</sub>
       </td>
-      <td className="text-center">>
+      <td className="text-center">
         <img 
           src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
           alt={product.description_full}
