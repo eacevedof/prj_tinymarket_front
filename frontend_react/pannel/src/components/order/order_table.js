@@ -15,7 +15,7 @@ const OrderTable = ({order,set_order}) => {
 
   const get_total = products => {
     const sum = products
-                  .map(product => parseFloat(product.priceSale) * parseFloat(product.units))
+                  .map(product => parseFloat(product.price_sale) * parseFloat(product.units))
                   .reduce((ac,price)=> ac = ac + price,0)
   
     return _.round(sum,2).toFixed(2)
@@ -99,10 +99,10 @@ const OrderTable = ({order,set_order}) => {
       </td>
       <td className="text-right">
         <sub>{product.units} x </sub>
-        <sub>{_.round(product.priceSale,2).toFixed(2)}</sub>
+        <sub>{_.round(product.price_sale,2).toFixed(2)}</sub>
       </td> 
       <td className="text-right">
-        <span>{_.round(product.priceSale * product.units,2).toFixed(2)}</span>
+        <span>{_.round(product.price_sale * product.units,2).toFixed(2)}</span>
       </td>
       <td>
         <div className="input-group">

@@ -52,7 +52,7 @@ const ProductTable = ({order, set_order, products, search}) => {
               />
           </button>
         </td>
-        <td><span className="pull-right">{_.round(product.priceSale,2).toFixed(2)}</span></td>
+        <td><span className="pull-right">{_.round(product.price_sale,2).toFixed(2)}</span></td>
         <td>
           <div className="input-group">
             <button type="button" 
