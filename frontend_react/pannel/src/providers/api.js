@@ -6,8 +6,8 @@ const BASE_URL = process.env.REACT_APP_BASEURLAPI
 const Api = {
   //localip: get_localip(),
 
-  get_async_products: async () => {
-    const url = `${BASE_URL}/api/v1/products`
+  get_async_products: async (search="") => {
+    const url = `${BASE_URL}/api/v1/products?page=1&perpage=100&s=${search}`
     
     try {
       console.log("api.get_async_products...",url)
