@@ -12,6 +12,7 @@ const Api = {
     try {
       console.log("api.get_async_products...",url)
       const response = await axios({url,method:"GET"}) 
+      console.log("api.get_async_products.response",response)
       return response
     } catch (e) {
       console.error("ERROR: api.get_async_products.url:",url)

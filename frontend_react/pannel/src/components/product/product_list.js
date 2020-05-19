@@ -19,7 +19,7 @@ function ProductList({order,set_order}) {
       const response = await Api.get_async_products()
       if(response)
         if(response.status === 200)
-          set_products(response.data)
+          set_products(response.data.result)
     }
     load_products()
   },[])

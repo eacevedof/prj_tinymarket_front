@@ -44,7 +44,7 @@ function App(){
           <OrderDetail order={order} set_order={set_order}/>
         </Route>
                     
-        <Route path="/">
+        <Route path="*" status={404}>
           <E404/>
         </Route>
       </Switch>
