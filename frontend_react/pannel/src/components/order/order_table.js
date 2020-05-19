@@ -15,7 +15,7 @@ const OrderTable = ({order,set_order}) => {
 
   const get_total = products => {
     const sum = products
-                  .map(product => parseFloat(product.price_sale) * parseFloat(product.units))
+                  .map(product => parseFloat(product.price_sale) * parseFloat(product.units ? product.units:0))
                   .reduce((ac,price)=> ac = ac + price,0)
   
     return _.round(sum,2).toFixed(2)

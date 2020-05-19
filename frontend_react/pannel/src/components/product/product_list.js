@@ -13,8 +13,8 @@ function ProductList({order,set_order}) {
   const [products, set_products] = useState([])
   const [search, set_search] = useState("")
 
-  async function load_products(s=""){
-    console.log(" SEARCH: ",s)
+  async function async_load_products(){
+    const s = LocalDb.select("txtsearch")
     const response = await Api.get_async_products(s)
     if(response)
       if(response.status === 200)
@@ -24,14 +24,7 @@ function ProductList({order,set_order}) {
   useEffect(()=>{
     console.log("productlist.useEffect search 1:",search)
     HrefDom.document_title("ECH | products")
-
-    const txtsearch = LocalDb.select("txtsearch")
-    if(txtsearch){
-      set_search(txtsearch)
-      console.log(" AAAAFFFFTER set_search 2",search,"txtseach",txtsearch)
-    }
-
-    load_products(search)
+   async_load_products()
   },[search])
 
   return (

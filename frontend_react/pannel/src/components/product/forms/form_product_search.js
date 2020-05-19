@@ -27,41 +27,44 @@ function FormProductSearch({search,set_search}) {
   }
 
   useEffect(() => {
-    console.log("formproductsearch.useEffect")
+    console.log("(no hay logica) formproductsearch.useEffect search",search)
+    set_txtsearch(LocalDb.select("txtsearch"))
   }, []);
 
   return (
     <>
      <form onSubmit={on_submit} > 
       <div className="form-row align-items-center">
+        <div className="col-md-3">
+          {
+            txtsearch!=="" ? (
+              <button 
+                type="button" 
+                className="btn btn-dark btn-fill pull-right"
+                onClick={reset}
+              ><i className="nc-icon nc-simple-remove"></i></button>
+            ): null
+          }
+        </div>         
         <div className="col-md-6">
           <label className="sr-only" htmlFor="txt-search">Search</label>
           <div className="input-group mb-2">
             <input 
+              id="txt-search"
               type="text"
               className="form-control" 
               value={txtsearch}
-              defaultValue={txtsearch}
               placeholder="Search" 
               onChange={on_search_change}
               />
           </div>
         </div>
-        <div className="col-md-6">
-          {
-            txtsearch!=="" ? (
-              <button 
-                type="button" 
-                className="btn btn-dark btn-fill pull-left"
-                onClick={reset}
-              ><i className="nc-icon nc-simple-remove"></i></button>
-            ): null
-          }
+        <div className="col-md-3">
           <button 
             type="submit" 
             className="btn btn-primary btn-fill pull-left"
             >Go <i className="nc-icon nc-zoom-split"></i></button>
-        </div>
+        </div>           
       </div>
      </form>
      <hr/>
