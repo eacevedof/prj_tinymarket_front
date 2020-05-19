@@ -8,13 +8,14 @@ function FormProductSearch({search,set_search}) {
   const on_submit = (e)=>{
     e.preventDefault()
     console.log("on submit search")
-    LocalDb.dropdb()
+    //set_search()
+    //LocalDb.dropdb()
     //llamada a api
   }
 
   const on_search_change = (e)=>{
     const strsearch = e.target.value
-    //set_search(strsearch)
+    set_search(strsearch)
     console.log("formproductsearch.on_search_change.search",search)
   }
 

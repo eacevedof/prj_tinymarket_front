@@ -16,13 +16,13 @@ function ProductList({order,set_order}) {
     HrefDom.document_title("ECH | products")
 
     async function load_products(){
-      const response = await Api.get_async_products()
+      const response = await Api.get_async_products(search)
       if(response)
         if(response.status === 200)
           set_products(response.data.result)
     }
     load_products()
-  },[])
+  },[search])
 
   return (
     <div className="wrapper">
