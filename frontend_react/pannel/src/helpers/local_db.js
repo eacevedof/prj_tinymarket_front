@@ -10,8 +10,10 @@ const Localdb = {
 
   select(k){
     const v = localStorage.getItem(k)
-    const obj = JSON.parse(v)
-    return obj
+    if(this.is_json(v))
+      return JSON.parse(v)
+    
+    return v
   },
 
   save(k,v){
@@ -30,7 +32,17 @@ const Localdb = {
 
   dropdb(){
     localStorage.clear()
-  }
+  },
+
+  is_json(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}  
+
 }
 
 export default Localdb;

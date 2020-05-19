@@ -3,6 +3,7 @@ import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import FormProductSearch from "./forms/form_product_search"
 import ProductTable from "./product_table"
+import LocalDb from "../../helpers/local_db"
 
 import HrefDom from "../../helpers/href_dom"
 import Api from "../../providers/api"
@@ -12,16 +13,25 @@ function ProductList({order,set_order}) {
   const [products, set_products] = useState([])
   const [search, set_search] = useState("")
 
+  async function load_products(s=""){
+    console.log(" SEARCH: ",s)
+    const response = await Api.get_async_products(s)
+    if(response)
+      if(response.status === 200)
+        set_products(response.data.result)
+  }
+
   useEffect(()=>{
+    console.log("productlist.useEffect search 1:",search)
     HrefDom.document_title("ECH | products")
 
-    async function load_products(){
-      const response = await Api.get_async_products(search)
-      if(response)
-        if(response.status === 200)
-          set_products(response.data.result)
+    const txtsearch = LocalDb.select("txtsearch")
+    if(txtsearch){
+      set_search(txtsearch)
+      console.log(" AAAAFFFFTER set_search 2",search,"txtseach",txtsearch)
     }
-    load_products()
+
+    load_products(search)
   },[search])
 
   return (
