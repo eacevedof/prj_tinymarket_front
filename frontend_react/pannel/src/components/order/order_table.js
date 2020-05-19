@@ -30,7 +30,7 @@ const OrderTable = ({order,set_order}) => {
     const product = OrderRepo.get_product(prodid)
     
     Swal2.fire({
-      title: <p>Are you sure to remove <b>{product.descriptionFull}</b>?</p>,
+      title: <p>Are you sure to remove <b>{product.description_full}</b>?</p>,
       showConfirmButton: true,
       showCancelButton: true,
     }).then( isConfirmed => {
@@ -88,12 +88,12 @@ const OrderTable = ({order,set_order}) => {
       <td>{i+1}</td>
       <td>
         <b>{product.description}</b><br/>
-        <sub>{product.descriptionFull}</sub>
+        <sub>{product.description_full}</sub>
       </td>
       <td className="text-center">>
         <img 
           src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
-          alt={product.descriptionFull}
+          alt={product.description_full}
           className="img-thumbnail"
         />
       </td>

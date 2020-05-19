@@ -10,7 +10,7 @@ function ProductCard({product}) {
       />
       <div className="card-body">
       <h5><strong>{product.description}</strong></h5>
-      <p className="card-text">{product.descriptionFull}</p>
+      <p className="card-text">{product.description_full}</p>
       </div>
     </div>
   )

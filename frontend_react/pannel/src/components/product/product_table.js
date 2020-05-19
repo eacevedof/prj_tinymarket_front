@@ -36,7 +36,7 @@ const ProductTable = ({order, set_order, products, search}) => {
       <tr key={product.id}>
         <td>{i+1}</td>
         <td>
-          <b>{product.description}</b><br/>{product.descriptionFull}
+          <b>{product.description}</b><br/>{product.description_full}
           {
             units>0 ? <><br/><span className="n-items">{units} in cart</span></> :null
           }
@@ -45,7 +45,7 @@ const ProductTable = ({order, set_order, products, search}) => {
           <button type="button" className="btn-empty" onClick={show_modal} prodid={product.id}>
             <img 
               src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
-              alt={product.descriptionFull}
+              alt={product.description_full}
               className="img-thumbnail"
               data-toggle="modal"
               data-target="#number-modal"
