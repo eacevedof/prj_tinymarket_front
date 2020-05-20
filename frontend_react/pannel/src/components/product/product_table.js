@@ -7,9 +7,9 @@ import NumberModal from "../modal/number_modal"
 
 const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
-const ProductTable = ({order, set_order, products, search}) => {
+const ProductTable = () => {
   
-  //const {order, set_order, products, search} = useContext(GlobalContext)
+  const {order, set_order, products, search} = useContext(GlobalContext)
 
   const [selproduct, set_selproduct] = useState({})
 
@@ -102,6 +102,7 @@ const ProductTable = ({order, set_order, products, search}) => {
             { trs }      
           </tbody>
         </table>
+        
       </div>
     </div>
     </>

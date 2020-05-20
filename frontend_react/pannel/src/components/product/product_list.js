@@ -5,14 +5,14 @@ import Footer from "../common/footer"
 import FormProductSearch from "./forms/form_product_search"
 import LoadingWheel from "../common/loading_wheel"
 import ProductTable from "./product_table"
-import LocalDb from "../../helpers/local_db"
+//import LocalDb from "../../helpers/local_db"
 
 import HrefDom from "../../helpers/href_dom"
 import Api from "../../providers/api"
 
 function ProductList() {
   
-  const {products, set_products, order,set_order, search, set_search} = useContext(GlobalContext)
+  const {set_products,  search} = useContext(GlobalContext)
 
   const [is_loading, set_is_loading] = useState(false)
   
@@ -46,7 +46,7 @@ function ProductList() {
           <div className="container-fluid z-index-2000">
             <FormProductSearch />
             <LoadingWheel is_loading={is_loading} />
-            <ProductTable products={products} order={order} set_order={set_order} search={search}/>
+            <ProductTable />
           </div>
         </div>
         <Footer />
