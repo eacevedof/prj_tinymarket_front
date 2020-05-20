@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
 import ProductList from '../product/product_list';
@@ -20,10 +20,10 @@ import {
 
 function Boot() {
 
-  const {order, set_order, search, set_search} = useContext(GlobalContext)
+  //const {order, set_order, search, set_search} = useContext(GlobalContext)
 
-  //const [order, set_order] = useState(objorder)
-  //const [search, set_search] = useState("")
+  const [order, set_order] = useState(objorder)
+  const [search, set_search] = useState("")
 
   console.log("App.order ",order)
 
