@@ -3,7 +3,6 @@ import {GlobalContext} from '../context/global_context';
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import OrderTable from "./order_table"
-import "../../index.css"
 import HrefDom from "../../helpers/href_dom"
 
 function OrderDetail() {

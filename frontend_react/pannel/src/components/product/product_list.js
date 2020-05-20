@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useMemo, useCallback, useRef} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {GlobalContext} from "../context/global_context"
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"

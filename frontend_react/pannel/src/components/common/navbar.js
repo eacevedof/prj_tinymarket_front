@@ -2,7 +2,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {GlobalContext} from '../context/global_context';
 import { NavLink } from "react-router-dom";
-import "../../index.css"
 
 function Navbar() {
   
