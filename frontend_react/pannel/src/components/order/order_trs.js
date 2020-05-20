@@ -8,7 +8,7 @@ import OrderRepo from "../../repository/order_repo"
 
 function OrderTrs() {
 
-  const {products, set_products, order,set_order} = useContext(GlobalContext)
+  const {order, set_order} = useContext(GlobalContext)
 
   const Swal2 = withReactContent(Swal)
 
@@ -25,7 +25,6 @@ function OrderTrs() {
     }).then( isConfirmed => {
       if(isConfirmed.value){
         OrderRepo.remove_product(prodid)
-        set_products(OrderRepo.get_products())
         set_order(OrderRepo.order)
         OrderRepo.save()
       }
@@ -35,7 +34,7 @@ function OrderTrs() {
    return (
     <>
     {
-    products.map( (product,i) => (
+    order.products.map( (product,i) => (
       <tr key={DateTime.get_ymdhis()}>
         <td>{i+1}</td>
         <td>

@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState, useEffect, useCallback} from 'react'
 import {GlobalContext} from '../context/global_context';
 import DateTime from "../../helpers/date_time"
 import Swal from "sweetalert2"
@@ -12,9 +12,9 @@ const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
 const OrderTable = () => {
 
-  const {products, set_products, order,set_order} = useContext(GlobalContext)
+  const {order} = useContext(GlobalContext)
 
-  
+  //const [products, set_products] = useState([])
   const [total, set_total] = useState(0)
 
   const get_total = products => {
@@ -60,7 +60,6 @@ const OrderTable = () => {
   useEffect(() => {
     //si cambia el pedido hay que refrescar los productos y el total
     console.log("ordertable.useeffect.order",order)
-    set_products(order.products)
     const total = get_total(order.products)
     set_total(total)
 
