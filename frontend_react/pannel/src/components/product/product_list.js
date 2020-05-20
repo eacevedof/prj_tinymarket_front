@@ -58,7 +58,7 @@ function ProductList({order,set_order, search, set_search}) {
         <Navbar />
         <div className="content">
           <div className="container-fluid z-index-2000">
-            <FormProductSearch search={search} set_search={set_search}/>
+            <FormProductSearch />
             <LoadingWheel is_loading={is_loading} />
             <ProductTable products={products} order={order} set_order={set_order} search={search}/>
           </div>
