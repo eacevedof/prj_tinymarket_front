@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
+import {GlobalContext} from '../context/global_context';
 import DateTime from "../../helpers/date_time"
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
@@ -8,9 +9,11 @@ import FormUserOrder from "../user/form/form_user_order"
 
 const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
-const OrderTable = ({order,set_order}) => {
+const OrderTable = () => {
+
+  const {products, set_products, order,set_order} = useContext(GlobalContext)
+
   
-  const [products, set_products] = useState(order.products)
   const [total, set_total] = useState(0)
 
   const get_total = products => {

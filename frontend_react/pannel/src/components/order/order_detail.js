@@ -1,15 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
+import {GlobalContext} from '../context/global_context';
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import OrderTable from "./order_table"
 import "../../index.css"
 import HrefDom from "../../helpers/href_dom"
 
-function OrderDetail({order,set_order,search}) {
+function OrderDetail() {
 
   useEffect(()=>{
-    console.log("orderdetail.useffect.order",order)
-    console.log("orderdetail.useffect.search",search)
+    //console.log("orderdetail.useffect.order",order)
+    //console.log("orderdetail.useffect.search",search)
     
     HrefDom.document_title("ECH | Order")
   },[])
@@ -17,10 +18,10 @@ function OrderDetail({order,set_order,search}) {
   return (
     <div className="wrapper">
       <div className="main-panel">
-        <Navbar order={order} />
+        <Navbar />
         <div className="content">
           <div className="container-fluid z-index-2000">
-            <OrderTable order={order} set_order={set_order} />
+            <OrderTable />
           </div>
         </div>
         <Footer />
