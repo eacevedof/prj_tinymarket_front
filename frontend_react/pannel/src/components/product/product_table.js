@@ -9,9 +9,8 @@ const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
 const ProductTable = () => {
   
-  const {order, set_order, products, search} = useContext(GlobalContext)
+  const {selproduct, set_selproduct, order, set_order, products, search} = useContext(GlobalContext)
 
-  const [selproduct, set_selproduct] = useState({})
 
   const show_modal = (e)=>{
     //OrderRepo.order = _.clone(order,true)
@@ -78,7 +77,7 @@ const ProductTable = () => {
   
   return (
     <>
-    <NumberModal product={selproduct} order={order} set_order={set_order} />
+    <NumberModal />
     <div className="card strpied-tabled-with-hover">
       <div className="card-header ">
         <h4 className="card-title">Items <small>({products.length})</small></h4>

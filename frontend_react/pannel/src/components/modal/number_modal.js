@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect } from 'react';
+import {GlobalContext} from "../context/global_context"
 import OrderRepo from "../../repository/order_repo"
 import _ from "lodash"
 import ProductCard from "../product/product_card"
 
-function NumberModal({product,order,set_order}) {
+function NumberModal() {
 
+  const {selproduct,order,set_order} = useContext(GlobalContext)
   const [units, set_units] = useState(0)
 
   const on_add = ()=>{
-    const prodid = product.id
+    const prodid = selproduct.id
     OrderRepo.order = _.clone(order,true)
     const orderunits = OrderRepo.get_units(prodid)
     console.log("on_add.orderunits",orderunits)
     const newunits = orderunits + 1
     set_units(newunits)
     console.log("on_add.units after set_units",newunits)
-    const prodmodif = _.assign(product,{units:newunits})
+    const prodmodif = _.assign(selproduct,{units:newunits})
     console.log("on_add.prodmodif",prodmodif)
     OrderRepo.add_product(prodmodif)
     set_order(OrderRepo.order)
@@ -24,13 +26,13 @@ function NumberModal({product,order,set_order}) {
   }
 
   const on_remove = () => {
-    const prodid = product.id
+    const prodid = selproduct.id
     OrderRepo.order = _.clone(order,true)
     const orderunits = OrderRepo.get_units(prodid)
     const newunits = orderunits>0?orderunits-1:0
     set_units(newunits)
     console.log("on_remove.units",newunits)
-    const prodmodif = _.assign(product,{units:newunits})
+    const prodmodif = _.assign(selproduct,{units:newunits})
     console.log("on_remove.prodmodif",prodmodif)
     OrderRepo.remove_units(prodmodif)
     set_order(OrderRepo.order)
@@ -38,12 +40,12 @@ function NumberModal({product,order,set_order}) {
   }
 
   useEffect(() => {
-    console.log("numbermodal.useffect.product",product)
+    console.log("numbermodal.useffect.selproduct",selproduct)
     //cad vez que hay un nuevo producto tengo que setear sus unidades en 
     OrderRepo.order = _.clone(order,true)
-    const orderunits = OrderRepo.get_units(product.id)
+    const orderunits = OrderRepo.get_units(selproduct.id)
     set_units(orderunits)
-  },[product]);
+  },[selproduct]);
 
   return (
     <>
@@ -77,7 +79,7 @@ function NumberModal({product,order,set_order}) {
               </div>
             </div>            
             <div className="row">        
-              <ProductCard product={product} />
+              <ProductCard />
             </div>
           </div>
         </div>

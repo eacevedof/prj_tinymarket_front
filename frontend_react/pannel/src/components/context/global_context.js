@@ -9,7 +9,7 @@ const GlobalProvider = (props) => {
   const [products, set_products] = useState([])
   const [search, set_search] = useState("")
   const [order, set_order] = useState(objorder)
-  const [modalnum, set_modalnum] = useState({})
+  const [selproduct, set_selproduct] = useState({})
   const [is_loading, set_is_loading] = useState(false)
 
   //esto publica todo lo que va estar disponible hacia afuera
@@ -17,7 +17,7 @@ const GlobalProvider = (props) => {
     <GlobalContext.Provider
       value={{
         products, set_products, search, set_search, order, set_order,
-        modalnum, set_modalnum, user, set_user, is_loading, set_is_loading
+        selproduct, set_selproduct, user, set_user, is_loading, set_is_loading
       }}
     >
       {props.children}
