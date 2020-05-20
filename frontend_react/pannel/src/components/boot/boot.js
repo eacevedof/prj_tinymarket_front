@@ -3,7 +3,6 @@ import {GlobalContext} from '../context/global_context';
 
 import ProductList from '../product/product_list';
 import OrderDetail from "../order/order_detail"
-import objorder from "../../models/order"
 
 import LocalDb from "../../helpers/local_db"
 import E404 from "../errors/404/e404"

@@ -1,9 +1,12 @@
 //Navbar.js
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {GlobalContext} from '../context/global_context';
 import { NavLink } from "react-router-dom";
 import "../../index.css"
 
-function Navbar({order}) {
+function Navbar() {
+  
+  const {order} = useContext(GlobalContext)
   console.log("navbar.order",order)
 
   const [iitems, set_iitems] = useState(0)

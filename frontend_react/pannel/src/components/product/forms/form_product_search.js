@@ -1,8 +1,11 @@
-import React,{useState, useEffect, useRef} from 'react';
-import LocalDb from "../../../helpers/local_db"
+import React,{useContext, useState, useEffect, useRef} from 'react';
+import {GlobalContext} from '../../context/global_context';
+//import LocalDb from "../../../helpers/local_db"
 //import styles from "./formsearch.module.css"
 
-function FormProductSearch({search,set_search}) {
+function FormProductSearch() {
+
+  const {search, set_search} = useContext(GlobalContext)
 
   const [txtsearch, set_txtsearch] = useState(search)
   const inputtxtsearch = useRef(null)

@@ -55,7 +55,7 @@ function ProductList({order,set_order, search, set_search}) {
   return (
     <div className="wrapper">
       <div className="main-panel">
-        <Navbar order={order} />
+        <Navbar />
         <div className="content">
           <div className="container-fluid z-index-2000">
             <FormProductSearch search={search} set_search={set_search}/>

@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext,useEffect, useState} from 'react'
+import {GlobalContext} from '../context/global_context';
 import OrderRepo from "../../repository/order_repo"
 import ProductRepo from "../../repository/product_repo"
 import _ from "lodash"
@@ -8,6 +9,8 @@ const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
 const ProductTable = ({order, set_order, products, search}) => {
   
+  //const {order, set_order, products, search} = useContext(GlobalContext)
+
   const [selproduct, set_selproduct] = useState({})
 
   const show_modal = (e)=>{
