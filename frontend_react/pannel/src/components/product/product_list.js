@@ -12,9 +12,7 @@ import Api from "../../providers/api"
 
 function ProductList() {
   
-  const {set_products,  search} = useContext(GlobalContext)
-
-  const [is_loading, set_is_loading] = useState(false)
+  const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   
   async function async_load_products(s){
     console.log("async is_laoding: true")
@@ -45,7 +43,7 @@ function ProductList() {
         <div className="content">
           <div className="container-fluid z-index-2000">
             <FormProductSearch />
-            <LoadingWheel is_loading={is_loading} />
+            <LoadingWheel />
             <ProductTable />
           </div>
         </div>

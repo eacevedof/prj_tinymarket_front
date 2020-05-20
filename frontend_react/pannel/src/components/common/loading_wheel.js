@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {GlobalContext} from "../context/global_context"
 
-function LoadingWheel({is_loading}) {
+function LoadingWheel() {
+
+  const {is_loading} = useContext(GlobalContext)
 
   return (
     <>
