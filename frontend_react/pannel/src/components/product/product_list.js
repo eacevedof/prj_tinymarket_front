@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useMemo, useCallback, useRef} from 'react';
+import React, {useContext, useState, useEffect, useMemo, useCallback, useRef} from 'react';
+import {GlobalContext} from "../context/global_context"
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import FormProductSearch from "./forms/form_product_search"
@@ -11,6 +12,9 @@ import Api from "../../providers/api"
 
 function ProductList({order,set_order, search, set_search}) {
   
+  const {gorder, set_gorder, gsearch, set_gsearch} = useContext(GlobalContext)
+
+
   const [products, set_products] = useState([])
   const [is_loading, set_is_loading] = useState(false)
   
