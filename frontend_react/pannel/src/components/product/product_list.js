@@ -2,6 +2,7 @@ import React, {useState, useEffect, useMemo, useCallback, useRef} from 'react';
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import FormProductSearch from "./forms/form_product_search"
+import LoadingWheel from "../common/loading_wheel"
 import ProductTable from "./product_table"
 import LocalDb from "../../helpers/local_db"
 
@@ -11,13 +12,19 @@ import Api from "../../providers/api"
 function ProductList({order,set_order, search, set_search}) {
   
   const [products, set_products] = useState([])
+  const [is_loading, set_is_loading] = useState(false)
   
   async function async_load_products(s){
-
+    console.log("async is_laoding: true")
+    set_is_loading(true)
+    
     const response = await Api.get_async_products(s)
     if(response)
       if(response.status === 200)
         set_products(response.data.result)
+
+    console.log("async is_laoding: false")
+    set_is_loading(false)
   }
 
   useEffect(()=>{
@@ -25,7 +32,8 @@ function ProductList({order,set_order, search, set_search}) {
     HrefDom.document_title("ECH | products")
     //https://stackoverflow.com/questions/53446020/how-to-compare-oldvalues-and-newvalues-on-react-hooks-useeffect
     async_load_products(search)
-    return ()=>false
+    
+    return ()=> console.log("unmounting")
   },[search])
   
   // useMemo(() => {
@@ -47,6 +55,7 @@ function ProductList({order,set_order, search, set_search}) {
         <div className="content">
           <div className="container-fluid z-index-2000">
             <FormProductSearch search={search} set_search={set_search}/>
+            <LoadingWheel is_loading={is_loading} />
             <ProductTable products={products} order={order} set_order={set_order} search={search}/>
           </div>
         </div>
