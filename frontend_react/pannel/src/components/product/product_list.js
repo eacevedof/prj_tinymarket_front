@@ -12,7 +12,7 @@ import Api from "../../providers/api"
 
 function ProductList() {
   
-  const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
+  const {set_is_loading, set_products, search} = useContext(GlobalContext)
   
   async function async_load_products(s){
     console.log("async is_laoding: true")
