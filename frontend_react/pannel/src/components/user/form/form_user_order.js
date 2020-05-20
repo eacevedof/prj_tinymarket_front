@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {GlobalContext} from '../../context/global_context';
 
-function FormUserOrder({order,set_order}) {
+function FormUserOrder() {
 
-
+  //const {order, set_order} = useContext(GlobalContext)
 
   const on_submit = (e)=>{
     e.preventDefault()
