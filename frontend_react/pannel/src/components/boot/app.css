@@ -21,6 +21,10 @@
   height: 75px;
 }
 
+.btn-modal-fix {
+  width: auto;
+}
+
 .n-items {
   background-color: #87CB16;
   text-align: center;

@@ -12,7 +12,6 @@ function FormOrderUser() {
 
   return (
     <form onSubmit={on_submit}>
-      <h2><b>User information</b></h2>
       <div className="row">
           <div className="col-md-12">
             <div className="form-group">
@@ -61,14 +60,13 @@ function FormOrderUser() {
       </div>
 
       <div className="row">
-        <div className="col-md-6">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>  
+        <div className="col-lg-6 btn-modal-fix">
+          <button type="button" className="btn btn-secondary btn-fill btn-lg btn-block" data-dismiss="modal"><b>Cancel</b></button>  
         </div>
-        <div className="col-md-6">
-          <button type="button" class="btn btn-primary">Accept</button>          
+        <div className="col-lg-6 btn-modal-fix">
+          <button type="button" className="btn btn-primary btn-fill btn-lg btn-block pull-right"><b>Accept</b></button>          
         </div>        
       </div>
-
     </form>
   )
 }
