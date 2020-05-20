@@ -11,8 +11,8 @@ function OrderUserModal() {
       <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h4 className="modal-title" id="order-user-modal"><b>User information</b></h4>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <h4 className="modal-title"><b>User information</b></h4>
+            <button type="button" id="btn-close-modal" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>          

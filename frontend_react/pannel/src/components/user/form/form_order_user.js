@@ -1,13 +1,32 @@
 import React, {useContext} from 'react';
 import {GlobalContext} from '../../context/global_context';
 
+
+function hidemodal(){
+  // const background = document.getElementsByClassName("modal-backdrop fade")[0];
+  // if(background){
+  //   const body = document.getElementsByTagName("body")[0]
+  //   body.classList.remove("modal-open")
+    
+  //   background.parentNode.removeChild(background);
+  //   background.style.display = "none";
+    
+  //   const modal = document.getElementById('order-user-modal')
+  //   modal.style.display = "none"
+  //   modal.setAttribute("aria-hidden", "true");
+  // }
+  const btn = document.getElementById("btn-close-modal")
+  btn.click()
+}
+
 function FormOrderUser() {
 
   const {user, set_user} = useContext(GlobalContext)
 
   const on_submit = (e)=>{
     e.preventDefault()
-    alert("send")
+    //alert("send")
+    hidemodal()
   }
 
   return (
@@ -64,7 +83,7 @@ function FormOrderUser() {
           <button type="button" className="btn btn-secondary btn-fill btn-lg btn-block" data-dismiss="modal"><b>Cancel</b></button>  
         </div>
         <div className="col-lg-6 btn-modal-fix">
-          <button type="button" className="btn btn-primary btn-fill btn-lg btn-block pull-right"><b>Accept</b></button>          
+          <button type="submit" className="btn btn-primary btn-fill btn-lg btn-block pull-right"><b>Accept</b></button>          
         </div>        
       </div>
     </form>
