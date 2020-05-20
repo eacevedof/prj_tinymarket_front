@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content'
 import _ from "lodash"
 import OrderRepo from "../../repository/order_repo"
 import FormUserOrder from "../user/form/form_user_order"
+import OrderTrs from "./order_trs"
 
 const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
@@ -24,57 +25,36 @@ const OrderTable = () => {
     return _.round(sum,2).toFixed(2)
   }
 
-  const Swal2 = withReactContent(Swal)
-
-  const show_confirm_remove = (e) => {
-    const button = e.currentTarget
-    const prodid = parseInt(button.getAttribute("prodid"))
-    OrderRepo.order = _.clone(order,true)
-    const product = OrderRepo.get_product(prodid)
-    
-    Swal2.fire({
-      title: <p>Are you sure to remove <b>{product.description_full}</b>?</p>,
-      showConfirmButton: true,
-      showCancelButton: true,
-    }).then( isConfirmed => {
-      if(isConfirmed.value){
-        OrderRepo.remove_product(prodid)
-        set_products(OrderRepo.get_products())
-        set_order(OrderRepo.order)
-        OrderRepo.save()
-      }
-    })
-  }
-
+  
   const show_sweet_user = (e) => {
-    Swal2.fire({
-      //title: <h2>User information</h2>,
-      html: <FormUserOrder />,
-      showConfirmButton: true,
-      showCancelButton: true, 
-      allowOutsideClick: false,
-      preConfirm: () => {
-        console.log(Swal2);
-        return [
-          //document.getElementById("input1").value,
-          //document.getElementById("input2").value
-        ];
-      }
-    }).then(mxobject => {
-      if(_.has(mxobject,"dismiss"))
-        return console.log(mxobject)
+    // Swal2.fire({
+    //   //title: <h2>User information</h2>,
+    //   html: <FormUserOrder />,
+    //   showConfirmButton: true,
+    //   showCancelButton: true, 
+    //   allowOutsideClick: false,
+    //   preConfirm: () => {
+    //     console.log(Swal2);
+    //     return [
+    //       //document.getElementById("input1").value,
+    //       //document.getElementById("input2").value
+    //     ];
+    //   }
+    // }).then(mxobject => {
+    //   if(_.has(mxobject,"dismiss"))
+    //     return console.log(mxobject)
       
-      console.log("values[]",mxobject.value);
-      Swal2.fire({
-        title: <p>Are you sure to continue?</p>,
-        showConfirmButton: true,
-        showCancelButton: true,
-      }).then(isConfirmed => {
-        if(isConfirmed.value){
-          console.log("values[] II ",mxobject.value);
-        }
-      })
-    });
+    //   console.log("values[]",mxobject.value);
+    //   Swal2.fire({
+    //     title: <p>Are you sure to continue?</p>,
+    //     showConfirmButton: true,
+    //     showCancelButton: true,
+    //   }).then(isConfirmed => {
+    //     if(isConfirmed.value){
+    //       console.log("values[] II ",mxobject.value);
+    //     }
+    //   })
+    // });
   }
 
   useEffect(() => {
@@ -86,43 +66,7 @@ const OrderTable = () => {
 
   },[order]);
 
-  const get_trs = products => products.map( (product,i) => (
-    <tr key={DateTime.get_ymdhis()}>
-      <td>{i+1}</td>
-      <td>
-        <b>{product.description}</b><br/>
-        <sub>{product.description_full}</sub>
-      </td>
-      <td className="text-center">
-        <img 
-          src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
-          alt={product.description_full}
-          className="img-thumbnail"
-        />
-      </td>
-      <td className="text-right">
-        <sub>{product.units} x </sub>
-        <sub>{_.round(product.price_sale,2).toFixed(2)}</sub>
-      </td> 
-      <td className="text-right">
-        <span>{_.round(product.price_sale * product.units,2).toFixed(2)}</span>
-      </td>
-      <td>
-        <div className="input-group">
-          <button 
-            type="button" 
-            className="btn btn-danger btn-fill pull-left" 
-            prodid={product.id}
-            onClick={show_confirm_remove}
-            >
-            <i className="fa fa-trash fa-lg" aria-hidden="true"></i>
-          </button>
-        </div>
-      </td>
-    </tr>
-  ))//get_trs
-
-  const trs = get_trs(products)
+  
  
   return (
     <div className="card strpied-tabled-with-hover">
@@ -173,7 +117,7 @@ const OrderTable = () => {
               </tr>
             </thead>
             <tbody>
-              { trs }      
+              <OrderTrs />
             </tbody>
             <tfoot>
               <tr>
