@@ -34,42 +34,42 @@ function OrderTrs() {
    return (
     <>
     {
-    order.products.map( (product,i) => (
-      <tr key={DateTime.get_ymdhis()}>
-        <td>{i+1}</td>
-        <td>
-          <b>{product.description}</b><br/>
-          <sub>{product.description_full}</sub>
-        </td>
-        <td className="text-center">
-          <img 
-            src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
-            alt={product.description_full}
-            className="img-thumbnail"
-          />
-        </td>
-        <td className="text-right">
-          <sub>{product.units} x </sub>
-          <sub>{_.round(product.price_sale,2).toFixed(2)}</sub>
-        </td> 
-        <td className="text-right">
-          <span>{_.round(product.price_sale * product.units,2).toFixed(2)}</span>
-        </td>
-        <td>
-          <div className="input-group">
-            <button 
-              type="button" 
-              className="btn btn-danger btn-fill pull-left" 
-              prodid={product.id}
-              onClick={show_confirm_remove}
-              >
-              <i className="fa fa-trash fa-lg" aria-hidden="true"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
+      order.products.map( (product,i) => (
+        <tr key={DateTime.get_ymdhis()}>
+          <td>{i+1}</td>
+          <td>
+            <b>{product.description}</b><br/>
+            <sub>{product.description_full}</sub>
+          </td>
+          <td className="text-center">
+            <img 
+              src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
+              alt={product.description_full}
+              className="img-thumbnail"
+            />
+          </td>
+          <td className="text-right">
+            <sub>{product.units} x </sub>
+            <sub>{_.round(product.price_sale,2).toFixed(2)}</sub>
+          </td> 
+          <td className="text-right">
+            <span>{_.round(product.price_sale * product.units,2).toFixed(2)}</span>
+          </td>
+          <td>
+            <div className="input-group">
+              <button 
+                type="button" 
+                className="btn btn-danger btn-fill pull-left" 
+                prodid={product.id}
+                onClick={show_confirm_remove}
+                >
+                <i className="fa fa-trash fa-lg" aria-hidden="true"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        )
       )
-    )
     }     
     </>
   )

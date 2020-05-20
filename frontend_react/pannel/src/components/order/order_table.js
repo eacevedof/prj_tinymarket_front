@@ -5,7 +5,7 @@ import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import _ from "lodash"
 import OrderRepo from "../../repository/order_repo"
-import FormUserOrder from "../user/form/form_user_order"
+import FormUserOrder from "../user/form/form_order_user"
 import OrderTrs from "./order_trs"
 
 const BASE_URL = process.env.REACT_APP_BASEURLAPI
@@ -26,35 +26,8 @@ const OrderTable = () => {
   }
 
   
-  const show_sweet_user = (e) => {
-    // Swal2.fire({
-    //   //title: <h2>User information</h2>,
-    //   html: <FormUserOrder />,
-    //   showConfirmButton: true,
-    //   showCancelButton: true, 
-    //   allowOutsideClick: false,
-    //   preConfirm: () => {
-    //     console.log(Swal2);
-    //     return [
-    //       //document.getElementById("input1").value,
-    //       //document.getElementById("input2").value
-    //     ];
-    //   }
-    // }).then(mxobject => {
-    //   if(_.has(mxobject,"dismiss"))
-    //     return console.log(mxobject)
-      
-    //   console.log("values[]",mxobject.value);
-    //   Swal2.fire({
-    //     title: <p>Are you sure to continue?</p>,
-    //     showConfirmButton: true,
-    //     showCancelButton: true,
-    //   }).then(isConfirmed => {
-    //     if(isConfirmed.value){
-    //       console.log("values[] II ",mxobject.value);
-    //     }
-    //   })
-    // });
+  const show_user_modal = (e) => {
+  
   }
 
   useEffect(() => {
@@ -80,7 +53,9 @@ const OrderTable = () => {
                     <button 
                     type="button" 
                     className="btn btn-success btn-fill pull-right" 
-                    onClick={show_sweet_user}
+                    onClick={show_user_modal}
+                    data-toggle="modal"
+                    data-target="#order-user-modal"                    
                     >
                     Process order&nbsp;
                     <i className="fa fa-truck fa-lg" aria-hidden="true"></i> &nbsp;

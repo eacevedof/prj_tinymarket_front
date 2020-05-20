@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import {GlobalContext} from '../../context/global_context';
 
-function FormUserOrder() {
+function FormOrderUser() {
 
-  //const {order, set_order} = useContext(GlobalContext)
+  const {user, set_user} = useContext(GlobalContext)
 
   const on_submit = (e)=>{
     e.preventDefault()
@@ -12,7 +12,7 @@ function FormUserOrder() {
 
   return (
     <form onSubmit={on_submit}>
-      <h3><b>User information</b></h3>
+      <h2><b>User information</b></h2>
       <div className="row">
           <div className="col-md-12">
             <div className="form-group">
@@ -59,8 +59,18 @@ function FormUserOrder() {
           </div>
         </div>
       </div>
+
+      <div className="row">
+        <div className="col-md-6">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>  
+        </div>
+        <div className="col-md-6">
+          <button type="button" class="btn btn-primary">Accept</button>          
+        </div>        
+      </div>
+
     </form>
   )
 }
 
-export default FormUserOrder;
+export default FormOrderUser;

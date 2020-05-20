@@ -4,6 +4,7 @@ import Navbar from "../common/navbar"
 import Footer from "../common/footer"
 import OrderTable from "./order_table"
 import HrefDom from "../../helpers/href_dom"
+import OrderUserModal from "../modal/order_user_modal"
 
 function OrderDetail() {
 
@@ -25,6 +26,7 @@ function OrderDetail() {
         </div>
         <Footer />
       </div>
+      <OrderUserModal />
     </div>
   )
 }
