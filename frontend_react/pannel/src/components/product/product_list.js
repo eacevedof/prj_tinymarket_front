@@ -10,12 +10,10 @@ import LocalDb from "../../helpers/local_db"
 import HrefDom from "../../helpers/href_dom"
 import Api from "../../providers/api"
 
-function ProductList({order,set_order, search, set_search}) {
+function ProductList() {
   
-  //const {gorder, set_gorder, gsearch, set_gsearch} = useContext(GlobalContext)
+  const {products, set_products, order,set_order, search, set_search} = useContext(GlobalContext)
 
-
-  const [products, set_products] = useState([])
   const [is_loading, set_is_loading] = useState(false)
   
   async function async_load_products(s){
@@ -39,18 +37,6 @@ function ProductList({order,set_order, search, set_search}) {
     
     return ()=> console.log("unmounting")
   },[search])
-  
-  // useMemo(() => {
-  //   console.log("productlist.useMemo search",search)
-  //   HrefDom.document_title("ECH | products")
-  //   async_load_products(search)    
-  // }, [search])
-
-  // useCallback(() => {
-  //   console.log("productlist.useMemo search",search)
-  //   HrefDom.document_title("ECH | products")
-  //   async_load_products(search)    
-  // }, [search])  
 
   return (
     <div className="wrapper">
