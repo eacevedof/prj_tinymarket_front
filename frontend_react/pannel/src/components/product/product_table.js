@@ -3,7 +3,7 @@ import {GlobalContext} from '../context/global_context';
 import OrderRepo from "../../repository/order_repo"
 import ProductRepo from "../../repository/product_repo"
 import _ from "lodash"
-import NumberModal from "../modal/number_modal"
+
 
 const BASE_URL = process.env.REACT_APP_BASEURLAPI
 
@@ -77,7 +77,6 @@ const ProductTable = () => {
   
   return (
     <>
-    <NumberModal />
     <div className="card strpied-tabled-with-hover">
       <div className="card-header ">
         <h4 className="card-title">Items <small>({products.length})</small></h4>

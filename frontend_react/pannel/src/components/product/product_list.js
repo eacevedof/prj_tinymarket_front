@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import {GlobalContext} from "../context/global_context"
 import Navbar from "../common/navbar"
 import Footer from "../common/footer"
+import NumberModal from "../modal/number_modal"
 import FormProductSearch from "./forms/form_product_search"
 import LoadingWheel from "../common/loading_wheel"
 import ProductTable from "./product_table"
@@ -50,6 +51,7 @@ function ProductList() {
         </div>
         <Footer />
       </div>
+      <NumberModal />
     </div>
   )
 }

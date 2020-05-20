@@ -12,16 +12,6 @@
   z-index: 2000;
 }
 
-.modal-backdrop {
-  z-index: -1; 
-  display: none;
-}
-
-.modal {
-  /*border: 1px solid green;*/
-  background: rgba(0, 0, 0, 0.5);
-  height: 100vh;
-}
 
 .padding-buttons {
   padding-top: 40px;
