@@ -84,6 +84,7 @@ const ProductTable = ({order, set_order, products, search}) => {
           }
       </div>
       <div className="card-body table-full-width table-responsive">
+        
         <table className="table table-hover table-striped">
           <thead>
             <tr>
