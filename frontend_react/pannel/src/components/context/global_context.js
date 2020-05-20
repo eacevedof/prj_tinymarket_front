@@ -3,15 +3,18 @@ import React, {createContext, useState} from 'react';
 export const GlobalContext = createContext();
 
 const GlobalProvider = (props) => {
-  const [gproducts, set_gproducts] = useState([{id:"prod bbbb"}])
-  const [gsearch, set_gsearch] = useState("some search")
-  const [gorder, set_gorder] = useState({id:"orrder aaaa"})
+
+  const [products, set_products] = useState([])
+  const [search, set_search] = useState("")
+  const [order, set_order] = useState({})
+  const [modalnum, set_modalnum] = useState({})
 
   //esto publica todo lo que va estar disponible hacia afuera
   return (
     <GlobalContext.Provider
       value={{
-        gproducts, set_gproducts, gsearch, set_gsearch, gorder, set_gorder
+        products, set_products, search, set_search, order, set_order,
+        modalnum, set_modalnum
       }}
     >
       {props.children}

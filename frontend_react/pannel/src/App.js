@@ -21,6 +21,8 @@ import "./index.css"
 
 function App(){
 
+  //const {order, set_order, search, set_search} = useContext(GlobalContext)
+
   const [order, set_order] = useState(objorder)
   const [search, set_search] = useState("")
 

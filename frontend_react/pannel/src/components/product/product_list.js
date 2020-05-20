@@ -12,7 +12,7 @@ import Api from "../../providers/api"
 
 function ProductList({order,set_order, search, set_search}) {
   
-  const {gorder, set_gorder, gsearch, set_gsearch} = useContext(GlobalContext)
+  //const {gorder, set_gorder, gsearch, set_gsearch} = useContext(GlobalContext)
 
 
   const [products, set_products] = useState([])
