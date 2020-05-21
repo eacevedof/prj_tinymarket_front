@@ -1,9 +1,9 @@
-const user = {
+const objuser = {
   id: null,
-  full_name: "",
+  fullname: "",
   email: "",
   phone: "",
   address: "",
 }
 
-export default user;
+export default objuser;

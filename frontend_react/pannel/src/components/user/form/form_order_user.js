@@ -5,9 +5,14 @@ import Isvalid from "../../../helpers/isvalid"
 import _ from "lodash"
 import LocalDb from "../../../helpers/local_db"
 import objorder from "../../../models/order"
-import FormProductSearch from '../../product/forms/form_product_search';
+import objuser from "../../../models/user"
+import Localdb from '../../../helpers/local_db';
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
 
 function FormOrderUser() {
+
+  const Swal2 = withReactContent(Swal)
 
   const {user, set_user, order, set_order} = useContext(GlobalContext)
 
@@ -19,10 +24,7 @@ function FormOrderUser() {
 
   //const [tmpuser, set_tmpuser] = useState({})
 
-  const hidemodal= () => {
-    const btn = document.getElementById("btn-close-modal")
-    btn.click()
-  }
+  const hidemodal= () => {  document.getElementById("btn-close-modal").click() }
   
   async function async_on_mail_change(e){
 
@@ -42,8 +44,6 @@ function FormOrderUser() {
   const on_change_fullname = (e) => {set_fullname(e.target.value)}
   const on_change_address = (e) => {set_address(e.target.value)}
   const on_change_notes = (e) => {set_notes(e.target.value)}
-
-
 
   const get_total = products => {
     const sum = products
@@ -76,10 +76,40 @@ function FormOrderUser() {
     //recuperar pedido y usuario
     //enviar pedido y usuario
     const response = await Api.send_async_order(formdata)
+    if(response.error){
+
+      return
+    }
+    
+    //guardo un pedido vacio
+    set_order(objorder)
+    const theuser = {
+      ...objuser,
+      email,
+      phone,
+      fullname,
+      address,
+    }
+    
+    Localdb.save("user",theuser)
+    set_user(theuser)
     //limpiar pedido
     //guardar usuario en bd
     hidemodal()
+    swal_ok()
   }
+
+  const swal_ok = (strval) => {
+    
+          Swal2.fire({
+        title: <p>Your purchase is in progress. You will receive a copy in your email
+
+              </p>,
+        showConfirmButton: true,
+      })
+    
+  }
+
 
   useEffect(() => {
 
