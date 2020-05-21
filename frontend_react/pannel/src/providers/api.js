@@ -42,7 +42,20 @@ const Api = {
     } catch (e) {
       console.error("ERROR: api.get_async_chekcemail.url:",url,"e:",e)
     }
-  },  
+  },
+
+  send_async_order: async (formdata) => {
+    const url = `${BASE_URL}/api/v1/order/purchase`
+    
+    try {
+      console.log("api.send_async_order...",url)
+      const response = await axios.post(url, formdata)
+      console.log("api.send_async_order.response",response)
+      return response
+    } catch (e) {
+      console.error("ERROR: api.send_async_order.url:",url,"e:",e)
+    }
+  },    
 }
 
 export default Api;

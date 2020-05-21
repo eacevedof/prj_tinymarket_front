@@ -5,6 +5,7 @@ import Isvalid from "../../../helpers/isvalid"
 import _ from "lodash"
 import LocalDb from "../../../helpers/local_db"
 import objorder from "../../../models/order"
+import FormProductSearch from '../../product/forms/form_product_search';
 
 function FormOrderUser() {
 
@@ -19,18 +20,6 @@ function FormOrderUser() {
   //const [tmpuser, set_tmpuser] = useState({})
 
   const hidemodal= () => {
-    // const background = document.getElementsByClassName("modal-backdrop fade")[0];
-    // if(background){
-    //   const body = document.getElementsByTagName("body")[0]
-    //   body.classList.remove("modal-open")
-      
-    //   background.parentNode.removeChild(background);
-    //   background.style.display = "none";
-      
-    //   const modal = document.getElementById('order-user-modal')
-    //   modal.style.display = "none"
-    //   modal.setAttribute("aria-hidden", "true");
-    // }
     const btn = document.getElementById("btn-close-modal")
     btn.click()
   }
@@ -48,16 +37,32 @@ function FormOrderUser() {
         //set_tmpuser(response.data.result)
   }
 
-  const on_change_email = (e) => {}
-  const on_change_phone = (e) => {}
-  const on_change_fullname = (e) => {}
-  const on_change_address = (e) => {}
+  const on_change_email = (e) => {set_email(e.target.value)}
+  const on_change_phone = (e) => {set_phone(e.target.value)}
+  const on_change_fullname = (e) => {set_fullname(e.target.value)}
+  const on_change_address = (e) => {set_address(e.target.value)}
+  const on_change_notes = (e) => {set_notes(e.target.value)}
 
-  const on_submit = (e)=>{
+  const on_submit = async (e)=>{
     e.preventDefault()
+
+    const formdata = new FormData()   
+    formdata.append("user[email]",email)
+    formdata.append("user[phone]",phone)
+    formdata.append("user[fullname]",fullname)
+    formdata.append("user[address]",address)
+    formdata.append("order[notes]",notes)
+
+    order.products.forEach(objprod => {
+      const prodid = objprod.id
+      formdata.append(`order[products][${prodid}][id]`,objprod.prodid)
+      formdata.append(`order[products][${prodid}][units]`,objprod.units)
+      formdata.append(`order[products][${prodid}][code_cache]`,objprod.code_cache)
+    })
 
     //recuperar pedido y usuario
     //enviar pedido y usuario
+    const response = await Api.send_async_order(formdata)
     //limpiar pedido
     //guardar usuario en bd
     hidemodal()
@@ -87,7 +92,7 @@ function FormOrderUser() {
               className="form-control" 
               placeholder="your@email.com" 
               value={email}
-              onChange={}
+              onChange={on_change_email}
               required 
             />
           </div>
@@ -98,6 +103,7 @@ function FormOrderUser() {
             <input type="number" 
               id="usr-phone" 
               value={phone}
+              onChange={on_change_phone}
               className="form-control" 
               placeholder="+51 123 321 485" 
               required />
@@ -112,6 +118,7 @@ function FormOrderUser() {
               <input type="text" 
                 id="usr-fullname" 
                 value={fullname}
+                onChange={on_change_fullname}
                 className="form-control" 
                 placeholder="...your first and last name"  
                 required  />
@@ -126,6 +133,7 @@ function FormOrderUser() {
               <input type="text" 
                 id="usr-address"
                 value={address} 
+                onChange={on_change_address}
                 className="form-control" placeholder="...your address" required  />
             </div>
           </div>
@@ -138,6 +146,7 @@ function FormOrderUser() {
             <textarea 
               id="order-notes" 
               value={notes}
+              onChange={on_change_notes}
               rows="5000" 
               cols="800" 
               className="form-control text-area-h"
