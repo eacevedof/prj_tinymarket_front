@@ -1,27 +1,46 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {GlobalContext} from '../../context/global_context';
-
-
-function hidemodal(){
-  // const background = document.getElementsByClassName("modal-backdrop fade")[0];
-  // if(background){
-  //   const body = document.getElementsByTagName("body")[0]
-  //   body.classList.remove("modal-open")
-    
-  //   background.parentNode.removeChild(background);
-  //   background.style.display = "none";
-    
-  //   const modal = document.getElementById('order-user-modal')
-  //   modal.style.display = "none"
-  //   modal.setAttribute("aria-hidden", "true");
-  // }
-  const btn = document.getElementById("btn-close-modal")
-  btn.click()
-}
+import Api from "../../../providers/api"
+import Isvalid from "../../../helpers/isvalid"
+import _ from "lodash"
 
 function FormOrderUser() {
 
   const {user, set_user} = useContext(GlobalContext)
+
+  const [email, set_email] = useState("")
+  const [tmpuser, set_tmpuser] = useState({})
+
+  const hidemodal= () => {
+    // const background = document.getElementsByClassName("modal-backdrop fade")[0];
+    // if(background){
+    //   const body = document.getElementsByTagName("body")[0]
+    //   body.classList.remove("modal-open")
+      
+    //   background.parentNode.removeChild(background);
+    //   background.style.display = "none";
+      
+    //   const modal = document.getElementById('order-user-modal')
+    //   modal.style.display = "none"
+    //   modal.setAttribute("aria-hidden", "true");
+    // }
+    const btn = document.getElementById("btn-close-modal")
+    btn.click()
+  }
+  
+  async function on_mail_change(e){
+
+    const email = e.target.value.trim()
+    if(!email) return;
+    if(email.length < 6) return;
+    if(!Isvalid.email(email)) return;
+
+    const response = await Api.get_async_chekcemail(email)
+    //const response = await Api.get_async_products(email)
+    if(response)
+      if(response.status === 200)
+        set_tmpuser(response.data.result)
+  }
 
   const on_submit = (e)=>{
     e.preventDefault()
@@ -35,13 +54,20 @@ function FormOrderUser() {
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
-            <label htmlFor="usr-email" className="pull-left">Email</label>
-            <input type="email" id="usr-email" className="form-control" placeholder="your@email.com" required />
+            <label htmlFor="usr-email" className="pull-left">Email *</label>
+            <input type="email" 
+              id="usr-email" 
+              className="form-control" 
+              placeholder="your@email.com" 
+              defaultValue={email}
+              onChange={on_mail_change}
+              required 
+            />
           </div>
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <label htmlFor="usr-phone" className="pull-left">Phone</label>
+            <label htmlFor="usr-phone" className="pull-left">Phone *</label>
             <input type="number" id="usr-phone" className="form-control" placeholder="+51 123 321 485" required />
           </div>
         </div>        
@@ -50,7 +76,7 @@ function FormOrderUser() {
       <div className="row">
           <div className="col-md-12">
             <div className="form-group">
-            <label htmlFor="usr-fullname" className="pull-left">Full name</label>
+            <label htmlFor="usr-fullname" className="pull-left">Full name *</label>
               <input type="text" id="usr-fullname" className="form-control" placeholder="...your first and last name"  required  />
             </div>
           </div>
@@ -59,7 +85,7 @@ function FormOrderUser() {
       <div className="row">
           <div className="col-md-12">
             <div className="form-group">
-              <label htmlFor="usr-address" className="pull-left">Address</label>
+              <label htmlFor="usr-address" className="pull-left">Address *</label>
               <input type="text" id="usr-address" className="form-control" placeholder="...your address" required  />
             </div>
           </div>

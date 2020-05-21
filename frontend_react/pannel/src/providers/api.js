@@ -15,10 +15,28 @@ const Api = {
       console.log("api.get_async_products.response",response)
       return response
     } catch (e) {
-      console.error("ERROR: api.get_async_products.url:",url)
+
+      console.error("ERROR: api.get_async_products.url:",url,"e:",e)
     }
   },
 
+  get_async_chekcemail: async (email="") => {
+    const url = `${BASE_URL}/api/v1/user/email`
+    const data = {
+      email
+    }
+    
+    try {
+      console.log("api.get_async_chekcemail...",url)
+      //const response = await axios({url,method:"post", data})
+      const response = await axios.post(url, data)
+      //const response = await axios({url, method:"get"})
+      console.log("api.get_async_chekcemail.response",response)
+      return response
+    } catch (e) {
+      console.error("ERROR: api.get_async_chekcemail.url:",url,"e:",e)
+    }
+  },  
 }
 
 export default Api;
