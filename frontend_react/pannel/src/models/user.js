@@ -1,6 +1,6 @@
 const user = {
   id: null,
-  fullName: "",
+  full_name: "",
   email: "",
   phone: "",
   address: "",

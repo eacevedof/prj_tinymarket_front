@@ -1,12 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {GlobalContext} from '../../context/global_context';
 import Api from "../../../providers/api"
 import Isvalid from "../../../helpers/isvalid"
 import _ from "lodash"
+import LocalDb from "../../../helpers/local_db"
+import objorder from "../../../models/order"
 
 function FormOrderUser() {
 
-  const {user, set_user} = useContext(GlobalContext)
+  const {user, set_user, order, set_order} = useContext(GlobalContext)
 
   const [email, set_email] = useState("")
   const [phone, set_phone] = useState("")
@@ -46,11 +48,32 @@ function FormOrderUser() {
         //set_tmpuser(response.data.result)
   }
 
+  const on_change_email = (e) => {}
+  const on_change_phone = (e) => {}
+  const on_change_fullname = (e) => {}
+  const on_change_address = (e) => {}
+
   const on_submit = (e)=>{
     e.preventDefault()
-    //alert("send")
+
+    //recuperar pedido y usuario
+    //enviar pedido y usuario
+    //limpiar pedido
+    //guardar usuario en bd
     hidemodal()
   }
+
+  useEffect(() => {
+
+    if(!_.isEmpty(user)){
+      set_email(user.email)
+      set_phone(user.phone)
+      set_fullname(user.fullname)
+      set_address(user.address)
+    }
+
+    return ()=> console.log("unmounting FormOrderUser")
+  }, []);
 
   return (
     <form onSubmit={on_submit}>
@@ -64,7 +87,7 @@ function FormOrderUser() {
               className="form-control" 
               placeholder="your@email.com" 
               value={email}
-              onChange={async_on_mail_change}
+              onChange={}
               required 
             />
           </div>

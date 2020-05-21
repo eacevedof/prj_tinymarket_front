@@ -16,14 +16,11 @@ import {
   //useRouteMatch,
   //useParams
 } from "react-router-dom";
+import Localdb from '../../helpers/local_db';
 
 function Boot() {
 
-  const {order, set_order, search, set_search} = useContext(GlobalContext)
-
-  //const [order, set_order] = useState(objorder)
-  //const [search, set_search] = useState("")
-
+  const {user, set_user, order, set_order, search, set_search} = useContext(GlobalContext)
   console.log("App.order ",order)
 
   useEffect(() => {
@@ -35,6 +32,12 @@ function Boot() {
         set_order(dborder)
       }
     }
+    if(_.isEmpty(user)){
+      const dbuser = Localdb.select("user")
+      if(!_.isEmpty(dbuser))
+        set_user(dbuser)
+    }
+
   }, []);
 
 
