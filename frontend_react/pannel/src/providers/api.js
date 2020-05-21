@@ -20,16 +20,22 @@ const Api = {
     }
   },
 
-  get_async_chekcemail: async (email="") => {
+  get_async_chekcemail: async (email) => {
     const url = `${BASE_URL}/api/v1/user/email`
-    const data = {
-      email
-    }
     
     try {
+      const data = new FormData()
+      data.append("email",email)
+      //const extra = {headers: {"Content-Type": "application/json"}}
+      //data["gogogo"] = "uuuu"
+      //console.log(" email to send: ",data)
       console.log("api.get_async_chekcemail...",url)
+      const response = await axios.post(url,data)
       //const response = await axios({url,method:"post", data})
-      const response = await axios.post(url, data)
+      //const response = await axios.post(url,data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+      //const response = await axios.post(url,data,{headers: {'Content-Type': 'application/json'}}) //no va!
+      //const response = await axios.post(url,data,{headers: {'Content-Type': 'application/form-data'}}) //no va!
+      //const response = await axios.post(url,data,extra)
       //const response = await axios({url, method:"get"})
       console.log("api.get_async_chekcemail.response",response)
       return response
