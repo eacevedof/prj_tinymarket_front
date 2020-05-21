@@ -31,6 +31,22 @@ function FormOrderUser() {
 
   return (
     <form onSubmit={on_submit}>
+
+      <div className="row">
+        <div className="col-md-6">
+          <div className="form-group">
+            <label htmlFor="usr-email" className="pull-left">Email</label>
+            <input type="email" id="usr-email" className="form-control" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group">
+            <label htmlFor="usr-phone" className="pull-left">Phone</label>
+            <input type="number" id="usr-phone" className="form-control" placeholder="+51 123 321 485" required />
+          </div>
+        </div>        
+      </div>
+
       <div className="row">
           <div className="col-md-12">
             <div className="form-group">
@@ -48,21 +64,6 @@ function FormOrderUser() {
             </div>
           </div>
       </div>      
-      
-      <div className="row">
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="usr-email" className="pull-left">Email</label>
-            <input type="email" id="usr-email" className="form-control" placeholder="your@email.com" required />
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="usr-phone" className="pull-left">Phone</label>
-            <input type="number" id="usr-phone" className="form-control" placeholder="+51 123 321 485" required />
-          </div>
-        </div>        
-      </div>
 
       <div className="row">
         <div className="col-md-12">
