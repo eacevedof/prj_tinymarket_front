@@ -43,6 +43,16 @@ function FormOrderUser() {
   const on_change_address = (e) => {set_address(e.target.value)}
   const on_change_notes = (e) => {set_notes(e.target.value)}
 
+
+
+  const get_total = products => {
+    const sum = products
+                  .map(product => parseFloat(product.price_sale) * parseFloat(product.units ? product.units:0))
+                  .reduce((ac,price)=> ac = ac + price,0)
+  
+    return _.round(sum,2).toFixed(2)
+  }
+
   const on_submit = async (e)=>{
     e.preventDefault()
 
@@ -55,11 +65,14 @@ function FormOrderUser() {
 
     order.products.forEach(objprod => {
       const prodid = objprod.id
-      formdata.append(`order[products][${prodid}][id]`,objprod.prodid)
+      formdata.append(`order[products][${prodid}][id]`,objprod.id)
+      formdata.append(`order[products][${prodid}][description]`,objprod.description)
       formdata.append(`order[products][${prodid}][units]`,objprod.units)
+      formdata.append(`order[products][${prodid}][price_sale]`,objprod.price_sale)
       formdata.append(`order[products][${prodid}][code_cache]`,objprod.code_cache)
     })
 
+    formdata.append(`order[total]`,get_total(order.products))
     //recuperar pedido y usuario
     //enviar pedido y usuario
     const response = await Api.send_async_order(formdata)
