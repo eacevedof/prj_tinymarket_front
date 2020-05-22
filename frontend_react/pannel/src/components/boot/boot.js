@@ -32,7 +32,8 @@ function Boot() {
         set_order(dborder)
       }
     }
-    if(_.isEmpty(user)){
+
+    if(_.isEmpty(user) || !user.id){
       const dbuser = Localdb.select("user")
       if(!_.isEmpty(dbuser))
         set_user(dbuser)

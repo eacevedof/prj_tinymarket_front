@@ -1,5 +1,6 @@
 import React, {createContext, useState} from 'react';
 import objorder from "../../models/order"
+import _ from "lodash"
 
 export const GlobalContext = createContext();
 
@@ -8,7 +9,7 @@ const GlobalProvider = (props) => {
   const [user, set_user] = useState({})
   const [products, set_products] = useState([])
   const [search, set_search] = useState("")
-  const [order, set_order] = useState(objorder)
+  const [order, set_order] = useState(_.clone(objorder,true))
   const [order_total, set_order_total] = useState(0)
   const [selproduct, set_selproduct] = useState({})
   const [is_loading, set_is_loading] = useState(false)

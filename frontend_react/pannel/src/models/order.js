@@ -1,9 +1,7 @@
-import user from "./user"
 
-const order = {
+const objorder = {
   products: [],
-  user,
   notes: "",
 }
 
-export default order;
+export default objorder;

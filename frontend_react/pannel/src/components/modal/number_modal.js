@@ -6,7 +6,7 @@ import ProductCard from "../product/product_card"
 
 function NumberModal() {
 
-  const {selproduct,order,set_order} = useContext(GlobalContext)
+  const {selproduct, order, set_order} = useContext(GlobalContext)
   const [units, set_units] = useState(0)
 
   const on_add = ()=>{

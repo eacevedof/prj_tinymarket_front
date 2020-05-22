@@ -1,9 +1,9 @@
-import order from "../models/order"
+import objorder from "../models/order"
 import LocalDb from "../helpers/local_db"
 import _ from "lodash"
 
 const OrderRepo = {
-  order,
+  order : _.clone(objorder,true),
   
   get_products(){
     return this.order.products || []

@@ -82,16 +82,24 @@ function FormOrderUser() {
     }
     
     //guardo un pedido vacio
-    set_order(objorder)
+
+    console.log("on_submit deleting dborder")
+    LocalDb.delete("order")
+    console.log("on_submit setting order: ",_.clone(objorder,true))
+    set_order({})
+    
     const theuser = {
       ...objuser,
+      //id:response.result.id,
       email,
       phone,
       fullname,
       address,
     }
     
+    console.log("on_submit saving dbuser", theuser)
     Localdb.save("user",theuser)
+    console.log("on_submit setting user", theuser)
     set_user(theuser)
     //limpiar pedido
     //guardar usuario en bd
