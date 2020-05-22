@@ -11,7 +11,7 @@ import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 
 function FormOrderUser() {
-
+  console.log("form_order_user.start.objorder",objorder)
   const Swal2 = withReactContent(Swal)
 
   const {user, set_user, order, set_order} = useContext(GlobalContext)
@@ -85,8 +85,9 @@ function FormOrderUser() {
 
     console.log("on_submit deleting dborder")
     LocalDb.delete("order")
-    console.log("on_submit setting order: ",_.clone(objorder,true))
-    set_order({})
+    const emptyorder = _.clone(objorder,true)
+    console.log("on_submit setting order: ",emptyorder)
+    set_order(emptyorder)
     
     const theuser = {
       ...objuser,
