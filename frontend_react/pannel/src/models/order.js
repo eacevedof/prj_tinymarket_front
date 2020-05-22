@@ -2,7 +2,11 @@
 const objorder = {
   products: [],
   notes: "",
+
+  reset(){
+    this.products = []
+    this.notes = ""
+  }
 }
 
-console.log("models/objorder",objorder)
 export default objorder;

@@ -25,7 +25,7 @@ function Boot() {
 
   useEffect(() => {
     console.log("app.useffect.search",search)
-    if(order.products.length === 0){
+    if(_.isEmpty(order) || order.products.length === 0){
       const dborder = LocalDb.select("order")
       if(!_.isEmpty(dborder)){
         console.log("app.useeffect.dborder ...loading from localstorage",dborder)

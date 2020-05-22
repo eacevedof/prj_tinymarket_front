@@ -2,6 +2,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {GlobalContext} from '../context/global_context';
 import { NavLink } from "react-router-dom";
+import _ from "lodash"
 
 function Navbar() {
   
@@ -12,7 +13,7 @@ function Navbar() {
 
   useEffect(()=>{
     console.log("navbar.useeffect.order",order)
-    if(order)
+    if(!_.isEmpty(order))
     {
       const i = order.products.length
       set_iitems(i)

@@ -15,7 +15,7 @@ function OrderTrs() {
   const show_confirm_remove = (e) => {
     const button = e.currentTarget
     const prodid = parseInt(button.getAttribute("prodid"))
-    OrderRepo.order = _.clone(order,true)
+    OrderRepo.order = {...order}
     const product = OrderRepo.get_product(prodid)
     
     Swal2.fire({

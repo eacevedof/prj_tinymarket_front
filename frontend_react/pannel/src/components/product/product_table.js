@@ -13,7 +13,6 @@ const ProductTable = () => {
 
 
   const show_modal = (e)=>{
-    //OrderRepo.order = _.clone(order,true)
     const button = e.currentTarget
     const prodid = parseInt(button.getAttribute("prodid"))
     
@@ -32,7 +31,7 @@ const ProductTable = () => {
 
   const get_trs = products => products.map( (product,i) => {
     
-    OrderRepo.order = _.clone(order,true)
+    OrderRepo.order = {...order}
     const units = OrderRepo.get_units(product.id)
 
     return (

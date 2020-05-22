@@ -1,19 +1,24 @@
-import objorder from "../models/order"
+//import objorder from "../models/order"
 import LocalDb from "../helpers/local_db"
 import _ from "lodash"
 
 const OrderRepo = {
-  order : _.clone(objorder,true),
+  order : {},
   
   get_products(){
     return this.order.products || []
   },
 
   is_product(objproduct){
+    if(_.isEmpty(this.order)) return false
+
     return this.order.products.filter(product => product.id === objproduct.id).length>0
   },
 
   add_product(objproduct){
+    
+    if(_.isEmpty(this.order)) return false
+    
     if(this.is_product(objproduct)){
       const res = _.unionBy([objproduct], this.order.products, 'id')
       this.order.products = res
@@ -48,6 +53,8 @@ const OrderRepo = {
   },
 
   get_product(id){
+    if(_.isEmpty(this.order)) return false
+    
     const products = this.order.products
     const res = products.filter(product => product.id === id)
     if(res.length>0)

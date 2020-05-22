@@ -11,7 +11,7 @@ function NumberModal() {
 
   const on_add = ()=>{
     const prodid = selproduct.id
-    OrderRepo.order = _.clone(order,true)
+    OrderRepo.order = {...order}
     const orderunits = OrderRepo.get_units(prodid)
     console.log("on_add.orderunits",orderunits)
     const newunits = orderunits + 1
@@ -27,7 +27,7 @@ function NumberModal() {
 
   const on_remove = () => {
     const prodid = selproduct.id
-    OrderRepo.order = _.clone(order,true)
+    OrderRepo.order = {...order}
     const orderunits = OrderRepo.get_units(prodid)
     const newunits = orderunits>0?orderunits-1:0
     set_units(newunits)
@@ -42,7 +42,7 @@ function NumberModal() {
   useEffect(() => {
     console.log("numbermodal.useffect.selproduct",selproduct)
     //cad vez que hay un nuevo producto tengo que setear sus unidades en 
-    OrderRepo.order = _.clone(order,true)
+    OrderRepo.order = {...order}
     const orderunits = OrderRepo.get_units(selproduct.id)
     set_units(orderunits)
   },[selproduct]);

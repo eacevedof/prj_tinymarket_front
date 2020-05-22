@@ -10,6 +10,8 @@ import Localdb from '../../../helpers/local_db';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 
+console.log("form_order_user.objorder.reset()",objorder.reset())
+
 function FormOrderUser() {
   console.log("form_order_user.start.objorder",objorder)
   const Swal2 = withReactContent(Swal)
@@ -85,9 +87,10 @@ function FormOrderUser() {
 
     console.log("on_submit deleting dborder")
     LocalDb.delete("order")
-    const emptyorder = _.clone(objorder,true)
-    console.log("on_submit setting order: ",emptyorder)
-    set_order(emptyorder)
+    //const emptyorder = {notes:"",products:[]}
+    //const emptyorder = Object.assign({},objorder)
+    console.log("on_submit setting order: ",objorder)
+    set_order(objorder)
     
     const theuser = {
       ...objuser,

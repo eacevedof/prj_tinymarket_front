@@ -18,6 +18,8 @@ const OrderTable = () => {
   const [total, set_total] = useState(0)
 
   const get_total = products => {
+    
+    if(!products) return 0
     const sum = products
                   .map(product => parseFloat(product.price_sale) * parseFloat(product.units ? product.units:0))
                   .reduce((ac,price)=> ac = ac + price,0)
