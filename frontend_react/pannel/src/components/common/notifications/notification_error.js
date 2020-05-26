@@ -8,7 +8,7 @@ function NotificationError({title,message}) {
         <i className="nc-icon nc-simple-remove"></i>
       </button>
       <span>
-        <b>{title}</b> {messag}
+        <b>{title}</b> {message}
       </span>
     </div>
   )
