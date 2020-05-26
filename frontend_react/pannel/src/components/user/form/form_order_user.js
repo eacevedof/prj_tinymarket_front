@@ -9,8 +9,6 @@ import objuser from "../../../models/user"
 import Localdb from '../../../helpers/local_db';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
-import NotificationError from "../../common/notifications/notification_error"
-import NotificationSuccess from "../../common/notifications/notification_success"
 
 console.log("form_order_user.objorder.reset()",objorder.reset())
 
@@ -26,7 +24,7 @@ function FormOrderUser() {
   const [address, set_address] = useState("")
   const [notes, set_notes] = useState("")
   const [is_error,set_is_error] = useState(false)
-  const [result, set_result] = useState({title:"",message:""})
+  //const [result, set_result] = useState({title:"",message:""})
 
 
   //const [tmpuser, set_tmpuser] = useState({})
@@ -85,7 +83,7 @@ function FormOrderUser() {
     const response = await Api.send_async_order(formdata)
     if(response.error){
       set_is_error(true)
-      set_result({title:"Some error occurred",message:response.error})
+      swal_error()
       return
     }
     
@@ -113,20 +111,36 @@ function FormOrderUser() {
     set_user(theuser)
     //limpiar pedido
     //guardar usuario en bd
+    //console.log("RESPONSE:",response)
     hidemodal()
-    swal_ok()
+    swal_ok(response.data.result)
   }
 
-  const swal_ok = (strval) => {
-    
-          Swal2.fire({
-        title: <p>Your purchase is in progress. You will receive a copy in your email
+  const swal_ok = (objorder) => {
+    Swal2.fire({
+      icon: 'success',
+      html: `<p>
+            Thank you for your purchase. This is in progress. <br/>
+            Soon you will receive a copy in your email <br/>
+            Your order code is: <br/> <b>${objorder.id} - ${objorder.code_cache}</b>
+            </p>`,
 
-              </p>,
-        showConfirmButton: true,
-      })
-    
+    })
   }
+
+  const swal_error = () => {
+    Swal2.fire({
+      icon: 'error',
+      title: 'Oops...',
+      html: `<p>
+            Please try later. If this problem persists send us an email with your request to
+            </p>
+            <a href="mailto:elchalanaruba@gmail.com?Subject=Manual order cause error">
+              <b>elchalanaruba@gmail.com</b>
+            </a>
+            `
+    })
+  }  
 
 
   useEffect(() => {
@@ -143,10 +157,6 @@ function FormOrderUser() {
 
   return (
     <form onSubmit={on_submit}>
-      {
-        is_error ? <NotificationError title={result.title} message={result.message} /> : null
-      }
-
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">

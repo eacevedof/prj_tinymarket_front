@@ -45,7 +45,7 @@ const OrderTable = () => {
   return (
     <div className="card strpied-tabled-with-hover">
       <div className="card-header ">
-          <h4 className="card-title">Order Cart</h4>
+          <h4 className="card-title">Cart</h4>
           <p className="card-category">
             {
                 total>0?
@@ -75,7 +75,7 @@ const OrderTable = () => {
         (
           <div className="alert alert-primary">
             <span>
-              <b> Your order cart is empty</b> 
+              <b> Your cart is empty</b> 
             </span>
           </div>
         )
