@@ -9,6 +9,8 @@ import objuser from "../../../models/user"
 import Localdb from '../../../helpers/local_db';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import NotificationError from "../../common/notifications/notification_error"
+import NotificationSuccess from "../../common/notifications/notification_success"
 
 console.log("form_order_user.objorder.reset()",objorder.reset())
 
@@ -23,6 +25,9 @@ function FormOrderUser() {
   const [fullname, set_fullname] = useState("")
   const [address, set_address] = useState("")
   const [notes, set_notes] = useState("")
+  const [is_error,set_is_error] = useState(false)
+  const [result, set_result] = useState({title:"",message:""})
+
 
   //const [tmpuser, set_tmpuser] = useState({})
 
@@ -79,7 +84,8 @@ function FormOrderUser() {
     //enviar pedido y usuario
     const response = await Api.send_async_order(formdata)
     if(response.error){
-
+      set_is_error(true)
+      set_result({title:"Some error occurred",message:response.error})
       return
     }
     
@@ -137,6 +143,9 @@ function FormOrderUser() {
 
   return (
     <form onSubmit={on_submit}>
+      {
+        is_error ? <NotificationError title={result.title} message={result.message} /> : null
+      }
 
       <div className="row">
         <div className="col-md-6">
