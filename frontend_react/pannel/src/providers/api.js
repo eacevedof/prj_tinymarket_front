@@ -17,6 +17,9 @@ const Api = {
     } catch (e) {
 
       console.error("ERROR: api.get_async_products.url:",url,"e:",e)
+      return {
+        error: "Error fetching products"
+      }      
     }
   },
 
@@ -41,6 +44,9 @@ const Api = {
       return response
     } catch (e) {
       console.error("ERROR: api.get_async_chekcemail.url:",url,"e:",e)
+      return {
+        error: "Error echecking user email"
+      }      
     }
   },
 
@@ -54,6 +60,9 @@ const Api = {
       return response
     } catch (e) {
       console.error("ERROR: api.send_async_order.url:",url,"e:",e)
+      return {
+        error: "Error submitting order"
+      }
     }
   },    
 }
