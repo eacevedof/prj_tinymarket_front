@@ -81,19 +81,20 @@ function FormOrderUser() {
     //recuperar pedido y usuario
     //enviar pedido y usuario
     const response = await Api.send_async_order(formdata)
-    if(response.error){
+
+    //response.error generado por el js
+    //response.data.error generado por el servidor
+    if(response.error || response.data.error){
+      console.log("onsubmit launching error setting is_error true")
       set_is_error(true)
       swal_error()
-      return
+      return 
     }
     
     //guardo un pedido vacio
-
     console.log("on_submit deleting dborder")
     LocalDb.delete("order")
-    //const emptyorder = {notes:"",products:[]}
-    //const emptyorder = Object.assign({},objorder)
-    console.log("on_submit setting order: ",objorder)
+    console.log("on_submit setting empty order: ",objorder)
     set_order(objorder)
     
     const theuser = {
@@ -114,7 +115,7 @@ function FormOrderUser() {
     //console.log("RESPONSE:",response)
     hidemodal()
     swal_ok(response.data.result)
-  }
+  } // _on_submit
 
   const swal_ok = (objorder) => {
     Swal2.fire({
