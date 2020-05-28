@@ -127,10 +127,12 @@ function FormOrderUser() {
     Swal2.fire({
       icon: 'success',
       html: `<p>
-            Thank you for your purchase. This is in progress. <br/>
-            Soon you will receive a copy in your email <br/>
+            Thank you for your purchase. <br/>
+            You will receive a copy in your email soon<br/>
             Your order code is: <br/> <b>${objorder.id} - ${objorder.code_cache}</b>
-            </p>`,
+            </p>
+            <a href="/"><b>New order</b></a>
+            `,
 
     })
   }
