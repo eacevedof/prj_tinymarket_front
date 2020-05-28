@@ -18,5 +18,9 @@
                                 27      1       0.06    0.06    5.41    8.29
   ```
 
+### To-do:
+- loading button
+- header fixed
+
 ### Error con chunks en prod
 - Para corregir esto he seguido esta guia: [deshabilitar chunks](https://zeph.co/disable-code-splitting-create-react-app)
