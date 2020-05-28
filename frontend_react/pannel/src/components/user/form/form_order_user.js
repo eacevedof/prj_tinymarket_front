@@ -9,6 +9,9 @@ import objuser from "../../../models/user"
 import Localdb from '../../../helpers/local_db';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import Buttonsubmit from "../../common/buttonsubmit"
+import Buttoncancel from "../../common/buttoncancel"
+
 
 console.log("form_order_user.objorder.reset()",objorder.reset())
 
@@ -24,8 +27,9 @@ function FormOrderUser() {
   const [address, set_address] = useState("")
   const [notes, set_notes] = useState("")
   const [is_error,set_is_error] = useState(false)
-  //const [result, set_result] = useState({title:"",message:""})
+  const [in_progress, set_in_progress] = useState(false)
 
+  //const [result, set_result] = useState({title:"",message:""})
 
   //const [tmpuser, set_tmpuser] = useState({})
 
@@ -60,7 +64,7 @@ function FormOrderUser() {
 
   const on_submit = async (e)=>{
     e.preventDefault()
-
+    set_in_progress(true)
     const formdata = new FormData()   
     formdata.append("user[email]",email)
     formdata.append("user[phone]",phone)
@@ -87,6 +91,7 @@ function FormOrderUser() {
     if(response.error || response.data.error){
       console.log("onsubmit launching error setting is_error true")
       set_is_error(true)
+      set_in_progress(false)
       swal_error()
       return 
     }
@@ -110,6 +115,7 @@ function FormOrderUser() {
     Localdb.save("user",theuser)
     console.log("on_submit setting user", theuser)
     set_user(theuser)
+    set_in_progress(false)
     //limpiar pedido
     //guardar usuario en bd
     //console.log("RESPONSE:",response)
@@ -232,10 +238,10 @@ function FormOrderUser() {
 
       <div className="row">
         <div className="col-lg-6 btn-modal-fix">
-          <button type="button" className="btn btn-secondary btn-fill btn-lg btn-block" data-dismiss="modal"><b>Cancel</b></button>  
+          <Buttoncancel text="Cancel" in_progress={in_progress} />
         </div>
         <div className="col-lg-6 btn-modal-fix">
-          <button type="submit" className="btn btn-primary btn-fill btn-lg btn-block pull-right"><b>Accept</b></button>          
+          <Buttonsubmit text="Aceptar" in_progress={in_progress} />
         </div>        
       </div>
     </form>
