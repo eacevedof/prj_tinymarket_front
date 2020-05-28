@@ -36,6 +36,11 @@ function Navbar() {
                   <span className="notification">{iitems}</span>
               </NavLink>
             </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link" href="#totop">
+                <span><i className="nc-icon nc-stre-up"></i>&nbsp;top</span>
+              </a>
+            </li>            
           </ul>
       </div>
     </nav>
