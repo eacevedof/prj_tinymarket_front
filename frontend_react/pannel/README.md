@@ -18,6 +18,16 @@
                                 27      1       0.06    0.06    5.41    8.29
   ```
 
+### Deploy
+```py
+<prject-id> esta en el config/json
+py.sh deploy.<function> <project-id>
+py.sh deploy tinymarket
+py.sh deploy.frontbuild tinymarket
+py.sh deploy.composer tinymarket
+py.sh deploy.dbrestore tinymarket
+```
+
 ### To-do:
 - loading button
 - header fixed
