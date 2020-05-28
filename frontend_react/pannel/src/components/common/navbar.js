@@ -21,7 +21,7 @@ function Navbar() {
   },[order])
 
   return (
-    <nav className="navbar navbar-expand">
+    <nav className="navbar navbar-expand fixed-top">
       <div className="collapse navbar-collapse" id="navigation">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">

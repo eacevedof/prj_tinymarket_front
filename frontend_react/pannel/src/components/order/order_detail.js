@@ -17,8 +17,9 @@ function OrderDetail() {
 
   return (
     <div className="wrapper">
+      <Navbar />
       <div className="main-panel">
-        <Navbar />
+        <br/><br/>
         <div className="content">
           <div className="container-fluid z-index-2000">
             <OrderTable />
