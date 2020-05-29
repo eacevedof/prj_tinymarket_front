@@ -1,15 +1,16 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 function NotificationError({title,message}) {
 
   return (
-    <div className="alert alert-danger">
-      <button type="button" aria-hidden="true" className="close" data-dismiss="alert">
-        <i className="nc-icon nc-simple-remove"></i>
-      </button>
-      <span>
-        <b>{title}</b> {message}
-      </span>
+    <div className="row">
+      <div className="col-12">
+        <img src="/assets/img/error-icon.png" alt="error-icon" className="img-responsive pull-left" height="50" width="50" />
+        <p>
+          &nbsp;&nbsp;<b>{title}</b><br/>
+          &nbsp;&nbsp;{message}
+        </p>
+      </div>
     </div>
   )
 }
