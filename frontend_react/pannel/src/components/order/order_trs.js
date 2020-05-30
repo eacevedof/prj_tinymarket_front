@@ -47,6 +47,8 @@ function OrderTrs() {
               src={get_urlimage(product.url_image)} 
               alt={product.description_full}
               className="img-thumbnail"
+              height="270"
+              width="270"
             />
           </td>
           <td className="text-right">
