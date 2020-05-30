@@ -5,6 +5,7 @@ import DateTime from "../../helpers/date_time"
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import OrderRepo from "../../repository/order_repo"
+import get_urlimage from "../../helpers/get_urlimage"
 
 function OrderTrs() {
 
@@ -43,7 +44,7 @@ function OrderTrs() {
           </td>
           <td className="text-center">
             <img 
-              src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
+              src={get_urlimage(product.url_image)} 
               alt={product.description_full}
               className="img-thumbnail"
             />

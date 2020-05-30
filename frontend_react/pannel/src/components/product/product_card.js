@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {GlobalContext} from "../context/global_context"
+import get_urlimage from "../../helpers/get_urlimage"
 
 function ProductCard() {
 
@@ -9,7 +10,7 @@ function ProductCard() {
     <div className="card" >
       <img
           className="card-img-top img-fluid img-thumbnail" 
-          src="http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg" 
+          src={get_urlimage(selproduct.url_image)} 
           alt={selproduct.description}
       />
       <div className="card-body">

@@ -20,6 +20,6 @@ function get_localip()
   }
 
   //return "localhost";
-  return "192.168.1.130";
+  return "192.168.1.128";
 }
 export default get_localip;

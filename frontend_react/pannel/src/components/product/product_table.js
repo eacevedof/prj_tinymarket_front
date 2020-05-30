@@ -3,9 +3,7 @@ import {GlobalContext} from '../context/global_context';
 import OrderRepo from "../../repository/order_repo"
 import ProductRepo from "../../repository/product_repo"
 import _ from "lodash"
-
-
-const BASE_URL = process.env.REACT_APP_BASEURLAPI
+import get_urlimage from "../../helpers/get_urlimage"
 
 const ProductTable = () => {
   
@@ -46,11 +44,13 @@ const ProductTable = () => {
         <td className="text-center">
           <button type="button" className="btn-empty" onClick={show_modal} prodid={product.id}>
             <img 
-              src={`http://www.elchalanaruba.com/wp-content/uploads/2016/07/el-chalan-tallarin-verde-con-bisteck-imagen-1-170x170.jpg`} 
+              src={get_urlimage(product.url_image)} 
               alt={product.description_full}
               className="img-thumbnail"
               data-toggle="modal"
               data-target="#number-modal"
+              height="270"
+              width="270"
               />
           </button>
         </td>
