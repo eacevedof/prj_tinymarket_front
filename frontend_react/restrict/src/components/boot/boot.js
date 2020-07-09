@@ -50,9 +50,17 @@ function Boot() {
           <Dashboard />
         </Route>
         
-        <Route path="/order">
+        <Route path="/admin/products">
           <OrderDetail order={order} set_order={set_order} search={search}/>
         </Route>
+
+        <Route path="/admin/orders">
+          <OrderDetail order={order} set_order={set_order} search={search}/>
+        </Route>
+
+        <Route path="/admin/clients">
+          <OrderDetail order={order} set_order={set_order} search={search}/>
+        </Route>        
                     
         <Route path="*" status={404}>
           <E404/>
