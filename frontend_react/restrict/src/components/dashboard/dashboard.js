@@ -15,11 +15,11 @@ function Dashboard() {
 
 
   return (
-    <div className="wrapper">
+    <>
       <Navbar />
 
       <Footer />      
-    </div>
+    </>
   )
 }
 
