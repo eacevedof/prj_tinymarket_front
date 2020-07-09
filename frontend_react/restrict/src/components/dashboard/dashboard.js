@@ -46,11 +46,9 @@ function Dashboard() {
 
   return (
     <div className="wrapper">
-      Hola Q tal
       <Navbar />
 
-        <Footer />
-      
+      <Footer />      
     </div>
   )
 }
