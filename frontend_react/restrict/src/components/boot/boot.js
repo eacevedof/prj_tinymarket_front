@@ -60,7 +60,7 @@ function Boot() {
 
         <Route path="/admin/clients">
           <OrderDetail order={order} set_order={set_order} search={search}/>
-        </Route>        
+        </Route>
                     
         <Route path="*" status={404}>
           <E404/>
