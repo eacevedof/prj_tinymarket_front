@@ -46,7 +46,7 @@ function Boot() {
     <Router>
       <Switch>
 
-        <Route exact path="/">
+        <Route exact path="/admin">
           <Dashboard />
         </Route>        
         
