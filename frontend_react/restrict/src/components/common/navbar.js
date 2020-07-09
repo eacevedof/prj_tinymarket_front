@@ -33,12 +33,7 @@ function Navbar() {
               <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/"}>
                 <span><i className="fa fa-home"></i>&nbsp;Dashboard</span>
               </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/"}>
-                <span><i class="fa fa-home"></i>&nbsp;Products</span>
-              </NavLink>
-            </li>                  
+            </li>              
             <li className="nav-item">
               <a className="nav-link" href="#">Link</a>
             </li>
@@ -54,7 +49,7 @@ function Navbar() {
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
             </li>
           </ul>
           <form className="d-flex">
