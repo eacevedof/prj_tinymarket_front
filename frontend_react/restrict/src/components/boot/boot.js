@@ -48,7 +48,7 @@ function Boot() {
 
         <Route exact path="/admin">
           <Dashboard />
-        </Route>        
+        </Route>
         
         <Route path="/order">
           <OrderDetail order={order} set_order={set_order} search={search}/>
