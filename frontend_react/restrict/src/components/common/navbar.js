@@ -30,8 +30,15 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+              <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/"}>
+                <span><i className="fa fa-home"></i>&nbsp;Dashboard</span>
+              </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/"}>
+                <span><i class="fa fa-home"></i>&nbsp;Products</span>
+              </NavLink>
+            </li>                  
             <li className="nav-item">
               <a className="nav-link" href="#">Link</a>
             </li>
