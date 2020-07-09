@@ -1,4 +1,5 @@
 ### Notas PWA
+- Modifico index.html con esqueleto de [v5.getbootstrap.com](https://v5.getbootstrap.com/docs/5.0/getting-started/introduction/)
 - Servico [**ngrok**](https://ngrok.com/download)
   - Mapea una url httsp web a tu localhost 
   - comando:
