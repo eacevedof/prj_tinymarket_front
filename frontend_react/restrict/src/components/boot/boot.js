@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
-import ProductList from '../product/product_list';
+import Dashboard from '../dashboard/dashboard';
 import OrderDetail from "../order/order_detail"
 
 import LocalDb from "../../helpers/local_db"
@@ -47,7 +47,7 @@ function Boot() {
       <Switch>
 
         <Route exact path="/">
-          <ProductList order={order} set_order={set_order} search={search} set_search={set_search}/>
+          <Dashboard />
         </Route>        
         
         <Route path="/order">
