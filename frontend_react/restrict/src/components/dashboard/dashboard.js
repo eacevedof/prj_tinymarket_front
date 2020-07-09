@@ -19,7 +19,7 @@ function Dashboard() {
       <Navbar />
 
       <main className="container">
-        <h1>Dashboard</h1>
+        <h1 className="mt-2 mb-2">Dashboard</h1>
         <div className="row">
           <div className="col-sm-6">
             <div className="card">

@@ -34,7 +34,7 @@ function Navbar() {
             <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/admin"}>
-                  <span><i className="fa fa-home"></i>&nbsp;Dashboard</span>
+                  <span><i className="fa fa-square"></i>Dashboard</span>
                 </NavLink>
               </li>              
               <li className="nav-item">
@@ -44,7 +44,7 @@ function Navbar() {
               </li>   
               <li className="nav-item">
                 <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/admin"}>
-                  <span><i className="fa fa-exit"></i>&nbsp;Logout</span>
+                  <span><i className="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</span>
                 </NavLink>
               </li>
             </ul>
