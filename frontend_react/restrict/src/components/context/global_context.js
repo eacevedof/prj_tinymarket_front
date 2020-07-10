@@ -7,6 +7,7 @@ export const GlobalContext = createContext();
 const GlobalProvider = (props) => {
   console.log("globalprovider.start.objorder.reset()",objorder.reset())
 
+  const [errorg, set_errorg] = useState({})
   const [user, set_user] = useState({})
   const [usertoken, set_usertoken] = useState("")
   const [products, set_products] = useState([])
@@ -20,7 +21,7 @@ const GlobalProvider = (props) => {
   return (
     <GlobalContext.Provider
       value={{
-        usertoken, set_usertoken,
+        usertoken, set_usertoken, errorg, set_errorg,
         products, set_products, search, set_search, order, set_order,
         selproduct, set_selproduct, user, set_user, is_loading, set_is_loading,
         order_total, set_order_total

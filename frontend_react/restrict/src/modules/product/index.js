@@ -16,27 +16,31 @@ import {get_obj_list, config, grid} from "../../modules/product/queries"
 
 function ProductIndex() {
   
+  const {errorg, set_errorg} = useContext(GlobalContext)
+
   const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   const [is_error, set_is_error] = useState(false)
   
-  async function async_load_products(s){
+  async function async_load_products(){
 
     const objparam = {page:{},filters:{}}
     const objquery = get_obj_list(objparam)
     const response = await apidb.async_get_list(objquery)
 
-    
+  }
 
+  const async_onload = async () => {
+    console.log("ProductIndex.useEffect errorg",errorg)
+    HrefDom.document_title("Admin | Products")
+    await async_load_products()
   }
 
   useEffect(()=>{
-    console.log("ProductIndex.useEffect search",search)
-    HrefDom.document_title("ECH | products")
     //https://stackoverflow.com/questions/53446020/how-to-compare-oldvalues-and-newvalues-on-react-hooks-useeffect
-    async_load_products(search)
+    async_onload()
     
-    return ()=> console.log("unmounting")
-  },[search])
+    return ()=> console.log("product.index unmounting")
+  },[])
 
   return (
     <>

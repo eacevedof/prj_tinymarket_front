@@ -21,7 +21,7 @@ import {
 
 function Boot() {
 
-  const {usertoken, set_usertoken} = useContext(GlobalContext)
+  const {usertoken, set_usertoken, errorg, set_errorg} = useContext(GlobalContext)
 
   const async_onload = async () => {
 
@@ -39,6 +39,11 @@ function Boot() {
     }
 
     console.log("boot.token:",token)
+    if(!token)
+      set_errorg({title:"Error", message:"Empty token"})
+    else
+      set_errorg({})
+    
     set_usertoken(token)
 
   }
