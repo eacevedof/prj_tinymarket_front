@@ -1,38 +1,32 @@
-//import React, {useContext, useState, useEffect} from 'react';
-import apiauth from '../../providers/apiauth';
+import apiauth from '../../providers/apiauth'
 import db from "../../helpers/localdb"
+import {is_undefined} from "../../helpers/functions"
 
 const USER = "fulanito"
 const PASSWORD = "menganito"
 
-
-const async_login = async () => {
+export const async_login = async () => {
   const objuser = {username:USER,password:PASSWORD}
   console.log("login.index.objuser",objuser)
   const usertoken = await apiauth.async_get_usertoken(objuser)
-  
-  //alert(usertoken)
-  if(usertoken.error) 
-    throw "Error in login"
-  
-  console.log("login.index ok",usertoken)
-  db.save("usertoken",usertoken)
-}
 
-const async_is_valid = async () => {
-  const objuser = {username:USER,password:PASSWORD}
-  console.log("login.index.objuser",objuser)
-  const usertoken = await apiauth.async_get_usertoken(objuser)
-  
-  //alert(usertoken)
-  if(usertoken.error) 
-    throw "Error in login"
-  
-  console.log("login.index ok",usertoken)
-  db.save("usertoken",usertoken)
-}
+  return usertoken
 
+}// async_login
 
+export const async_islogged = async () => {
 
+  const usertoken = db.select("usertoken")
+  if(!usertoken) return false
 
-export default async_login;
+  const response = await apiauth.async_is_validtoken()
+  console.log("modules.login.async_islogged.async_is_validtoken.response",response)
+
+  if(!is_undefined(response.error)){
+    if(response.error.includes("403"))
+      return false
+  }  
+
+  return true
+
+} // async_islogged

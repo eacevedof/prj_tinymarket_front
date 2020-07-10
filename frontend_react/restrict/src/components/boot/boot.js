@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
-import asynclogin from '../../modules/login/index'
+import {async_login, async_islogged} from '../../modules/login/index'
 import Dashboard from '../../modules/dashboard/dashboard';
 import ProductIndex from "../../modules/product/index"
 
@@ -24,7 +24,9 @@ function Boot() {
 
   const async_onload = async () => {
 
-    asynclogin()
+    await async_login()
+  
+
   }
 
   useEffect(() => {
