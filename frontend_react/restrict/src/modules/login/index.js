@@ -8,12 +8,14 @@ const PASSWORD = "pepino123"
 
 async function async_login(){
   const objuser = {username:USER,password:PASSWORD}
+  console.log("login.index.objuser",objuser)
   const usertoken = await apiauth.async_get_usertoken(objuser)
   
   //alert(usertoken)
   if(usertoken.error) 
     throw "Error in login"
   
+  console.log("login.index ok",usertoken)
   db.save("usertoken",usertoken)
 }
 
