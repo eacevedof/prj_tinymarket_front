@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
-import LoginIndex from '../../modules/login/index'
+import asynclogin from '../../modules/login/index'
 import Dashboard from '../../modules/dashboard/dashboard';
 import ProductIndex from "../../modules/product/index"
 import OrderDetail from "../order/order_detail"
@@ -26,7 +26,10 @@ function Boot() {
   const {user, set_user, order, set_order, search, set_search} = useContext(GlobalContext)
   console.log("App.order ",order)
 
-  useEffect(() => {
+  const async_onload = async () => {
+
+    await asynclogin()
+
     console.log("app.useffect.search",search)
     if(_.isEmpty(order) || order.products.length === 0){
       const dborder = LocalDb.select("order")
@@ -41,6 +44,10 @@ function Boot() {
       if(!_.isEmpty(dbuser))
         set_user(dbuser)
     }
+  }
+
+  useEffect(() => {
+    async_onload()
 
   }, []);
 
