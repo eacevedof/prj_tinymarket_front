@@ -39,14 +39,16 @@ function Boot() {
     }
 
     console.log("boot.token:",token)
-    if(!token)
+    if(!token){
       set_errorg({title:"Error", message:"Empty token"})
+      db.delete("usertoken")
+    }
     else
       set_errorg({})
     
     set_usertoken(token)
 
-  }
+  }// async_onload
 
   useEffect(() => {
     

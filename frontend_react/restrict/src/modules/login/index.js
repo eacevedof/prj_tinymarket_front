@@ -3,7 +3,7 @@ import db from "../../helpers/localdb"
 import {is_undefined, is_defined} from "../../helpers/functions"
 
 const USER = "fulanito"
-const PASSWORD = "menganitoxx"
+const PASSWORD = "menganito"
 
 export const async_gettoken = async () => {
   const objuser = {username: USER, password: PASSWORD}
