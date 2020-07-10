@@ -1,7 +1,7 @@
 import {BASE_URL,CONTEXT,DB_NAME} from "../config/constants"
 import axios from "axios"
-import db from "@/helpers/localdb"
-import {pr,is_undefined, get_error} from "@/helpers/functions"
+import db from "../helpers/localdb"
+import {pr, is_undefined, get_error} from "../helpers/functions"
 
 const Apidb = {
   

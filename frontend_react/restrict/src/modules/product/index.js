@@ -1,15 +1,15 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {GlobalContext} from "../context/global_context"
-import Navbar from "../common/navbar"
-import Footer from "../common/footer"
-import NumberModal from "../modal/number_modal"
-import FormProductSearch from "./forms/form_product_search"
-import LoadingWheel from "../common/loading_wheel"
-import ProductTable from "./product_table"
-import NotificationError from "../common/notifications/notification_error"
+import {GlobalContext} from "../../components/context/global_context"
+//import Navbar from "../../components/common/navbar"
+//import Footer from "../../components/common/footer"
+//import NumberModal from "../modal/number_modal"
+//import FormProductSearch from "./forms/form_product_search"
+//import LoadingWheel from "../../components/common/loading_wheel"
+//import ProductTable from "./product_table"
+//import NotificationError from "../../components/common/notifications/notification_error"
 
 import HrefDom from "../../helpers/href_dom"
-import Api from "../../providers/api"
+//import Api from "../../providers/api"
 import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "../../modules/product/queries"
 
@@ -25,24 +25,7 @@ function ProductIndex() {
     const objquery = get_obj_list(objparam)
     const response = await apidb.async_get_list(objquery)
 
-    console.log("async is_laoding: true")
-    set_is_loading(true)
     
-    const response = await Api.get_async_products(s)
-
-    if(response.error){
-      set_is_loading(false)
-      set_is_error(true)
-      return 
-    }
-
-    if(response)
-      if(response.status === 200)
-        set_products(response.data.result)
-
-    console.log("async is_laoding: false")
-    set_is_loading(false)
-    set_is_error(false)
 
   }
 

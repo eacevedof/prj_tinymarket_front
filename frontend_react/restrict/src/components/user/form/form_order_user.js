@@ -3,10 +3,10 @@ import {GlobalContext} from '../../context/global_context';
 import Api from "../../../providers/api"
 import Isvalid from "../../../helpers/isvalid"
 import _ from "lodash"
-import LocalDb from "../../../helpers/local_db"
+import LocalDb from "../../../helpers/localdb"
 import objorder from "../../../models/order"
 import objuser from "../../../models/user"
-import Localdb from '../../../helpers/local_db';
+import Localdb from '../../../helpers/localdb';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import Buttonsubmit from "../../common/buttonsubmit"

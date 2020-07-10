@@ -2,10 +2,11 @@ import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
 import Dashboard from '../../modules/dashboard/dashboard';
+import ProductIndex from "../../modules/product/index"
 import OrderDetail from "../order/order_detail"
 
 
-import LocalDb from "../../helpers/local_db"
+import LocalDb from "../../helpers/localdb"
 import E404 from "../errors/404/e404"
 import _ from "lodash"
 
@@ -17,7 +18,7 @@ import {
   //useRouteMatch,
   //useParams
 } from "react-router-dom";
-import Localdb from '../../helpers/local_db';
+import Localdb from '../../helpers/localdb';
 
 function Boot() {
 
@@ -52,7 +53,7 @@ function Boot() {
         </Route>
         
         <Route path="/admin/products">
-          
+          <ProductIndex />
         </Route>
 
         <Route path="/admin/orders">
