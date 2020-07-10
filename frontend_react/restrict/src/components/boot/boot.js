@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
+import LoginIndex from '../../modules/login/index'
 import Dashboard from '../../modules/dashboard/dashboard';
 import ProductIndex from "../../modules/product/index"
 import OrderDetail from "../order/order_detail"
