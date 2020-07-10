@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
-import {async_login, async_islogged} from '../../modules/login/index'
+import db from "../../helpers/localdb"
+import {async_gettoken, async_islogged} from '../../modules/login/index'
 import Dashboard from '../../modules/dashboard/dashboard';
 import ProductIndex from "../../modules/product/index"
 
@@ -24,8 +25,19 @@ function Boot() {
 
   const async_onload = async () => {
 
-    await async_login()
-  
+    let token = ""
+
+    //lee el token de la bd y lanza peticion al serv para comprobar si es correcta
+    const islogged = await async_islogged()
+    
+    if(islogged)
+      token = db.select("usertoken")
+    else{
+      token = await async_gettoken()
+      db.save("usertoken",token)
+    }
+
+    set_usertoken(token)
 
   }
 
