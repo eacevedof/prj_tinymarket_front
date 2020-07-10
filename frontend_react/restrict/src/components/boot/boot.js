@@ -20,21 +20,19 @@ import {
 
 function Boot() {
 
-  //const {user, set_user, order, set_order, search, set_search} = useContext(GlobalContext)
-  //console.log("App.order ",order)
+  const {usertoken, set_usertoken} = useContext(GlobalContext)
 
   const async_onload = async () => {
 
-    await asynclogin()
-
-    
+    asynclogin()
   }
 
   useEffect(() => {
+    
+    console.log("boot.useeffect")
     async_onload()
 
   }, []);
-
 
   return (
     <Router>
@@ -62,7 +60,8 @@ function Boot() {
       </Switch>
     </Router>
   )
-}
+
+}//Boot
 
 
 export default Boot;
