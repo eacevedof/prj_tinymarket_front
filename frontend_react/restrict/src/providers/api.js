@@ -64,7 +64,8 @@ const Api = {
         error: "Error submitting order"
       }
     }
-  },    
+  },
+  
 }
 
 export default Api;

@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
-import Dashboard from '../dashboard/dashboard';
+import Dashboard from '../../modules/dashboard/dashboard';
 import OrderDetail from "../order/order_detail"
+
 
 import LocalDb from "../../helpers/local_db"
 import E404 from "../errors/404/e404"
@@ -51,7 +52,7 @@ function Boot() {
         </Route>
         
         <Route path="/admin/products">
-          <OrderDetail order={order} set_order={set_order} search={search}/>
+          
         </Route>
 
         <Route path="/admin/orders">
