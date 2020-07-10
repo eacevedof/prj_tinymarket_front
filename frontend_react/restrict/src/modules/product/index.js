@@ -17,26 +17,26 @@ import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
 
 
-
 function ProductIndex() {
   
   const {errorg, set_errorg, usertoken} = useContext(GlobalContext)
 
   const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   const [is_error, set_is_error] = useState(false)
-  //const [is_logged, set_is_logged] = useState(false)
-  const history = useHistory()
-
   
+  
+  const [result, set_result] = useState([])
+  const history = useHistory()
+  
+
+
   async function async_load_products(){
 
-    //alert("async products")
     const objparam = {page:{},filters:{}}
     const objquery = get_obj_list(objparam)
     const response = await apidb.async_get_list(objquery)
-    //console.log("async_load_products",response)
-    console.table(response.result)
-
+    //console.table(response.result)
+    set_result(response.result)
   }
 
   const async_onload = async () => {
@@ -46,8 +46,6 @@ function ProductIndex() {
     HrefDom.document_title("Admin | Products")
 
     const islogged = await async_islogged()
-    //alert(islogged)
-    //set_is_logged(islogged)
     if(islogged){
       await async_load_products()
     }
@@ -92,7 +90,7 @@ function ProductIndex() {
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
+        <td colSpan="2">Larry the Bird</td>
         <td>@twitter</td>
       </tr>
     </tbody>
