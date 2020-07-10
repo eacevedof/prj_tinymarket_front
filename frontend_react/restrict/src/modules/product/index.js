@@ -13,7 +13,7 @@ import {async_islogged} from '../../modules/login/index'
 import HrefDom from "../../helpers/href_dom"
 //import Api from "../../providers/api"
 import apidb from "../../providers/apidb"
-import {get_obj_list, config, grid} from "../../modules/product/queries"
+import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
 
 
@@ -30,10 +30,11 @@ function ProductIndex() {
   
   async function async_load_products(){
 
-    alert("async products")
-    //const objparam = {page:{},filters:{}}
-    //const objquery = get_obj_list(objparam)
-    //const response = await apidb.async_get_list(objquery)
+    //alert("async products")
+    const objparam = {page:{},filters:{}}
+    const objquery = get_obj_list(objparam)
+    const response = await apidb.async_get_list(objquery)
+    console.log("async_load_products",response)
 
   }
 
