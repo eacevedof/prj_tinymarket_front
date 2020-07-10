@@ -34,7 +34,8 @@ function ProductIndex() {
     const objparam = {page:{},filters:{}}
     const objquery = get_obj_list(objparam)
     const response = await apidb.async_get_list(objquery)
-    console.log("async_load_products",response)
+    //console.log("async_load_products",response)
+    console.table(response.result)
 
   }
 

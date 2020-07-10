@@ -75,7 +75,7 @@ const query = {
 export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
 
   objselect.reset()
-  pr(query)
+  
   objselect.table = `${query.table} ${query.alias}`
   objselect.foundrows = 1 //que devuelva el total de filas
   objselect.distinct = 1  //que aplique distinct
@@ -117,7 +117,7 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
 export const get_obj_entity = (objparam={filters:{}})=>{
   objselect.reset()
 
-  objselect.table = `${table} ${}`
+  objselect.table = `${query.alias} ${query.alias}`
   objselect.foundrows = 1 //que devuelva el total de filas
   objselect.distinct = 1  //que aplique distinct
     
