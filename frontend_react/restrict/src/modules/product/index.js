@@ -35,7 +35,7 @@ function ProductIndex() {
     const objparam = {page:{},filters:{}}
     const objquery = get_obj_list(objparam)
     const response = await apidb.async_get_list(objquery)
-    //console.table(response.result)
+    console.table(response.result)
     set_result(response.result)
   }
 
@@ -63,36 +63,51 @@ function ProductIndex() {
     return ()=> console.log("product.index unmounting")
   },[])
 
+  const get_trs = result => result.map( (product,i) => {
+    
+    const units = 2
 
+    return (
+      <tr key={product.id}>
+        <td>{i+1}</td>
+        <td>{product.code_erp}</td>
+        <td>{product.description}</td>
+        <td>{product.description_full}</td>
+        
+        <td>{product.slug}</td>
+        <td>{product.units_min}</td>
+        <td>{product.units_max}</td>
+        <td>{product.price_gross}</td>
+        <td>{product.price_sale}</td>
+        <td>{product.price_sale1}</td>
+        <td>{product.price_sale2}</td>
+      </tr>
+    ) //return
+  })//get_trs
+
+
+
+  const trs = get_trs(result)
   return (
     <>
     <table className="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Nº</th>
+        <th scope="col">Código</th>
+        <th scope="col">Desc.</th>
+        <th scope="col">Desc. L</th>
+        <th scope="col">Slug</th>
+        <th scope="col">U. min</th>
+        <th scope="col">U. max</th>
+        <th scope="col">P. gross</th>
+        <th scope="col">P. sale</th>
+        <th scope="col">P. sale 1</th>
+        <th scope="col">P. sale 2</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colSpan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      {trs}
     </tbody>
     </table>
     </>

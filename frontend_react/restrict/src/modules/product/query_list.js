@@ -49,6 +49,7 @@ const query = {
     "t.update_date",
     "t.delete_date",
     "t.is_enabled",
+    "t.i",
     "t.id",
     "t.code_erp",
     "t.description",
