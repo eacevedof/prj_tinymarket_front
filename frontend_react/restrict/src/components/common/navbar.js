@@ -38,7 +38,7 @@ function Navbar() {
                 </NavLink>
               </li>              
               <li className="nav-item">
-                <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/admin/products"}>
+                <NavLink className="nav-link" activeClassName="navlink-active" exact to={"/admin/product"}>
                   <span><i className="fa fa-product-hunt"></i>&nbsp;Products</span>
                 </NavLink>
               </li>   

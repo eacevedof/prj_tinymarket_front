@@ -38,19 +38,19 @@ function ProductIndex() {
   }
 
   const async_onload = async () => {
-    alert("products async onload")
+    //alert("products async onload")
     console.log("product.async_onload")
 
     HrefDom.document_title("Admin | Products")
 
     const islogged = await async_islogged()
-    alert(islogged)
+    //alert(islogged)
     //set_is_logged(islogged)
     if(islogged){
       await async_load_products()
     }
     else{
-      alert("prod notlogged")
+      //alert("prod notlogged")
       history.push("/admin")
     }
   }

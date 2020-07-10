@@ -27,7 +27,7 @@ function Dashboard() {
               <div className="card-body">
                 <h5 className="card-title">Products</h5>
                 <p className="card-text">Configure your plates</p>
-                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/products"}>Products</NavLink>
+                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/product"}>Products</NavLink>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@ function Dashboard() {
               <div className="card-body">
                 <h5 className="card-title">Orders</h5>
                 <p className="card-text">Check and manage your orders</p>
-                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/orders"}>Orders</NavLink>
+                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/order"}>Orders</NavLink>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ function Dashboard() {
               <div className="card-body">
                 <h5 className="card-title">Clients</h5>
                 <p className="card-text">Your orders' clients</p>
-                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/clients"}>Clients</NavLink>
+                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/client"}>Clients</NavLink>
               </div>
             </div>
           </div>          

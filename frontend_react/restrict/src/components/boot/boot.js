@@ -65,15 +65,15 @@ function Boot() {
           <Dashboard />
         </Route>
         
-        <Route path="/admin/products">
+        <Route path="/admin/product">
           <ProductIndex />
         </Route>
 
-        <Route path="/admin/orders">
+        <Route path="/admin/order">
           <>orders</>
         </Route>
 
-        <Route path="/admin/clients">
+        <Route path="/admin/client">
           <>clients</>
         </Route>
                     
