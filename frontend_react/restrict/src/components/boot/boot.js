@@ -29,14 +29,16 @@ function Boot() {
 
     //lee el token de la bd y lanza peticion al serv para comprobar si es correcta
     const islogged = await async_islogged()
-    
-    if(islogged)
+
+    if(islogged){
       token = db.select("usertoken")
+    }
     else{
       token = await async_gettoken()
       db.save("usertoken",token)
     }
 
+    console.log("boot.token:",token)
     set_usertoken(token)
 
   }
