@@ -24,7 +24,7 @@ function ProductIndex() {
 
   const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   const [is_error, set_is_error] = useState(false)
-  const [is_logged, set_is_logged] = useState(false)
+  //const [is_logged, set_is_logged] = useState(false)
   const history = useHistory()
 
   
@@ -38,16 +38,19 @@ function ProductIndex() {
   }
 
   const async_onload = async () => {
+    alert("products async onload")
     console.log("product.async_onload")
 
     HrefDom.document_title("Admin | Products")
 
     const islogged = await async_islogged()
-    set_is_logged(islogged)
-    if(is_logged){
+    alert(islogged)
+    //set_is_logged(islogged)
+    if(islogged){
       await async_load_products()
     }
     else{
+      alert("prod notlogged")
       history.push("/admin")
     }
   }

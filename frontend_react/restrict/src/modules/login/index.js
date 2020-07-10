@@ -21,7 +21,9 @@ export const async_islogged = async () => {
   const usertoken = db.select("usertoken")
   if(!usertoken) return false
 
+  //true | obj.error
   const response = await apiauth.async_is_validtoken()
+  //alert(response)
   console.log("modules.login.async_islogged.async_is_validtoken.response",response)
 
   if(is_defined(response.error)){
