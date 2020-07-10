@@ -19,7 +19,6 @@ export const grid = {
     { text: 'Price s.', value: 'price_sale' },
     { text: 'Price s1', value: 'price_sale1' },
     { text: 'Updated', value: 'update_date' },
- 
   ]
 }
 
