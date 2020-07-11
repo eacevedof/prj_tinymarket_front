@@ -59,12 +59,12 @@ function Boot() {
 
   return (
     <Router>
+      
+      <RoutesProduct />
+
+      <RoutesDashboard />
+
       <Switch>
-
-        <RoutesProduct />
-
-        <RoutesDashboard />
-
         <Route path="/admin/order">
           <>orders</>
         </Route>

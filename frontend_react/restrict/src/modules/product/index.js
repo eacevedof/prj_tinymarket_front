@@ -47,6 +47,7 @@ function ProductIndex() {
     const islogged = await async_islogged()
     if(islogged){
       await async_load_products()
+      alert("loaded")
     }
     else{
       //alert("prod notlogged")
