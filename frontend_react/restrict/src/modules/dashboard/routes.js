@@ -5,11 +5,11 @@ import DashboardIndex from "./index"
 
 function RoutesDashboard() {
   return (
-    <Switch>
+
       <Route exact path="/admin">
         <DashboardIndex />
       </Route>
-    </Switch>
+
   )
 }
 

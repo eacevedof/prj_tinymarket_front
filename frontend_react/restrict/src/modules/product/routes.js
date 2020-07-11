@@ -9,7 +9,7 @@ import ProductDelete from "./form_delete"
 
 function RoutesProduct() {
   return (
-    <Switch>
+    <>
       <Route exact path="/admin/product/insert">
         <ProductInsert />
       </Route>    
@@ -31,7 +31,7 @@ function RoutesProduct() {
       <Route exact path="/admin/product">
         <ProductIndex />
       </Route>    
-    </Switch>
+    </>
   )
 }
 
