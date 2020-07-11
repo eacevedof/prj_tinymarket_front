@@ -7,15 +7,16 @@ function TableBody({arhead, ardata}) {
   },[])
 
   const fieldshead = arhead.map(objh => objh.value)
+  //console.log("fieldshead:",fieldshead)
 
   const get_tds = objrow => {
-    const fields = Object.keys(objrow)
+    //const fields = Object.keys(objrow)
     //{value:fieldname, text:label}
-    return fields.filter(strfield => fieldshead.includes(strfield)).map( strfield => {
-      return <td>{objrow[strfield]}</td>
-    })
-
-
+    return fieldshead
+            //.filter(strfield => fieldshead.includes(strfield))
+            .map( (strfield,i) => {
+              return <td key={i}>{objrow[strfield]}</td>
+            })
   }
 
   const get_trs = data => data.map( (objrow,i) => {
