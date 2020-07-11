@@ -6,10 +6,16 @@ function TableBody({arhead, ardata}) {
     return ()=> console.log("tablebody unmounting")
   },[])
 
-  const get_tds = () => {
-    return (
-      <td>xxx</td>
-    )
+  const fieldshead = arhead.map(objh => objh.value)
+
+  const get_tds = objrow => {
+    const fields = Object.keys(objrow)
+    //{value:fieldname, text:label}
+    return fields.filter(strfield => fieldshead.includes(strfield)).map( strfield => {
+      return <td>{objrow[strfield]}</td>
+    })
+
+
   }
 
   const get_trs = data => data.map( (objrow,i) => {
