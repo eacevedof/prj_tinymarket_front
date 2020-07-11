@@ -21,16 +21,26 @@ function DashboardIndex() {
 
       <main className="container">
         <h1 className="mt-2 mb-2">Dashboard</h1>
+        
         <div className="row">
+
           <div className="col-sm-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Products</h5>
                 <p className="card-text">Configure your plates</p>
-                <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/product"}>Products</NavLink>
+                <div className="row">
+                  <div className="col-6">
+                    <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/product"}>Products</NavLink>
+                  </div>
+                  <div className="col-6">
+                    <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/product/insert"}>New</NavLink>
+                  </div>                  
+                </div>
               </div>
             </div>
           </div>
+
           <div className="col-sm-4">
             <div className="card">
               <div className="card-body">
@@ -40,6 +50,7 @@ function DashboardIndex() {
               </div>
             </div>
           </div>
+
           <div className="col-sm-4">
             <div className="card">
               <div className="card-body">
@@ -48,7 +59,25 @@ function DashboardIndex() {
                 <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/client"}>Clients</NavLink>
               </div>
             </div>
-          </div>          
+          </div>
+
+          <div className="col-sm-4">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Users</h5>
+                <p className="card-text"></p>
+                <div className="row">
+                  <div className="col-6">
+                    <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/user"}>Products</NavLink>
+                  </div>
+                  <div className="col-6">
+                    <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/user/insert"}>New</NavLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </main>
       

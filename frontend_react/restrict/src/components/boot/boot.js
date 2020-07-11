@@ -16,27 +16,20 @@ import {
   Route,
 } from "react-router-dom";
 
-
-
 function Boot() {
 
   const routes = [].concat(dashroutes, prodroutes)
-
-
-
-  const {usertoken, set_usertoken, errorg, set_errorg} = useContext(GlobalContext)
+  const {set_usertoken, set_errorg} = useContext(GlobalContext)
 
   const async_onload = async () => {
-
     let token = ""
-
     //lee el token de la bd y lanza peticion al serv para comprobar si es correcta
     const islogged = await async_islogged()
 
     if(islogged){
       token = db.select("usertoken")
     }
-    else{
+    else {
       token = await async_gettoken()
       db.save("usertoken",token)
     }
@@ -54,7 +47,6 @@ function Boot() {
   }// async_onload
 
   useEffect(() => {
-    
     console.log("boot.useeffect")
     async_onload()
   }, []);
