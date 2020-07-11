@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import shortid from "shortid"
 
 function Tdaction({araction}) {
@@ -8,26 +9,29 @@ function Tdaction({araction}) {
 
   return (
     <>
-    <td>
-      <div className="form-check">
-        <input className="form-check-input" type="checkbox" id={chkid} />
-        <label className="form-check-label" htmlFor={chkid}></label>
-      </div>
-    </td>
-    <td>
-      <div className="dropdown">
-
-        <button className="btn btn-secondary dropdown-toggle" type="button" id={ddid} data-toggle="dropdown" aria-expanded="false">
-          Action
-        </button>
-        <ul className="dropdown-menu" aria-labelledby={ddid}>
-          <li><button className="dropdown-item" type="button">Update</button></li>
-          <li><button className="dropdown-item" type="button">Delete</button></li>
-          <li><button className="dropdown-item" type="button">Delete L</button></li>
-          <li><button className="dropdown-item" type="button">Clone</button></li>
-        </ul>
-      </div>  
-    </td>
+      <td>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id={chkid} />
+          <label className="form-check-label" htmlFor={chkid}></label>
+        </div>
+      </td>
+      <td>
+        <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id={ddid} data-toggle="dropdown" aria-expanded="false">
+            +
+          </button>
+          <ul className="dropdown-menu" aria-labelledby={ddid}>
+            <li>
+              <NavLink className="dropdown-item" exact to={"/"}> 
+                <span><i className="fa fa-pencil"></i>&nbsp;Update</span>
+              </NavLink>
+            </li>
+            <li><button className="dropdown-item" type="button">Delete</button></li>
+            <li><button className="dropdown-item" type="button">Delete L</button></li>
+            <li><button className="dropdown-item" type="button">Clone</button></li>
+          </ul>
+        </div>  
+      </td>
     </>
   )
 }
