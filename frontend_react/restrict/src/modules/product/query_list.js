@@ -98,7 +98,7 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
     query.where.forEach(cond => objselect.where.push(cond))
   } 
 
-  objselect.limit.perpage = 1000
+  objselect.limit.perpage = 10
   objselect.limit.regfrom = 0
   if(!is_empty(objparam.page)){
     //pr(objparam.page,"page")

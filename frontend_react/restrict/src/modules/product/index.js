@@ -16,7 +16,7 @@ import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
 import TableHead from "../../helpers/bootstrap/tablehead"
-
+import TableBody from "../../helpers/bootstrap/tablebody"
 
 
 function ProductIndex() {
@@ -87,18 +87,14 @@ function ProductIndex() {
     ) //return
   })//get_trs
 
-
-
   const trs = get_trs(result)
   return (
     <>
       <Navbar />
       <main className="container">
         <table className="table">
-        <TableHead arhead={grid.headers}/>
-        <tbody>
-          {trs}
-        </tbody>
+          <TableHead arhead={grid.headers}/>
+          <TableBody arhead={grid.headers} ardata={result} />
         </table>
       </main>
       <Footer />
