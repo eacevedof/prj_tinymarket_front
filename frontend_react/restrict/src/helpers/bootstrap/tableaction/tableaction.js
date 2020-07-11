@@ -2,10 +2,10 @@ import React, {useContext, useEffect} from 'react';
 import TableHead from "./tablehead"
 import TableBody from "./tablebody"
 
-function TableBasic({arhead, ardata}) {
+function TableAction({arhead, ardata}) {
 
   useEffect(()=>{
-    return ()=> console.log("tablebasic unmounting")
+    return ()=> console.log("TableAction unmounting")
   },[])
 
   return (
@@ -16,4 +16,4 @@ function TableBasic({arhead, ardata}) {
   )
 }
 
-export default TableBasic;
+export default TableAction;

@@ -7,13 +7,9 @@ function TableBody({arhead, ardata}) {
   },[])
 
   const fieldshead = arhead.map(objh => objh.value)
-  //console.log("fieldshead:",fieldshead)
 
   const get_tds = objrow => {
-    //const fields = Object.keys(objrow)
-    //{value:fieldname, text:label}
     return fieldshead
-            //.filter(strfield => fieldshead.includes(strfield))
             .map( (strfield,i) => {
               return <td key={i}>{objrow[strfield]}</td>
             })
@@ -23,6 +19,18 @@ function TableBody({arhead, ardata}) {
     console.log("objrow",objrow)
     return (
       <tr key={i}>
+        <td>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><button class="dropdown-item" type="button">Action</button></li>
+            <li><button class="dropdown-item" type="button">Another action</button></li>
+            <li><button class="dropdown-item" type="button">Something else here</button></li>
+          </ul>
+        </div>          
+        </td>
         {get_tds(objrow)}
       </tr>
     ) //return
