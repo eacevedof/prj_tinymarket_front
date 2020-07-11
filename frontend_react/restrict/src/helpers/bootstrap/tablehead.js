@@ -3,17 +3,13 @@ import React, {useContext, useEffect} from 'react';
 
 function TableHead({arhead}) {
 
-  //const ar = Array.from(arhead)
-
   useEffect(()=>{
-    
     return ()=> console.log("tablehead unmounting")
   },[])
 
-
   const get_tds = ar => ar.map( (objth,i) => {
     return (
-        <th key={i} scope="col">{objth.text}</th>
+      <th key={i} scope="col">{objth.text}</th>
     )
   })// get_tds
 
