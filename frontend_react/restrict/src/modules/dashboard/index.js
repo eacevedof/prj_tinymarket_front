@@ -9,7 +9,7 @@ import HrefDom from "../../helpers/href_dom"
 import Api from "../../providers/api"
 import { NavLink } from 'react-router-dom';
 
-function Dashboard() {
+function DashboardIndex() {
   
   const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   const [is_error, set_is_error] = useState(false)
@@ -57,4 +57,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard;
+export default DashboardIndex;
