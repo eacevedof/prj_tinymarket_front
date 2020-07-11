@@ -15,8 +15,8 @@ import HrefDom from "../../helpers/href_dom"
 import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
-import TableHead from "../../helpers/bootstrap/tablehead"
-import TableBody from "../../helpers/bootstrap/tablebody"
+import TableBasic from "../../helpers/bootstrap/tablebasic"
+
 
 
 function ProductIndex() {
@@ -25,8 +25,7 @@ function ProductIndex() {
 
   const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   const [is_error, set_is_error] = useState(false)
-  
-  
+    
   const [result, set_result] = useState([])
   const history = useHistory()
 
@@ -62,38 +61,12 @@ function ProductIndex() {
 
     return ()=> console.log("product.index unmounting")
   },[])
-
-  const get_trs = result => result.map( (product,i) => {
-    
-    const units = 2
-
-    return (
-      <tr key={product.id}>
-        <td>{i+1}</td>
-        <td>{product.code_erp}</td>
-        <td>{product.description}</td>
-        <td>{product.description_full}</td>
-        
-        <td>{product.slug}</td>
-        <td>{product.units_min}</td>
-        <td>{product.units_max}</td>
-        <td>{product.price_gross}</td>
-        <td>{product.price_sale}</td>
-        <td>{product.price_sale1}</td>
-        <td>{product.price_sale2}</td>
-      </tr>
-    ) //return
-  })//get_trs
-
-  const trs = get_trs(result)
+  
   return (
     <>
       <Navbar />
       <main className="container">
-        <table className="table">
-          <TableHead arhead={grid.headers}/>
-          <TableBody arhead={grid.headers} ardata={result} />
-        </table>
+        <TableBasic arhead={grid.headers} ardata={result} />
       </main>
       <Footer />
     </>
