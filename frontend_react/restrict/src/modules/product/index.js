@@ -1,8 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {is_defined,pr} from "../../helpers/functions"
 import {GlobalContext} from "../../components/context/global_context"
-//import Navbar from "../../components/common/navbar"
-//import Footer from "../../components/common/footer"
+import Navbar from "../../components/common/navbar"
+import Footer from "../../components/common/footer"
 //import NumberModal from "../modal/number_modal"
 //import FormProductSearch from "./forms/form_product_search"
 //import LoadingWheel from "../../components/common/loading_wheel"
@@ -90,26 +90,30 @@ function ProductIndex() {
   const trs = get_trs(result)
   return (
     <>
-    <table className="table">
-    <thead>
-      <tr>
-        <th scope="col">Nº</th>
-        <th scope="col">Código</th>
-        <th scope="col">Desc.</th>
-        <th scope="col">Desc. L</th>
-        <th scope="col">Slug</th>
-        <th scope="col">U. min</th>
-        <th scope="col">U. max</th>
-        <th scope="col">P. gross</th>
-        <th scope="col">P. sale</th>
-        <th scope="col">P. sale 1</th>
-        <th scope="col">P. sale 2</th>
-      </tr>
-    </thead>
-    <tbody>
-      {trs}
-    </tbody>
-    </table>
+      <Navbar />
+      <main className="container">
+        <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Código</th>
+            <th scope="col">Desc.</th>
+            <th scope="col">Desc. L</th>
+            <th scope="col">Slug</th>
+            <th scope="col">U. min</th>
+            <th scope="col">U. max</th>
+            <th scope="col">P. gross</th>
+            <th scope="col">P. sale</th>
+            <th scope="col">P. sale 1</th>
+            <th scope="col">P. sale 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          {trs}
+        </tbody>
+        </table>
+      </main>
+      <Footer />
     </>
   )
 }
