@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import ProductIndex from "./index"
 
 
-function Routes() {
+function RoutesProduct() {
   return (
     <Route path="/admin/product">
       <ProductIndex />
@@ -11,4 +11,4 @@ function Routes() {
   )
 }
 
-export default Routes;
+export default RoutesProduct;
