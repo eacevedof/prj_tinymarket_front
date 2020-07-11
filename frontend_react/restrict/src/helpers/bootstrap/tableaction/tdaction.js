@@ -22,22 +22,22 @@ function Tdaction({araction}) {
           </button>
           <ul className="dropdown-menu" aria-labelledby={ddid}>
             <li>
-              <NavLink className="dropdown-item" exact to={"/product/update/123"}> 
+              <NavLink className="dropdown-item" exact to={"/admin/product/update/123"}> 
                 <span><i className="fa fa-pencil"></i>&nbsp;Update</span>
               </NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" exact to={"/product/delete/123"}> 
+              <NavLink className="dropdown-item" exact to={"/admin/product/delete/123"}> 
                 <span><i className="fa fa-trash"></i>&nbsp;Delete</span>
               </NavLink>  
             </li>
             <li>
-              <NavLink className="dropdown-item" exact to={"/product/delete-logic/123"}> 
+              <NavLink className="dropdown-item" exact to={"/admin/product/delete-logic/123"}> 
                 <span><i className="fa fa-trash"></i>&nbsp;Delete L</span>
               </NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" exact to={"/product/clone/123"}> 
+              <NavLink className="dropdown-item" exact to={"/admin/product/clone/123"}> 
                 <span><i className="fa fa-files-o"></i>&nbsp;Clone</span>
               </NavLink>
             </li>
