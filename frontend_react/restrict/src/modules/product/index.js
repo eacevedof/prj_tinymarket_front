@@ -63,7 +63,7 @@ function ProductIndex() {
     async_onload()
 
     return ()=> console.log("product.index unmounting")
-  },[])
+  },[result])
 
   const get_trs = result => result.map( (product,i) => {
     

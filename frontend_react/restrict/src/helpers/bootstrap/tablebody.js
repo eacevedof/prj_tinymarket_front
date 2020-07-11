@@ -1,26 +1,22 @@
 import React, {useContext, useEffect} from 'react';
 
-function TableBody({arhead},{ardata}) {
+function TableBody({arhead, ardata}) {
 
   useEffect(()=>{
     return ()=> console.log("tablebody unmounting")
   },[])
 
-  const get_tds = arrow => arrow.map((objf, i) => {
+  const get_tds = () => {
+    return (
+      <td>xxx</td>
+    )
+  }
 
-    return arhead.map(objh => {
-      return (
-        <td>xxx</td>
-      )
-    });
-    
-  })
-
-  const get_trs = data => data.map( (arrow,i) => {
-    console.log("arrow",arrow)
+  const get_trs = data => data.map( (objrow,i) => {
+    console.log("objrow",objrow)
     return (
       <tr key={i}>
-        {get_tds(arrow)}
+        {get_tds(objrow)}
       </tr>
     ) //return
   })//get_trs
