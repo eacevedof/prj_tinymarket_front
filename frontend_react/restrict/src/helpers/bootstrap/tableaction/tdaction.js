@@ -12,10 +12,11 @@ function Tdaction({araction}) {
         <div className="form-check">
           <input className="form-check-input" type="checkbox" id={chkid} />
           <label className="form-check-label" htmlFor={chkid}></label>
-          <button className="btn btn-secondary dropdown-toggle" type="button" id={ddid} data-toggle="dropdown" aria-expanded="false">
-            Action
-          </button>
+
         </div>
+        <button className="btn btn-secondary dropdown-toggle" type="button" id={ddid} data-toggle="dropdown" aria-expanded="false">
+          Action
+        </button>
         <ul className="dropdown-menu" aria-labelledby={ddid}>
           <li><button className="dropdown-item" type="button">Update</button></li>
           <li><button className="dropdown-item" type="button">Delete</button></li>
