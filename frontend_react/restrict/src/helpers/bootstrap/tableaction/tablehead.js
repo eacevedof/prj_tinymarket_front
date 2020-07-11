@@ -18,10 +18,11 @@ function TableHead({arhead}) {
         <th>
           <div className="form-check">
             <input className="form-check-input" type="checkbox" value="" id="chk-all" />
-            <label className="form-check-label" htmlFor="chk-all">
-              All
-            </label>
+            <label className="form-check-label" htmlFor="chk-all"></label>
           </div>
+        </th>
+        <th>
+          Action
         </th>
         {get_tds(arhead)}
       </tr>

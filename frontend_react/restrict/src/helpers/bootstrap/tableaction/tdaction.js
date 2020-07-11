@@ -7,13 +7,16 @@ function Tdaction({araction}) {
   const chkid = `chk-${id}`
 
   return (
+    <>
+    <td>
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" id={chkid} />
+        <label className="form-check-label" htmlFor={chkid}></label>
+      </div>
+    </td>
     <td>
       <div className="dropdown">
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" id={chkid} />
-          <label className="form-check-label" htmlFor={chkid}></label>
 
-        </div>
         <button className="btn btn-secondary dropdown-toggle" type="button" id={ddid} data-toggle="dropdown" aria-expanded="false">
           Action
         </button>
@@ -25,6 +28,7 @@ function Tdaction({araction}) {
         </ul>
       </div>  
     </td>
+    </>
   )
 }
 
