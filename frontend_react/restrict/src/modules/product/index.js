@@ -15,6 +15,8 @@ import HrefDom from "../../helpers/href_dom"
 import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
+import TableHead from "../../helpers/bootstrap/tablehead"
+
 
 
 function ProductIndex() {
@@ -93,21 +95,7 @@ function ProductIndex() {
       <Navbar />
       <main className="container">
         <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Nº</th>
-            <th scope="col">Código</th>
-            <th scope="col">Desc.</th>
-            <th scope="col">Desc. L</th>
-            <th scope="col">Slug</th>
-            <th scope="col">U. min</th>
-            <th scope="col">U. max</th>
-            <th scope="col">P. gross</th>
-            <th scope="col">P. sale</th>
-            <th scope="col">P. sale 1</th>
-            <th scope="col">P. sale 2</th>
-          </tr>
-        </thead>
+        <TableHead arhead={grid.headers}/>
         <tbody>
           {trs}
         </tbody>
