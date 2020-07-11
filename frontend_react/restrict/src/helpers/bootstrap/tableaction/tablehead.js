@@ -15,7 +15,8 @@ function TableHead({arhead}) {
   return (
     <thead>
       <tr>
-      {get_tds(arhead)}
+        <th>Actions</th>
+        {get_tds(arhead)}
       </tr>
     </thead>
   )
