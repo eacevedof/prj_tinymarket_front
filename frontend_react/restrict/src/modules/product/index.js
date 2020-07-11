@@ -16,6 +16,7 @@ import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
 import TableBasic from "../../helpers/bootstrap/tablebasic/tablebasic"
+import TableAction from "../../helpers/bootstrap/tableaction/tableaction"
 
 
 function ProductIndex() {
@@ -65,7 +66,7 @@ function ProductIndex() {
     <>
       <Navbar />
       <main className="container">
-        <TableBasic arhead={grid.headers} ardata={result} />
+        <TableAction arhead={grid.headers} ardata={result} araction={[]} />
       </main>
       <Footer />
     </>
