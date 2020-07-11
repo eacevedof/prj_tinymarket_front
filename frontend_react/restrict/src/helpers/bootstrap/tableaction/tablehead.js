@@ -15,7 +15,14 @@ function TableHead({arhead}) {
   return (
     <thead>
       <tr>
-        <th>Actions</th>
+        <th>
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" value="" id="chk-all" />
+            <label className="form-check-label" htmlFor="chk-all">
+              All
+            </label>
+          </div>
+        </th>
         {get_tds(arhead)}
       </tr>
     </thead>
