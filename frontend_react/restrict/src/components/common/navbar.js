@@ -24,7 +24,7 @@ function Navbar() {
     <header className="mb-2">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" activeClassName="navlink-active" exact to={"/"}> 
+          <NavLink className="navbar-brand" activeClassName="navlink-active" exact to={"/admin"}> 
             <span><i className="fa fa-home"></i>&nbsp;Home</span>
           </NavLink>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

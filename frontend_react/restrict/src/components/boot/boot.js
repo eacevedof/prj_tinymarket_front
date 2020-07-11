@@ -4,8 +4,8 @@ import {GlobalContext} from '../context/global_context';
 import db from "../../helpers/localdb"
 import {async_gettoken, async_islogged} from '../../modules/login/index'
 
-import RoutesDashboard from '../../modules/dashboard/routes';
-import {routes} from "../../modules/product/routes"
+import {routes as dashroutes} from '../../modules/dashboard/routes';
+import {routes as prodroutes} from "../../modules/product/routes"
 
 import E404 from "../errors/404/e404"
 import _ from "lodash"
@@ -20,7 +20,7 @@ import {
 
 function Boot() {
 
-  //const routes = [].concat(dashroutes, prodroutes)
+  const routes = [].concat(dashroutes, prodroutes)
 
 
 
@@ -62,11 +62,7 @@ function Boot() {
   return (
     <Router>
       <Switch>
-      
         {routes.map(obj => (<Route path={obj.path} exact>{obj.component}</Route>))}
-        
-
-        <RoutesDashboard />
 
         <Route path="/admin/order">
           <>orders</>
