@@ -54,12 +54,11 @@ function Boot() {
     
     console.log("boot.useeffect")
     async_onload()
-
   }, []);
 
   return (
     <Router>
-      
+
       <RoutesProduct />
 
       <RoutesDashboard />
