@@ -29,8 +29,6 @@ function ProductIndex() {
   
   const [result, set_result] = useState([])
   const history = useHistory()
-  
-
 
   async function async_load_products(){
 
@@ -63,7 +61,7 @@ function ProductIndex() {
     async_onload()
 
     return ()=> console.log("product.index unmounting")
-  },[result])
+  },[])
 
   const get_trs = result => result.map( (product,i) => {
     
