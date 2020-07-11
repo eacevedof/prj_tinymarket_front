@@ -58,7 +58,7 @@ function Boot() {
 
   return (
     <Router>
-      <Switch>
+      
         
 
         <RoutesDashboard />
@@ -76,7 +76,7 @@ function Boot() {
         <Route path="*" status={404}>
           <E404/>
         </Route>
-      </Switch>
+      
     </Router>
   )
 
