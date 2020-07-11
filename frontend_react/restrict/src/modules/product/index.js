@@ -15,8 +15,7 @@ import HrefDom from "../../helpers/href_dom"
 import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "./query_list"
 import { useHistory } from 'react-router-dom';
-import TableBasic from "../../helpers/bootstrap/tablebasic"
-
+import TableBasic from "../../helpers/bootstrap/tablebasic/tablebasic"
 
 
 function ProductIndex() {
