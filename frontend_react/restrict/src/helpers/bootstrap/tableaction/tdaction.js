@@ -3,7 +3,7 @@ import shortid from "shortid"
 
 function Tdaction({araction}) {
   const id = shortid.generate()
-  const strid = `dd-${id}`
+  const ddid = `dd-${id}`
   const chkid = `chk-${id}`
 
   return (
@@ -12,11 +12,11 @@ function Tdaction({araction}) {
         <div className="form-check">
           <input className="form-check-input" type="checkbox" id={chkid} />
           <label className="form-check-label" htmlFor={chkid}></label>
-          <button className="btn btn-secondary dropdown-toggle" type="button" id={strid} data-toggle="dropdown" aria-expanded="false">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id={ddid} data-toggle="dropdown" aria-expanded="false">
             Action
           </button>
         </div>
-        <ul className="dropdown-menu" aria-labelledby={strid}>
+        <ul className="dropdown-menu" aria-labelledby={ddid}>
           <li><button className="dropdown-item" type="button">Update</button></li>
           <li><button className="dropdown-item" type="button">Delete</button></li>
           <li><button className="dropdown-item" type="button">Delete L</button></li>
