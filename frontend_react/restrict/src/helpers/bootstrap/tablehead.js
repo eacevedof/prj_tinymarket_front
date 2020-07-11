@@ -1,5 +1,4 @@
 import React, {useContext, useEffect} from 'react';
-//import {GlobalContext} from '../context/global_context';
 
 function TableHead({arhead}) {
 
