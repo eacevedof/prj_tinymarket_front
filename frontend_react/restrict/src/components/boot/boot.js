@@ -5,6 +5,7 @@ import db from "../../helpers/localdb"
 import {async_gettoken, async_islogged} from '../../modules/login/index'
 import Dashboard from '../../modules/dashboard/dashboard';
 import ProductIndex from "../../modules/product/index"
+import rprod from "../../modules/product/routes"
 
 import E404 from "../errors/404/e404"
 import _ from "lodash"
