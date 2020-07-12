@@ -9,10 +9,12 @@ function ProductInsert() {
     <>
       <Navbar />
       <main className="container">
-        <Breadscrumb arbreads={[]}/>
+        
         <h1 className="mt-2 mb-2">Product insert</h1>
+        <Breadscrumb arbreads={[]}/>
+
         <form className="row g-3">
-          <div className="col-md-6">
+          <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" />
           </div>
