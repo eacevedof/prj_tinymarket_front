@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {GlobalContext} from '../context/global_context';
 
 import db from "../../helpers/localdb"
-import {async_gettoken, async_islogged} from '../../modules/login/index'
+import {async_gettoken, async_islogged} from '../../modules/login/login_index'
 
 import {routes as dashroutes} from '../../modules/dashboard/routes';
 import {routes as prodroutes} from "../../modules/product/routes"

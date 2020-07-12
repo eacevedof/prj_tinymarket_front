@@ -4,7 +4,7 @@ import {GlobalContext} from "../../components/context/global_context"
 import Navbar from "../../components/common/navbar"
 import Footer from "../../components/common/footer"
 
-import {async_islogged} from '../login/index'
+import {async_islogged} from '../login/login_index'
 import HrefDom from "../../helpers/href_dom"
 import apidb from "../../providers/apidb"
 import {get_obj_list, config, grid} from "./queries/query_list"
