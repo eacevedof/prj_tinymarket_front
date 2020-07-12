@@ -6,10 +6,10 @@ function footer() {
     <footer className="footer mt-3">
       <div className="container-fluid">
         <nav>
-          <p className="lead text-center">
+          <p className="text-center">
             © {new Date().getFullYear()} 
             &nbsp;&nbsp;Admin pannel
-            <small>&nbsp;&nbsp; {version}</small>
+            &nbsp;&nbsp; {version}
           </p>
         </nav>
       </div>
