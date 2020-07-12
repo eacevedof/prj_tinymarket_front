@@ -13,44 +13,52 @@ function ProductInsert() {
         <h1 className="mt-2 mb-2">Product insert</h1>
         <form className="row g-3">
           <div className="col-md-6">
-            <label for="inputEmail4" className="form-label">Email</label>
-            <input type="email" className="form-control" id="inputEmail4" />
+            <label htmlFor="txt-code_erp" className="form-label">Code</label>
+            <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" />
           </div>
-          <div className="col-md-6">
-            <label for="inputPassword4" className="form-label">Password</label>
-            <input type="password" className="form-control" id="inputPassword4" />
-          </div>
+
           <div className="col-12">
-            <label for="inputAddress" className="form-label">Address</label>
-            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
+            <label htmlFor="txt-description" className="form-label">Description</label>
+            <input type="text" className="form-control" id="txt-description" placeholder="Name of product" />
           </div>
+          
           <div className="col-12">
-            <label for="inputAddress2" className="form-label">Address 2</label>
-            <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" />
-          </div>
-          <div className="col-md-6">
-            <label for="inputCity" className="form-label">City</label>
-            <input type="text" className="form-control" id="inputCity" />
-          </div>
+            <label htmlFor="txt-description_full" className="form-label">Description large</label>
+            <textarea className="form-control" id="txt-description_full" rows="2" placeholder="large description use # if needed upto 3000 chars"></textarea>
+          </div> 
+
           <div className="col-md-4">
-            <label for="inputState" className="form-label">State</label>
-            <select id="inputState" className="form-select">
+            <label htmlFor="num-price_sale" className="form-label">Price</label>
+            <input type="number" className="form-control" id="num-price_sale" placeholder="price in default currency" />
+          </div>
+
+          <div className="col-md-4">
+            <label htmlFor="num-price_sale1" className="form-label">Price 1</label>
+            <input type="number" className="form-control" id="num-price_sale1" />
+          </div>
+
+          <div className="col-md-4">
+            <label htmlFor="num-order_by" className="form-label">Order</label>
+            <input type="number" className="form-control" id="num-order_by" />
+          </div>          
+
+          <div className="col-md-4">
+            <label htmlFor="sel-display" className="form-label">Display</label>
+            <select id="sel-display" className="form-select">
               <option selected>Choose...</option>
-              <option>...</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
           </div>
-          <div className="col-md-2">
-            <label for="inputZip" className="form-label">Zip</label>
-            <input type="text" className="form-control" id="inputZip" />
-          </div>
+
+          
           <div className="col-12">
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" id="gridCheck" />
-              <label className="form-check-label" for="gridCheck">
-                Check me out
-              </label>
+            <div className="form-group">
+              <label htmlFor="file-image" className="form-label">Picture: </label>
+              <input type="file" className="form-control-file" id="file-image" />
             </div>
           </div>
+
           <div className="col-12">
             <button type="submit" className="btn btn-primary">Sign in</button>
           </div>
