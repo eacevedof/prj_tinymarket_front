@@ -54,7 +54,7 @@ function Boot() {
   return (
     <Router>
       <Switch>
-        {routes.map(obj => (<Route path={obj.path} exact>{obj.component}</Route>))}
+        {routes.map((obj,i) => (<Route key={i} path={obj.path} exact>{obj.component}</Route>))}
 
         <Route path="/admin/order">
           <>orders</>

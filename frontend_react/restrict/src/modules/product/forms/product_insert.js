@@ -45,7 +45,7 @@ function ProductInsert() {
           <div className="col-md-6">
             <label htmlFor="sel-display" className="form-label">Display</label>
             <select id="sel-display" className="form-select">
-              <option selected>Choose...</option>
+              <option defaultValue>Choose...</option>
               <option value="0">No</option>
               <option value="1">Yes</option>
             </select>
