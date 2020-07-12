@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 
 //import {GlobalContext} from '../../context/global_context';
-function Breadscrumb({arobjs}) {
+function Breadscrumb({arbreads}) {
 
-  const get_lis = arobjs => arobjs.map((objli, i) => {
+  const get_lis = ar => ar.map((objli, i) => {
     return (
       <li className="breadcrumb-item">
         <NavLink exact to={objli.path}>
