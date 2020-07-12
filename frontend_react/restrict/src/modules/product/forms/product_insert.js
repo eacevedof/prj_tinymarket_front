@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+
 import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
 import Footer from "../../../components/common/footer"
 import {GlobalContext} from '../../../components/context/global_context';
 
 function ProductInsert() {
+
+  const [objproduct, set_objproduct] = useState({
+    code_erp:"",
+    description:"",
+    description_full:"",
+    price_sale:"",
+    price_sale1:"",
+    order_by:"",
+    display:"0",
+    url_image:"",
+  })
+
   return (
     <>
       <Navbar />
