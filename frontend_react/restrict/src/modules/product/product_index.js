@@ -22,7 +22,7 @@ import Breadscrumb from '../../components/common/bootstrap/breadscrumb';
 
 function ProductIndex() {
   
-  const {errorg, set_errorg, usertoken} = useContext(GlobalContext)
+  const {errorg, set_rrorg, usertoken} = useContext(GlobalContext)
 
   const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
   const [is_error, set_is_error] = useState(false)

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ProductIndex from "./index"
-import ProductInsert from "./form_insert"
-import ProductClone from "./form_clone"
-import ProductUpdate from "./form_update"
-import ProductDetail from "./detail"
-import ProductDelete from "./form_delete"
+import ProductIndex from "./product_index"
+import ProductInsert from "./forms/product_insert"
+import ProductClone from "./forms/product_clone"
+import ProductUpdate from "./forms/product_update"
+import ProductDetail from "./forms/product_detail"
+import ProductDelete from "./forms/product_delete"
 
 export const routes = [
   {
