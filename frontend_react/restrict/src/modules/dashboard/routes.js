@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DashboardIndex from "./index"
+import DashboardIndex from "./dashboard_index"
 
 export const routes = [
   {
