@@ -3,19 +3,12 @@ import {is_defined,pr} from "../../helpers/functions"
 import {GlobalContext} from "../../components/context/global_context"
 import Navbar from "../../components/common/navbar"
 import Footer from "../../components/common/footer"
-//import NumberModal from "../modal/number_modal"
-//import FormProductSearch from "./forms/form_product_search"
-//import LoadingWheel from "../../components/common/loading_wheel"
-//import ProductTable from "./product_table"
-//import NotificationError from "../../components/common/notifications/notification_error"
 
 import {async_islogged} from '../login/index'
 import HrefDom from "../../helpers/href_dom"
-//import Api from "../../providers/api"
 import apidb from "../../providers/apidb"
-import {get_obj_list, config, grid} from "./query_list"
+import {get_obj_list, config, grid} from "./queries/query_list"
 import { useHistory } from 'react-router-dom';
-import TableBasic from "../../helpers/bootstrap/tablebasic/tablebasic"
 import TableAction from "../../helpers/bootstrap/tableaction/tableaction"
 import Breadscrumb from '../../components/common/bootstrap/breadscrumb';
 
