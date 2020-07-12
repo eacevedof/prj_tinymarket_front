@@ -9,7 +9,7 @@ import Footer from "../../components/common/footer"
 //import ProductTable from "./product_table"
 //import NotificationError from "../../components/common/notifications/notification_error"
 
-import {async_islogged} from '../../modules/login/index'
+import {async_islogged} from '../login/index'
 import HrefDom from "../../helpers/href_dom"
 //import Api from "../../providers/api"
 import apidb from "../../providers/apidb"
