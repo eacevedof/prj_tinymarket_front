@@ -42,7 +42,7 @@ function ProductInsert() {
             <input type="number" className="form-control" id="num-order_by" />
           </div>          
 
-          <div className="col-md-4">
+          <div className="col-md-6">
             <label htmlFor="sel-display" className="form-label">Display</label>
             <select id="sel-display" className="form-select">
               <option selected>Choose...</option>
@@ -51,16 +51,15 @@ function ProductInsert() {
             </select>
           </div>
 
-          
-          <div className="col-12">
+          <div className="col-md-6">
             <div className="form-group">
               <label htmlFor="file-image" className="form-label">Picture: </label>
-              <input type="file" className="form-control-file" id="file-image" />
+              <input type="file" className="form-control" id="file-image" />
             </div>
           </div>
 
           <div className="col-12">
-            <button type="submit" className="btn btn-primary">Sign in</button>
+            <button type="submit" className="btn btn-primary">Save</button>
           </div>
         </form>
       </main>
