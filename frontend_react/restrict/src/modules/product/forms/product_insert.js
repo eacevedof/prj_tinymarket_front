@@ -21,6 +21,7 @@ function ProductInsert() {
   const [formdata, set_formdata] = useState({
     code_erp:"",
     description:"",
+    insert_user:"react",
     description_full:"",
     price_sale:"0",
     price_sale1:"0",
