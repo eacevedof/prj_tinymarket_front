@@ -29,7 +29,7 @@ export const get_obj_entity = (objparam={filters:{}})=>{
   const objselect = helpapify.select
   objselect.reset()
 
-  objselect.table = `${query.table} r`
+  objselect.table = `${query.table} ${query.alias}`
   objselect.foundrows = 1 //que devuelva el total de filas
   objselect.distinct = 1  //que aplique distinct
     

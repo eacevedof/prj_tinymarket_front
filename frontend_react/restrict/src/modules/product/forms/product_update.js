@@ -80,8 +80,8 @@ function ProductUpdate(){
   }
 
   const async_onload = async () => {
-    
-    
+    const r = await async_get_by_id(id)
+    console.log("onload.r",r)
   }
 
   useEffect(()=>{
