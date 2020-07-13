@@ -9,8 +9,6 @@ import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
 import Footer from "../../../components/common/footer"
 
-
-
 function ProductInsert() {
 
   const seldisplay = [
@@ -60,8 +58,8 @@ function ProductInsert() {
     //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
-  const on_submit = async (e)=>{
-    e.preventDefault()
+  const on_submit = async (evt)=>{
+    evt.preventDefault()
     console.log("on_submit.formdata:",formdata)
     //hacer insert y enviar fichero
     const objparam = {fields:{...formdata}}
@@ -69,6 +67,14 @@ function ProductInsert() {
     const r = await apidb.async_insert(objinsert)
     console.log("on_submit.r",r)
   }
+
+  const async_onload = async () => {}
+
+  useEffect(()=>{
+    async_onload()
+
+    return ()=> console.log("product.insert unmounting")
+  },[])
 
   return (
     <>
