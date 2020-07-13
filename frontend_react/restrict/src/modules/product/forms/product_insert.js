@@ -40,10 +40,15 @@ function ProductInsert() {
     //set_email(e.target.value)
     //console.log("updateform.e.target",e.target)
     const elem = e.target
+    //console.log("element:",elem)
     const id = get_id(elem)
     //console.log("updateform.id",id)
     const temp = {...frmdata}
-    temp[id] = elem.value
+    const value = elem.value
+
+    //console.log("updateform.value",value)
+    
+    temp[id] = value
     set_frmdata(temp)
   }
 
@@ -127,7 +132,7 @@ function ProductInsert() {
             >
               <option defaultValue>Choose...</option>
               {
-                seldisplay.map(obj => (<option key={obj.value}>{obj.text}</option>))
+                seldisplay.map(obj => (<option key={obj.value} value={obj.value}>{obj.text}</option>))
               }
             </select>
           </div>
