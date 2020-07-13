@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 
-import {is_defined} from "../../../helpers/functions"
+import {is_defined, is_empty} from "../../../helpers/functions"
 
 import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
@@ -14,15 +14,15 @@ function ProductInsert() {
     {value:"1",text:"Yes"}
   ]
 
-  const [frmdata, set_frmdata] = useState({
+  const [formdata, set_formdata] = useState({
     code_erp:"",
     description:"",
     description_full:"",
-    price_sale:"",
-    price_sale1:"",
-    order_by:"",
+    price_sale:"0",
+    price_sale1:"0",
+    order_by:"100",
     display:"0",
-    url_image:"",
+    url_image: {},
   })
 
   const get_id = elem => {
@@ -40,22 +40,25 @@ function ProductInsert() {
     //set_email(e.target.value)
     //console.log("updateform.e.target",e.target)
     const elem = e.target
-    //console.log("element:",elem)
+    //console.log("updateform.element:",elem,"files[0]:",elem.files[0])
     const id = get_id(elem)
-    //console.log("updateform.id",id)
-    const temp = {...frmdata}
-    const value = elem.value
+    console.log("updateform.id",id)
+    const temp = {...formdata}
+    let value = elem.value
+    if(id=="url_image" && !is_empty(elem.files)) value = elem.files[0]
 
-    //console.log("updateform.value",value)
-    
+    console.log("updateform.value",value)
     temp[id] = value
-    set_frmdata(temp)
+    console.log("updateform.value temp:",temp)
+    set_formdata(temp)
+
+    console.log("updateform.formdata",formdata)
+    //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
   const on_submit = async (e)=>{
     e.preventDefault()
-    console.log("on_submit.e:",e)
-    
+    console.log("on_submit.formdata:",formdata)
   }
 
   return (
@@ -71,7 +74,7 @@ function ProductInsert() {
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" 
             
-              value={frmdata.code_erp}
+              value={formdata.code_erp}
               onChange={updateform}
               required 
             />
@@ -81,7 +84,7 @@ function ProductInsert() {
             <label htmlFor="txt-description" className="form-label">Description</label>
             <input type="text" className="form-control" id="txt-description" placeholder="Name of product" 
             
-            value={frmdata.description}
+            value={formdata.description}
             onChange={updateform}
             required 
             />
@@ -90,7 +93,7 @@ function ProductInsert() {
           <div className="col-12">
             <label htmlFor="txt-description_full" className="form-label">Description large</label>
             <textarea className="form-control" id="txt-description_full" rows="2" placeholder="large description use # if needed upto 3000 chars"
-              value={frmdata.description_full}
+              value={formdata.description_full}
               onChange={updateform}
               required 
             ></textarea>
@@ -99,7 +102,7 @@ function ProductInsert() {
           <div className="col-md-4">
             <label htmlFor="num-price_sale" className="form-label">Price</label>
             <input type="number" className="form-control" id="num-price_sale" placeholder="price in default currency" 
-              value={frmdata.price_sale}
+              value={formdata.price_sale}
               onChange={updateform}
               required    
             />
@@ -108,7 +111,7 @@ function ProductInsert() {
           <div className="col-md-4">
             <label htmlFor="num-price_sale1" className="form-label">Price 1</label>
             <input type="number" className="form-control" id="num-price_sale1" placeholder="price in second currency" 
-              value={frmdata.price_sale1}
+              value={formdata.price_sale1}
               onChange={updateform}
               required
             />
@@ -117,7 +120,7 @@ function ProductInsert() {
           <div className="col-md-4">
             <label htmlFor="num-order_by" className="form-label">Order</label>
             <input type="number" className="form-control" id="num-order_by" 
-              value={frmdata.order_by}
+              value={formdata.order_by}
               onChange={updateform}
               required            
             />
@@ -126,7 +129,7 @@ function ProductInsert() {
           <div className="col-md-6">
             <label htmlFor="sel-display" className="form-label">Display</label>
             <select id="sel-display" className="form-select"
-              value={frmdata.display}
+              value={formdata.display}
               onChange={updateform}
               required
             >
@@ -139,8 +142,10 @@ function ProductInsert() {
 
           <div className="col-md-6">
             <div className="form-group">
-              <label htmlFor="file-image" className="form-label">Picture: </label>
-              <input type="file" className="form-control" id="file-image" />
+              <label htmlFor="file-url_image" className="form-label">Picture: </label>
+              <input type="file" className="form-control" id="file-url_image" 
+                onChange={updateform}
+              />
             </div>
           </div>
 
