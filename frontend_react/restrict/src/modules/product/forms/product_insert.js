@@ -9,6 +9,11 @@ import {GlobalContext} from '../../../components/context/global_context';
 
 function ProductInsert() {
 
+  const seldisplay = [
+    {value:"0",text:"No"},
+    {value:"1",text:"Yes"}
+  ]
+
   const [frmdata, set_frmdata] = useState({
     code_erp:"",
     description:"",
@@ -115,10 +120,15 @@ function ProductInsert() {
 
           <div className="col-md-6">
             <label htmlFor="sel-display" className="form-label">Display</label>
-            <select id="sel-display" className="form-select">
+            <select id="sel-display" className="form-select"
+              value={frmdata.display}
+              onChange={updateform}
+              required
+            >
               <option defaultValue>Choose...</option>
-              <option value="0">No</option>
-              <option value="1">Yes</option>
+              {
+                seldisplay.map(obj => (<option key={obj.value}>{obj.text}</option>))
+              }
             </select>
           </div>
 
