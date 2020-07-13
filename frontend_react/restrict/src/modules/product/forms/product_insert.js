@@ -19,6 +19,7 @@ function ProductInsert() {
   const [formdata, set_formdata] = useState({
     code_erp:"",
     description:"",
+    slug:"",
     insert_user:"react",
     description_full:"",
     price_sale:"0",
@@ -58,13 +59,19 @@ function ProductInsert() {
     //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
+  const before_submit = () => {
+
+  }
+
   const on_submit = async (evt)=>{
-    evt.preventDefault()
     console.log("on_submit.formdata:",formdata)
+    evt.preventDefault()
     //hacer insert y enviar fichero
+    before_submit()
     const objparam = {fields:{...formdata}}
     const objinsert = get_obj_insert(objparam)
     const r = await apidb.async_insert(objinsert)
+    
     console.log("on_submit.r",r)
   }
 
