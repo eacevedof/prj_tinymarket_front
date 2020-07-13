@@ -33,18 +33,16 @@ function ProductInsert() {
   const get_id = elem => {
     const idpref = elem.id || ""
     const parts = idpref.split("-")
-    
     //console.log("parts",parts)
     if(parts.length>1) return parts[1]
-
     //console.log("elem.idpref",idpref)
     return idpref
   }
 
-  const updateform = (e)=>{
+  const updateform = evt =>{
     //set_email(e.target.value)
     //console.log("updateform.e.target",e.target)
-    const elem = e.target
+    const elem = evt.target
     //console.log("updateform.element:",elem,"files[0]:",elem.files[0])
     const id = get_id(elem)
     console.log("updateform.id",id)
