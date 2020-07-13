@@ -1,11 +1,15 @@
 import React, {useContext, useState, useEffect} from 'react';
+import {is_empty} from "../../../helpers/functions"
 
-import {is_defined, is_empty} from "../../../helpers/functions"
+//import {GlobalContext} from '../../../components/context/global_context';
+import {get_obj_insert} from "../queries/queries_insert"
+import apidb from "../../../providers/apidb"
 
 import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
 import Footer from "../../../components/common/footer"
-import {GlobalContext} from '../../../components/context/global_context';
+
+
 
 function ProductInsert() {
 
@@ -23,6 +27,7 @@ function ProductInsert() {
     order_by:"100",
     display:"0",
     url_image: null,
+    id_user:1,
   })
 
   const get_id = elem => {
@@ -59,6 +64,11 @@ function ProductInsert() {
   const on_submit = async (e)=>{
     e.preventDefault()
     console.log("on_submit.formdata:",formdata)
+    //hacer insert y enviar fichero
+    const objparam = {fields:{...formdata}}
+    const objinsert = get_obj_insert(objparam)
+    const r = await apidb.async_insert(objinsert)
+    console.log("on_submit.r",r)
   }
 
   return (
