@@ -22,7 +22,7 @@ function ProductInsert() {
     price_sale1:"0",
     order_by:"100",
     display:"0",
-    url_image: {},
+    url_image: null,
   })
 
   const get_id = elem => {
