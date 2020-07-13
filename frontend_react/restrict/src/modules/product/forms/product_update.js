@@ -1,10 +1,11 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
 import {is_empty} from "../../../helpers/functions"
+import apidb from "../../../providers/apidb"
 
 //import {GlobalContext} from '../../../components/context/global_context';
 import {get_obj_update} from "../queries/queries_update"
-import apidb from "../../../providers/apidb"
+import {async_get_by_id} from "../fetchers/fetch_update"
 
 import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
@@ -94,7 +95,7 @@ function ProductUpdate(){
       <Navbar />
       <main className="container">
         
-        <h1 className="mt-2 mb-2">Product insert</h1>
+        <h1 className="mt-2 mb-2">Product update</h1>
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>

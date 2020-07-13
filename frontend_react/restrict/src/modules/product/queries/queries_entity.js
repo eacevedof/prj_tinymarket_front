@@ -1,12 +1,32 @@
 
 import {is_empty} from "../../../helpers/functions"
+import helpapify from "../../../helpers/apify"
 
 const query = {
   table: "app_product",
   alias: "t",
+  fields:[
+    "t.update_date",
+    "t.delete_date",
+    "t.is_enabled",
+    "t.i",
+    "t.id",
+    "t.code_erp",
+    "t.description",
+    "t.description_full",
+    "t.slug",
+    "t.units_min",
+    "t.units_max",
+    "t.price_gross",
+    "t.price_sale",
+    "t.price_sale1",
+    "t.price_sale2",
+  ],
+
 }
 
 export const get_obj_entity = (objparam={filters:{}})=>{
+  const objselect = helpapify.select
   objselect.reset()
 
   objselect.table = `${query.table} r`
