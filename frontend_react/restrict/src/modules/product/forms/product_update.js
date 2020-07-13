@@ -82,11 +82,12 @@ function ProductUpdate(){
   const async_onload = async () => {
     const r = await async_get_by_id(id)
     console.log("onload.r",r)
+    const temp = {...formdata, ...r}
+    set_formdata(temp)
   }
 
   useEffect(()=>{
     async_onload()
-
     return ()=> console.log("product.insert unmounting")
   },[])
 
