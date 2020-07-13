@@ -6,19 +6,14 @@ import _ from "lodash"
 
 function Navbar() {
   
-  const {order} = useContext(GlobalContext)
-  console.log("navbar.order",order)
+  //const {order} = useContext(GlobalContext)
+  //console.log("navbar.order",order)
 
   const [iitems, set_iitems] = useState(0)
 
   useEffect(()=>{
-    console.log("navbar.useeffect.order",order)
-    if(!_.isEmpty(order))
-    {
-      const i = order.products.length
-      set_iitems(i)
-    }
-  },[order])
+    
+  },[])
 
   return (
     <header className="mb-2">
