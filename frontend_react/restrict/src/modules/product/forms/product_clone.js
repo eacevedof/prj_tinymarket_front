@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from "../../../components/common/navbar"
-import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
-import Footer from "../../../components/common/footer"
-import {GlobalContext} from '../../../components/context/global_context';
+import Navbar from "components/common/navbar"
+import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Footer from "components/common/footer"
+import {GlobalContext} from 'components/context/global_context';
 
 function ProductClone() {
   return (

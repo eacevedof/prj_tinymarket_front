@@ -1,5 +1,5 @@
-import helpapify from "../../../../helpers/apify"
-import {is_defined, get_keys, isset, is_empty, is_key, pr} from "../../../../helpers/functions"
+import helpapify from "helpers/apify"
+import {is_defined, get_keys, isset, is_empty, is_key, pr} from "helpers/functions"
 
 export const grid = {
   headers:[

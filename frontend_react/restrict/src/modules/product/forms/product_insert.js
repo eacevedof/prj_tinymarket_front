@@ -1,11 +1,11 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {is_empty} from "../../../helpers/functions"
+import {is_empty} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
 
-//import {GlobalContext} from '../../../components/context/global_context';
-import Navbar from "../../../components/common/navbar"
-import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
-import Footer from "../../../components/common/footer"
+//import {GlobalContext} from 'components/context/global_context';
+import Navbar from "components/common/navbar"
+import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Footer from "components/common/footer"
 
 function ProductInsert() {
 

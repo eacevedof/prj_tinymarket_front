@@ -1,5 +1,5 @@
-import { is_defined } from "../../../helpers/functions"
-import apidb from "../../../providers/apidb"
+import { is_defined } from "helpers/functions"
+import apidb from "providers/apidb"
 
 import {get_obj_entity} from "./queries/queries_entity"
 import {get_obj_insert} from "./queries/queries_insert"

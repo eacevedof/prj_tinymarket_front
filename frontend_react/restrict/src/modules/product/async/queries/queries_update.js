@@ -1,6 +1,6 @@
 
-import helpapify from "../../../../helpers/apify"
-import {get_keys,is_defined} from "../../../../helpers/functions"
+import helpapify from "helpers/apify"
+import {get_keys,is_defined} from "helpers/functions"
 
 const query = {
   table: "app_product",

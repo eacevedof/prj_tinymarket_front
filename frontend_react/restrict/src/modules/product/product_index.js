@@ -1,16 +1,16 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {is_defined,pr} from "../../helpers/functions"
-import {GlobalContext} from "../../components/context/global_context"
-import Navbar from "../../components/common/navbar"
-import Footer from "../../components/common/footer"
+import {is_defined,pr} from "helpers/functions"
+import {GlobalContext} from "components/context/global_context"
+import Navbar from "components/common/navbar"
+import Footer from "components/common/footer"
 
-import {async_islogged} from '../login/login_index'
-import HrefDom from "../../helpers/href_dom"
-import apidb from "../../providers/apidb"
+import {async_islogged} from 'modules/login/login_index'
+import HrefDom from "helpers/href_dom"
+import apidb from "providers/apidb"
 import {get_obj_list, config, grid} from "./async/queries/query_list"
 import { useHistory } from 'react-router-dom';
-import TableAction from "../../helpers/bootstrap/tableaction/tableaction"
-import Breadscrumb from '../../components/common/bootstrap/breadscrumb';
+import TableAction from "helpers/bootstrap/tableaction/tableaction"
+import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 
 
 function ProductIndex() {

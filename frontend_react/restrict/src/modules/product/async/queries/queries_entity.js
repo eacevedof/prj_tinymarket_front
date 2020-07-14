@@ -1,6 +1,6 @@
 
-import {is_empty} from "../../../../helpers/functions"
-import helpapify from "../../../../helpers/apify"
+import {is_empty} from "helpers/functions"
+import helpapify from "helpers/apify"
 
 const query = {
   table: "app_product",

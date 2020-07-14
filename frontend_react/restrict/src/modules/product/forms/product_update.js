@@ -1,12 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
-import {is_empty} from "../../../helpers/functions"
-//import {GlobalContext} from '../../../components/context/global_context';
+import {is_empty} from "helpers/functions"
+//import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_update} from "../async/async_requests"
 
-import Navbar from "../../../components/common/navbar"
-import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
-import Footer from "../../../components/common/footer"
+import Navbar from "components/common/navbar"
+import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Footer from "components/common/footer"
 
 function ProductUpdate(){
 
