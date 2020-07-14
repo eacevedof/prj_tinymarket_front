@@ -24,8 +24,16 @@ export const async_insert = async (formdata)=>{
 }
 
 export const async_update = async (formdata)=>{
-  const objparam = {fields:{...formdata}}
-  const objquery = get_obj_update(objparam)
+  const keys = ["id"]
+  //esto habría que hacerlo con async
+  const temp = {...formdata}
+  delete temp["delete_date"]
+  delete temp["i"]
+
+  const dbfields = Object.keys(temp).map(field_name => ({field_name}))
+  const objparam = {fields:temp, keys}
+  const objquery = get_obj_update(objparam, dbfields)
+  //console.log("objparam",objquery)
   const r = await apidb.async_update(objquery)
   return r
 }
