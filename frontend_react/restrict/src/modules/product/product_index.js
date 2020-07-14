@@ -49,6 +49,7 @@ function ProductIndex() {
     <>
       <Navbar />
       <main className="container">
+        <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
       </main>

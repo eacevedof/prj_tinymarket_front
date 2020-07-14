@@ -29,7 +29,7 @@ function Breadscrumb({arbreads}) {
         </li>        
         <li className="breadcrumb-item">
           <NavLink exact to={"/admin/product/insert"}>
-            <i className="fa a-plus-square-o"></i>&nbsp;New product
+            <i className="fa a-plus-square-o"></i>New product
           </NavLink>          
         </li>
       </ol>
