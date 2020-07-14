@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react';
 
 import Tdaction from "./tdaction"
 
-function TableBody({arhead, ardata, araction}) {
+function TableBody({arhead, ardata, objconf}) {
 
   useEffect(()=>{
     return ()=> console.log("tablebody unmounting")
@@ -21,7 +21,7 @@ function TableBody({arhead, ardata, araction}) {
     console.log("objrow",objrow)
     return (
       <tr key={i}>
-        <Tdaction araction={araction} />
+        <Tdaction objrow={objrow} objconf={objconf} />
         {get_tds(objrow)}
       </tr>
     ) //return

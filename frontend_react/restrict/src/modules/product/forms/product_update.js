@@ -84,6 +84,7 @@ function ProductUpdate(){
     console.log("onload.r",r)
     const temp = {...formdata, ...r}
     set_formdata(temp)
+    console.log("async_onload.formdata:",formdata)
   }
 
   useEffect(()=>{

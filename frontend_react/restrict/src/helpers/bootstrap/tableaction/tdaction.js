@@ -2,10 +2,21 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import shortid from "shortid"
 
-function Tdaction({araction}) {
+function Tdaction({objrow, objconf}) {
+
   const id = shortid.generate()
   const ddid = `dd-${id}`
   const chkid = `chk-${id}`
+
+  const keyname = (objconf!=null && typeof(objconf.key)!="undefined") ? objconf.key : "id"
+  const keyval = objrow[keyname]
+
+  const objurl = {
+    update: `/admin/product/update/${keyval}`,
+    delete: `/admin/product/delete/${keyval}`,
+    deletelogic: `/admin/product/delete-logic/${keyval}`,
+    clone: `/admin/product/clone/${keyval}`,
+  }
 
   return (
     <>
@@ -22,22 +33,22 @@ function Tdaction({araction}) {
           </button>
           <ul className="dropdown-menu" aria-labelledby={ddid}>
             <li>
-              <NavLink className="dropdown-item" exact to={"/admin/product/update/123"}> 
+              <NavLink className="dropdown-item" exact to={objurl.update}> 
                 <span><i className="fa fa-pencil"></i>&nbsp;Update</span>
               </NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" exact to={"/admin/product/delete/123"}> 
+              <NavLink className="dropdown-item" exact to={objurl.delete}> 
                 <span><i className="fa fa-trash"></i>&nbsp;Delete</span>
               </NavLink>  
             </li>
             <li>
-              <NavLink className="dropdown-item" exact to={"/admin/product/delete-logic/123"}> 
+              <NavLink className="dropdown-item" exact to={objurl.deletelogic}> 
                 <span><i className="fa fa-trash"></i>&nbsp;Delete L</span>
               </NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" exact to={"/admin/product/clone/123"}> 
+              <NavLink className="dropdown-item" exact to={objurl.clone}> 
                 <span><i className="fa fa-files-o"></i>&nbsp;Clone</span>
               </NavLink>
             </li>
