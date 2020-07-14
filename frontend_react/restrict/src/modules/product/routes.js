@@ -6,6 +6,7 @@ import ProductClone from "./forms/product_clone"
 import ProductUpdate from "./forms/product_update"
 import ProductDetail from "./forms/product_detail"
 import ProductDelete from "./forms/product_delete"
+import ProductDeleteLogic from "./forms/product_deletelogic"
 
 export const routes = [
   {
@@ -26,7 +27,7 @@ export const routes = [
   },     
   {
     path:"/admin/product/delete-logic/:id",
-    component: (<ProductDelete />)
+    component: (<ProductDeleteLogic />)
   },  
   {
     path:"/admin/product/clone/:id",

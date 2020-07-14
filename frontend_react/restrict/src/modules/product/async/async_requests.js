@@ -70,3 +70,14 @@ export const async_clone = async (formdata)=>{
 
   return r
 }
+
+export const async_deletelogic = async (formdata)=>{
+  const keys = ["id"]
+  const temp = {...formdata}
+  //comprobar si ya estaba borrado
+  const dbfields = [{field_name:"delete_date"},{field_name:"delete_user"},{field_name:"id"}]
+  const objparam = {fields:temp, keys}
+  const objquery = get_obj_update(objparam, dbfields)
+  const r = await apidb.async_update(objquery)
+  return r
+}
