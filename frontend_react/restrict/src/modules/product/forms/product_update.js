@@ -69,6 +69,7 @@ function ProductUpdate(){
     evt.preventDefault()
     //hacer insert y enviar fichero
     before_submit()
+    
     const r = await async_update(formdata)
     
     console.log("on_submit.r",r)
