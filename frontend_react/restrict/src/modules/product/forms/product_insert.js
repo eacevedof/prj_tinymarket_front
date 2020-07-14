@@ -98,7 +98,7 @@ function ProductInsert() {
     async_onload()
 
     return ()=> console.log("product.insert unmounting")
-  },[])
+  },[issubmitting, error, success])
 
   return (
     <>

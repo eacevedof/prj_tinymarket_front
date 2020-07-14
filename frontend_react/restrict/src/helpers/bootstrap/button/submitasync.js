@@ -9,6 +9,13 @@ function SubmitAsync({innertext, type, issubmitting}) {
   const strloading = "...loading"
 
   return (
+    <button  type="button" className="btn btn-primary" disabled>
+      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...
+    </button>
+  )
+
+  return (
     <button type="submit" className={butcss} disabled={disabled}>
       {issubmitting ?
         (<>
