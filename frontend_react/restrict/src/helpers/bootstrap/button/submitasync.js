@@ -1,24 +1,23 @@
-import React, {useContext} from 'react';
+import React, {useEffect} from 'react';
 
 //type: primary, secondary, success, danger, warning, info, light, dark
 function SubmitAsync({innertext, type, issubmitting}) {
-  console.log("submit",innertext, type, issubmitting)
+  console.log("submit","innertext:",innertext,"type:", type,"issubmitting:", issubmitting)
 
   if(!type) type="success"
 
-  const butcss = `btn btn-${type}`
+  const cssbutton = `btn btn-${type}`
   const disabled = issubmitting ? "disabled" : null
   const strloading = " Loading..."
 
-  return (
-    <button type="submit" className="btn btn-primary" disabled={disabled}>
-      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      {strloading}
-    </button>
-  )
+  useEffect(()=>{
+    console.log("submitasync.useffect")
+
+    return ()=> console.log("product.insert unmounting")
+  },[issubmitting])
 
   return (
-    <button type="submit" className={butcss} disabled={disabled}>
+    <button type="submit" className={cssbutton} disabled={disabled}>
       {issubmitting ?
         (<>
         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -29,6 +28,7 @@ function SubmitAsync({innertext, type, issubmitting}) {
       }
     </button>
   )
+
 }
 
 export default SubmitAsync;

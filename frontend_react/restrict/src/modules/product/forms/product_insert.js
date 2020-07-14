@@ -85,7 +85,7 @@ function ProductInsert() {
         set_error(r.error)
       }
       else
-        set_success("New product added")
+        set_success("New product added. Nº: ".concat(r))
     } 
     catch (error) {
       console.log("error:",error.toString())
@@ -100,10 +100,9 @@ function ProductInsert() {
   const async_onload = async () => {}
 
   useEffect(()=>{
-    console.log("product.inser.useeffect")
+    console.log("product.insert.useeffect")
     async_onload()
-
-    return ()=> console.log("product.insert unmounting")
+    return ()=> console.log("product.insert.unmounting")
   },[])
 
   return (
@@ -198,7 +197,7 @@ function ProductInsert() {
           </div>
 
           <div className="col-12">
-            <SubmitAsync innertext="Save async" type="primary" issubmitting={issubmitting} />
+            <SubmitAsync innertext="Save" type="primary" issubmitting={issubmitting} />
           </div>
         </form>
       </main>
