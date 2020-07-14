@@ -1,10 +1,9 @@
-import apidb from "../../../providers/apidb"
-import {get_obj_entity} from "../queries/queries_entity"
-import {get_obj_insert} from "../queries/queries_insert"
-import {get_obj_update} from "../queries/queries_update"
-
 import { is_defined } from "../../../helpers/functions"
+import apidb from "../../../providers/apidb"
 
+import {get_obj_entity} from "./queries/queries_entity"
+import {get_obj_insert} from "./queries/queries_insert"
+import {get_obj_update} from "./queries/queries_update"
 
 export const async_get_by_id = async (id) => {
   //alert("id:"+id)

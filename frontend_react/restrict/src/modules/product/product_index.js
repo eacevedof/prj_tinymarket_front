@@ -7,7 +7,7 @@ import Footer from "../../components/common/footer"
 import {async_islogged} from '../login/login_index'
 import HrefDom from "../../helpers/href_dom"
 import apidb from "../../providers/apidb"
-import {get_obj_list, config, grid} from "./queries/query_list"
+import {get_obj_list, config, grid} from "./async/queries/query_list"
 import { useHistory } from 'react-router-dom';
 import TableAction from "../../helpers/bootstrap/tableaction/tableaction"
 import Breadscrumb from '../../components/common/bootstrap/breadscrumb';

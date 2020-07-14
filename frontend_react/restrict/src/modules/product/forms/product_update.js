@@ -1,10 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
 import {is_empty} from "../../../helpers/functions"
-import apidb from "../../../providers/apidb"
-
 //import {GlobalContext} from '../../../components/context/global_context';
-import {get_obj_update} from "../queries/queries_update"
 import {async_get_by_id, async_update} from "../async/async_requests"
 
 import Navbar from "../../../components/common/navbar"
@@ -72,9 +69,7 @@ function ProductUpdate(){
     evt.preventDefault()
     //hacer insert y enviar fichero
     before_submit()
-    const objparam = {fields:{...formdata}}
-    const objinsert = get_obj_update(objparam)
-    const r = await apidb.async_insert(objinsert)
+    const r = await async_update(formdata)
     
     console.log("on_submit.r",r)
   }
