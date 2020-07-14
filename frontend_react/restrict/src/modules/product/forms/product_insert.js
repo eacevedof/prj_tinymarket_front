@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useRef} from 'react';
 import {is_empty} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
 
@@ -22,8 +22,10 @@ function ProductInsert() {
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
+  const refcode = useRef(null)
 
-  const [formdata, set_formdata] = useState({
+
+  const formdefault = {
     code_erp:"",
     description:"",
     slug:"",
@@ -35,7 +37,9 @@ function ProductInsert() {
     display:"0",
     url_image: null,
     id_user:1,
-  })
+  }
+
+  const [formdata, set_formdata] = useState({...formdefault})
 
   const get_id = elem => {
     const idpref = elem.id || ""
@@ -47,10 +51,7 @@ function ProductInsert() {
   }
 
   const updateform = evt =>{
-    //set_email(e.target.value)
-    //console.log("updateform.e.target",e.target)
     const elem = evt.target
-    //console.log("updateform.element:",elem,"files[0]:",elem.files[0])
     const id = get_id(elem)
     console.log("updateform.id",id)
     const temp = {...formdata}
@@ -84,8 +85,11 @@ function ProductInsert() {
       if(r.error){
         set_error(r.error)
       }
-      else
+      else{
         set_success("New product added. Nº: ".concat(r))
+        set_formdata({...formdefault})
+        refcode.current.focus()
+      }
     } 
     catch (error) {
       console.log("error:",error.toString())
@@ -121,6 +125,7 @@ function ProductInsert() {
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" 
             
+              ref={refcode}
               value={formdata.code_erp}
               onChange={updateform}
               required 
