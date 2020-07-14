@@ -1,10 +1,10 @@
 import { is_defined, get_datenow } from "helpers/functions"
 import apidb from "providers/apidb"
 
-import {get_obj_entity} from "./queries/queries_entity"
-import {get_obj_insert} from "./queries/queries_insert"
-import {get_obj_update} from "./queries/queries_update"
-import {get_obj_delete} from "./queries/queries_delete"
+import {get_obj_entity} from "./queries/query_entity"
+import {get_obj_insert} from "./queries/query_insert"
+import {get_obj_update} from "./queries/query_update"
+import {get_obj_delete} from "./queries/query_delete"
 
 export const async_get_by_id = async (id) => {
   //alert("id:"+id)
