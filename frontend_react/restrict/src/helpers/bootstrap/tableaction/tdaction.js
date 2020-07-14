@@ -9,6 +9,7 @@ function Tdaction({objrow, objconf}) {
   const chkid = `chk-${id}`
 
   const keyname = (objconf!=null && typeof(objconf.key)!="undefined") ? objconf.key : "id"
+  //const keyval = (typeof(objrow.id)!="undefined" ? objrow.id : "-1")
   const keyval = objrow[keyname]
 
   const objurl = {
