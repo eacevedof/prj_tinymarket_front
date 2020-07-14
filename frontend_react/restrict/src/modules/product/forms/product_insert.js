@@ -4,6 +4,7 @@ import {async_insert} from "../async/async_requests"
 
 //import {GlobalContext} from 'components/context/global_context';
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"
 
@@ -60,9 +61,7 @@ function ProductInsert() {
     //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
-  const before_submit = () => {
-
-  }
+  const before_submit = () => {}
 
   const on_submit = async (evt)=>{
     console.log("on_submit.formdata:",formdata)
@@ -90,6 +89,8 @@ function ProductInsert() {
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
+          <AlertSimple message="xxx" type="danger" />
+
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" 
