@@ -19,3 +19,14 @@ export const get_keys = objany => !is_objectlit(objany) ? [] : Object.keys(objan
 export const is_empty = objany => !isset(objany) ? true : ( is_defined(objany.length) ? objany.length===0 : (is_objectlit(objany) && get_keys(objany).length == 0) )
 
 export const cl = (objany, title="") => console.log(title, objany)
+
+export const get_datenow = () => {
+  //2020-07-14T14:26:27.926Z
+  const timenow = new Date().toISOString().slice(0,24);
+  const parts = timenow.split("T")
+  const strdate = parts[0].split("-").join("")
+  const strtime = parts[1].split(".")[0].split(":").join("")
+  const r = strdate.concat(strtime) 
+  console.log("get_datenow.r",r)
+  return r
+}

@@ -1,4 +1,4 @@
-import { is_defined } from "helpers/functions"
+import { is_defined, get_datenow } from "helpers/functions"
 import apidb from "providers/apidb"
 
 import {get_obj_entity} from "./queries/queries_entity"
@@ -73,7 +73,7 @@ export const async_clone = async (formdata)=>{
 
 export const async_deletelogic = async (formdata)=>{
   const keys = ["id"]
-  const temp = {...formdata}
+  const temp = {id:formdata.id,delete_user:"react",delete_date:get_datenow()}
   //comprobar si ya estaba borrado
   const dbfields = [{field_name:"delete_date"},{field_name:"delete_user"},{field_name:"id"}]
   const objparam = {fields:temp, keys}
