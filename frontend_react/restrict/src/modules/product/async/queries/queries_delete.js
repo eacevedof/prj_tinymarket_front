@@ -7,10 +7,10 @@ const query = {
   alias: "t",
 }
 
-export const get_obj_update = (objparam={fields:{},keys:[]},dbfields=[])=>{
-  const objupdate = helpapify.update
-  objupdate.reset()
-  objupdate.table = query.table
+export const get_obj_delete = (objparam={fields:{},keys:[]},dbfields=[])=>{
+  const objdelete = helpapify.delete
+  objdelete.reset()
+  objdelete.table = query.table
 
   if(!is_defined(objparam.keys)) return null
   //evita que se actualicen todos los registros que no son una entidad
@@ -26,12 +26,12 @@ export const get_obj_update = (objparam={fields:{},keys:[]},dbfields=[])=>{
   
       //si el campo es clave
       if(objparam.keys.includes(field)){
-        objupdate.where.push(`${field}='${objparam.fields[field]}'`)
+        objdelete.where.push(`${field}='${objparam.fields[field]}'`)
       }
       else
-        objupdate.fields.push({k:field,v:objparam.fields[field]})
+        objdelete.fields.push({k:field,v:objparam.fields[field]})
     })    
   }
 
-  return objupdate
+  return objdelete
 }
