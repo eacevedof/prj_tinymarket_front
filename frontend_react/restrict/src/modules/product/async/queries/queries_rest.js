@@ -41,8 +41,6 @@ export const get_obj_insert = (objparam={fields:{}})=>{
   return objinsert
 }
 
-
-
 export const get_obj_detete = (objparam={fields:{},keys:[]})=>{
   const objdelete = helpapify.delete
   objdelete.reset()

@@ -4,6 +4,7 @@ import apidb from "providers/apidb"
 import {get_obj_entity} from "./queries/queries_entity"
 import {get_obj_insert} from "./queries/queries_insert"
 import {get_obj_update} from "./queries/queries_update"
+import {get_obj_delete} from "./queries/queries_delete"
 
 export const async_get_by_id = async (id) => {
   //alert("id:"+id)
@@ -38,5 +39,23 @@ export const async_update = async (formdata)=>{
   const objquery = get_obj_update(objparam, dbfields)
   //console.log("objparam",objquery)
   const r = await apidb.async_update(objquery)
+  return r
+}
+
+export const async_delete = async (formdata)=>{
+  const fieldsdel = ["delete_date","insert_date","update_date","i"]
+
+  const keys = ["id"]
+  //esto habría que hacerlo con async
+  const temp = {...formdata}
+  fieldsdel.forEach(field =>{
+    delete temp[field] 
+  })
+  
+  const dbfields = Object.keys(temp).map(field_name => ({field_name}))
+  const objparam = {fields:temp, keys}
+  const objquery = get_obj_delete(objparam, dbfields)
+  //console.log("objparam",objquery)
+  const r = await apidb.async_delete(objquery)
   return r
 }
