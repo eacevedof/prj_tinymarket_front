@@ -22,6 +22,7 @@ const query = {
     "t.price_sale1",
     "t.price_sale2",
     "t.display",
+    "t.id_user",
   ],
 
 }

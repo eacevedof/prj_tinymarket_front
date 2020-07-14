@@ -13,6 +13,7 @@ function Tdaction({objrow, objconf}) {
   const keyval = objrow[keyname]
 
   const objurl = {
+    detail: `/admin/product/${keyval}`,
     update: `/admin/product/update/${keyval}`,
     delete: `/admin/product/delete/${keyval}`,
     deletelogic: `/admin/product/delete-logic/${keyval}`,
@@ -33,6 +34,11 @@ function Tdaction({objrow, objconf}) {
             <span><i className="fa fa-bars"></i></span>
           </button>
           <ul className="dropdown-menu" aria-labelledby={ddid}>
+            <li>
+              <NavLink className="dropdown-item" exact to={objurl.detail}> 
+                <span><i className="fa fa-info-circle"></i>&nbsp;Detail</span>
+              </NavLink>
+            </li>            
             <li>
               <NavLink className="dropdown-item" exact to={objurl.update}> 
                 <span><i className="fa fa-pencil"></i>&nbsp;Update</span>
