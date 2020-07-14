@@ -53,3 +53,10 @@ export const async_delete = async (formdata)=>{
   const r = await apidb.async_delete(objquery)
   return r
 }
+
+export const async_clone = async (formdata)=>{
+  const objparam = {fields:{...formdata}}
+  const objquery = get_obj_insert(objparam)
+  const r = await apidb.async_insert(objquery)
+  return r
+}

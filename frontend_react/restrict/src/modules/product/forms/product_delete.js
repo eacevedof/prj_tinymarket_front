@@ -8,7 +8,7 @@ import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"
 
-function ProductUpdate(){
+function ProductDelete(){
 
   const {id} = useParams()
 
@@ -42,7 +42,6 @@ function ProductUpdate(){
 
   const updateform = evt =>{
     const elem = evt.target
-    //console.log("updateform.element:",elem,"files[0]:",elem.files[0])
     const id = get_id(elem)
     console.log("updateform.id",id)
     const temp = {...formdata}
@@ -53,9 +52,7 @@ function ProductUpdate(){
     temp[id] = value
     console.log("updateform.value temp:",temp)
     set_formdata(temp)
-
     console.log("updateform.formdata",formdata)
-    //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
   const before_submit = () => {}
@@ -63,21 +60,17 @@ function ProductUpdate(){
   const on_submit = async (evt)=>{
     console.log("on_submit.formdata:",formdata)
     evt.preventDefault()
-    //hacer delete y enviar fichero
-    before_submit()
-    
+    before_submit()   
     const r = await async_delete(formdata)
-    
     console.log("on_submit.r",r)
   }
 
   const async_onload = async () => {
     const r = await async_get_by_id(id)
-    console.log("product.onload.r",r)
+    console.log("product.delete.onload.r",r)
     const temp = {...formdata, ...r}
-    //console.log("product.onload.formdata:")
     set_formdata(temp)
-    console.log("product.onload.formdata:",formdata)
+    console.log("product.delete.onload.formdata:",formdata)
   }
 
   useEffect(()=>{
@@ -180,4 +173,4 @@ function ProductUpdate(){
   )
 }
 
-export default ProductUpdate;
+export default ProductDelete;
