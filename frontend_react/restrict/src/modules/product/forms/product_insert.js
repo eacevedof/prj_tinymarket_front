@@ -1,10 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {is_empty} from "../../../helpers/functions"
+import {async_insert} from "../fetchers/fetch_update"
 
 //import {GlobalContext} from '../../../components/context/global_context';
-import {get_obj_insert} from "../queries/queries_insert"
-import apidb from "../../../providers/apidb"
-
 import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';
 import Footer from "../../../components/common/footer"
@@ -68,10 +66,7 @@ function ProductInsert() {
     evt.preventDefault()
     //hacer insert y enviar fichero
     before_submit()
-    const objparam = {fields:{...formdata}}
-    const objinsert = get_obj_insert(objparam)
-    const r = await apidb.async_insert(objinsert)
-    
+    const r = await async_insert(formdata)
     console.log("on_submit.r",r)
   }
 

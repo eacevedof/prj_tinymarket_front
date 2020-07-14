@@ -12,6 +12,7 @@ export const get_obj_update = (objparam={fields:{},keys:[]},dbfields=[])=>{
   objupdate.reset()
   objupdate.table = query.table
 
+  if(!is_defined(objparam.keys)) return null
   //evita que se actualicen todos los registros que no son una entidad
   if(objparam.keys.length==0) return null
 
