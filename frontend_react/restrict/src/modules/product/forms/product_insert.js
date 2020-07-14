@@ -101,7 +101,9 @@ function ProductInsert() {
     
   }// on_submit
 
-  const async_onload = async () => {}
+  const async_onload = async () => {
+    refcode.current.focus()
+  }
 
   useEffect(()=>{
     console.log("product.insert.useeffect")
