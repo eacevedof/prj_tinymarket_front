@@ -21,7 +21,6 @@ function ProductClone(){
     code_erp:"",
     description:"",
     slug:"",
-    clone_user:"react",
     description_full:"",
     price_sale:"0",
     price_sale1:"0",

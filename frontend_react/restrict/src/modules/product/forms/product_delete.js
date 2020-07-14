@@ -31,30 +31,6 @@ function ProductDelete(){
     id_user:1,
   })
 
-  const get_id = elem => {
-    const idpref = elem.id || ""
-    const parts = idpref.split("-")
-    //console.log("parts",parts)
-    if(parts.length>1) return parts[1]
-    //console.log("elem.idpref",idpref)
-    return idpref
-  }
-
-  const updateform = evt =>{
-    const elem = evt.target
-    const id = get_id(elem)
-    console.log("updateform.id",id)
-    const temp = {...formdata}
-    let value = elem.value
-    if(id=="url_image" && !is_empty(elem.files)) value = elem.files[0]
-
-    console.log("updateform.value",value)
-    temp[id] = value
-    console.log("updateform.value temp:",temp)
-    set_formdata(temp)
-    console.log("updateform.formdata",formdata)
-  }
-
   const before_submit = () => {}
 
   const on_submit = async (evt)=>{
@@ -91,7 +67,6 @@ function ProductDelete(){
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control border-0" id="txt-code_erp" placeholder="code in your system" 
               value={formdata.code_erp}
-              onChange={updateform}
               disabled 
             />
           </div>
@@ -101,7 +76,6 @@ function ProductDelete(){
             <input type="text" className="form-control" id="txt-description" placeholder="Name of product" 
             
             value={formdata.description}
-            onChange={updateform}
             disabled 
             />
           </div>
@@ -110,7 +84,6 @@ function ProductDelete(){
             <label htmlFor="txt-description_full" className="form-label">Description large</label>
             <textarea className="form-control border-0" id="txt-description_full" rows="2" placeholder="large description use # if needed upto 3000 chars"
               value={formdata.description_full}
-              onChange={updateform}
               disabled 
             ></textarea>
           </div> 
@@ -119,7 +92,6 @@ function ProductDelete(){
             <label htmlFor="num-price_sale" className="form-label">Price</label>
             <input type="number" className="form-control border-0" id="num-price_sale" placeholder="price in default currency" 
               value={formdata.price_sale}
-              onChange={updateform}
               disabled    
             />
           </div>
@@ -128,7 +100,6 @@ function ProductDelete(){
             <label htmlFor="num-price_sale1" className="form-label">Price 1</label>
             <input type="number" className="form-control border-0" id="num-price_sale1" placeholder="price in second currency" 
               value={formdata.price_sale1}
-              onChange={updateform}
               disabled
             />
           </div>
@@ -137,7 +108,6 @@ function ProductDelete(){
             <label htmlFor="num-order_by" className="form-label">Order</label>
             <input type="number" className="form-control border-0" id="num-order_by" 
               value={formdata.order_by}
-              onChange={updateform}
               disabled            
             />
           </div>          
@@ -146,7 +116,6 @@ function ProductDelete(){
             <label htmlFor="sel-display" className="form-label">Display</label>
             <select id="sel-display" className="form-select border-0"
               value={formdata.display}
-              onChange={updateform}
               disabled
             >
               <option>Choose...</option>

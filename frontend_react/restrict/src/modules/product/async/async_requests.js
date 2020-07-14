@@ -25,11 +25,10 @@ export const async_insert = async (formdata)=>{
 }
 
 export const async_update = async (formdata)=>{
-  const fieldsdel = ["delete_date","insert_date","update_date","i"]
-
   const keys = ["id"]
   //esto habría que hacerlo con async
   const temp = {...formdata}
+  const fieldsdel = ["delete_date","insert_date","update_date","i"]
   fieldsdel.forEach(field =>{
     delete temp[field] 
   })
@@ -55,8 +54,19 @@ export const async_delete = async (formdata)=>{
 }
 
 export const async_clone = async (formdata)=>{
-  const objparam = {fields:{...formdata}}
+  const temp = {...formdata}
+  const fieldsdel = ["delete_date","delete_user","insert_date","update_date","i","id"]
+  fieldsdel.forEach(field => {
+    delete temp[field] 
+  })
+
+  temp.description = "(clone of ".concat(formdata.id).concat(" - ").concat(temp.description)
+  temp.insert_user = "clone ".concat(formdata.id)
+  temp.update_user = "clone ".concat(formdata.id)
+
+  const objparam = {fields:temp}
   const objquery = get_obj_insert(objparam)
   const r = await apidb.async_insert(objquery)
+
   return r
 }
