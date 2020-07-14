@@ -43,18 +43,12 @@ export const async_update = async (formdata)=>{
 }
 
 export const async_delete = async (formdata)=>{
-  const fieldsdel = ["delete_date","insert_date","update_date","i"]
-
   const keys = ["id"]
   //esto habría que hacerlo con async
   const temp = {...formdata}
-  fieldsdel.forEach(field =>{
-    delete temp[field] 
-  })
-  
-  const dbfields = Object.keys(temp).map(field_name => ({field_name}))
+
   const objparam = {fields:temp, keys}
-  const objquery = get_obj_delete(objparam, dbfields)
+  const objquery = get_obj_delete(objparam, keys)
   //console.log("objparam",objquery)
   const r = await apidb.async_delete(objquery)
   return r
