@@ -1,6 +1,5 @@
 
 import helpapify from "helpers/apify"
-import {isset} from "helpers/functions"
 
 const query = {
   table: "app_product",

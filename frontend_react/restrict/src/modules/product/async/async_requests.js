@@ -73,10 +73,17 @@ export const async_clone = async (formdata)=>{
 
 export const async_deletelogic = async (formdata)=>{
   const keys = ["id"]
-  const temp = {id:formdata.id,delete_user:"react",delete_date:get_datenow()}
+
+  const objdellog = {
+    id:formdata.id,
+    delete_user:"react",
+    delete_date:get_datenow(),
+    delete_platform: "1",
+  }
+  
   //comprobar si ya estaba borrado
-  const dbfields = [{field_name:"delete_date"},{field_name:"delete_user"},{field_name:"id"}]
-  const objparam = {fields:temp, keys}
+  const dbfields = [{field_name:"id"},{field_name:"delete_date"},{field_name:"delete_user"},{field_name:"delete_platform"}]
+  const objparam = {fields:objdellog, keys}
   const objquery = get_obj_update(objparam, dbfields)
   const r = await apidb.async_update(objquery)
   return r
