@@ -5,6 +5,7 @@ import {async_insert} from "../async/async_requests"
 //import {GlobalContext} from 'components/context/global_context';
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"
 
@@ -17,6 +18,10 @@ function ProductInsert() {
     {value:"0",text:"No"},
     {value:"1",text:"Yes"}
   ]
+
+  const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
 
   const [formdata, set_formdata] = useState({
     code_erp:"",
@@ -64,12 +69,27 @@ function ProductInsert() {
   const before_submit = () => {}
 
   const on_submit = async (evt)=>{
+    set_issubmitting(true)
+    set_error("")
+    set_success("")
+
     console.log("on_submit.formdata:",formdata)
     evt.preventDefault()
     //hacer insert y enviar fichero
     before_submit()
-    const r = await async_insert(formdata)
-    console.log("on_submit.r",r)
+    try {
+      const r = await async_insert(formdata)  
+      console.log("on_submit.r",r)
+      set_success("New product added")
+    } 
+    catch (error) {
+      console.log("error:",error.toString())
+      set_error(error.toString())
+    } 
+    finally {
+      set_issubmitting(false)
+    }
+    
   }
 
   const async_onload = async () => {}
@@ -89,7 +109,8 @@ function ProductInsert() {
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
-          <AlertSimple message="xxx" type="danger" />
+          {success!=""? <AlertSimple message={success} type="success" />: null}
+          {error!=""? <AlertSimple message={error} type="error" />: null}
 
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
@@ -171,7 +192,7 @@ function ProductInsert() {
           </div>
 
           <div className="col-12">
-            <button type="submit" className="btn btn-primary">Save</button>
+            <SubmitAsync innertext="Save async" type="primary" isdisabled={issubmitting} />
           </div>
         </form>
       </main>
