@@ -69,18 +69,23 @@ function ProductInsert() {
   const before_submit = () => {}
 
   const on_submit = async (evt)=>{
+    console.log("on_submit.formdata:",formdata)
+    evt.preventDefault()
+
     set_issubmitting(true)
     set_error("")
     set_success("")
 
-    console.log("on_submit.formdata:",formdata)
-    evt.preventDefault()
     //hacer insert y enviar fichero
     before_submit()
     try {
       const r = await async_insert(formdata)  
       console.log("on_submit.r",r)
-      set_success("New product added")
+      if(r.error){
+        set_error(r.error)
+      }
+      else
+        set_success("New product added")
     } 
     catch (error) {
       console.log("error:",error.toString())
@@ -90,15 +95,16 @@ function ProductInsert() {
       set_issubmitting(false)
     }
     
-  }
+  }// on_submit
 
   const async_onload = async () => {}
 
   useEffect(()=>{
+    console.log("product.inser.useeffect")
     async_onload()
 
     return ()=> console.log("product.insert unmounting")
-  },[issubmitting, error, success])
+  },[])
 
   return (
     <>
@@ -109,8 +115,8 @@ function ProductInsert() {
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
-          {success!=""? <AlertSimple message={success} type="success" />: null}
-          {error!=""? <AlertSimple message={error} type="error" />: null}
+          {success!==""? <AlertSimple message={success} type="success" />: null}
+          {error!==""? <AlertSimple message={error} type="danger" />: null}
 
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
@@ -192,7 +198,7 @@ function ProductInsert() {
           </div>
 
           <div className="col-12">
-            <SubmitAsync innertext="Save async" type="primary" isdisabled={issubmitting} />
+            <SubmitAsync innertext="Save async" type="primary" issubmitting={issubmitting} />
           </div>
         </form>
       </main>
