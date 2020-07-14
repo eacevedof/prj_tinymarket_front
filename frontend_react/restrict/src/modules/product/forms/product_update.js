@@ -76,7 +76,7 @@ function ProductUpdate(){
 
   const async_onload = async () => {
     const r = await async_get_by_id(id)
-    console.log("onload.r",r)
+    console.log("product.onload.r",r)
     const temp = {...formdata, ...r}
     set_formdata(temp)
     console.log("async_onload.formdata:",formdata)

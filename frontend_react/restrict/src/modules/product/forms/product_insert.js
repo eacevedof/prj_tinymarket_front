@@ -7,6 +7,9 @@ import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"
 
+//subir fichero con react:
+//https://www.geeksforgeeks.org/file-uploading-in-react-js/
+
 function ProductInsert() {
 
   const seldisplay = [
