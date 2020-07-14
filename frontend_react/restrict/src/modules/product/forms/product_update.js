@@ -5,7 +5,7 @@ import apidb from "../../../providers/apidb"
 
 //import {GlobalContext} from '../../../components/context/global_context';
 import {get_obj_update} from "../queries/queries_update"
-import {async_get_by_id} from "../fetchers/fetch_update"
+import {async_get_by_id, async_update} from "../async/async_requests"
 
 import Navbar from "../../../components/common/navbar"
 import Breadscrumb from '../../../components/common/bootstrap/breadscrumb';

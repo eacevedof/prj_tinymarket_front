@@ -19,7 +19,14 @@ export const async_get_by_id = async (id) => {
 
 export const async_insert = async (formdata)=>{
   const objparam = {fields:{...formdata}}
-  const objinsert = get_obj_insert(objparam)
-  const r = await apidb.async_insert(objinsert)
+  const objquery = get_obj_insert(objparam)
+  const r = await apidb.async_insert(objquery)
+  return r
+}
+
+export const async_update = async (formdata)=>{
+  const objparam = {fields:{...formdata}}
+  const objquery = get_obj_update(objparam)
+  const r = await apidb.async_update(objquery)
   return r
 }
