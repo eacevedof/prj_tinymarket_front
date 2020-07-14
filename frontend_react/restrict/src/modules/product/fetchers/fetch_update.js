@@ -19,7 +19,7 @@ export const async_get_by_id = async (id) => {
 
 export const async_insert = async (formdata)=>{
   const objparam = {fields:{...formdata}}
-  const objinsert = get_obj_update(objparam)
+  const objinsert = get_obj_insert(objparam)
   const r = await apidb.async_insert(objinsert)
   return r
 }
