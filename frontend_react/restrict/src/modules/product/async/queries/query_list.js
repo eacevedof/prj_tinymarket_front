@@ -1,5 +1,5 @@
 import helpapify from "helpers/apify"
-import {is_defined, get_keys, isset, is_empty, is_key, pr} from "helpers/functions"
+import {is_empty} from "helpers/functions"
 
 export const grid = {
   headers:[
@@ -13,12 +13,14 @@ export const grid = {
     { text: 'Desc', value: 'description' },
     { text: 'Desc big', value: 'description_full' },
     { text: 'Slug', value: 'slug' },
+    { text: 'Show', value: 'display' },
     { text: 'U. min', value: 'units_min' },
     { text: 'U. max', value: 'units_max' },
     { text: 'Price g.', value: 'price_gross' },
     { text: 'Price s.', value: 'price_sale' },
     { text: 'Price s1', value: 'price_sale1' },
     { text: 'Updated', value: 'update_date' },
+    
   ]
 }
 
@@ -55,6 +57,7 @@ const query = {
     "t.description",
     "t.description_full",
     "t.slug",
+    "t.display",
     "t.units_min",
     "t.units_max",
     "t.price_gross",
@@ -65,7 +68,9 @@ const query = {
 
   joins:[],
 
-  where:[],
+  where:[
+    "t.delete_date IS NULL"
+  ],
 }
 
 export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
