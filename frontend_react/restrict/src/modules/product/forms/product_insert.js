@@ -70,7 +70,7 @@ function ProductInsert() {
   const before_submit = () => {}
 
   const on_submit = async (evt)=>{
-    console.log("on_submit.formdata:",formdata)
+    console.log("product.insert.on_submit.formdata:",formdata)
     evt.preventDefault()
 
     set_issubmitting(true)
@@ -81,7 +81,7 @@ function ProductInsert() {
     before_submit()
     try {
       const r = await async_insert(formdata)  
-      console.log("on_submit.r",r)
+      console.log("product.insert.on_submit.r",r)
       if(r.error){
         set_error(r.error)
       }
@@ -92,8 +92,8 @@ function ProductInsert() {
       }
     } 
     catch (error) {
-      console.log("error:",error.toString())
-      set_error(error.toString())
+        console.log("error:",error.toString())
+        set_error(error.toString())
     } 
     finally {
       set_issubmitting(false)

@@ -1,23 +1,29 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
 import {is_empty} from "helpers/functions"
 //import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_update} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Footer from "components/common/footer"
 
 function ProductUpdate(){
 
   const {id} = useParams()
+  const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
+  const refcode = useRef(null)
 
   const seldisplay = [
     {value:"0",text:"No"},
     {value:"1",text:"Yes"}
   ]
 
-  const [formdata, set_formdata] = useState({
+  const formdefault = {
     code_erp:"",
     description:"",
     slug:"",
@@ -29,6 +35,10 @@ function ProductUpdate(){
     display:"0",
     url_image: null,
     id_user:1,
+  }
+
+  const [formdata, set_formdata] = useState({
+    ...formdefault
   })
 
   const get_id = elem => {
@@ -65,28 +75,51 @@ function ProductUpdate(){
   }
 
   const on_submit = async (evt)=>{
-    console.log("on_submit.formdata:",formdata)
+    console.log("product.update.on_submit.formdata:",formdata)
     evt.preventDefault()
+
+    set_issubmitting(true)
+    set_error("")
+    set_success("")
     //hacer insert y enviar fichero
     before_submit()
     
-    const r = await async_update(formdata)
-    
-    console.log("on_submit.r",r)
+    try{
+      const r = await async_update(formdata)
+      console.log("product.update.on_submit.r",r)
+      if(r.error){
+        set_error(r.error)
+      }
+      else{
+        set_success("Num regs updated: ".concat(r))
+        //set_formdata({...formdefault})
+        refcode.current.focus()
+      }
+    }
+    catch(error){
+      console.log("error:",error.toString())
+      set_error(error.toString())
+    }
+    finally{
+      set_issubmitting(false)
+    }
   }
 
   const async_onload = async () => {
+    set_issubmitting(true)
     const r = await async_get_by_id(id)
-    console.log("product.onload.r",r)
+    console.log("product.update.onload.r",r)
     const temp = {...formdata, ...r}
     //console.log("product.onload.formdata:")
     set_formdata(temp)
-    console.log("product.onload.formdata:",formdata)
+    console.log("product.update.onload.formdata:",formdata)
+    set_issubmitting(false)
+    refcode.current.focus()
   }
 
   useEffect(()=>{
     async_onload()
-    return ()=> console.log("product.insert unmounting")
+    return ()=> console.log("product.update unmounting")
   },[])
 
   return (
@@ -98,10 +131,13 @@ function ProductUpdate(){
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
+          {success!==""? <AlertSimple message={success} type="success" />: null}
+          {error!==""? <AlertSimple message={error} type="danger" />: null}
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" 
             
+              ref={refcode}
               value={formdata.code_erp}
               onChange={updateform}
               required 
@@ -178,7 +214,7 @@ function ProductUpdate(){
           </div>
 
           <div className="col-12">
-            <button type="submit" className="btn btn-primary">Save</button>
+            <SubmitAsync innertext="Save" type="primary" issubmitting={issubmitting} />
           </div>
         </form>
       </main>
