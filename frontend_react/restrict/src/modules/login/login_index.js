@@ -8,18 +8,18 @@ const PASSWORD = "menganito"
 export const async_gettoken = async () => {
   const objuser = {username: USER, password: PASSWORD}
   console.log("login.index.objuser",objuser)
-  const usertoken = await apiauth.async_get_usertoken(objuser)
+  const apifytoken = await apiauth.async_get_apifytoken(objuser)
   
-  if(is_defined(usertoken.error))
+  if(is_defined(apifytoken.error))
     return ""
 
-  return usertoken
+  return apifytoken
 }// async_gettoken
 
 export const async_islogged = async () => {
 
-  const usertoken = db.select("usertoken")
-  if(!usertoken) return false
+  const apifytoken = db.select("token_dbsapify")
+  if(!apifytoken) return false
 
   //true | obj.error
   const response = await apiauth.async_is_validtoken()

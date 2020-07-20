@@ -19,30 +19,30 @@ import {
 function Boot() {
 
   const routes = [].concat(dashroutes, prodroutes)
-  const {set_usertoken, set_errorg} = useContext(GlobalContext)
+  const {set_apifytoken, set_errorg} = useContext(GlobalContext)
 
   const async_onload = async () => {
-    let token = ""
+    let apifytoken = ""
     //lee el token de la bd y lanza peticion al serv para comprobar si es correcta
     const islogged = await async_islogged()
 
     if(islogged){
-      token = db.select("usertoken")
+      apifytoken = db.select("token_dbsapify")
     }
     else {
-      token = await async_gettoken()
-      db.save("usertoken",token)
+      apifytoken = await async_gettoken()
+      db.save("token_dbsapify",apifytoken)
     }
 
-    console.log("boot.token:",token)
-    if(!token){
+    console.log("boot.apifytoken:",apifytoken)
+    if(!apifytoken){
       set_errorg({title:"Error", message:"Empty token"})
-      db.delete("usertoken")
+      db.delete("token_dbsapify")
     }
     else
       set_errorg({})
     
-    set_usertoken(token)
+    set_apifytoken(apifytoken)
 
   }// async_onload
 

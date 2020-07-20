@@ -9,7 +9,7 @@ const GlobalProvider = (props) => {
 
   const [errorg, set_errorg] = useState({})
   const [user, set_user] = useState({})
-  const [usertoken, set_usertoken] = useState("")
+  const [apifytoken, set_apifytoken] = useState("")
   const [products, set_products] = useState([])
   const [search, set_search] = useState("")
   const [order, set_order] = useState({})
@@ -21,7 +21,7 @@ const GlobalProvider = (props) => {
   return (
     <GlobalContext.Provider
       value={{
-        usertoken, set_usertoken, errorg, set_errorg,
+        apifytoken, set_apifytoken, errorg, set_errorg,
         products, set_products, search, set_search, order, set_order,
         selproduct, set_selproduct, user, set_user, is_loading, set_is_loading,
         order_total, set_order_total

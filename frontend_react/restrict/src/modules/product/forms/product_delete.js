@@ -1,16 +1,21 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
-import {is_empty} from "helpers/functions"
 //import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_delete} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Footer from "components/common/footer"
 
 function ProductDelete(){
 
   const {id} = useParams()
+  const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
+  const refcode = useRef(null)
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -34,19 +39,45 @@ function ProductDelete(){
   const before_submit = () => {}
 
   const on_submit = async (evt)=>{
-    console.log("on_submit.formdata:",formdata)
+    console.log("product.update.on_submit.formdata:",formdata)
     evt.preventDefault()
-    before_submit()   
-    const r = await async_delete(formdata)
-    console.log("on_submit.r",r)
-  }
+
+    set_issubmitting(true)
+    set_error("")
+    set_success("")
+    //hacer insert y enviar fichero
+    before_submit()
+    
+    try{
+      const r = await async_delete(formdata)
+      console.log("product.update.on_submit.r",r)
+      if(r.error){
+        set_error(r.error)
+      }
+      else{
+        set_success("Num regs deleted: ".concat(r))
+        //set_formdata({...formdefault})
+        refcode.current.focus()
+      }
+      
+    }
+    catch(error){
+      console.log("error:",error.toString())
+      set_error(error.toString())
+    }
+    finally{
+      set_issubmitting(false)
+    }
+  } // on_submit
 
   const async_onload = async () => {
+    set_issubmitting(true)
     const r = await async_get_by_id(id)
     console.log("product.delete.onload.r",r)
     const temp = {...formdata, ...r}
     set_formdata(temp)
     console.log("product.delete.onload.formdata:",formdata)
+    set_issubmitting(false)
   }
 
   useEffect(()=>{

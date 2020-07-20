@@ -5,7 +5,7 @@ import db from "../helpers/localdb"
 
 const Apiauth = {
 
-  async_get_usertoken: async (objlogin)=>{
+  async_get_apifytoken: async (objlogin)=>{
 
     const url = `${BASE_URL}/apifiy/security/login`
     
@@ -14,10 +14,10 @@ const Apiauth = {
       data.append("user",objlogin.username)
       data.append("password",objlogin.password)
       
-      console.log("apidb.async_get_usertoken",url)
+      console.log("apidb.async_get_apifytoken",url)
       const response = await axios.post(url, data)
 
-      console.log("apidb.async_get_usertoken.response",response)
+      console.log("apidb.async_get_apifytoken.response",response)
       //pr(response)
       if(is_undefined(response.data.data.token))
         throw new Error("Wrong data received from server. No token")
@@ -25,19 +25,19 @@ const Apiauth = {
       return response.data.data.token
     } 
     catch (e) {
-      console.error("ERROR: apidb.async_get_usertoken.url:",url,"e:",e)
+      console.error("ERROR: apidb.async_get_apifytoken.url:",url,"e:",e)
       return get_error(e)
     }
-  },//async_get_usertoken
+  },//async_get_apifytoken
 
   async_is_validtoken: async () => {
-    const usertoken = db.select("usertoken")
+    const apifytoken = db.select("token_dbsapify")
     const url = `${BASE_URL}/apifiy/security/is-valid-token`
     //hay que enviar header: apify-auth: token
     try {
 
       const data = new FormData()
-      data.append("apify-usertoken",usertoken)
+      data.append("apify-apifytoken",apifytoken)
 
       console.log("apidb.async_is_validtoken.url",url)
       

@@ -103,7 +103,7 @@ function ProductUpdate(){
     finally{
       set_issubmitting(false)
     }
-  }
+  } // on_submit
 
   const async_onload = async () => {
     set_issubmitting(true)

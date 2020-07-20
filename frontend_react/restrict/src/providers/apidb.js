@@ -6,12 +6,12 @@ import {pr, is_undefined, get_error} from "../helpers/functions"
 const Apidb = {
   
   async_get_fields: async (table) =>{
-    const usertoken = db.select("usertoken")
+    const apifytoken = db.select("token_dbsapify")
     const url = `${BASE_URL}/apify/fields/${CONTEXT}/${DB_NAME}/${table}`
 
     try{
       const objform = new FormData()
-      objform.append("apify-usertoken",usertoken)
+      objform.append("apify-apifytoken",apifytoken)
       const fields = await axios.post(url,objform)
       //pr(fields,"alert fields:")
       if(is_undefined(fields.data.data))
@@ -25,14 +25,14 @@ const Apidb = {
   },
 
   async_get_list: async objselect => {
-    const usertoken = db.select("usertoken")
+    const apifytoken = db.select("token_dbsapify")
     const url = `${BASE_URL}/apify/read?context=${CONTEXT}&schemainfo=${DB_NAME}`
 
     //hay que enviar header: apify-auth: token
     try {
    
       const objform = objselect.get_query()
-      objform.append("apify-usertoken",usertoken)
+      objform.append("apify-apifytoken",apifytoken)
 
       console.log("apidb.async_get_list",url)
       const response = await axios.post(url, objform)
@@ -51,12 +51,12 @@ const Apidb = {
   },
 
   async_insert: async (objinsert) => {
-    const usertoken = db.select("usertoken")
+    const apifytoken = db.select("token_dbsapify")
     const url = `${BASE_URL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
 
     try {
       const objform = objinsert.get_query()
-      objform.append("apify-usertoken",usertoken)
+      objform.append("apify-apifytoken",apifytoken)
 
       console.log("apidb.async_insert",url)
       const response = await axios.post(url, objform)
@@ -75,13 +75,13 @@ const Apidb = {
   },
 
   async_update: async (objupdate) => {
-    const usertoken = db.select("usertoken")
+    const apifytoken = db.select("token_dbsapify")
     const url = `${BASE_URL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
     //hay que enviar header: apify-auth: token
     try {
  
       const objform = objupdate.get_query()
-      objform.append("apify-usertoken",usertoken)
+      objform.append("apify-apifytoken",apifytoken)
 
       console.log("apidb.async_update",url)
       const response = await axios.post(url, objform)
@@ -101,12 +101,12 @@ const Apidb = {
 
   async_delete: async(objdelete) => {
 
-    const usertoken = db.select("usertoken")
+    const apifytoken = db.select("token_dbsapify")
     const url = `${BASE_URL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
 
     try {
       const objform = objdelete.get_query()
-      objform.append("apify-usertoken",usertoken)
+      objform.append("apify-apifytoken",apifytoken)
 
       console.log("apidb.async_delete",url)
       const response = await axios.post(url, objform)
