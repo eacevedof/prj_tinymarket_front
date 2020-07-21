@@ -3,6 +3,7 @@
 - El despliegue del build se hace en: `/Users/ioedu/projects/prj_tinymarket/backend_web/templates/restrict/admin-react.html.twig`
 
 ### Deploy
+- `npm run build; py.sh react ./.pysh`
 - **`npm run build; py.sh react "/Users/ioedu/projects/prj_tinymarket_front/frontend_react/restrict/.pysh"`**
 
 - Servico [**ngrok**](https://ngrok.com/download)
