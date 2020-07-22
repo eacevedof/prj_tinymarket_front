@@ -27,7 +27,7 @@ function ProductDetail(){
     price_sale1:"0",
     order_by:"100",
     display:"0",
-    url_image: null,
+    url_image: "",
     id_user: -1,
   })
 
