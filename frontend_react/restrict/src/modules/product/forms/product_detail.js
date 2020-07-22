@@ -106,6 +106,7 @@ function ProductDetail(){
           <div className="row">
             <div className="col-3">Picture</div>
             <div className="col-9">
+            <a className="link-dark" href={formdata.url_image} target="_blank">{formdata.url_image}</a>
               <img src={formdata.url_image} className="img-fluid" />
             </div>
           </div>

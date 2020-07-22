@@ -212,6 +212,14 @@ function ProductUpdate(){
               />
             </div>
           </div>
+          {
+            !is_empty(formdata.url_image)?
+            (<div className="col-12">
+              <a className="link-dark" href={formdata.url_image} target="_blank">{formdata.url_image}</a>
+              <img src={formdata.url_image} className="img-fluid" />
+            </div>)
+            :null
+          }          
 
           <div className="col-12">
             <SubmitAsync innertext="Save" type="primary" issubmitting={issubmitting} />
