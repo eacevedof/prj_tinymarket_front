@@ -12,7 +12,7 @@ const Apiupload = {
     const uploadtoken = db.select("token_upload")
     
     if(inputfile.name==="") return {file_1:""}
-    
+
     console.log("apiupload.async_post.inputfile",inputfile)
 
     if(!uploadtoken) throw "Upload token not found!"

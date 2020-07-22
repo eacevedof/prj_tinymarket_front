@@ -1,4 +1,4 @@
-import { is_defined, get_datenow } from "helpers/functions"
+import { is_defined, get_datenow, pr } from "helpers/functions"
 import apidb from "providers/apidb"
 
 import {get_obj_entity} from "./queries/query_entity"
@@ -20,6 +20,7 @@ export const async_get_by_id = async (id) => {
 export const async_insert = async (formdata)=>{
   const objparam = {fields:{...formdata}}
   const objquery = get_obj_insert(objparam)
+  //pr(objquery)
   const r = await apidb.async_insert(objquery)
   return r
 }

@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
-import {is_empty, is_defined,pr} from "helpers/functions"
+import {is_empty, is_defined, pr} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
 import apiup from "providers/apiupload"
 
@@ -81,27 +81,27 @@ function ProductInsert() {
     //hacer insert y enviar fichero
     before_submit()
     try {
-      const rup = await apiup.async_post(formdata.url_image)
+      let r = await apiup.async_post(formdata.url_image)
       let urlimage = ""
-      if(is_defined(rup.url)){
-        urlimage = rup.url.file_1
-      }
+      
+      if(!is_defined(r.error))urlimage = r.file_1
+      //pr(urlimage)
       console.log("product.insert.on_submit.urlimage",urlimage)
 
-      const r = await async_insert(formdata)
+      r = await async_insert({...formdata,url_image:urlimage})
       console.log("product.insert.on_submit.r",r)
       if(r.error){
         set_error(r.error)
       }
       else{
         set_success("New product added. Nº: ".concat(r))
-        set_formdata({...formdefault,url_image:urlimage})
+        set_formdata({...formdefault})
         refcode.current.focus()
       }
     } 
     catch (error) {
-        console.log("error:",error.toString())
-        set_error(error.toString())
+      console.log("error:",error.toString())
+      set_error(error.toString())
     } 
     finally {
       set_issubmitting(false)
