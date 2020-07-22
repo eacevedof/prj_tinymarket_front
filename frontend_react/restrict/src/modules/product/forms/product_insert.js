@@ -81,7 +81,12 @@ function ProductInsert() {
     //hacer insert y enviar fichero
     before_submit()
     try {
-      const u = await apiup.async_post(formdata.url_image)
+      const rup = await apiup.async_post(formdata.url_image)
+      let urlimage = ""
+      if(is_defined(rup.url)){
+        urlimage = rup.url.file_1
+      }
+      console.log("product.insert.on_submit.urlimage",urlimage)
 
       const r = await async_insert(formdata)
       console.log("product.insert.on_submit.r",r)
@@ -90,7 +95,7 @@ function ProductInsert() {
       }
       else{
         set_success("New product added. Nº: ".concat(r))
-        set_formdata({...formdefault})
+        set_formdata({...formdefault,url_image:urlimage})
         refcode.current.focus()
       }
     } 
