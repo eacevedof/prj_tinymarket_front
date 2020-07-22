@@ -1,4 +1,4 @@
 PATH_BUILD=/Users/ioedu/projects/prj_tinymarket_front/frontend_react/restrict/build
-PATH_INDEX_TWIG=/Users/ioedu/projects/prj_tinymarket/backend_web/templates/restrict/admin-react.html.twig
+PATH_INDEX_TWIG=/Users/ioedu/projects/prj_tinymarket/backend_web/templates/restrict/restrict-layout.html.twig
 PATH_CACHE=/Users/ioedu/projects/prj_tinymarket/backend_web/var
 PATH_PUBLIC=/Users/ioedu/projects/prj_tinymarket/backend_web/public/react
