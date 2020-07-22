@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
-import {is_empty} from "helpers/functions"
+import {is_empty, is_defined,pr} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
+import apiup from "providers/apiupload"
 
 //import {GlobalContext} from 'components/context/global_context';
 import Navbar from "components/common/navbar"
@@ -60,7 +61,7 @@ function ProductInsert() {
 
     console.log("updateform.value",value)
     temp[id] = value
-    console.log("updateform.value temp:",temp)
+    console.log("updateform temp[id]:",temp)
     set_formdata(temp)
 
     console.log("updateform.formdata",formdata)
@@ -80,7 +81,9 @@ function ProductInsert() {
     //hacer insert y enviar fichero
     before_submit()
     try {
-      const r = await async_insert(formdata)  
+      const u = await apiup.async_post(formdata.url_image)
+
+      const r = await async_insert(formdata)
       console.log("product.insert.on_submit.r",r)
       if(r.error){
         set_error(r.error)
@@ -200,6 +203,14 @@ function ProductInsert() {
               <input type="file" className="form-control" id="file-url_image" 
                 onChange={updateform}
               />
+              {
+                !is_empty(formdata.url_image)?
+                (<ul>
+                  <li>{formdata.url_image.name}</li>
+                  <li>{formdata.url_image.type}</li>
+                </ul>)
+                :null
+              }
             </div>
           </div>
 
