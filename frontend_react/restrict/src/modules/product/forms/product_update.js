@@ -17,6 +17,7 @@ function ProductUpdate(){
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
   const refcode = useRef(null)
+  const reffile = useRef(null)
   const [inputfile,set_inputfile] = useState(null)
 
   const seldisplay = [
@@ -66,11 +67,11 @@ function ProductUpdate(){
     console.log("updateform.id",id)
     const temp = {...formdata}
 
-    let value = elem.value
     if(id=="url_image" && !is_empty(elem.files)){
       set_inputfile(elem.files[0])
     }
     else {
+      let value = elem.value
       console.log("updateform.value",value)
       temp[id] = value
     }
@@ -80,9 +81,7 @@ function ProductUpdate(){
     console.log("updateform.formdata",formdata)
   }
 
-  const before_submit = () => {
-
-  }
+  const before_submit = () => {}
 
   const on_submit = async (evt)=>{
     console.log("product.update.on_submit.formdata:",formdata)
@@ -97,7 +96,7 @@ function ProductUpdate(){
     try{
       console.log("on_submit.inputfile",inputfile)
       let url_image = formdata.url_image
-      if(inputfile.name !="")
+      if(inputfile && inputfile.name !="")
         url_image = inputfile
 
       const r = await async_update({...formdata,url_image})
@@ -107,7 +106,10 @@ function ProductUpdate(){
       }
       else{
         set_success("Num regs updated: ".concat(r))
+        async_onload()
+        set_inputfile(null)
         refcode.current.focus()
+        reffile.current.value = null
       }
     }
     catch(error){
@@ -128,6 +130,9 @@ function ProductUpdate(){
     set_formdata(temp)
     console.log("product.update.onload.formdata:",formdata)
     set_issubmitting(false)
+    //reffile.current.value = ""
+    //reffile.current.type = "text"
+
     refcode.current.focus()
   }
 
@@ -222,11 +227,14 @@ function ProductUpdate(){
             <div className="form-group">
               <label htmlFor="file-url_image" className="form-label">Picture: </label>
               <input type="file" className="form-control" id="file-url_image" 
+                ref={reffile}
                 onChange={updateform}
               />
             </div>
           </div>
-
+          <div className="col-12">
+            <SubmitAsync innertext="Save" type="primary" issubmitting={issubmitting} />
+          </div>
           {
             !is_empty(formdata.url_image)?
             (<div className="col-12">
@@ -236,9 +244,6 @@ function ProductUpdate(){
             :null
           }          
 
-          <div className="col-12">
-            <SubmitAsync innertext="Save" type="primary" issubmitting={issubmitting} />
-          </div>
         </form>
       </main>
       <Footer />
