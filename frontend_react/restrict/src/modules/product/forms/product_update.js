@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
-import {is_empty} from "helpers/functions"
+import {is_empty, pr} from "helpers/functions"
 //import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_update} from "../async/async_requests"
 
@@ -68,13 +68,9 @@ function ProductUpdate(){
 
     let value = elem.value
     if(id=="url_image" && !is_empty(elem.files)){
-      //value = elem.files[0]
-      //console.log("not empty elem.files - files[0]", elem.files[0])
-      //value = elem.files[0]
-      //console.log("vvvvvvaaa",value)
       set_inputfile(elem.files[0])
     }
-    else{
+    else {
       console.log("updateform.value",value)
       temp[id] = value
     }
@@ -99,7 +95,12 @@ function ProductUpdate(){
     before_submit()
     
     try{
-      const r = await async_update(formdata)
+      console.log("on_submit.inputfile",inputfile)
+      let url_image = formdata.url_image
+      if(inputfile.name !="")
+        url_image = inputfile
+
+      const r = await async_update({...formdata,url_image})
       console.log("product.update.on_submit.r",r)
       if(r.error){
         set_error(r.error)

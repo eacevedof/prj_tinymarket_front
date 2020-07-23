@@ -20,9 +20,9 @@ export const async_get_by_id = async (id) => {
 
 export const async_insert = async (formdata)=>{
   //console.log("product.async_request.async_insert.formdata",formdata)
-  let r = await apiup.async_post(formdata.url_image)
   let url_image = ""
 
+  let r = await apiup.async_post(formdata.url_image)
   if(!is_defined(r.error)) url_image = r.file_1
   //console.log("product.async_request.async_insert.r",r)
 
@@ -34,9 +34,19 @@ export const async_insert = async (formdata)=>{
 }
 
 export const async_update = async (formdata)=>{
+  console.log("url_image",formdata.url_image)
+  
+  let r = null
+  let url_image = formdata.url_image
+  
+  if(is_defined(formdata.url_image.name)){
+    r = await apiup.async_post(formdata.url_image)
+    if(!is_defined(r.error)) url_image = r.file_1
+  }
+ 
   const keys = ["id"]
   //esto habría que hacerlo con async
-  const temp = {...formdata}
+  const temp = {...formdata,url_image}
   const fieldsdel = ["delete_date","insert_date","update_date","i"]
   fieldsdel.forEach(field =>{
     delete temp[field] 
@@ -46,7 +56,7 @@ export const async_update = async (formdata)=>{
   const objparam = {fields:temp, keys}
   const objquery = get_obj_update(objparam, dbfields)
   //console.log("objparam",objquery)
-  const r = await apidb.async_update(objquery)
+  r = await apidb.async_update(objquery)
   return r
 }
 
