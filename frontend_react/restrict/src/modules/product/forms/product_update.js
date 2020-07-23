@@ -4,7 +4,6 @@ import {is_empty} from "helpers/functions"
 //import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_update} from "../async/async_requests"
 
-
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
@@ -25,10 +24,15 @@ function ProductUpdate(){
   ]
 
   const formdefault = {
+    insert_user:"",
+    insert_date:"",
+    update_date:"",
+    update_user:"",
+
     code_erp:"",
     description:"",
     slug:"",
-    insert_user:"react",
+    
     description_full:"",
     price_sale:"0",
     price_sale1:"0",
@@ -213,6 +217,7 @@ function ProductUpdate(){
               />
             </div>
           </div>
+
           {
             !is_empty(formdata.url_image)?
             (<div className="col-12">
