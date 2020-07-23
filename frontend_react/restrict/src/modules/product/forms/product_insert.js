@@ -81,14 +81,7 @@ function ProductInsert() {
     //hacer insert y enviar fichero
     before_submit()
     try {
-      let r = await apiup.async_post(formdata.url_image)
-      let urlimage = ""
-      
-      if(!is_defined(r.error))urlimage = r.file_1
-      //pr(urlimage)
-      console.log("product.insert.on_submit.urlimage",urlimage)
-
-      r = await async_insert({...formdata,url_image:urlimage})
+      const r = await async_insert(formdata)
       console.log("product.insert.on_submit.r",r)
       if(r.error){
         set_error(r.error)

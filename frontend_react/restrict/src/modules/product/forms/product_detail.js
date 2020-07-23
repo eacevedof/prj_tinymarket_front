@@ -18,10 +18,14 @@ function ProductDetail(){
   ]
 
   const [formdata, set_formdata] = useState({
+    insert_date: "",
+    insert_user:"react",
+    update_date: "",
+    update_user:"react",
+
     code_erp:"",
     description:"",
     slug:"",
-    insert_user:"react",
     description_full:"",
     price_sale:"0",
     price_sale1:"0",
@@ -110,7 +114,18 @@ function ProductDetail(){
               <img src={formdata.url_image} className="img-fluid" />
             </div>
           </div>
-                                                                   
+          <div className="row">
+            <div className="col-3">Created at:</div>
+            <div className="col-3">{formdata.insert_date}</div>
+            <div className="col-3">Created by:</div>
+            <div className="col-3">{formdata.insert_user}</div>              
+          </div>
+          <div className="row">
+            <div className="col-3">Modified:</div>
+            <div className="col-3">{formdata.update_date}</div>
+            <div className="col-3">Modified by:</div>
+            <div className="col-3">{formdata.update_user}</div>                        
+          </div>                                             
         </div>
       </main>
       <Footer />

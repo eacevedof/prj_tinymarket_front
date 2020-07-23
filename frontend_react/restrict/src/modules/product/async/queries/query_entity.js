@@ -5,11 +5,16 @@ import helpapify from "helpers/apify"
 const query = {
   table: "app_product",
   alias: "t",
+  
   fields:[
+    "t.insert_date",
+    "t.insert_user",
     "t.update_date",
+    "t.update_user",
     "t.delete_date",
     "t.is_enabled",
     "t.i",
+
     "t.id",
     "t.code_erp",
     "t.description",

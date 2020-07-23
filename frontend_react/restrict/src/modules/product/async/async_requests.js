@@ -1,5 +1,6 @@
 import { is_defined, get_datenow, pr } from "helpers/functions"
 import apidb from "providers/apidb"
+import apiup from "providers/apiupload"
 
 import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
@@ -18,10 +19,17 @@ export const async_get_by_id = async (id) => {
 }
 
 export const async_insert = async (formdata)=>{
-  const objparam = {fields:{...formdata}}
+  console.log("product.async_request.async_insert.formdata",formdata)
+  let r = await apiup.async_post(formdata.url_image)
+  let url_image = ""
+
+  if(!is_defined(r.error)) url_image = r.file_1
+  console.log("product.async_request.async_insert.r",r)
+
+  const objparam = {fields:{...formdata, url_image}}
   const objquery = get_obj_insert(objparam)
-  //pr(objquery)
-  const r = await apidb.async_insert(objquery)
+
+  r = await apidb.async_insert(objquery)
   return r
 }
 
