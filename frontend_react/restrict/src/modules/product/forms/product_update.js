@@ -17,6 +17,7 @@ function ProductUpdate(){
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
   const refcode = useRef(null)
+  const [inputfile,set_inputfile] = useState(null)
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -38,7 +39,7 @@ function ProductUpdate(){
     price_sale1:"0",
     order_by:"100",
     display:"0",
-    url_image: null,
+    url_image: "",
     id_user:1,
   }
 
@@ -55,24 +56,32 @@ function ProductUpdate(){
     return idpref
   }
 
-  const updateform = evt =>{
+  const updateform = evt => {
     //set_email(e.target.value)
     //console.log("updateform.e.target",e.target)
     const elem = evt.target
-    //console.log("updateform.element:",elem,"files[0]:",elem.files[0])
+    console.log("updateform.element:",elem)
+
     const id = get_id(elem)
     console.log("updateform.id",id)
     const temp = {...formdata}
-    let value = elem.value
-    if(id=="url_image" && !is_empty(elem.files)) value = elem.files[0]
 
-    console.log("updateform.value",value)
-    temp[id] = value
+    let value = elem.value
+    if(id=="url_image" && !is_empty(elem.files)){
+      //value = elem.files[0]
+      //console.log("not empty elem.files - files[0]", elem.files[0])
+      //value = elem.files[0]
+      //console.log("vvvvvvaaa",value)
+      set_inputfile(elem.files[0])
+    }
+    else{
+      console.log("updateform.value",value)
+      temp[id] = value
+    }
+
     console.log("updateform.value temp:",temp)
     set_formdata(temp)
-
     console.log("updateform.formdata",formdata)
-    //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
   const before_submit = () => {
@@ -97,7 +106,6 @@ function ProductUpdate(){
       }
       else{
         set_success("Num regs updated: ".concat(r))
-        //set_formdata({...formdefault})
         refcode.current.focus()
       }
     }
