@@ -77,27 +77,34 @@ const Apify = {
     insert:{
       table: "",
       fields: [],
-  
+      extra: {},
+
       get_query(){
         const thisinsert = Apify.insert
         const oform = new FormData()
         oform.append("action","insert")
   
-       //table
-       oform.append("queryparts[table]",thisinsert.table)
-  
+        //table
+        oform.append("queryparts[table]",thisinsert.table)
        
-       thisinsert.fields.forEach( field => {
-         oform.append(`queryparts[fields][${field.k}]`,field.v)
-       });
-  
-       return oform
+        thisinsert.fields.forEach( field => {
+          oform.append(`queryparts[fields][${field.k}]`,field.v)
+        });
+
+        const extrakeys = Object.keys(thisinsert.extra)
+        extrakeys.forEach(key => {
+          const v = thisinsert.extra[key]
+          oform.append(`queryparts[${key}]`,v)
+        })
+      
+        return oform
       },
       
       reset(){
         const thisinsert = Apify.insert
         thisinsert.table = ""
         thisinsert.fields = []
+        thisinsert.extra = {}
       },    
     },//insert
   
@@ -105,6 +112,7 @@ const Apify = {
       table: "",
       fields: [],
       where: [],
+      extra: {},
   
       get_query(){
         const thisupdate = Apify.update
@@ -123,6 +131,12 @@ const Apify = {
          oform.append(`queryparts[where][${i}]`,strcond)
        });      
   
+       const extrakeys = Object.keys(thisupdate.extra)
+       extrakeys.forEach(key => {
+         const v = thisupdate.extra[key]
+         oform.append(`queryparts[${key}]`,v)
+       })       
+
        return oform
       },
       
@@ -131,12 +145,14 @@ const Apify = {
         thisupdate.table = ""
         thisupdate.fields = []
         thisupdate.where = []
+        thisupdate.extra = {}
       },    
     },//update
   
     delete:{
       table: "",
       where: [],
+      extra: {},
   
       get_query(){
         const thisdelete = Apify.delete
@@ -151,6 +167,12 @@ const Apify = {
           oform.append(`queryparts[where][${i}]`,strcond)
         });      
   
+        const extrakeys = Object.keys(thisdelete.extra)
+        extrakeys.forEach(key => {
+          const v = thisdelete.extra[key]
+          oform.append(`queryparts[${key}]`,v)
+        }) 
+
         return oform
       },
       
@@ -158,9 +180,43 @@ const Apify = {
         const thisdelete = Apify.delete
         thisdelete.table = ""
         thisdelete.where = []
+        thisdelete.extra = {}
       },    
-    }//delete  
+    },//delete  
   
+    deletelogic:{
+      table: "",
+      where: [],
+      extra: {},
+  
+      get_query(){
+        const thisdeletelogic = Apify.deletelogic
+        const oform = new FormData()
+        oform.append("action","deletelogic")
+  
+       //table
+       oform.append("queryparts[table]",thisdeletelogic.table)
+  
+       thisdeletelogic.where.forEach((strcond,i) => {
+         oform.append(`queryparts[where][${i}]`,strcond)
+       });      
+  
+       const extrakeys = Object.keys(thisdeletelogic.extra)
+       extrakeys.forEach(key => {
+         const v = thisdeletelogic.extra[key]
+         oform.append(`queryparts[${key}]`,v)
+       })       
+
+       return oform
+      },
+      
+      reset(){
+        const thisdeletelogic = Apify.deletelogic
+        thisdeletelogic.table = ""
+        thisdeletelogic.where = []
+        thisdeletelogic.extra = {}
+      },    
+    },//deletelogic
   }
   
   export default Apify

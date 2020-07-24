@@ -202,7 +202,7 @@ function ProductInsert() {
                 onChange={updateform}
               />
               {
-                !is_empty(formdata.url_image)?
+                !is_empty(formdata.url_image) && is_defined(formdata.url_image.name) ?
                 (<ul>
                   <li>{formdata.url_image.name}</li>
                   <li>{formdata.url_image.type}</li>

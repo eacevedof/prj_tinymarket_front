@@ -1,6 +1,7 @@
 
 import helpapify from "helpers/apify"
 import {get_keys,is_defined} from "helpers/functions"
+import db from "helpers/localdb"
 
 const query = {
   table: "app_product",
@@ -11,6 +12,7 @@ export const get_obj_update = (objparam={fields:{},keys:[]},dbfields=[])=>{
   const objupdate = helpapify.update
   objupdate.reset()
   objupdate.table = query.table
+  objupdate.extra = {autosysfields:1, useruuid: db.select("useruuid")}
 
   if(!is_defined(objparam.keys)) return null
   //evita que se actualicen todos los registros que no son una entidad
@@ -30,7 +32,9 @@ export const get_obj_update = (objparam={fields:{},keys:[]},dbfields=[])=>{
       }
       else
         objupdate.fields.push({k:field,v:objparam.fields[field]})
-    })    
+    })
+
+    objupdate.fields.push({k:"update_platform",v:"3"})
   }
 
   return objupdate
