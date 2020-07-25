@@ -28,12 +28,10 @@ function Sysfields({sysdata}){
   }
 
   useEffect(()=>{
-    //() => {async_onload()}
+    
     async_onload()
-    //pr(sysdata)
-    //set_objsys({...objdefault, ...sysdata})
     return () => console.log("sysfields.unmount")
-  
+
   },[sysdata])  
 
   return (
