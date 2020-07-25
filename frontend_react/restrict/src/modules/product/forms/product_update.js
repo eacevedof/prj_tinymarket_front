@@ -138,6 +138,8 @@ function ProductUpdate(){
     const temp = {...formdata, ...r}
     //console.log("product.onload.formdata:")
     set_formdata(temp)
+    set_objsys(temp)
+    
     console.log("product.update.onload.formdata:",formdata)
     set_issubmitting(false)
     refcode.current.focus()

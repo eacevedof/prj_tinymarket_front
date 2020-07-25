@@ -37,24 +37,24 @@ function Sysfields({sysdata}){
     <>
       <div className="row">
         <div className="col-3">Created at:</div>
-        <div className="col-3">{objsys.insert_date}</div>
+        <div className="col-3">{sysdata.insert_date}</div>
         <div className="col-3">Created by:</div>
-        <div className="col-3">{objsys.insert_user}</div>              
+        <div className="col-3">{sysdata.insert_user}</div>              
       </div>
       <div className="row">
         <div className="col-3">Modified:</div>
-        <div className="col-3">{objsys.update_date}</div>
+        <div className="col-3">{sysdata.update_date}</div>
         <div className="col-3">Modified by:</div>
-        <div className="col-3">{objsys.update_user}</div>                        
+        <div className="col-3">{sysdata.update_user}</div>                        
       </div>
       {
-        objsys.delete_date!=""?
+        sysdata.delete_date!=""?
         (
           <div className="row">
             <div className="col-3">Delete:</div>
-            <div className="col-3">{objsys.delete_date}</div>
+            <div className="col-3">{sysdata.delete_date}</div>
             <div className="col-3">Delete by:</div>
-            <div className="col-3">{objsys.delete_user}</div>                        
+            <div className="col-3">{sysdata.delete_user}</div>                        
           </div>          
         ): null
       }
