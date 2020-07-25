@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import async_get_useralias from "components/common/sysfields"
-import {pr} from "helpers/functions"
+import {is_defined, pr} from "helpers/functions"
 
 function Sysfields({sysdata}){
     
@@ -16,6 +16,7 @@ function Sysfields({sysdata}){
   const [objsys, set_objsys] = useState({...objdefault})
 
   const async_onload = async () => {
+    //pr(sysdata)
     //const objsysdata = {...sysdata}
     //pr(objsysdata)
     //const id = objsysdata.insert_user
@@ -35,6 +36,7 @@ function Sysfields({sysdata}){
 
   return (
     <>
+      <h4>sysfields</h4>
       <div className="row">
         <div className="col-3">Created at:</div>
         <div className="col-3">{sysdata.insert_date}</div>
@@ -48,7 +50,7 @@ function Sysfields({sysdata}){
         <div className="col-3">{sysdata.update_user}</div>                        
       </div>
       {
-        sysdata.delete_date!=""?
+        is_defined(sysdata.delete_date) && sysdata.delete_date!=null ?
         (
           <div className="row">
             <div className="col-3">Delete:</div>
