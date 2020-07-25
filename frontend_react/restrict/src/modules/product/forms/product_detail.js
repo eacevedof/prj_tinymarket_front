@@ -6,6 +6,7 @@ import {async_get_by_id, async_update} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductDetail(){
@@ -113,19 +114,9 @@ function ProductDetail(){
             <a className="link-dark" href={formdata.url_image} target="_blank">{formdata.url_image}</a>
               <img src={formdata.url_image} className="img-fluid" />
             </div>
-          </div>
-          <div className="row">
-            <div className="col-3">Created at:</div>
-            <div className="col-3">{formdata.insert_date}</div>
-            <div className="col-3">Created by:</div>
-            <div className="col-3">{formdata.insert_user}</div>              
-          </div>
-          <div className="row">
-            <div className="col-3">Modified:</div>
-            <div className="col-3">{formdata.update_date}</div>
-            <div className="col-3">Modified by:</div>
-            <div className="col-3">{formdata.update_user}</div>                        
-          </div>                                          
+          </div>                      
+
+          <Sysfields sysdata={formdata} />          
         </div>
       </main>
       <Footer />

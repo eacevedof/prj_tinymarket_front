@@ -3,8 +3,6 @@ import async_get_useralias from "modules/sysfields/sysfields_index"
 import {is_defined, pr} from "helpers/functions"
 
 function Sysfields({sysdata}){
-  //pr("sysfields:")
-  //pr(sysdata)
 
   const objdefault = {
     insert_date: "",
