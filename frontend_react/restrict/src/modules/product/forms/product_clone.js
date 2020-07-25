@@ -6,6 +6,7 @@ import {async_get_by_id, async_clone} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductClone(){
@@ -131,6 +132,8 @@ function ProductClone(){
             </div>
           </div>
 
+          <Sysfields sysdata={formdata} />
+          
           <div className="col-12">
             <button type="submit" className="btn btn-primary border-0">Clone</button>
           </div>

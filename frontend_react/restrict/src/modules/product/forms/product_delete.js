@@ -7,6 +7,7 @@ import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
+import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductDelete(){
@@ -162,6 +163,8 @@ function ProductDelete(){
               <img src={formdata.url_image} className="img-fluid" />
             </div>
           </div>
+
+          <Sysfields sysdata={formdata} />
 
           <div className="col-12">
             <button type="submit" className="btn btn-danger border-0">Delete</button>

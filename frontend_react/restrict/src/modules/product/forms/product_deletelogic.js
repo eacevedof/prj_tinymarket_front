@@ -6,6 +6,7 @@ import {async_get_by_id, async_deletelogic} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductDeleteLogic(){
@@ -162,9 +163,12 @@ function ProductDeleteLogic(){
             </div>
           </div>
 
+          <Sysfields sysdata={formdata} />
+          
           <div className="col-12">
             <button type="submit" className="btn btn-danger border-0">Delete Log</button>
           </div>
+          
         </form>
       </main>
       <Footer />

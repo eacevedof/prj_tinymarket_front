@@ -6,6 +6,7 @@ import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
 import {get_obj_update} from "./queries/query_update"
 import {get_obj_delete} from "./queries/query_delete"
+import {get_obj_deletelogic} from "./queries/query_deletelogic"
 
 export const async_get_by_id = async (id) => {
   //alert("id:"+id)
@@ -94,16 +95,12 @@ export const async_deletelogic = async (formdata)=>{
   const keys = ["id"]
 
   const objdellog = {
-    id:formdata.id,
-    delete_user:"react",
-    delete_date:get_datenow(),
-    delete_platform: "1",
+    id: formdata.id,
   }
   
-  //comprobar si ya estaba borrado
-  const dbfields = [{field_name:"id"},{field_name:"delete_date"},{field_name:"delete_user"},{field_name:"delete_platform"}]
+  const dbfields = [{field_name:"id"}]
   const objparam = {fields:objdellog, keys}
-  const objquery = get_obj_update(objparam, dbfields)
+  const objquery = get_obj_deletelogic(objparam, dbfields)
   const r = await apidb.async_update(objquery)
   return r
 }

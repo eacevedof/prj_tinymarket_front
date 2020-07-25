@@ -12,6 +12,7 @@ const query = {
     "t.update_date",
     "t.update_user",
     "t.delete_date",
+    "t.delete_user",
     "t.is_enabled",
     "t.i",
 
