@@ -125,7 +125,7 @@ function ProductDetail(){
             <div className="col-3">{formdata.update_date}</div>
             <div className="col-3">Modified by:</div>
             <div className="col-3">{formdata.update_user}</div>                        
-          </div>                                             
+          </div>                                          
         </div>
       </main>
       <Footer />

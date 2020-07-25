@@ -8,6 +8,7 @@ import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
+import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductUpdate(){
@@ -19,6 +20,15 @@ function ProductUpdate(){
   const refcode = useRef(null)
   const reffile = useRef(null)
   const [inputfile,set_inputfile] = useState(null)
+  
+  const [objsys, set_objsys] = useState({    
+    insert_user: "",
+    insert_date: "",
+    update_date: "",
+    update_user: "",
+    delete_date: "",
+    delete_user: "",    
+  })
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -130,9 +140,6 @@ function ProductUpdate(){
     set_formdata(temp)
     console.log("product.update.onload.formdata:",formdata)
     set_issubmitting(false)
-    //reffile.current.value = ""
-    //reffile.current.type = "text"
-
     refcode.current.focus()
   }
 
@@ -242,8 +249,8 @@ function ProductUpdate(){
               <img src={formdata.url_image} className="img-fluid" />
             </div>)
             :null
-          }          
-
+          }
+          <Sysfields sysdata={objsys}/>
         </form>
       </main>
       <Footer />
