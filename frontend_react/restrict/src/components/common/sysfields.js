@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import async_get_useralias from "components/common/sysfields"
+import async_get_useralias from "modules/sysfields/sysfields_index"
 import {is_defined, pr} from "helpers/functions"
 
 function Sysfields({sysdata}){
@@ -18,23 +18,25 @@ function Sysfields({sysdata}){
   const [objsys, set_objsys] = useState({...objdefault})
 
   const async_onload = async () => {
+  //const async_onload = () => {
     //pr(objdefault)
     //pr(sysdata)
     //const objsysdata = {...sysdata}
     //pr(objsysdata)
     //const id = objobjsys.insert_user
-    //const insert_user = await async_get_useralias(objdefault.insert_user)
-    //const insert_user = await async_get_useralias(objobjsys.insert_user)
-    //const update_user = await async_get_useralias(objobjsys.update_user)
-    //const delete_user = await async_get_useralias(objobjsys.delete_user)
+    //set_objsys({...objdefault, ...sysdata})
+    //const insert_user = await async_get_useralias(objsys.insert_user)
+    const insert_user = await async_get_useralias(sysdata.insert_user)
+    const update_user = await async_get_useralias(sysdata.update_user)
+    const delete_user = await async_get_useralias(sysdata.delete_user)
 
-    //const temp = {...objsys, insert_user, update_user, delete_user}
-    set_objsys({...objdefault, ...sysdata})
-    pr("objsys to async_onload")
-    pr(objsys)
+    const temp = {...objsys, insert_user, update_user, delete_user}
+    set_objsys(temp)
+
   }
 
   useEffect(()=>{
+    //() => {async_onload()}
     async_onload()
     //pr(sysdata)
     //set_objsys({...objdefault, ...sysdata})

@@ -1,14 +1,14 @@
 import helpapify from "helpers/apify"
 import apidb from "providers/apidb"
+import {is_defined, pr, is_undefined} from "helpers/functions"
 
 const query = {
   table: "base_user",
   alias: "t",
   
   fields:[
-    "t.alias",
+    "t.nickname",
   ],
-
 }
 
 const get_objselect = userid =>{
@@ -25,16 +25,15 @@ const get_objselect = userid =>{
 }
 
 const async_get_useralias = async userid => {
-  if(!userid || isNaN(userid))
-    return null
+  //pr(userid)
+  if(!userid || isNaN(userid) || is_undefined(userid)) return ""
 
   const query = get_objselect(userid)
   const r = await apidb.async_get_list(query)
-  
-  if(is_defined(r.result.length))
-    return r.result[0].alias
+  //pr(r)
+  if(is_defined(r.error)) return r.error
 
-  return r  
+  if(is_defined(r.result)) return r.result[0].nickname
 
 }
 
