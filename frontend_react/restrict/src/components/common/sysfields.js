@@ -34,7 +34,6 @@ function Sysfields({sysdata}){
 
   return (
     <>
-      <h4>sysfields</h4>
       <div className="row">
         <div className="col-3">Created at:</div>
         <div className="col-3">{objsys.insert_date}</div>
