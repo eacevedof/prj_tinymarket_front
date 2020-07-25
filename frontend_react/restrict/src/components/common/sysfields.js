@@ -13,7 +13,7 @@ function Sysfields({sysdata}){
     delete_user: "",
   }
 
-  const [objsys, set_objsys] = useState({...objdefault})
+  const [objsys, set_objsys] = useState({...objdefault, ...sysdata})
 
   const async_onload = async () => {
     //pr(sysdata)
