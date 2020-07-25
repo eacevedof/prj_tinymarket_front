@@ -3,8 +3,8 @@ import async_get_useralias from "components/common/sysfields"
 import {is_defined, pr} from "helpers/functions"
 
 function Sysfields({sysdata}){
-  pr("sysfields:")
-  pr(sysdata)
+  //pr("sysfields:")
+  //pr(sysdata)
 
   const objdefault = {
     insert_date: "a",
@@ -36,8 +36,11 @@ function Sysfields({sysdata}){
 
   useEffect(()=>{
     async_onload()
+    //pr(sysdata)
+    //set_objsys({...objdefault, ...sysdata})
     return () => console.log("sysfields.unmount")
-  },[])  
+  
+  },[sysdata])  
 
   return (
     <>

@@ -20,15 +20,6 @@ function ProductUpdate(){
   const refcode = useRef(null)
   const reffile = useRef(null)
   const [inputfile,set_inputfile] = useState(null)
-  
-  const [objsys, set_objsys] = useState({    
-    insert_user: "",
-    insert_date: "",
-    update_date: "",
-    update_user: "",
-    delete_date: "",
-    delete_user: "",    
-  })
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -138,8 +129,7 @@ function ProductUpdate(){
     const temp = {...formdata, ...r}
     //console.log("product.onload.formdata:")
     set_formdata(temp)
-    set_objsys(temp)
-    
+
     console.log("product.update.onload.formdata:",formdata)
     set_issubmitting(false)
     refcode.current.focus()
@@ -252,7 +242,9 @@ function ProductUpdate(){
             </div>)
             :null
           }
-          <Sysfields sysdata={objsys}/>
+
+          <Sysfields sysdata={formdata} />
+          
         </form>
       </main>
       <Footer />
