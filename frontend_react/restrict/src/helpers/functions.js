@@ -6,7 +6,10 @@ export const isset = mxvar => mxvar!==null && is_defined(mxvar)
 
 export const is_key = (obj,k) => Object.keys(obj).filter(ki=>ki==k).length>0
 
-export const pr = (mxvar,title="") => alert(title+":\n"+JSON.stringify(mxvar))
+export const pr = (mxvar,title="") => {
+  console.log("pr:",title,mxvar)
+  alert(title+":\n"+JSON.stringify(mxvar))
+}
 
 export const is_object = mxvar => (typeof mxvar == "object")
 
@@ -30,3 +33,5 @@ export const get_datenow = () => {
   console.log("get_datenow.r",r)
   return r
 }
+
+export const is_string = objany =>  (typeof objany === 'string' || objany instanceof String)

@@ -1,9 +1,14 @@
-### Notas PWA
-- Modifico index.html con esqueleto de [v5.getbootstrap.com](https://v5.getbootstrap.com/docs/5.0/getting-started/introduction/)
-- El despliegue del build se hace en: `/Users/ioedu/projects/prj_tinymarket/backend_web/templates/restrict/admin-react.html.twig`
+### To-do:
+- update-date es incoherente con delete-date ya que ambas son modificaciones **done**
+- acciones en grupo
+- paginación
+- busqueda
+- sysfields
+- mensaje de borrado logico y borrado fisico
+
 
 ### Deploy
-- `npm run build; py.sh react ./.pysh`
+- **`npm run build; py.sh react ./.pysh`**
 - **`npm run build; py.sh react "/Users/ioedu/projects/prj_tinymarket_front/frontend_react/restrict/.pysh"`**
 
 - Servico [**ngrok**](https://ngrok.com/download)
@@ -34,13 +39,6 @@ py.sh deploy.frontbuild tinymarket
 py.sh deploy.composer tinymarket
 py.sh deploy.dbrestore tinymarket
 ```
-
-### To-do:
-- update-date es incoherente con delete-date ya que ambas son modificaciones **done**
-- paginación
-- busqueda
-- sysfields
-- mensaje de borrado logico y borrado fisico
 
 ### Error con chunks en prod
 - Para corregir esto he seguido esta guia: [deshabilitar chunks](https://zeph.co/disable-code-splitting-create-react-app)

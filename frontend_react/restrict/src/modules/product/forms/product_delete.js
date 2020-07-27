@@ -24,6 +24,7 @@ function ProductDelete(){
   ]
 
   const [formdata, set_formdata] = useState({
+    id:-1,
     code_erp:"",
     description:"",
     slug:"",
@@ -34,7 +35,7 @@ function ProductDelete(){
     order_by:"100",
     display:"0",
     url_image: null,
-    id_user:1,
+    id_user:"",
   })
 
   const before_submit = () => {}
@@ -98,6 +99,8 @@ function ProductDelete(){
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control border-0" id="txt-code_erp" placeholder="code in your system" 
+
+              ref={refcode}
               value={formdata.code_erp}
               disabled 
             />
@@ -167,8 +170,9 @@ function ProductDelete(){
           <Sysfields sysdata={formdata} />
 
           <div className="col-12">
-            <button type="submit" className="btn btn-danger border-0">Delete</button>
+            <SubmitAsync innertext="Delete" type="danger" issubmitting={issubmitting} />
           </div>
+
         </form>
       </main>
       <Footer />

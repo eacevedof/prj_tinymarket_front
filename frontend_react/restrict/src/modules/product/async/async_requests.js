@@ -40,10 +40,11 @@ export const async_update = async (formdata)=>{
   let r = null
   let url_image = formdata.url_image
   
-  if(is_defined(formdata.url_image.name)){
+  if(formdata.url_image && is_defined(formdata.url_image.name)){
     r = await apiup.async_post(formdata.url_image)
     if(!is_defined(r.error)) url_image = r.file_1
   }
+  //pr(url_image,"url_image")
  
   const keys = ["id"]
   //esto habría que hacerlo con async
@@ -64,12 +65,13 @@ export const async_update = async (formdata)=>{
 export const async_delete = async (formdata)=>{
   const keys = ["id"]
   //esto habría que hacerlo con async
-  const temp = {...formdata}
-
-  const objparam = {fields:temp, keys}
-  const objquery = get_obj_delete(objparam, keys)
+  const objparam = {fields:{...formdata}, keys}
+  //pr(objparam,"objparam");
+  const objquery = get_obj_delete(objparam)
   //console.log("objparam",objquery)
+  //pr(objquery,"objquery")
   const r = await apidb.async_delete(objquery)
+  //pr(r,"async_delete.r")
   return r
 }
 

@@ -27,17 +27,19 @@ function ProductInsert() {
 
 
   const formdefault = {
+    //id: -1,
+    id_user:1, //hay que cambiarlo por un hash, es el owner del producto
+    
     code_erp:"",
     description:"",
     slug:"",
-    insert_user:"react",
     description_full:"",
     price_sale:"0",
     price_sale1:"0",
     order_by:"100",
     display:"0",
     url_image: null,
-    id_user:1,
+    
   }
 
   const [formdata, set_formdata] = useState({...formdefault})

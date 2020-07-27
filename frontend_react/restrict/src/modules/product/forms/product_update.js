@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
-import {is_empty, pr} from "helpers/functions"
+import {is_empty, is_string, pr} from "helpers/functions"
 //import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_update} from "../async/async_requests"
 
@@ -32,6 +32,7 @@ function ProductUpdate(){
     update_date:"",
     update_user:"",
 
+    id: -1,
     code_erp:"",
     description:"",
     slug:"",
@@ -97,8 +98,10 @@ function ProductUpdate(){
     try{
       console.log("on_submit.inputfile",inputfile)
       let url_image = formdata.url_image
-      if(inputfile && inputfile.name !="")
+      if(inputfile){
+        //pr(inputfile)
         url_image = inputfile
+      }
 
       const r = await async_update({...formdata,url_image})
       console.log("product.update.on_submit.r",r)
@@ -114,7 +117,7 @@ function ProductUpdate(){
       }
     }
     catch(error){
-      console.log("error:",error.toString())
+      console.log("product.update.on_submit.error:",error.toString())
       set_error(error.toString())
     }
     finally{
@@ -149,8 +152,10 @@ function ProductUpdate(){
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
+          
           {success!==""? <AlertSimple message={success} type="success" />: null}
           {error!==""? <AlertSimple message={error} type="danger" />: null}
+
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control" id="txt-code_erp" placeholder="code in your system" 
@@ -235,7 +240,7 @@ function ProductUpdate(){
             <SubmitAsync innertext="Save" type="primary" issubmitting={issubmitting} />
           </div>
           {
-            !is_empty(formdata.url_image)?
+            is_string(formdata.url_image) ?
             (<div className="col-12">
               <a className="link-dark" href={formdata.url_image} target="_blank">{formdata.url_image}</a>
               <img src={formdata.url_image} className="img-fluid" />

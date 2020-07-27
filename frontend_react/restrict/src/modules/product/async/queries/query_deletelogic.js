@@ -21,6 +21,7 @@ export const get_obj_deletelogic = (objparam={fields:{},keys:[]})=>{
         return
       objdellog.where.push(`${field}='${objparam.fields[field]}'`)
     })
+    objdellog.where.push(`delete_platform='3'`)
   }
 
   return objdellog
