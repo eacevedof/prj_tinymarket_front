@@ -11,6 +11,7 @@ const query = {
 export const get_obj_deletelogic = (objparam={fields:{},keys:[]})=>{
   const objdellog = helpapify.deletelogic
   objdellog.reset()
+  objdellog.delete_platform = "3"
   objdellog.table = query.table
   objdellog.extra = {autosysfields:1, useruuid: db.select("useruuid")}
 
@@ -21,7 +22,7 @@ export const get_obj_deletelogic = (objparam={fields:{},keys:[]})=>{
         return
       objdellog.where.push(`${field}='${objparam.fields[field]}'`)
     })
-    objdellog.where.push(`delete_platform='3'`)
+    
   }
 
   return objdellog
