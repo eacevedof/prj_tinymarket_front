@@ -82,7 +82,7 @@ export const async_clone = async (formdata)=>{
     delete temp[field] 
   })
 
-  temp.description = "(clone of ".concat(formdata.id).concat(" - ").concat(temp.description)
+  temp.description = "(clone of ".concat(formdata.id).concat(") - ").concat(temp.description)
   temp.insert_user = "clone ".concat(formdata.id)
   temp.update_user = "clone ".concat(formdata.id)
 

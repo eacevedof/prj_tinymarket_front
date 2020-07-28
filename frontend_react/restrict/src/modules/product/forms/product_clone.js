@@ -6,12 +6,17 @@ import {async_get_by_id, async_clone} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
+import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductClone(){
 
   const {id} = useParams()
+  const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -19,6 +24,14 @@ function ProductClone(){
   ]
 
   const [formdata, set_formdata] = useState({
+    insert_user:"",
+    insert_date:"",
+    update_date:"",
+    update_user:"",    
+
+    id: -1,
+    id_user: -1,
+
     code_erp:"",
     description:"",
     slug:"",
@@ -27,12 +40,15 @@ function ProductClone(){
     price_sale1:"0",
     order_by:"100",
     display:"0",
-    url_image: null,
-    id_user:1,
+    url_image: "",
   })
 
   const before_submit = () => {}
 
+  const async_refresh = async () => {
+    await async_onload()
+  }  
+  
   const on_submit = async (evt)=>{
     console.log("on_submit.formdata:",formdata)
     evt.preventDefault()
@@ -42,11 +58,13 @@ function ProductClone(){
   }
 
   const async_onload = async () => {
+    set_issubmitting(true)
     const r = await async_get_by_id(id)
     console.log("product.clone.onload.r",r)
     const temp = {...formdata, ...r}
     set_formdata(temp)
     console.log("product.clone.onload.formdata:",formdata)
+    set_issubmitting(false)
   }
 
   useEffect(()=>{
@@ -70,7 +88,9 @@ function ProductClone(){
               disabled 
             />
           </div>
-
+          <div className="col-md-3">
+            <RefreshAsync issubmitting={issubmitting} fnrefresh={async_refresh} />
+          </div>
           <div className="col-12">
             <label htmlFor="txt-description" className="form-label">Description</label>
             <input type="text" className="form-control" id="txt-description" placeholder="Name of product" 
@@ -135,8 +155,9 @@ function ProductClone(){
           <Sysfields sysdata={formdata} />
           
           <div className="col-12">
-            <button type="submit" className="btn btn-primary border-0">Clone</button>
+            <SubmitAsync innertext="Clone" type="primary" issubmitting={issubmitting} />
           </div>
+
         </form>
       </main>
       <Footer />

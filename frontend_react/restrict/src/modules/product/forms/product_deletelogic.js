@@ -7,6 +7,7 @@ import {async_get_by_id, async_deletelogic} from "../async/async_requests"
 import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
+import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
@@ -86,12 +87,13 @@ function ProductDeleteLogic(){
   }
 
   const async_onload = async () => {
+    set_issubmitting(true)
     const r = await async_get_by_id(id)
     console.log("product.deletelogic.onload.r",r)
     const temp = {...formdata, ...r}
-    //console.log("product.onload.formdata:")
     set_formdata(temp)
     console.log("product.deletelogic.onload.formdata:",formdata)
+    set_issubmitting(false)
   }
 
   useEffect(()=>{
@@ -182,9 +184,9 @@ function ProductDeleteLogic(){
           <Sysfields sysdata={formdata} />
           
           <div className="col-12">
-            <button type="submit" className="btn btn-danger border-0">Delete Log</button>
+            <SubmitAsync innertext="Delete" type="danger" issubmitting={issubmitting} />
           </div>
-          
+
         </form>
       </main>
       <Footer />
