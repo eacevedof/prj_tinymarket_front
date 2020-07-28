@@ -50,6 +50,15 @@ function ProductDeleteLogic(){
 
   })
 
+  const [sysdata, set_sysdata] = useState({
+    insert_user:"",
+    insert_date:"",
+    update_date:"",
+    update_user:"",    
+    delete_user:"",
+    delete_date:"",    
+  })
+
   const get_id = elem => {
     const idpref = elem.id || ""
     const parts = idpref.split("-")
@@ -119,8 +128,10 @@ function ProductDeleteLogic(){
     const r = await async_get_by_id(id)
     console.log("product.deletelogic.onload.r",r)
     const temp = {...formdata, ...r}
+    console.log("product.deletelogic.onload.temp",temp)
     set_formdata(temp)
-    if(temp.delete_date!=="") set_isdeleted(true)
+    if(r.delete_date!=="" && r.delete_date!==null) set_isdeleted(true)
+    set_sysdata({...temp})
     console.log("product.deletelogic.onload.formdata:",formdata)
     set_issubmitting(false)
   }
@@ -215,7 +226,7 @@ function ProductDeleteLogic(){
             </div>
           </div>
 
-          <Sysfields sysdata={formdata} />
+          <Sysfields sysdata={sysdata} />
           {
             isdeleted ? null:(
               <div className="col-12">

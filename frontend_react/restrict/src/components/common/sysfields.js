@@ -4,25 +4,21 @@ import {is_defined, pr} from "helpers/functions"
 
 function Sysfields({sysdata}){
 
-  const objdefault = {
-    insert_date: "",
-    insert_user: "",
-    update_date: "",
-    update_user: "",
-    delete_date: "",
-    delete_user: "",
-  }
+  //if(!sysdata.insert_user) return (<>x</>)
 
-  const [objsys, set_objsys] = useState({...objdefault})
+  //console.log("sysfields.sysdata",sysdata)
+  //pr(sysdata,"sysdata")
+  const [objsys, set_objsys] = useState({...sysdata})
 
   const async_onload = async () => {
+    //pr(sysdata,"sysfields.onload.sysdata")
+    //pr(objsys,"sysfields.onload.objsys")
+    
     const insert_user = await async_get_useralias(sysdata.insert_user)
     const update_user = await async_get_useralias(sysdata.update_user)
     const delete_user = await async_get_useralias(sysdata.delete_user)
-
-    const temp = {...objdefault, ...sysdata, insert_user, update_user, delete_user}
-    set_objsys(temp)
-
+    
+    set_objsys({...sysdata, insert_user, update_user, delete_user})
   }
 
   useEffect(()=>{
@@ -30,7 +26,7 @@ function Sysfields({sysdata}){
     async_onload()
     return () => console.log("sysfields.unmount")
 
-  },[sysdata])  
+  },[sysdata])
 
   return (
     <>
@@ -45,18 +41,13 @@ function Sysfields({sysdata}){
         <div className="col-3">{objsys.update_date}</div>
         <div className="col-3">Modified by:</div>
         <div className="col-3">{objsys.update_user}</div>                        
+      </div>    
+      <div className="row alert-danger">
+        <div className="col-3">Delete:</div>
+        <div className="col-3">{objsys.delete_date}</div>
+        <div className="col-3">Delete by:</div>
+        <div className="col-3">{objsys.delete_user}</div>
       </div>
-      {
-        is_defined(objsys.delete_date) && objsys.delete_date!=null && objsys.delete_date!=="" ?
-        (
-          <div className="row">
-            <div className="col-3">Delete:</div>
-            <div className="col-3">{objsys.delete_date}</div>
-            <div className="col-3">Delete by:</div>
-            <div className="col-3">{objsys.delete_user}</div>                        
-          </div>          
-        ): null
-      }
     </>
   )
 

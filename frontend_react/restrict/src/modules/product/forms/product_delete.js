@@ -1,15 +1,18 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
 //import {GlobalContext} from 'components/context/global_context';
+import { is_empty } from 'helpers/functions';
 import {async_get_by_id, async_delete} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
+
 
 function ProductDelete(){
 
@@ -18,6 +21,7 @@ function ProductDelete(){
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
   const refcode = useRef(null)
+  const [isdeleted, set_isdeleted] = useState(false)
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -25,18 +29,25 @@ function ProductDelete(){
   ]
 
   const [formdata, set_formdata] = useState({
-    id:-1,
+    insert_user:"",
+    insert_date:"",
+    update_date:"",
+    update_user:"",    
+    delete_user:"",
+    delete_date:"",
+
+    id: -1,
+    id_user: -1,
+
     code_erp:"",
     description:"",
     slug:"",
-    delete_user:"react",
     description_full:"",
     price_sale:"0",
     price_sale1:"0",
     order_by:"100",
     display:"0",
-    url_image: null,
-    id_user:"",
+    url_image: "",
   })
 
   const before_submit = () => {}
@@ -46,7 +57,7 @@ function ProductDelete(){
   }
 
   const on_submit = async (evt)=>{
-    console.log("product.update.on_submit.formdata:",formdata)
+    console.log("product.delete.on_submit.formdata:",formdata)
     evt.preventDefault()
 
     set_issubmitting(true)
@@ -57,13 +68,14 @@ function ProductDelete(){
     
     try{
       const r = await async_delete(formdata)
-      console.log("product.update.on_submit.r",r)
+      console.log("product.delete.on_submit.r",r)
       if(r.error){
         set_error(r.error)
       }
       else{
         set_success("Num regs deleted: ".concat(r))
-        //set_formdata({...formdefault})
+        //async_onload()
+        set_isdeleted(true)
         refcode.current.focus()
       }
       
@@ -82,7 +94,12 @@ function ProductDelete(){
     const r = await async_get_by_id(id)
     console.log("product.delete.onload.r",r)
     const temp = {...formdata, ...r}
+    console.log("product.delete.onload.temp",temp)
     set_formdata(temp)
+    if(is_empty(r)){
+      set_error("Product not found")
+      set_isdeleted(true)
+    }
     console.log("product.delete.onload.formdata:",formdata)
     set_issubmitting(false)
   }
@@ -101,6 +118,12 @@ function ProductDelete(){
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
+          {success!==""? <AlertSimple message={success} type="success" />: null}
+          {error!==""? <AlertSimple message={error} type="danger" />: null}
+          {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}
+          {error!==""? <ToastSimple message={error} title="Error" isvisible={true} />: null}
+
+
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control border-0" id="txt-code_erp" placeholder="code in your system" 
@@ -110,9 +133,13 @@ function ProductDelete(){
               disabled 
             />
           </div>
-          <div className="col-md-3">
-            <RefreshAsync issubmitting={issubmitting} fnrefresh={async_refresh} />
-          </div>
+          {
+            isdeleted ? null:(
+              <div className="col-md-3">
+                <RefreshAsync issubmitting={issubmitting} fnrefresh={async_refresh} />
+              </div>
+            )
+          }
           <div className="col-12">
             <label htmlFor="txt-description" className="form-label">Description</label>
             <input type="text" className="form-control" id="txt-description" placeholder="Name of product" 
@@ -175,11 +202,13 @@ function ProductDelete(){
           </div>
 
           <Sysfields sysdata={formdata} />
-
-          <div className="col-12">
-            <SubmitAsync innertext="Delete" type="danger" issubmitting={issubmitting} />
-          </div>
-
+          {
+            isdeleted ? null:(
+              <div className="col-12">
+                <SubmitAsync innertext="Delete" type="danger" issubmitting={issubmitting} />
+              </div>   
+            )
+          }
         </form>
       </main>
       <Footer />
