@@ -6,6 +6,7 @@ import {async_get_by_id, async_update} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
@@ -160,6 +161,8 @@ function ProductUpdate(){
           
           {success!==""? <AlertSimple message={success} type="success" />: null}
           {error!==""? <AlertSimple message={error} type="danger" />: null}
+          {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}
+          {error!==""? <ToastSimple message={error} title="Error" isvisible={true} />: null}
 
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
