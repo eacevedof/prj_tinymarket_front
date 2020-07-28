@@ -5,6 +5,8 @@ import {is_empty} from "helpers/functions"
 import {async_get_by_id, async_deletelogic} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
@@ -17,6 +19,7 @@ function ProductDeleteLogic(){
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
+  const [isdeleted, set_isdeleted] = useState(false)
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -29,6 +32,8 @@ function ProductDeleteLogic(){
     insert_date:"",
     update_date:"",
     update_user:"",    
+    delete_user:"",
+    delete_date:"",
 
     id: -1,
     id_user: -1,
@@ -81,9 +86,32 @@ function ProductDeleteLogic(){
   const on_submit = async (evt)=>{
     console.log("product.deletelogic.on_submit.formdata:",formdata)
     evt.preventDefault()
-    before_submit()    
-    const r = await async_deletelogic(formdata)
-    console.log("product.deletelogic.on_submit.r",r)
+
+    set_issubmitting(true)
+    set_error("")
+    set_success("")
+
+    before_submit()
+    
+    try{
+      const r = await async_deletelogic(formdata)
+      
+      console.log("product.deletelogic.on_submit.r",r)
+      if(r.error){
+        set_error(r.error)
+      }
+      else{
+        set_success("Num regs deleted: ".concat(r))
+        async_onload()
+      }
+    }
+    catch(error){
+      console.log("product.deletelogic.on_submit.error:",error.toString())
+      set_error(error.toString())
+    }
+    finally{
+      set_issubmitting(false)
+    }
   }
 
   const async_onload = async () => {
@@ -92,6 +120,7 @@ function ProductDeleteLogic(){
     console.log("product.deletelogic.onload.r",r)
     const temp = {...formdata, ...r}
     set_formdata(temp)
+    if(temp.delete_date!=="") set_isdeleted(true)
     console.log("product.deletelogic.onload.formdata:",formdata)
     set_issubmitting(false)
   }
@@ -110,6 +139,11 @@ function ProductDeleteLogic(){
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
+          {success!==""? <AlertSimple message={success} type="success" />: null}
+          {error!==""? <AlertSimple message={error} type="danger" />: null}
+          {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}
+          {error!==""? <ToastSimple message={error} title="Error" isvisible={true} />: null}
+
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
             <input type="text" className="form-control border-0" id="txt-code_erp" placeholder="code in your system" 
@@ -182,11 +216,13 @@ function ProductDeleteLogic(){
           </div>
 
           <Sysfields sysdata={formdata} />
-          
-          <div className="col-12">
-            <SubmitAsync innertext="Delete" type="danger" issubmitting={issubmitting} />
-          </div>
-
+          {
+            isdeleted ? null:(
+              <div className="col-12">
+                <SubmitAsync innertext="Delete L" type="danger" issubmitting={issubmitting} />
+              </div>   
+            )
+          }
         </form>
       </main>
       <Footer />

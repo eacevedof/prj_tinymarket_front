@@ -15,6 +15,7 @@ function ToastSimple({message, title, isvisible}) {
 
   const stylesuccess = {
     position: "absolute",
+    zIndex: 10,
     bottom:0,
     right:0,
     background: "#D4EDD9",
