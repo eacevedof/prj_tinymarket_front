@@ -6,6 +6,7 @@ import {async_get_by_id, async_delete} from "../async/async_requests"
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
@@ -39,6 +40,10 @@ function ProductDelete(){
   })
 
   const before_submit = () => {}
+
+  const async_refresh = async () => {
+    await async_onload()
+  }
 
   const on_submit = async (evt)=>{
     console.log("product.update.on_submit.formdata:",formdata)
@@ -105,7 +110,9 @@ function ProductDelete(){
               disabled 
             />
           </div>
-
+          <div className="col-md-3">
+            <RefreshAsync issubmitting={issubmitting} fnrefresh={async_refresh} />
+          </div>
           <div className="col-12">
             <label htmlFor="txt-description" className="form-label">Description</label>
             <input type="text" className="form-control" id="txt-description" placeholder="Name of product" 

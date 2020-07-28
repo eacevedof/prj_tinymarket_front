@@ -6,12 +6,16 @@ import {async_get_by_id, async_deletelogic} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
 function ProductDeleteLogic(){
 
   const {id} = useParams()
+  const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -67,9 +71,11 @@ function ProductDeleteLogic(){
     //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
-  const before_submit = () => {
+  const before_submit = () => {}
 
-  }
+  const async_refresh = async () => {
+    await async_onload()
+  }  
 
   const on_submit = async (evt)=>{
     console.log("product.deletelogic.on_submit.formdata:",formdata)
@@ -109,7 +115,9 @@ function ProductDeleteLogic(){
               disabled 
             />
           </div>
-
+          <div className="col-md-3">
+            <RefreshAsync issubmitting={issubmitting} fnrefresh={async_refresh} />
+          </div>
           <div className="col-12">
             <label htmlFor="txt-description" className="form-label">Description</label>
             <input type="text" className="form-control" id="txt-description" placeholder="Name of product" 
