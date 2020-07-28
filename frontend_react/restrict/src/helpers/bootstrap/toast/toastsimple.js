@@ -4,22 +4,38 @@ import React, {useEffect, useState} from 'react';
 function ToastSimple({message, title, isvisible}) {
 
   const [show, set_show] = useState(isvisible)
+  const [time] = useState((new Date()).toString().substr(0,24))
 
   const close = () => set_show(false)
   
-
   useEffect(()=>{
     console.log("toastsimple.useffect")
     return ()=> console.log("toastsimple unmounting")
   },[])
 
+  const stylesuccess = {
+    position: "absolute",
+    bottom:0,
+    right:0,
+    background: "#D4EDD9",
+    color: "#3D7B50"    
+  }
+
+  const styleerror = {
+    ...stylesuccess,
+    background: "#F8D7DA",
+    color: "#762936"
+  }
+
   if(show)
     return (
-      <div className="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div className="toast fade show" role="alert" aria-live="assertive" aria-atomic="true"
+        data-autohide="true"
+        style={title==="Success"?stylesuccess:styleerror}
+      >
         <div className="toast-header">
-          <img src="..." className="rounded mr-2" alt="..." />
           <strong className="mr-auto">{title}</strong>
-          <small>11 mins ago</small>
+          <small>{time}</small>
           <button type="button" className="ml-2 mb-1 close" onClick={close} data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -29,7 +45,9 @@ function ToastSimple({message, title, isvisible}) {
         </div>
       </div>
     )
-    else return (null)
+
+  return null
+
 }
 
 export default ToastSimple;
