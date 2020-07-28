@@ -83,9 +83,7 @@ export const async_clone = async (formdata)=>{
   })
 
   temp.description = "(clone of ".concat(formdata.id).concat(") - ").concat(temp.description)
-  temp.insert_user = "clone ".concat(formdata.id)
-  temp.update_user = "clone ".concat(formdata.id)
-
+  
   const objparam = {fields:temp}
   const objquery = get_obj_insert(objparam)
   const r = await apidb.async_insert(objquery)

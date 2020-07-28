@@ -1,17 +1,13 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
 import {is_empty, is_defined, pr} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
-import apiup from "providers/apiupload"
 
-//import {GlobalContext} from 'components/context/global_context';
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"
-
-//subir fichero con react:
-//https://www.geeksforgeeks.org/file-uploading-in-react-js/
 
 function ProductInsert() {
 
@@ -125,6 +121,9 @@ function ProductInsert() {
         <form className="row g-3" onSubmit={on_submit}>
           {success!==""? <AlertSimple message={success} type="success" />: null}
           {error!==""? <AlertSimple message={error} type="danger" />: null}
+
+          {success!==""? <ToastSimple message={success} title="Success" />: null}
+          {error!==""? <ToastSimple message={error} title="Error" />: null}
 
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>

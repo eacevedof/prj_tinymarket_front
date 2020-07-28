@@ -1,23 +1,36 @@
-import React, {useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 
 //type: primary, secondary, success, danger, warning, info, light, dark
-function ToastSimple({message, type}) {
-  if(!type) type="success"
+function ToastSimple({message, title}) {
 
-  const classname = `alert alert-${type}`
+  const [isvisible, set_isvisible] = useState(false)
+  const [css, set_css] = useState("toast")
+
+  const toggle = () => {
+    set_isvisible(!isvisible)
+    if(isvisible) set_css("toast fade show")
+    else set_css("toast")
+  }
+
+  useEffect(()=>{
+    console.log("toastsimple.useffect")
+
+    return ()=> console.log("toastsimple unmounting")
+  },[isvisible])
+
 
   return (
-    <div className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div className={css} role="alert" aria-live="assertive" aria-atomic="true">
       <div className="toast-header">
         <img src="..." className="rounded mr-2" alt="..." />
-        <strong className="mr-auto">Bootstrap</strong>
+        <strong className="mr-auto">{title}</strong>
         <small>11 mins ago</small>
-        <button type="button" className="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <button type="button" className="ml-2 mb-1 close" onClick={toggle} data-dismiss="toast" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div className="toast-body">
-        Hello, world! This is a toast message.
+        {message}
       </div>
     </div>
   )
