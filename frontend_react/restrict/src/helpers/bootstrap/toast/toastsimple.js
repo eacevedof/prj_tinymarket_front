@@ -7,16 +7,18 @@ function ToastSimple({message, title}) {
   const [css, set_css] = useState("toast")
 
   const toggle = () => {
+    alert(isvisible)
     set_isvisible(!isvisible)
+    alert(isvisible)
     if(isvisible) set_css("toast fade show")
     else set_css("toast")
   }
 
   useEffect(()=>{
     console.log("toastsimple.useffect")
-
+    set_css("toast fade show")
     return ()=> console.log("toastsimple unmounting")
-  },[isvisible])
+  },[])
 
 
   return (
