@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 
 //type: primary, secondary, success, danger, warning, info, light, dark
-function RefreshAsync({innertext, issubmitting, fnrefresh}) {
-  const type="success"
+function RefreshAsync({issubmitting, fnrefresh}) {
+
   const cssbutton = `btn btn-info`
   const disabled = issubmitting ? "disabled" : null
   const strloading = " Loading..."
 
-/*  
+/*
   useEffect(()=>{
     console.log("refreshasync.useffect")
     return ()=> console.log("refreshasync unmounting")
@@ -15,14 +15,15 @@ function RefreshAsync({innertext, issubmitting, fnrefresh}) {
 */
 
   return (
-    <button type="button" className={cssbutton} disabled={disabled} onClick={fnrefresh()}>
+    <button type="button" className={cssbutton} disabled={disabled} onClick={fnrefresh}>
       {issubmitting ?
         (<>
+
         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         {strloading}
         </>)
       :
-        innertext
+        <i className="fa fa-refresh fa-lg" aria-hidden="true"></i>
       }
     </button>
   )

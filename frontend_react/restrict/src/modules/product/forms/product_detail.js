@@ -13,6 +13,9 @@ import Footer from "components/common/footer"
 function ProductDetail(){
 
   const {id} = useParams()
+  const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
 
   const seldisplay = [
     {value:"0",text:"No"},
@@ -42,12 +45,14 @@ function ProductDetail(){
   }
  
   const async_onload = async () => {
+    set_issubmitting(true)
     const r = await async_get_by_id(id)
-    console.log("product.onload.r",r)
+    console.log("product.detail.onload.r",r)
     const temp = {...formdata, ...r}
-    //console.log("product.onload.formdata:")
+
     set_formdata(temp)
-    console.log("product.onload.formdata:",formdata)
+    console.log("product.detail.onload.formdata:",formdata)
+    set_issubmitting(false)
   }
 
   useEffect(()=>{
@@ -67,11 +72,7 @@ function ProductDetail(){
           <div className="row">
             <div className="col-6">Nº</div>
             <div className="col-6">{formdata.id}&nbsp;&nbsp;&nbsp;
-              <button type="button" className="btn btn-info" 
-                onClick={async_refresh()}
-              >
-                <i className="fa fa-refresh fa-lg" aria-hidden="true"></i>
-              </button>
+              <RefreshAsync issubmitting={issubmitting} fnrefresh={async_refresh} />
             </div>
           </div>
 

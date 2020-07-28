@@ -10,11 +10,12 @@ function SubmitAsync({innertext, type, issubmitting}) {
   const disabled = issubmitting ? "disabled" : null
   const strloading = " Loading..."
 
+/*
   useEffect(()=>{
     console.log("submitasync.useffect")
-
     return ()=> console.log("submitasync unmounting")
   },[issubmitting])
+*/
 
   return (
     <button type="submit" className={cssbutton} disabled={disabled}>
