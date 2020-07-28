@@ -77,7 +77,7 @@ export const async_delete = async (formdata)=>{
 
 export const async_clone = async (formdata)=>{
   const temp = {...formdata}
-  const fieldsdel = ["delete_date","delete_user","insert_date","update_date","i","id"]
+  const fieldsdel = ["i","id"]
   fieldsdel.forEach(field => {
     delete temp[field] 
   })
