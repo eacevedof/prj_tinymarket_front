@@ -1,23 +1,21 @@
 import React, {useEffect} from 'react';
 
 //type: primary, secondary, success, danger, warning, info, light, dark
-function SubmitAsync({innertext, type, issubmitting}) {
-  console.log("submit","innertext:",innertext,"type:", type,"issubmitting:", issubmitting)
-
-  if(!type) type="success"
-
-  const cssbutton = `btn btn-${type}`
+function RefreshAsync({innertext, issubmitting, fnrefresh}) {
+  const type="success"
+  const cssbutton = `btn btn-info`
   const disabled = issubmitting ? "disabled" : null
   const strloading = " Loading..."
 
+/*  
   useEffect(()=>{
-    console.log("submitasync.useffect")
-
-    return ()=> console.log("submitasync unmounting")
+    console.log("refreshasync.useffect")
+    return ()=> console.log("refreshasync unmounting")
   },[issubmitting])
+*/
 
   return (
-    <button type="submit" className={cssbutton} disabled={disabled}>
+    <button type="button" className={cssbutton} disabled={disabled} onClick={fnrefresh()}>
       {issubmitting ?
         (<>
         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -31,4 +29,4 @@ function SubmitAsync({innertext, type, issubmitting}) {
 
 }
 
-export default SubmitAsync;
+export default RefreshAsync;
