@@ -10,9 +10,12 @@ import {get_obj_delete} from "./queries/query_delete"
 import {get_obj_deletelogic} from "./queries/query_deletelogic"
 
 
-export const async_get_list = async (params) => {
+export const async_get_list = async (page, filters) => {
 
-  const objparam = {page:{ippage:50,ifrom:20},filters:{}}
+  const ippage = 10
+  const ifrom = (page - 1) * ippage
+
+  const objparam = {page:{ippage,ifrom},filters}
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")
   const r = await apidb.async_get_list(objquery)

@@ -26,7 +26,7 @@ function ProductIndex() {
   async function async_load_products(){
 
     const filters = {}
-    const r = await async_get_list(page, filters)
+    const r = await async_get_list(page, {})
     //pr(grid)
     set_result(r)
   }
