@@ -2,11 +2,24 @@ import { is_defined, get_datenow, pr } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
 
+import {get_obj_list} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
 import {get_obj_update} from "./queries/query_update"
 import {get_obj_delete} from "./queries/query_delete"
 import {get_obj_deletelogic} from "./queries/query_deletelogic"
+
+
+export const async_get_list = async (params) => {
+
+  const objparam = {page:{ippage:50,ifrom:20},filters:{}}
+  const objquery = get_obj_list(objparam)
+  //pr(objquery,"objquery")
+  const r = await apidb.async_get_list(objquery)
+  if(is_defined(r.result.length))
+    return r.result
+  return r
+}
 
 export const async_get_by_id = async (id) => {
   //alert("id:"+id)

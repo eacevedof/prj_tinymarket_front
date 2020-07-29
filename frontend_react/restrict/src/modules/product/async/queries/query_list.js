@@ -1,5 +1,5 @@
 import helpapify from "helpers/apify"
-import {is_empty} from "helpers/functions"
+import {is_empty, pr} from "helpers/functions"
 
 export const grid = {
   headers:[
@@ -103,7 +103,7 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
     query.where.forEach(cond => objselect.where.push(cond))
   } 
 
-  objselect.limit.perpage = 10
+  objselect.limit.perpage = 100
   objselect.limit.regfrom = 0
   if(!is_empty(objparam.page)){
     //pr(objparam.page,"page")

@@ -1,28 +1,34 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {GlobalContext} from "components/context/global_context"
+import {useParams} from "react-router-dom"
+
+import { pr } from 'helpers/functions';
+import HrefDom from "helpers/href_dom"
+
+import {async_islogged} from 'modules/login/login_index'
+import {async_get_list} from "./async/async_requests"
+
+import {grid} from "./async/queries/query_list"
+import { useHistory } from 'react-router-dom';
 
 import Navbar from "components/common/navbar"
 import Footer from "components/common/footer"
-
-import {async_islogged} from 'modules/login/login_index'
-import HrefDom from "helpers/href_dom"
-import apidb from "providers/apidb"
-import {get_obj_list, grid} from "./async/queries/query_list"
-import { useHistory } from 'react-router-dom';
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 
 
 function ProductIndex() {
+
+  const {page} = useParams()
+  
   const history = useHistory()
   const [result, set_result] = useState([])
 
   async function async_load_products(){
-    const objparam = {page:{},filters:{}}
-    const objquery = get_obj_list(objparam)
-    const response = await apidb.async_get_list(objquery)
-    console.table(response.result)
-    set_result(response.result)
+
+    const filters = {}
+    const r = await async_get_list(page, filters)
+    //pr(grid)
+    set_result(r)
   }
 
   const async_onload = async () => {
@@ -31,7 +37,8 @@ function ProductIndex() {
 
     const islogged = await async_islogged()
     if(islogged){
-      await async_load_products()
+      //await async_load_products()
+      async_load_products()
     }
     else{
       history.push("/admin")
