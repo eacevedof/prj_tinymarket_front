@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from "react-router-dom"
 
 import ProductIndex from "./product_index"
 import ProductInsert from "./forms/product_insert"
@@ -34,7 +35,11 @@ export const routes = [
     component: (<ProductClone />)
   },  
   {
-    path:"/admin/product",
+    path:"/admin/products/:page(\\d+)",
     component: (<ProductIndex />)
-  },         
+  },
+  {
+    path:"/admin/products/",
+    component: (<Redirect to="/admin/products/1" />)
+  },  
 ]

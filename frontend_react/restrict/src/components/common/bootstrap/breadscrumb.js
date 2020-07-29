@@ -23,7 +23,7 @@ function Breadscrumb({arbreads}) {
           </NavLink>          
         </li>
         <li className="breadcrumb-item active" aria-current="page">
-          <NavLink exact to={"/admin/product"}>
+          <NavLink exact to={"/admin/products"}>
             Products
           </NavLink>          
         </li>        

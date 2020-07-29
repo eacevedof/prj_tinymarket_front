@@ -31,7 +31,7 @@ function DashboardIndex() {
                 <p className="card-text">Configure your plates</p>
                 <div className="row">
                   <div className="col-6">
-                    <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/product"}>Products</NavLink>
+                    <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/products"}>Products</NavLink>
                   </div>
                   <div className="col-6">
                     <NavLink className="btn btn-primary" activeClassName="navlink-active" exact to={"/admin/product/insert"}>New</NavLink>
