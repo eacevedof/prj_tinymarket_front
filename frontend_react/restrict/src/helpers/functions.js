@@ -35,3 +35,17 @@ export const get_datenow = () => {
 }
 
 export const is_string = objany =>  (typeof objany === 'string' || objany instanceof String)
+
+export const get_urlvalue = (strkey, url) => {
+  if (!url) url = window.location.href
+  const name = strkey.replace(/[\[\]]/g, '\\$&')
+
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url)
+  
+  if (!results) return ""
+  if (!results[2]) return ""
+  
+  return decodeURIComponent(results[2].replace(/\+/g, ' '))
+  
+}

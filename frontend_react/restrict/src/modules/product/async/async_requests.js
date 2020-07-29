@@ -13,12 +13,13 @@ import {get_obj_deletelogic} from "./queries/query_deletelogic"
 export const async_get_list = async (page, filters) => {
 
   const ippage = 10
-  const ifrom = (page - 1) * ippage
+  const ifrom = ((page<1 ? 1:page) - 1) * ippage
 
   const objparam = {page:{ippage,ifrom},filters}
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")
   const r = await apidb.async_get_list(objquery)
+  //pr(r); return []
   if(is_defined(r.result.length))
     return r.result
   return r
