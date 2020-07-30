@@ -29,7 +29,7 @@ function PaginationSimple({page,objconf}){
         </li>
 
         <li className="page-item">
-          <NavLink className="page-link" exact to={"/admin/products/2"}>2</NavLink>
+          <NavLink className="page-link" to={{pathname:"/admin/products/2",page:"2"}}>2</NavLink>
         </li>
         
         <li className="page-item">

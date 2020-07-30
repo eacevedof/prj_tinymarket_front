@@ -17,9 +17,6 @@ import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"
 
-
-
-
 function ProductIndex() {
 
   const {page} = useParams()
@@ -62,7 +59,7 @@ function ProductIndex() {
         <Breadscrumb arbreads={[]}/>
         <InputSearch text="xx" />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
-        <PaginationSimple />
+        <PaginationSimple page={page} />
       </main>
       <Footer />
     </>

@@ -17,6 +17,7 @@ function Tdaction({objrow, objconf}) {
     delete: `/admin/product/delete/${keyval}`,
     deletelogic: `/admin/product/delete-logic/${keyval}`,
     clone: `/admin/product/clone/${keyval}`,
+    //clone: `/admin/products/2`,
   }
 
   return (
