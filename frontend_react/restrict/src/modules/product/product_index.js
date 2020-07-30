@@ -11,10 +11,13 @@ import {grid} from "./async/queries/query_list"
 import { useHistory } from 'react-router-dom';
 
 import Navbar from "components/common/navbar"
-import Footer from "components/common/footer"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
+import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Footer from "components/common/footer"
+
+
 
 
 function ProductIndex() {
@@ -59,6 +62,7 @@ function ProductIndex() {
         <Breadscrumb arbreads={[]}/>
         <InputSearch text="xx" />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
+        <PaginationSimple />
       </main>
       <Footer />
     </>
