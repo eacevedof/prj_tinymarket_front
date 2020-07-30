@@ -18,6 +18,38 @@ function PaginationSimple({objconf}){
     
   }
 
+  const get_buttons = (ipages) => {
+    if(ipages==0) return []
+    if(ipages==1) return [1]
+
+    const ipage = objconf.page
+    const ibuttons = 10
+    
+    const buttons = []
+    let ineg = 0
+
+    buttons.push(ipage-1)
+    buttons.push(ipage-2)
+    buttons.push(ipage-3)
+
+    buttons.push(ipage+1)
+    buttons.push(ipage+2)
+    buttons.push(ipage+3)
+
+    //si hay negativos tengo que sumar estos a los positivos
+    ineg = buttons.filter(i => i < 1).length
+
+    [...Array(ineg).keys()].forEach(i => {
+      buttons.push(3+i)
+    });
+
+    //quito los que estan fuera de los límites [1-n]
+    const inlimit = buttons.filter(i => i>1 && i<ipages)
+    
+
+  }
+
+
   useEffect(()=>{
     on_load()
     return ()=> console.log("paginationsimple unmounting")
