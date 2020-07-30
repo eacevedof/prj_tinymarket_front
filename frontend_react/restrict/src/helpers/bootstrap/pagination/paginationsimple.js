@@ -27,6 +27,7 @@ function PaginationSimple({objconf}){
     const ibuttons = 8
     const ihalf = Math.ceil(ibuttons/2)
 
+    //botones por izq y derecha
     const ileft = ipage - ihalf
     const iright = ipages - ipage
 
@@ -39,7 +40,9 @@ function PaginationSimple({objconf}){
       iaddl = ihalf - iright
     } 
 
-    
+    if (ileft >= ihalf){
+      
+    }
 
     const buttons = []
 
