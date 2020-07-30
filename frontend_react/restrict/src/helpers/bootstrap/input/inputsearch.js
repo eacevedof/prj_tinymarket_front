@@ -26,11 +26,8 @@ function InputSearch(){
 
   const updateform = evt =>{
     const elem = evt.target
-    
-    set_formdata({search:""})
-
+    set_formdata({search:elem.value})
     console.log("updateform.formdata",formdata)
-    //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
   const before_submit = () => {}
@@ -57,6 +54,8 @@ function InputSearch(){
     }
     
   }// on_submit
+  
+
   useEffect(()=>{
     return ()=> console.log("inputsearch unmounting")
   },[])
