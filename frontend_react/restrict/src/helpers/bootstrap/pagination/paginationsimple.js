@@ -12,40 +12,53 @@ function PaginationSimple({objconf}){
     //pr(objconf,"obconf")
     const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
     const arurls = [...Array(ipages).keys()].map(ipage => `${objconf.url}/${ipage+1}`)
+    const buttons = get_buttons(ipages)
+
+    pr(buttons,"buttons")
     //pr(arurls,"arurls")
     set_npages(ipages)
     set_urls(arurls)
     
   }
 
-  const get_buttons = (ipages) => {
+  const get_buttons = ipages => {
+
     if(ipages==0) return []
     if(ipages==1) return [1]
 
-    const ipage = objconf.page
+    const ipage = parseInt(objconf.page)
+    //alert(ipage)
     const ibuttons = 10
     
     const buttons = []
-    let ineg = 0
 
-    buttons.push(ipage-1)
-    buttons.push(ipage-2)
-    buttons.push(ipage-3)
-
-    buttons.push(ipage+1)
-    buttons.push(ipage+2)
-    buttons.push(ipage+3)
-
-    //si hay negativos tengo que sumar estos a los positivos
-    ineg = buttons.filter(i => i < 1).length
-
-    [...Array(ineg).keys()].forEach(i => {
-      buttons.push(3+i)
-    });
-
-    //quito los que estan fuera de los límites [1-n]
-    const inlimit = buttons.filter(i => i>1 && i<ipages)
+    //agrego 3 por la izq
+    buttons.push(ipage - 1)
+    buttons.push(ipage - 2)
+    buttons.push(ipage - 3)
     
+    //agrego la pag actual
+    buttons.push(ipage)
+
+    //agrego 3 por la derecha
+    buttons.push(ipage + 1)
+    buttons.push(ipage + 2)
+    buttons.push(ipage + 3)
+
+    
+    //si hay negativos tengo que sumar estos a los positivos
+    const inegatives = buttons.filter(i => i < 1).length
+
+    //rellleno las posiciones negativas con positivos
+    const t = [...Array(ibuttons - inegatives).keys()].forEach(i => {
+      buttons.push(ipage+3+i)
+    })
+
+    //pr(buttons,"buttons"); return []
+    //quito los que estan fuera de los límites [1-n]
+    const butsvalid = buttons.filter(i => i>1 && i<ipages).sort((a,b) => a-b)//.shift("...").shift(1).push("...").push(ipages)
+    pr(butsvalid,"butsvalid")
+    return butsvalid
 
   }
 
