@@ -30,9 +30,7 @@ function PaginationSimple({objconf}){
         {
           objconf.page >1 ? (
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
+              <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page-1}`)}>&laquo;</NavLink>
             </li>
           ):null
         }
