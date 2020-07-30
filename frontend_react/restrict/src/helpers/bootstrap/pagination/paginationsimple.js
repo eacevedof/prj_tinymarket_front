@@ -44,11 +44,9 @@ function PaginationSimple({objconf}){
         }
         
         {
-          objconf.page > npages ? (
+          objconf.page >1 ? (
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
+              <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page+1}`)}>&raquo;</NavLink>
             </li>
           ):null
         }
