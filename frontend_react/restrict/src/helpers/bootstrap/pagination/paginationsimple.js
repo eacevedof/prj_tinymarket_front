@@ -12,21 +12,35 @@ function PaginationSimple({objconf}){
   const on_load = () => {
     //pr(objconf,"obconf")
     const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
-    const buttons = get_buttons(ipages)
+    const buttons = get_buttons(ipage, ipages)
     const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${objconf.url}/${ipage+1}`, text:ipage+1}))
 
     set_npages(ipages)
     set_urls(arurls)
   }
 
-  const get_buttons = ipages => {
+  const get_buttons = (ipage,ipages) => {
 
     if(ipages==0) return []
     if(ipages==1) return [1]
 
-    //const ipage = parseInt(objconf.page)
-    //alert(ipage)
     const ibuttons = 8
+    const ihalf = Math.ceil(ibuttons/2)
+
+    const ileft = ipage - ihalf
+    const iright = ipages - ipage
+
+    let iaddr = 0, iaddl = 0
+    if (iright >= ihalf) {
+      iaddr = ihalf
+    }
+    else {
+      iaddr = iright
+      iaddl = ihalf - iright
+    } 
+
+    
+
     const buttons = []
 
     //agrego 3 por la izq
@@ -42,7 +56,8 @@ function PaginationSimple({objconf}){
     buttons.push(ipage + 2)
     buttons.push(ipage + 3)
 
-    
+    //pr(buttons,"buttons")
+
     //si hay negativos tengo que sumar estos a los positivos
     const inegatives = buttons.filter(i => i < 1).length
 
