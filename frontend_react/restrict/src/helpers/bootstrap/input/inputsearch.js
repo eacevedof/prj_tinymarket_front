@@ -3,15 +3,16 @@ import React, {useEffect} from 'react';
 function InputSearch({arhead}) {
 
   useEffect(()=>{
-    return ()=> console.log("InputSearch unmounting")
+    return ()=> console.log("inputsearch unmounting")
   },[])
 
   return (
     <form>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <div className="mb-3">
+        <input type="email" className="form-control" aria-describedby="search" placeholder="filter" />
+        <div id="txt-search" className="form-text">
+          se puede usar como comandos
+        </div>
       </div>
     </form>
   )
