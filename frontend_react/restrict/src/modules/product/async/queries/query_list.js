@@ -26,7 +26,7 @@ export const grid = {
 }
 
 //necesito exportarla para poder filtrar
-export const query = {
+const query = {
   table: "app_product",
   alias: "t",
 

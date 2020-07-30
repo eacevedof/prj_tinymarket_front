@@ -16,7 +16,11 @@ const filterget = (confs) => {
   //pr(confs);return;
   const arfields = get_fields(confs)
   const arvalues = get_fields_vals(arfields)
-  const filters = arvalues.filter(obj => obj.value!="").map(obj => `${obj.name} LIKE '%${obj.value}%'`)
+  //const filters = arvalues.filter(obj => obj.value!="").map(obj => `${obj.name} LIKE '%${obj.value}%'`)
+  const filters = {
+    op: "AND",
+    fields: arvalues.filter(obj => obj.value!="").map(obj => ({field:obj.name, value:obj.value})),
+  } 
   return filters
   //devuelve un array de condiciones
 }
