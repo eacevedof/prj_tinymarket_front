@@ -4,6 +4,7 @@ import { pr } from 'helpers/functions';
 
 function PaginationSimple({objconf}){
 
+  const ipage = parseInt(objconf.page)
   const [npages, set_npages] = useState(0)
   const [urls, set_urls] = useState([])
   //const [npages, set_npages] = useState(0)
@@ -23,10 +24,9 @@ function PaginationSimple({objconf}){
     if(ipages==0) return []
     if(ipages==1) return [1]
 
-    const ipage = parseInt(objconf.page)
+    //const ipage = parseInt(objconf.page)
     //alert(ipage)
     const ibuttons = 8
-    
     const buttons = []
 
     //agrego 3 por la izq
@@ -47,7 +47,10 @@ function PaginationSimple({objconf}){
     const inegatives = buttons.filter(i => i < 1).length
 
     //rellleno las posiciones negativas con positivos
-    const t = [...Array(ibuttons - (inegatives+buttons.length)).keys()].forEach(i => {
+    const n = ibuttons - (inegatives)
+    //if(n<1) return []
+    //pr(n,"n")
+    const t = [...Array(n).keys()].forEach(i => {
       buttons.push(ipage+4+i)
     })
 
@@ -90,7 +93,7 @@ function PaginationSimple({objconf}){
         }
         
         {
-          objconf.page >1 ? (
+          objconf.page < npages ? (
             <li className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${parseInt(objconf.page)+1}`)}>&raquo;</NavLink>
             </li>
