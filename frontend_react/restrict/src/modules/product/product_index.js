@@ -12,6 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 import Navbar from "components/common/navbar"
 import Footer from "components/common/footer"
+import InputSearch from "helpers/bootstrap/input/inputsearch"
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 
@@ -56,6 +57,7 @@ function ProductIndex() {
       <main className="container">
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
+        <InputSearch text="xx" />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
       </main>
       <Footer />
