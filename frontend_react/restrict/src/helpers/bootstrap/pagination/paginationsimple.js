@@ -27,12 +27,15 @@ function PaginationSimple({objconf}){
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
-
-        <li className="page-item">
-          <a className="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
+        {
+          objconf.page >1 ? (
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          ):null
+        }
 
         {
           urls.map((strurl,i) => (
@@ -42,12 +45,15 @@ function PaginationSimple({objconf}){
           ))
         }
         
-        
-        <li className="page-item">
-          <a className="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
+        {
+          objconf.page > npages ? (
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          ):null
+        }
 
       </ul>
     </nav>
