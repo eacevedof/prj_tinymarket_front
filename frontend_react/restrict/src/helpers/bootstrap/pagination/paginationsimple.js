@@ -37,9 +37,14 @@ function PaginationSimple({objconf}){
 
         {
           urls.map((strurl,i) => (
-            <li key={i} className="page-item">
+            (i+1)==objconf.page ?
+              (<li key={i} className="page-item active">
               <NavLink className="page-link" exact to={strurl}>{i+1}</NavLink>
-            </li>
+              </li>)
+              :
+              (<li key={i} className="page-item">
+              <NavLink className="page-link" exact to={strurl}>{i+1}</NavLink>
+              </li>)          
           ))
         }
         
