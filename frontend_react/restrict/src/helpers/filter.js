@@ -6,11 +6,13 @@ const get_fields = confs => confs.
                                     filter(objconf => !is_empty(objconf.table) ).//map(objconf =>  objconf.table.alias)  
                                     //map(objconf => pr(objconf.fields,"FFF"))
                                     map(objconf => objconf.table.fields.map(objf => ({name:`${objconf.table.alias}.${objf.name}`,labels:objf.labels}))).
-                                    reduce((arac, arcurr) => [...arac, arcurr])
+                                    reduce((arac, arcurr) => [...arac, ...arcurr])
                                     
 const get_fields_vals = arfields => {
     
-  const arvalues = arfields.map(objfield => objfield.labels.map(slabel => get_urlvalue(slabel)))
+  //const arvalues = arfields.map(objfield => objfield.labels.map(slabel => get_urlvalue(slabel)))
+  pr(arfields)
+  const arvalues = arfields.map(objfield => objfield.labels)
   pr(arvalues,"arvalues")
   return arvalues
 }
@@ -18,11 +20,10 @@ const get_fields_vals = arfields => {
 const filterget = (confs, query) => {
   //pr(confs);return;
   const arfields = get_fields(confs)
-  const values = get_fields_vals(arfields)
+  const arvalues = get_fields_vals(arfields)
 
-  return arfields
+  return arvalues
   //devuelve un array de condiciones
-  return []
 }
 
 export default filterget
