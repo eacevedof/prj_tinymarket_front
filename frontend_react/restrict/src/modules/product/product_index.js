@@ -30,17 +30,16 @@ function ProductIndex() {
 
     //pr(r,"R")
     set_result(r.result)
+    //pr(r.foundrows)
     set_foundrows(r.foundrows)
   }
 
   const async_onload = async () => {
     console.log("product.index.async_onload")
-    HrefDom.document_title("Admin | Products")
-
     const islogged = await async_islogged()
     if(islogged){
-      //await async_load_products()
-      //await async_load_products()
+      HrefDom.document_title("Admin | Products")
+      await async_load_products()
     }
     else{
       history.push("/admin")
@@ -62,7 +61,7 @@ function ProductIndex() {
         <Breadscrumb arbreads={[]}/>
         <InputSearch text="xx" />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
-        <PaginationSimple objconf={{page,foundrows,ippage:10,url:"/admin/products/"}} />
+        <PaginationSimple objconf={{page,foundrows,ippage:10,url:"/admin/products"}} />
       </main>
       <Footer />
     </>
