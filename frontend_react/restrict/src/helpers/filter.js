@@ -12,18 +12,17 @@ const get_fields_vals = arfields => {
   return arvalues
 }
 
-const filterget = filterconf => {
+const get_filterand = arfilterconf => {
 
-  const arfields = get_fields(filterconf)
+  const arfields = get_fields(arfilterconf)
   const arvalues = get_fields_vals(arfields)
 
-  //const filters = arvalues.filter(obj => obj.value!="").map(obj => `${obj.name} LIKE '%${obj.value}%'`)
-  const filters = {
+  const objfilter = {
     op: "AND",
     fields: arvalues.filter(obj => obj.value!="").map(obj => ({field:obj.name, value:obj.value})),
   } 
 
-  return filters
+  return objfilter
 }
 
-export default filterget
+export default get_filterand

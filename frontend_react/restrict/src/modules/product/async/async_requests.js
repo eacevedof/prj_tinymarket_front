@@ -1,7 +1,7 @@
 import { is_defined, pr } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
-import filterget from "helpers/filter"
+import get_filterand from "helpers/filter"
 
 import {get_obj_list, filterconf} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
@@ -16,13 +16,10 @@ export const async_get_list = async (page) => {
   const ippage = 10
   const ifrom = ((page<1 ? 1:page) - 1) * ippage
 
-  //const f = get_urlvalue("x")
-  //pr(f)
-  const filters = filterget(filterconf)
-  //pr(filters,"async_get_list.filterget")
-  const objparam = {page:{ippage,ifrom},filters}
+  const objfilter = get_filterand(filterconf)
+  const objparam = {page:{ippage,ifrom},filters:objfilter}
   const objquery = get_obj_list(objparam)
-  pr(objquery,"objquery")
+  //pr(objquery,"objquery")
   const r = await apidb.async_get_list(objquery)
   //pr(r); return []
   if(is_defined(r.result.length))
