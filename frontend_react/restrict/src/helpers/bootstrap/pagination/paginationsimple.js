@@ -71,7 +71,7 @@ function PaginationSimple({objconf}){
         {
           objconf.page >1 ? (
             <li className="page-item">
-              <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page-1}`)}>&laquo;</NavLink>
+              <NavLink className="page-link" exact to={objconf.url.concat(`/${parseInt(objconf.page)-1}`)}>&laquo;</NavLink>
             </li>
           ):null
         }
@@ -92,7 +92,7 @@ function PaginationSimple({objconf}){
         {
           objconf.page >1 ? (
             <li className="page-item">
-              <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page+1}`)}>&raquo;</NavLink>
+              <NavLink className="page-link" exact to={objconf.url.concat(`/${parseInt(objconf.page)+1}`)}>&raquo;</NavLink>
             </li>
           ):null
         }
