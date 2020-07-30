@@ -11,10 +11,11 @@ function PaginationSimple({objconf}){
   const on_load = () => {
     //pr(objconf,"obconf")
     const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
-    const arurls = [...Array(ipages).keys()].map(ipage => `${objconf.url}/${ipage+1}`)
+    let arurls = [...Array(ipages).keys()].map(ipage => ({url:`${objconf.url}/${ipage+1}`,text:ipage+1}))
     const buttons = get_buttons(ipages)
+    arurls = arurls.filter(objurl => buttons.includes(objurl.text))
 
-    pr(buttons,"buttons")
+    //pr(buttons,"buttons")
     //pr(arurls,"arurls")
     set_npages(ipages)
     set_urls(arurls)
@@ -28,7 +29,7 @@ function PaginationSimple({objconf}){
 
     const ipage = parseInt(objconf.page)
     //alert(ipage)
-    const ibuttons = 10
+    const ibuttons = 8
     
     const buttons = []
 
@@ -50,14 +51,15 @@ function PaginationSimple({objconf}){
     const inegatives = buttons.filter(i => i < 1).length
 
     //rellleno las posiciones negativas con positivos
-    const t = [...Array(ibuttons - inegatives).keys()].forEach(i => {
-      buttons.push(ipage+3+i)
+    const t = [...Array(ibuttons - (inegatives+buttons.length)).keys()].forEach(i => {
+      buttons.push(ipage+4+i)
     })
 
     //pr(buttons,"buttons"); return []
     //quito los que estan fuera de los límites [1-n]
-    const butsvalid = buttons.filter(i => i>1 && i<ipages).sort((a,b) => a-b)//.shift("...").shift(1).push("...").push(ipages)
-    pr(butsvalid,"butsvalid")
+    const butsvalid = [1,...buttons.filter(i => i>1 && i<ipages).sort((a,b) => a-b),ipages]
+    
+    //pr(butsvalid,"butsvalid")
     return butsvalid
 
   }
@@ -81,14 +83,14 @@ function PaginationSimple({objconf}){
         }
 
         {
-          urls.map((strurl,i) => (
-            (i+1)==objconf.page ?
+          urls.map((objurl,i) => (
+            objurl.text==objconf.page ?
               (<li key={i} className="page-item active">
-              <NavLink className="page-link" exact to={strurl}>{i+1}</NavLink>
+              <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
               </li>)
               :
               (<li key={i} className="page-item">
-              <NavLink className="page-link" exact to={strurl}>{i+1}</NavLink>
+              <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
               </li>)          
           ))
         }
