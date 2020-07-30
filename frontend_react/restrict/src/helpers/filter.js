@@ -8,12 +8,23 @@ const get_fields = confs => confs.
                                     map(objconf => objconf.table.fields.map(objf => ({name:`${objconf.table.alias}.${objf.name}`,labels:objf.labels}))).
                                     reduce((arac, arcurr) => [...arac, arcurr])
                                     
+const get_fields_vals = arfields => {
+  const arvalues = []
+  
+  arfields.forEach(objfield => {
+    const labels = objfield.labels || []
+    
+
+  });
+
+}
 
 const filterget = (confs, query) => {
   //pr(confs);return;
-  const conff = get_fields(confs)
-  pr(conff)
-  return conff
+  const arfields = get_fields(confs)
+
+
+  return arfields
   //devuelve un array de condiciones
   return []
 }
