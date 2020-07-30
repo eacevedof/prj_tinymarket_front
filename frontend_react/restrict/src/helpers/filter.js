@@ -8,12 +8,14 @@ const get_fields = confs => confs.
                                     map(objconf => objconf.table.fields.map(objf => ({name:`${objconf.table.alias}.${objf.name}`,labels:objf.labels}))).
                                     reduce((arac, arcurr) => [...arac, ...arcurr])
                                     
+const get_values = arlabels => arlabels.map(strlabel => get_urlvalue(strlabel)).filter(strval => strval!="")
+
 const get_fields_vals = arfields => {
     
   //const arvalues = arfields.map(objfield => objfield.labels.map(slabel => get_urlvalue(slabel)))
-  pr(arfields)
-  const arvalues = arfields.map(objfield => objfield.labels)
-  pr(arvalues,"arvalues")
+  //pr(arfields)
+  const arvalues = arfields.map(objfield => ({name:objfield.name, values:get_values(objfield.labels)}))
+  //pr(arvalues,"arvalues")
   return arvalues
 }
 
