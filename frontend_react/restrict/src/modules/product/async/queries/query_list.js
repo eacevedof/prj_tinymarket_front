@@ -73,7 +73,20 @@ export const filterconf = [
       ]
     }
   },
-  {}
+  {
+    table:{
+      name: "solo_prueba",
+      alias: "pru",
+
+      fields:[
+        {name: "id", labels:["pid"]},
+        {name: "code_erp", labels:["pcode"]},
+        {name: "description", labels:["pdesc"]},
+        {name: "description_full", labels:["pdescbig"]},
+        {name: "display", labels:["pshow"]},
+      ]
+    }    
+  }
   
 ]
 
