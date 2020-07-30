@@ -21,11 +21,9 @@ export const async_get_list = async (page) => {
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")
   const r = await apidb.async_get_list(objquery)
-  
-  if(is_defined(r.error)) return []
-  //pr(r); return []
-  if(is_defined(r.result.length))
-    return r.result
+  //pr(r,"r")//r.result y r.foundrows
+  if(is_defined(r.error)) throw r.error
+  //pr(r,"r")
   return r
 }
 

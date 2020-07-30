@@ -54,11 +54,16 @@ function InputSearch(){
     }
     
   }// on_submit
-  
+
+  const async_onload = async () => {
+ 
+  }
 
   useEffect(()=>{
+    async_onload()
     return ()=> console.log("inputsearch unmounting")
-  },[])
+  },[])  
+
 
   return (
     <form className="row" onSubmit={on_submit}>

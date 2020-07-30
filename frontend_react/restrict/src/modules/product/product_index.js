@@ -23,11 +23,14 @@ function ProductIndex() {
   
   const history = useHistory()
   const [result, set_result] = useState([])
+  const [foundrows, set_foundrows] = useState(0)
 
   async function async_load_products(){
     const r = await async_get_list(page)
-    //pr(grid)
-    set_result(r)
+
+    //pr(r,"R")
+    set_result(r.result)
+    set_foundrows(r.foundrows)
   }
 
   const async_onload = async () => {
@@ -37,7 +40,7 @@ function ProductIndex() {
     const islogged = await async_islogged()
     if(islogged){
       //await async_load_products()
-      async_load_products()
+      //await async_load_products()
     }
     else{
       history.push("/admin")
@@ -49,7 +52,7 @@ function ProductIndex() {
     async_onload()
 
     return ()=> console.log("product.index unmounting")
-  },[])
+  },[page])
   
   return (
     <>
@@ -59,7 +62,7 @@ function ProductIndex() {
         <Breadscrumb arbreads={[]}/>
         <InputSearch text="xx" />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
-        <PaginationSimple page={page} />
+        <PaginationSimple objconf={{page,foundrows,ippage:10,url:"/admin/products/"}} />
       </main>
       <Footer />
     </>
