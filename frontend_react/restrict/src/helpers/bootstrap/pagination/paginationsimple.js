@@ -11,15 +11,11 @@ function PaginationSimple({objconf}){
   const on_load = () => {
     //pr(objconf,"obconf")
     const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
-    let arurls = [...Array(ipages).keys()].map(ipage => ({url:`${objconf.url}/${ipage+1}`,text:ipage+1}))
     const buttons = get_buttons(ipages)
-    arurls = arurls.filter(objurl => buttons.includes(objurl.text))
+    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${objconf.url}/${ipage+1}`, text:ipage+1}))
 
-    //pr(buttons,"buttons")
-    //pr(arurls,"arurls")
     set_npages(ipages)
     set_urls(arurls)
-    
   }
 
   const get_buttons = ipages => {
@@ -64,12 +60,10 @@ function PaginationSimple({objconf}){
 
   }
 
-
   useEffect(()=>{
     on_load()
     return ()=> console.log("paginationsimple unmounting")
   },[objconf.page, objconf.foundrows])
-
 
   return (
     <nav aria-label="Page navigation example">
