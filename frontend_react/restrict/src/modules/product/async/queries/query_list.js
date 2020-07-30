@@ -1,6 +1,7 @@
 import helpapify from "helpers/apify"
 import {is_empty, pr} from "helpers/functions"
 
+
 export const grid = {
   headers:[
     {
@@ -24,26 +25,8 @@ export const grid = {
   ]
 }
 
-const filterconf = [
-  {
-    table:{
-      name: "app_ip_request",
-      alias: "r",
-
-      fields:[
-        {name: "id", labels:["n","n","id"]},
-        {name: "code_erp", labels:["code"]},
-        {name: "description", labels:["desc"]},
-        {name: "description_full", labels:["descbig"]},
-        {name: "display", labels:["show"]},
-      ]
-    }
-  },
-  {}
-  
-]
-
-const query = {
+//necesito exportarla para poder filtrar
+export const query = {
   table: "app_product",
   alias: "t",
 
@@ -72,6 +55,28 @@ const query = {
     "t.delete_date IS NULL"
   ],
 }
+
+//necesito exportar para poder filtrar
+export const filterconf = [
+  {
+    //tabla principal
+    table:{
+      name: query.table,
+      alias: query.alias,
+
+      fields:[
+        {name: "id", labels:["n","n","id"]},
+        {name: "code_erp", labels:["code"]},
+        {name: "description", labels:["desc"]},
+        {name: "description_full", labels:["descbig"]},
+        {name: "display", labels:["show"]},
+      ]
+    }
+  },
+  {}
+  
+]
+
 
 export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
 

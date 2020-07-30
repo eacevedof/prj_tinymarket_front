@@ -1,8 +1,9 @@
-import { is_defined, get_urlvalue, get_datenow, pr } from "helpers/functions"
+import { is_defined, pr } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
+import filterget from "helpers/filter"
 
-import {get_obj_list} from "./queries/query_list"
+import {get_obj_list, query, filterconf} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
 import {get_obj_update} from "./queries/query_update"
@@ -17,7 +18,8 @@ export const async_get_list = async (page) => {
 
   //const f = get_urlvalue("x")
   //pr(f)
-  //const filters = get_filters()
+  const filters = filterget(filterconf, query)
+  pr(filters,"async_get_list.filterget")
   const objparam = {page:{ippage,ifrom},filters:{}}
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")
