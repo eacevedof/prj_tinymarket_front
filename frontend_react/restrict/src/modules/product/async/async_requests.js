@@ -1,4 +1,4 @@
-import { is_defined, get_datenow, pr } from "helpers/functions"
+import { is_defined, get_urlvalue, get_datenow, pr } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
 
@@ -10,12 +10,15 @@ import {get_obj_delete} from "./queries/query_delete"
 import {get_obj_deletelogic} from "./queries/query_deletelogic"
 
 
-export const async_get_list = async (page, filters) => {
+export const async_get_list = async (page) => {
 
   const ippage = 10
   const ifrom = ((page<1 ? 1:page) - 1) * ippage
 
-  const objparam = {page:{ippage,ifrom},filters}
+  //const f = get_urlvalue("x")
+  //pr(f)
+  //const filters = get_filters()
+  const objparam = {page:{ippage,ifrom},filters:{}}
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")
   const r = await apidb.async_get_list(objquery)

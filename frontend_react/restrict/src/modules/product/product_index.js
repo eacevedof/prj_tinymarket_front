@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
 
-import { pr, get_urlvalue } from 'helpers/functions';
+import { pr } from 'helpers/functions';
 import HrefDom from "helpers/href_dom"
 
 import {async_islogged} from 'modules/login/login_index'
@@ -24,9 +24,7 @@ function ProductIndex() {
   const [result, set_result] = useState([])
 
   async function async_load_products(){
-    alert(get_urlvalue("s"))
-    const filters = {}
-    const r = await async_get_list(page, filters)
+    const r = await async_get_list(page)
     //pr(grid)
     set_result(r)
   }

@@ -24,29 +24,29 @@ export const grid = {
   ]
 }
 
-export const config = [
+const filterconf = [
   {
     table:{
       name: "app_ip_request",
       alias: "r",
 
       fields:[
-        {name: "id", label:"Nº"},
-        {name: "code_erp", label:"Rem. IP"},
-        {name: "insert_date", label:"Date"},
-        {name: "domain", label:"Domain"},
-        {name: "request_uri", label:"R. URI"},
-        {name: "`get`", label:"GET"},
-        {name: "post", label:"POST"},
+        {name: "id", labels:["n","n","id"]},
+        {name: "code_erp", labels:["code"]},
+        {name: "description", labels:["desc"]},
+        {name: "description_full", labels:["descbig"]},
+        {name: "display", labels:["show"]},
       ]
     }
   },
+  {}
   
 ]
 
 const query = {
   table: "app_product",
   alias: "t",
+
   fields:[
     "t.update_date",
     "t.delete_date",
