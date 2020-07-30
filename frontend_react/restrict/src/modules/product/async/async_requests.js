@@ -13,7 +13,7 @@ import {get_obj_deletelogic} from "./queries/query_deletelogic"
 
 export const async_get_list = async (page) => {
 
-  const ippage = 10
+  const ippage = 25
   const ifrom = ((page<1 ? 1:page) - 1) * ippage
 
   const objfilter = get_filterand(filterconf)

@@ -61,7 +61,7 @@ function ProductIndex() {
         <Breadscrumb arbreads={[]}/>
         <InputSearch text="xx" />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
-        <PaginationSimple objconf={{page,foundrows,ippage:10,url:"/admin/products"}} />
+        <PaginationSimple objconf={{page, foundrows, ippage:25, url:"/admin/products"}} />
       </main>
       <Footer />
     </>
