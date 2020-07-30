@@ -1,6 +1,6 @@
 import {pr, get_urlvalue, is_defined, is_empty} from "helpers/functions"
 
-const get_fields = confs => confs.
+const get_fields = arconfs => arconfs.
                               filter(objconf => !is_empty(objconf.table) ).
                               map(objconf => objconf.table.fields.map(objf => ({name:`${objconf.table.alias}.${objf.name}`,labels:objf.labels}))).
                               reduce((arac, arcurr) => [...arac, ...arcurr])
@@ -12,17 +12,18 @@ const get_fields_vals = arfields => {
   return arvalues
 }
 
-const filterget = (confs) => {
-  //pr(confs);return;
-  const arfields = get_fields(confs)
+const filterget = filterconf => {
+
+  const arfields = get_fields(filterconf)
   const arvalues = get_fields_vals(arfields)
+
   //const filters = arvalues.filter(obj => obj.value!="").map(obj => `${obj.name} LIKE '%${obj.value}%'`)
   const filters = {
     op: "AND",
     fields: arvalues.filter(obj => obj.value!="").map(obj => ({field:obj.name, value:obj.value})),
   } 
+
   return filters
-  //devuelve un array de condiciones
 }
 
 export default filterget
