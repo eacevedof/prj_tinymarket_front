@@ -20,7 +20,7 @@ function TableBody({arhead, ardata}) {
   }
 
   const get_trs = data => data.map( (objrow,i) => {
-    console.log("objrow",objrow)
+    //console.log("objrow",objrow)
     return (
       <tr key={i}>
         {get_tds(objrow)}

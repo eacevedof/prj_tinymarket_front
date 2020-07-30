@@ -18,7 +18,7 @@ function TableBody({arhead, ardata, objconf}) {
   }
 
   const get_trs = data => data.map( (objrow,i) => {
-    console.log("objrow",objrow)
+    //console.log("objrow",objrow)
     return (
       <tr key={i}>
         <Tdaction objrow={objrow} objconf={objconf} />
