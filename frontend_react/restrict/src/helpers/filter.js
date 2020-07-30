@@ -9,20 +9,16 @@ const get_fields = confs => confs.
                                     reduce((arac, arcurr) => [...arac, arcurr])
                                     
 const get_fields_vals = arfields => {
-  const arvalues = []
-  
-  arfields.forEach(objfield => {
-    const labels = objfield.labels || []
     
-
-  });
-
+  const arvalues = arfields.map(objfield => objfield.labels.map(slabel => get_urlvalue(slabel)))
+  pr(arvalues,"arvalues")
+  return arvalues
 }
 
 const filterget = (confs, query) => {
   //pr(confs);return;
   const arfields = get_fields(confs)
-
+  const values = get_fields_vals(arfields)
 
   return arfields
   //devuelve un array de condiciones
