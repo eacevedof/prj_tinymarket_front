@@ -91,7 +91,7 @@ function PaginationSimple({objconf}){
         }
 
         {
-          urls.map((objurl,i) => (
+          urls.map((objurl, i) => (
             objurl.text==objconf.page ?
               (
                 <li key={i} className="page-item active" autoFocus>
