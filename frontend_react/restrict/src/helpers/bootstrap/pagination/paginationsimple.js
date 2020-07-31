@@ -7,6 +7,7 @@ function PaginationSimple({objconf}){
   const ipage = parseInt(objconf.page)
   const [npages, set_npages] = useState(0)
   const [urls, set_urls] = useState([])
+  const [hops, set_hops] = useState([])
 
   const get_buttons = (ipage,ipages) => {
 
@@ -50,7 +51,7 @@ function PaginationSimple({objconf}){
 
     buttons = buttons.sort((a,b) => a-b)
     buttons = [1,...buttons,ipages]
-
+    buttons = Array.from(new Set(buttons))
     return buttons
   }
 
@@ -58,8 +59,15 @@ function PaginationSimple({objconf}){
     //pr(objconf,"obconf")
     const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
     const buttons = get_buttons(ipage, ipages)
+    //pr(buttons,"buttons")
     const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${objconf.url}/${ipage+1}`, text:ipage+1}))
 
+    let hops = []
+    if(buttons[1] !== (buttons[0]+1)) hops.push(1)
+    if(buttons[buttons.length-1] !== (buttons[buttons.length-2]+1)) hops.push(buttons[buttons.length-2])
+  
+    pr(hops,"hops")
+    set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
   }
@@ -83,13 +91,41 @@ function PaginationSimple({objconf}){
         {
           urls.map((objurl,i) => (
             objurl.text==objconf.page ?
-              (<li key={i} className="page-item active">
-              <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-              </li>)
+              (
+                hops.includes(objurl.text) ? 
+                (
+                  <>
+                  <li key={i} className="page-item active">
+                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                  </li>
+                  <li className="page-item"><span className="page-link">xxx</span></li>
+                  </>
+                )
+                :
+                (
+                  <li key={i} className="page-item active">
+                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                  </li>
+                )
+              )
               :
-              (<li key={i} className="page-item">
-              <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-              </li>)
+              (
+                hops.includes(objurl.text) ? 
+                (
+                  <>
+                  <li key={i} className="page-item">
+                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                  </li>
+                  <li className="page-item"><span className="page-link">...</span></li>
+                  </>
+                )
+                :
+                (
+                  <li key={i} className="page-item">
+                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                  </li>
+                )
+              )
           ))
         }
         
