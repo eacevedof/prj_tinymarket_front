@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { NavLink } from "react-router-dom";
 import { pr } from 'helpers/functions';
 
 function PaginationSimple({objconf}){
 
   const ipage = parseInt(objconf.page)
+  const refli = useRef(null)
   const [npages, set_npages] = useState(0)
   const [urls, set_urls] = useState([])
   const [hops, set_hops] = useState([])
@@ -70,6 +71,7 @@ function PaginationSimple({objconf}){
     set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
+    //pr(refli.current)
   }
 
   useEffect(()=>{
@@ -82,7 +84,7 @@ function PaginationSimple({objconf}){
       <ul className="pagination">
         {
           objconf.page >1 ? (
-            <li className="page-item">
+            <li key="li-prev" className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page - 1}`)}>&laquo;</NavLink>
             </li>
           ):null
@@ -92,31 +94,19 @@ function PaginationSimple({objconf}){
           urls.map((objurl,i) => (
             objurl.text==objconf.page ?
               (
-                hops.includes(objurl.text) ? 
-                (
-                  <>
-                  <li key={i} className="page-item active">
-                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                  </li>
-                  <li className="page-item"><span className="page-link">xxx</span></li>
-                  </>
-                )
-                :
-                (
-                  <li key={i} className="page-item active">
-                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                  </li>
-                )
+                <li key={i} className="page-item active" autoFocus>
+                  <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                </li> 
               )
-              :
+              : //si no es la página actual
               (
                 hops.includes(objurl.text) ? 
                 (
                   <>
-                  <li key={i} className="page-item">
+                  <li key={i} className="page-item" >
                     <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
                   </li>
-                  <li className="page-item"><span className="page-link">...</span></li>
+                  <li key={"dots-"+i} className="page-item"><span className="page-link">...</span></li>
                   </>
                 )
                 :
@@ -131,7 +121,7 @@ function PaginationSimple({objconf}){
         
         {
           objconf.page < npages ? (
-            <li className="page-item">
+            <li key="li-next" className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${ipage + 1}`)}>&raquo;</NavLink>
             </li>
           ):null
