@@ -1,6 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { NavLink } from "react-router-dom";
 import { pr } from 'helpers/functions';
+import { uniqueId } from 'lodash';
+
 
 function PaginationSimple({objconf}){
 
@@ -72,6 +74,7 @@ function PaginationSimple({objconf}){
     set_npages(ipages)
     set_urls(arurls)
     //pr(refli.current)
+    //refli.current.focus() no va!
   }
 
   useEffect(()=>{
@@ -94,7 +97,7 @@ function PaginationSimple({objconf}){
           urls.map((objurl, i) => (
             objurl.text==objconf.page ?
               (
-                <li key={i} className="page-item active" autoFocus>
+                <li key={i} className="page-item active" ref={refli}>
                   <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
                 </li> 
               )
