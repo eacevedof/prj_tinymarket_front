@@ -60,6 +60,7 @@ function ProductIndex() {
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
         <InputSearch text="xx" />
+        <PaginationSimple objconf={{page, foundrows, ippage:25, url:"/admin/products"}} />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
         <PaginationSimple objconf={{page, foundrows, ippage:25, url:"/admin/products"}} />
       </main>

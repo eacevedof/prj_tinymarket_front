@@ -66,7 +66,7 @@ function PaginationSimple({objconf}){
     if(buttons[1] !== (buttons[0]+1)) hops.push(1)
     if(buttons[buttons.length-1] !== (buttons[buttons.length-2]+1)) hops.push(buttons[buttons.length-2])
   
-    pr(hops,"hops")
+    //pr(hops,"hops")
     set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
