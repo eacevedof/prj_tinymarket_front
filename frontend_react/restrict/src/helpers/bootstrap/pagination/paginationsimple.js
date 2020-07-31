@@ -15,7 +15,7 @@ function PaginationSimple({objconf}){
   const get_buttons = (ipage,ipages) => {
 
     if(ipages==0) return []
-    if(ipages==1) return [1]
+    if(ipages==1) return []
 
     const ibuttons = 8
     const ihalf = Math.ceil(ibuttons/2)
