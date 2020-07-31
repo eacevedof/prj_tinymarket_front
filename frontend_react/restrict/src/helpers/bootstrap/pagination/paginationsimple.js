@@ -52,7 +52,7 @@ function PaginationSimple({objconf}){
     ireall = ireall + icomplleft
     irealr = irealr + icomplright
    
-    pr(`page:${ipage}, left:${ireall}, right:${irealr}`)
+    //pr(`page:${ipage}, left:${ireall}, right:${irealr}`)
 
     let buttons = []
     for(let i=1; i<=ireall; i++) buttons.push(ipage - i)
@@ -60,25 +60,9 @@ function PaginationSimple({objconf}){
     for(let i=1; i<=irealr; i++) buttons.push(ipage + i)
 
     buttons = buttons.sort((a,b) => a-b)
-    pr(buttons,"buttons")
+    buttons = [1,...buttons,ipages]
 
-    //si hay negativos tengo que sumar estos a los positivos
-    const inegatives = buttons.filter(i => i < 1).length
-
-    //rellleno las posiciones negativas con positivos
-    const n = ibuttons - (inegatives)
-    //if(n<1) return []
-    //pr(n,"n")
-    const t = [...Array(n).keys()].forEach(i => {
-      buttons.push(ipage+4+i)
-    })
-
-    //pr(buttons,"buttons"); return []
-    //quito los que estan fuera de los límites [1-n]
-    const butsvalid = [1,...buttons.filter(i => i>1 && i<ipages).sort((a,b) => a-b),ipages]
-    
-    //pr(butsvalid,"butsvalid")
-    return butsvalid
+    return buttons
 
   }
 
