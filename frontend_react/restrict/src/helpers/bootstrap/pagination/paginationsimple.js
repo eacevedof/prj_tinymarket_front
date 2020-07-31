@@ -28,38 +28,39 @@ function PaginationSimple({objconf}){
     const ihalf = Math.ceil(ibuttons/2)
 
     //botones por izq y derecha
-    const ileft = ipage - ihalf
-    const iright = ipages - ipage
+    const idistleft = ipage - 1
+    const idistright = ipages - ipage
 
-    let iaddr = 0, iaddl = 0
-    if (iright >= ihalf) {
-      iaddr = ihalf
+    let icomplleft=0, icomplright=0, ireall=0, irealr=0
+
+    if(idistleft >= ihalf){
+      ireall = ihalf
     }
-    else {
-      iaddr = iright
-      iaddl = ihalf - iright
-    } 
-
-    if (ileft >= ihalf){
-      
+    else{
+      ireall = idistleft
+      icomplright = ihalf - idistleft
     }
 
-    const buttons = []
+    if(idistright >= ihalf){
+      irealr = ihalf
+    }
+    else{
+      irealr = idistright
+      icomplleft = ihalf - idistright
+    }    
 
-    //agrego 3 por la izq
-    buttons.push(ipage - 1)
-    buttons.push(ipage - 2)
-    buttons.push(ipage - 3)
-    
-    //agrego la pag actual
+    ireall = ireall + icomplleft
+    irealr = irealr + icomplright
+   
+    pr(`page:${ipage}, left:${ireall}, right:${irealr}`)
+
+    let buttons = []
+    for(let i=1; i<=ireall; i++) buttons.push(ipage - i)
     buttons.push(ipage)
+    for(let i=1; i<=irealr; i++) buttons.push(ipage + i)
 
-    //agrego 3 por la derecha
-    buttons.push(ipage + 1)
-    buttons.push(ipage + 2)
-    buttons.push(ipage + 3)
-
-    //pr(buttons,"buttons")
+    buttons = buttons.sort((a,b) => a-b)
+    pr(buttons,"buttons")
 
     //si hay negativos tengo que sumar estos a los positivos
     const inegatives = buttons.filter(i => i < 1).length
