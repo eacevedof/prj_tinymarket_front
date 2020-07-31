@@ -105,6 +105,27 @@ function PaginationSimple({objconf}){
           ):null
         }
 
+        {
+          urls.map((objurl, i) => (
+            objurl.text==objconf.page ?
+              (
+                <li key={uniqueId()} className="page-item active" ref={refli}>
+                  <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                </li> 
+              )
+              : //si no es la página actual
+              (
+                hops.includes(objurl.text) ? 
+                  get_dotted_button(objurl.url, objurl.text)
+                :
+                (
+                  <li key={uniqueId()} className="page-item">
+                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
+                  </li>
+                )
+              )
+          ))
+        }
         
         {
           objconf.page < npages ? (
@@ -119,4 +140,4 @@ function PaginationSimple({objconf}){
   )
 }
 
-export default PaginationSimple;
+export default PaginationSimple
