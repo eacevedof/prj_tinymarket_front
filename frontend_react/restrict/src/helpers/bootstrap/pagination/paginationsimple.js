@@ -7,17 +7,6 @@ function PaginationSimple({objconf}){
   const ipage = parseInt(objconf.page)
   const [npages, set_npages] = useState(0)
   const [urls, set_urls] = useState([])
-  //const [npages, set_npages] = useState(0)
-
-  const on_load = () => {
-    //pr(objconf,"obconf")
-    const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
-    const buttons = get_buttons(ipage, ipages)
-    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${objconf.url}/${ipage+1}`, text:ipage+1}))
-
-    set_npages(ipages)
-    set_urls(arurls)
-  }
 
   const get_buttons = (ipage,ipages) => {
 
@@ -63,7 +52,16 @@ function PaginationSimple({objconf}){
     buttons = [1,...buttons,ipages]
 
     return buttons
+  }
 
+  const on_load = () => {
+    //pr(objconf,"obconf")
+    const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
+    const buttons = get_buttons(ipage, ipages)
+    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${objconf.url}/${ipage+1}`, text:ipage+1}))
+
+    set_npages(ipages)
+    set_urls(arurls)
   }
 
   useEffect(()=>{
