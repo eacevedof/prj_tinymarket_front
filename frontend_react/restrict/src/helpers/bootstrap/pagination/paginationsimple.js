@@ -77,6 +77,18 @@ function PaginationSimple({objconf}){
     //refli.current.focus() no va!
   }
 
+  const get_dotted_button = (url,text) => {
+    //alert(uniqueId())
+    return (
+      <>
+      <li key={uniqueId()} className="page-item" >
+        <NavLink className="page-link" exact to={url}>{text}</NavLink>
+      </li>
+      <li key={uniqueId()} className="page-item"><span className="page-link">...</span></li>
+      </>      
+    )
+  }
+
   useEffect(()=>{
     on_load()
     return ()=> console.log("paginationsimple unmounting")
@@ -87,44 +99,16 @@ function PaginationSimple({objconf}){
       <ul className="pagination">
         {
           objconf.page >1 ? (
-            <li key="li-prev" className="page-item">
+            <li key={uniqueId()} className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page - 1}`)}>&laquo;</NavLink>
             </li>
           ):null
         }
 
-        {
-          urls.map((objurl, i) => (
-            objurl.text==objconf.page ?
-              (
-                <li key={i} className="page-item active" ref={refli}>
-                  <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                </li> 
-              )
-              : //si no es la página actual
-              (
-                hops.includes(objurl.text) ? 
-                (
-                  <>
-                  <li key={i} className="page-item" >
-                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                  </li>
-                  <li key={"dots-"+i} className="page-item"><span className="page-link">...</span></li>
-                  </>
-                )
-                :
-                (
-                  <li key={i} className="page-item">
-                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                  </li>
-                )
-              )
-          ))
-        }
         
         {
           objconf.page < npages ? (
-            <li key="li-next" className="page-item">
+            <li key={uniqueId()} className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${ipage + 1}`)}>&raquo;</NavLink>
             </li>
           ):null
