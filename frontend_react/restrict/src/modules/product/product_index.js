@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
+import ProductProvider from "modules/product/product_context"
 import {useParams} from "react-router-dom"
 
 import { pr } from 'helpers/functions';
@@ -59,10 +60,12 @@ function ProductIndex() {
       <main className="container">
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
-        <InputSearch text="xx" />
-        <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
-        <TableAction arhead={grid.headers} ardata={result} objconf={null} />
-        <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
+        <ProductProvider>
+          <InputSearch text="xx" />
+          <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
+          <TableAction arhead={grid.headers} ardata={result} objconf={null} />
+          <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
+        </ProductProvider>
       </main>
       <Footer />
     </>
