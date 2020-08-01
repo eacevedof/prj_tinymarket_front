@@ -78,7 +78,7 @@ function PaginationSimple({objconf}){
     const ipages = ippage>0 ? Math.ceil(foundrows / ippage) : 0
     const buttons = get_buttons(ipage, ipages)
     //pr(buttons,"buttons")
-    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${urlpattern}/${ipage+1}`, text:ipage+1}))
+    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:urlpattern.replace("%page%",ipage+1), text:ipage+1}))
 
     //si hay boton con puntos [...]
     let hops = []
@@ -122,7 +122,7 @@ function PaginationSimple({objconf}){
         {
           objconf.page >1 ? (
             <li key={get_uuid("p")} className="page-item">
-              <NavLink className="page-link" exact to={urlpattern.concat(`/${objconf.page - 1}`)}>&laquo;</NavLink>
+              <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage-1)}>&laquo;</NavLink>
             </li>
           ):null
         }
@@ -152,7 +152,7 @@ function PaginationSimple({objconf}){
         {
           objconf.page < npages ? (
             <li key={get_uuid("n")} className="page-item">
-              <NavLink className="page-link" exact to={urlpattern.concat(`/${ipage + 1}`)}>&raquo;</NavLink>
+              <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage+1)}>&raquo;</NavLink>
             </li>
           ):null
         }
