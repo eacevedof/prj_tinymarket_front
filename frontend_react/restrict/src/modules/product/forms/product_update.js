@@ -16,11 +16,12 @@ import Footer from "components/common/footer"
 function ProductUpdate(){
 
   const {id} = useParams()
+  const refcode = useRef(null)
+  const reffile = useRef(null)
+
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
-  const refcode = useRef(null)
-  const reffile = useRef(null)
   const [inputfile,set_inputfile] = useState(null)
 
   const seldisplay = [

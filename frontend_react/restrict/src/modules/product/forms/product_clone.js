@@ -1,10 +1,12 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
 import {is_empty} from "helpers/functions"
 //import {GlobalContext} from 'components/context/global_context';
 import {async_get_by_id, async_clone} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
@@ -14,6 +16,8 @@ import Footer from "components/common/footer"
 function ProductClone(){
 
   const {id} = useParams()
+  const refcode = useRef(null)
+
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
@@ -22,25 +26,28 @@ function ProductClone(){
     {value:"0",text:"No"},
     {value:"1",text:"Yes"}
   ]
-
-  const [formdata, set_formdata] = useState({
+  const formdefault = {
     insert_user:"",
     insert_date:"",
     update_date:"",
-    update_user:"",    
+    update_user:"",
 
     id: -1,
-    id_user: -1,
-
     code_erp:"",
     description:"",
     slug:"",
+    
     description_full:"",
     price_sale:"0",
     price_sale1:"0",
     order_by:"100",
     display:"0",
     url_image: "",
+    id_user:1,
+  }
+
+  const [formdata, set_formdata] = useState({
+    ...formdefault
   })
 
   const before_submit = () => {}
@@ -50,12 +57,36 @@ function ProductClone(){
   }  
   
   const on_submit = async (evt)=>{
-    console.log("on_submit.formdata:",formdata)
+    console.log("product.clon.on_submit.formdata:",formdata)
     evt.preventDefault()
-    before_submit()   
-    const r = await async_clone(formdata)
-    console.log("on_submit.r",r)
-  }
+
+    set_issubmitting(true)
+    set_error("")
+    set_success("")
+
+    //hacer insert y enviar fichero
+    before_submit()
+    try {
+      const r = await async_clone(formdata)
+      console.log("product.clon.on_submit.r",r)
+      if(r.error){
+        set_error(r.error)
+      }
+      else{
+        set_success("Product cloned. Nº: ".concat(r))
+        set_formdata({...formdefault})
+        refcode.current.focus()
+      }
+    } 
+    catch (error) {
+      console.log("error:",error.toString())
+      set_error(error.toString())
+    } 
+    finally {
+      set_issubmitting(false)
+    }
+    
+  }// on_submit
 
   const async_onload = async () => {
     set_issubmitting(true)
@@ -81,9 +112,17 @@ function ProductClone(){
         <Breadscrumb arbreads={[]}/>
 
         <form className="row g-3" onSubmit={on_submit}>
+          {success!==""? <AlertSimple message={success} type="success" />: null}
+          {error!==""? <AlertSimple message={error} type="danger" />: null}
+
+          {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}
+          {error!==""? <ToastSimple message={error} title="Error" isvisible={true} />: null}
+
           <div className="col-md-3">
             <label htmlFor="txt-code_erp" className="form-label">Code</label>
-            <input type="text" className="form-control border-0" id="txt-code_erp" placeholder="code in your system" 
+            <input type="text" className="form-control border-0" id="txt-code_erp" placeholder="code in your system"
+
+              ref={refcode}
               value={formdata.code_erp}
               disabled 
             />
