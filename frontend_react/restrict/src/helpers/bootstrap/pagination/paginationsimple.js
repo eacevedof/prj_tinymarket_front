@@ -103,7 +103,7 @@ function PaginationSimple({objconf}){
       <li key={get_uuid(text)} className="page-item" >
         <NavLink className="page-link" exact to={url}>{text}</NavLink>
       </li>
-      <p key={get_uuid(text)}><span className="page-link spanhover">...</span></p>
+      <li key={get_uuid(text)}><span className="page-link spanhover">...</span></li>
       </>      
     )
   }
