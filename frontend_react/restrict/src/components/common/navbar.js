@@ -1,6 +1,8 @@
 //Navbar.js
-import React, {useState, useEffect, useContext} from 'react';
-import {GlobalContext} from '../context/global_context';
+//import React, {useState, useEffect, useContext} from 'react';
+import React, {useEffect} from 'react';
+
+//import {GlobalContext} from '../context/global_context';
 import { NavLink } from "react-router-dom";
 import _ from "lodash"
 
@@ -9,7 +11,7 @@ function Navbar() {
   //const {order} = useContext(GlobalContext)
   //console.log("navbar.order",order)
 
-  const [iitems, set_iitems] = useState(0)
+  //const [iitems, set_iitems] = useState(0)
 
   useEffect(()=>{
     

@@ -1,10 +1,12 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {pr} from "helpers/functions"
 
 import {useParams} from "react-router-dom"
 import {async_get_by_id} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import Sysfields from "components/common/sysfields"
@@ -46,14 +48,34 @@ function ProductDetail(){
  
   const async_onload = async () => {
     set_issubmitting(true)
-    const r = await async_get_by_id(id)
-    console.log("product.detail.onload.r",r)
-    const temp = {...formdata, ...r}
-
-    set_formdata(temp)
+    set_error("")
+    set_success("")
     console.log("product.detail.onload.formdata:",formdata)
-    set_issubmitting(false)
+    try{
+      const r = await async_get_by_id(id)
+      console.log("product.detail.onload.r",r)
+      
+      if(!r){
+        set_error("Product not found!")
+      }
+      else if(r.error){
+        set_error(r.error)
+      }
+      else{
+        const temp = {...formdata, ...r}
+        set_formdata(temp)
+        set_success(`Product Nº:${id} refreshed!`)
+      } 
+    }
+    catch(error){
+      console.log("product.detail.onload.error:",error.toString())
+      set_error(error.toString())
+    }
+    finally{
+      set_issubmitting(false)
+    }    
   }
+
 
   useEffect(()=>{
     async_onload()
@@ -68,6 +90,9 @@ function ProductDetail(){
         <h1 className="mt-2 mb-2">Product Info</h1>
         <Breadscrumb arbreads={[]}/>
         <div>
+          {error!==""? <AlertSimple message={error} type="danger" />: null}
+          {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}
+          {error!==""? <ToastSimple message={error} title="Error" isvisible={true} />: null}
           
           <div className="row">
             <div className="col-6">Nº</div>
@@ -113,7 +138,7 @@ function ProductDetail(){
 
           <div className="row">
             <div className="col-6">Display</div>
-            <div className="col-6">{formdata.display}</div>
+            <div className="col-6">{seldisplay.filter(obj => obj.value===formdata.display)[0]["text"]}</div>
           </div>
 
           <div className="row">

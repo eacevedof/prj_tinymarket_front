@@ -1,18 +1,19 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {GlobalContext} from "components/context/global_context"
+//import React, {useContext, useState, useEffect} from 'react';
+import React from "react"
+//import {GlobalContext} from "components/context/global_context"
 import Navbar from "components/common/navbar"
 import Footer from "components/common/footer"
-import LoadingWheel from "components/common/loading_wheel"
-import NotificationError from "components/common/notifications/notification_error"
+//import LoadingWheel from "components/common/loading_wheel"
+//import NotificationError from "components/common/notifications/notification_error"
 
-import HrefDom from "helpers/href_dom"
-import Api from "providers/api"
+//import HrefDom from "helpers/href_dom"
+//import Api from "providers/api"
 import { NavLink } from 'react-router-dom';
 
 function DashboardIndex() {
   
-  const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
-  const [is_error, set_is_error] = useState(false)
+  //const {is_loading, set_is_loading, set_products, search} = useContext(GlobalContext)
+  //const [is_error, set_is_error] = useState(false)
 
 
   return (

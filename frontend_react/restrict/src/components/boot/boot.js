@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {GlobalContext} from '../context/global_context';
 
 import db from "../../helpers/localdb"
@@ -8,7 +8,6 @@ import {routes as dashroutes} from '../../modules/dashboard/routes';
 import {routes as prodroutes} from "../../modules/product/routes"
 
 import E404 from "../errors/404/e404"
-import _ from "lodash"
 
 import {
   BrowserRouter as Router,

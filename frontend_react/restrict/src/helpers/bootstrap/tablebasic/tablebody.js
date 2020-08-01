@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 function TableBody({arhead, ardata}) {
 
@@ -10,8 +10,6 @@ function TableBody({arhead, ardata}) {
   //console.log("fieldshead:",fieldshead)
 
   const get_tds = objrow => {
-    //const fields = Object.keys(objrow)
-    //{value:fieldname, text:label}
     return fieldshead
             //.filter(strfield => fieldshead.includes(strfield))
             .map( (strfield,i) => {

@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
 
 import {pr, is_empty, is_string} from "helpers/functions"
@@ -72,7 +72,7 @@ function ProductUpdate(){
     console.log("updateform.id",id)
     const temp = {...formdata}
 
-    if(id=="url_image" && !is_empty(elem.files)){
+    if(id === "url_image" && !is_empty(elem.files)){
       set_inputfile(elem.files[0])
     }
     else {

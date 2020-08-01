@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 //type: primary, secondary, success, danger, warning, info, light, dark
 function RefreshAsync({issubmitting, fnrefresh}) {

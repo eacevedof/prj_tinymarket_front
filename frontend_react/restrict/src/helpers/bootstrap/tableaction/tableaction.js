@@ -1,11 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import TableHead from "./tablehead"
 import TableBody from "./tablebody"
 
 function TableAction({arhead, ardata, objconf}) {
 
   useEffect(()=>{
-    return ()=> console.log("TableAction unmounting")
+    return ()=> console.log("tableaction unmounting")
   },[])
 
   return (

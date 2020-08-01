@@ -1,11 +1,11 @@
-import {pr, get_urlvalue, is_defined, is_empty} from "helpers/functions"
+import {pr, get_urlvalue, is_empty} from "helpers/functions"
 
 const get_fields = arconfs => arconfs.
                               filter(objconf => !is_empty(objconf.table) ).
                               map(objconf => objconf.table.fields.map(objf => ({name:`${objconf.table.alias}.${objf.name}`,labels:objf.labels}))).
                               reduce((arac, arcurr) => [...arac, ...arcurr])
                                     
-const get_values = arlabels => arlabels.map(strlabel => get_urlvalue(strlabel)).filter(strval => strval!="")[0] || ""
+const get_values = arlabels => arlabels.map(strlabel => get_urlvalue(strlabel)).filter(strval => strval!=="")[0] || ""
 
 const get_fields_vals = arfields => {
   const arvalues = arfields.map(objfield => ({name:objfield.name, value:get_values(objfield.labels) }))
@@ -19,7 +19,7 @@ const get_filterand = arfilterconf => {
 
   const objfilter = {
     op: "AND",
-    fields: arvalues.filter(obj => obj.value!="").map(obj => ({field:obj.name, value:obj.value})),
+    fields: arvalues.filter(obj => obj.value !== "").map(obj => ({field:obj.name, value:obj.value})),
   } 
 
   return objfilter
