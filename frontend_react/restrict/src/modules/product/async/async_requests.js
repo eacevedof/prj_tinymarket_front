@@ -17,6 +17,7 @@ export const async_get_list = async (page, search="") => {
 
   const ippage = grid.perpage
   const ifrom = ((page<1 ? 1:page) - 1) * ippage
+  //const ipages = ippage>0 ? Math.ceil(foundrows / ippage) : 0
 
   //const objfilter = get_filterand(filterconf)//filtros por GET
   const objfilter = get_filteror(filterconf, search)

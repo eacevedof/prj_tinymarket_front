@@ -29,6 +29,10 @@ function ProductIndex() {
 
   async function async_load_products(){
     const r = await async_get_list(page, txtsearch)
+    const ipages = grid.perpage>0 ? Math.ceil(r.foundrows / grid.perpage) : 0
+    //pr(ipages,"ipages")
+    if(page>ipages) history.push(`/admin/products/1`)
+
     set_result(r.result)
     set_foundrows(r.foundrows)
   }
