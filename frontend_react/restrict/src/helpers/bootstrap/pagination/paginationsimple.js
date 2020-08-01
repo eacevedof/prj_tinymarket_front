@@ -12,6 +12,20 @@ function PaginationSimple({objconf}){
   const [urls, set_urls] = useState([])
   const [hops, set_hops] = useState([])
 
+  const get_uuid = (d)=>{
+
+    const strchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    
+    const unique = uniqueId()
+
+    //const char = Math.random().toString(36).substring(7);
+    const char = (strchars.split(""))[Math.floor(Math.random()*(strchars.length-1))]
+    const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString().concat(unique))
+    
+    //console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
+    return rnd
+  }
+
   const get_buttons = (ipage,ipages) => {
 
     if(ipages==0) return []
@@ -81,10 +95,10 @@ function PaginationSimple({objconf}){
     //alert(uniqueId())
     return (
       <>
-      <li key={uniqueId()} className="page-item" >
+      <li key={get_uuid(text)} className="page-item" >
         <NavLink className="page-link" exact to={url}>{text}</NavLink>
       </li>
-      <li key={uniqueId()} className="page-item"><span className="page-link">...</span></li>
+      <li key={get_uuid(text)}><span className="page-link spanhover">...</span></li>
       </>      
     )
   }
@@ -99,7 +113,7 @@ function PaginationSimple({objconf}){
       <ul className="pagination">
         {
           objconf.page >1 ? (
-            <li key={uniqueId()} className="page-item">
+            <li key={get_uuid("p")} className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page - 1}`)}>&laquo;</NavLink>
             </li>
           ):null
@@ -109,7 +123,7 @@ function PaginationSimple({objconf}){
           urls.map((objurl, i) => (
             objurl.text==objconf.page ?
               (
-                <li key={uniqueId()} className="page-item active" ref={refli}>
+                <li key={get_uuid(objurl.text)} className="page-item active" ref={refli}>
                   <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
                 </li> 
               )
@@ -119,7 +133,7 @@ function PaginationSimple({objconf}){
                   get_dotted_button(objurl.url, objurl.text)
                 :
                 (
-                  <li key={uniqueId()} className="page-item">
+                  <li key={get_uuid(objurl.text)} className="page-item">
                     <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
                   </li>
                 )
@@ -129,7 +143,7 @@ function PaginationSimple({objconf}){
         
         {
           objconf.page < npages ? (
-            <li key={uniqueId()} className="page-item">
+            <li key={get_uuid("n")} className="page-item">
               <NavLink className="page-link" exact to={objconf.url.concat(`/${ipage + 1}`)}>&raquo;</NavLink>
             </li>
           ):null
