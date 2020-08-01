@@ -95,7 +95,7 @@ function PaginationSimple({objconf}){
   },[objconf.page, objconf.foundrows])
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav className="d-flex justify-content-center">
       <ul className="pagination">
         {
           objconf.page >1 ? (
