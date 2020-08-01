@@ -1,5 +1,6 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
-import {is_empty, is_defined, pr} from "helpers/functions"
+import React, {useState, useEffect, useRef} from 'react';
+
+import {pr, is_empty, is_defined} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"

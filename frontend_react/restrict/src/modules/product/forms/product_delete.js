@@ -1,7 +1,7 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
-//import {GlobalContext} from 'components/context/global_context';
-import { is_empty } from 'helpers/functions';
+
+import { pr, is_empty } from 'helpers/functions';
 import {async_get_by_id, async_delete} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
