@@ -1,32 +1,10 @@
 import helpapify from "helpers/apify"
 import {is_empty, pr} from "helpers/functions"
 
-
-export const grid = {
-  headers:[
-    {
-      text: 'nº',
-      align: 'start',
-      sortable: true,
-      value: 'id',
-    },
-    { text: 'Code', value: 'code_erp' },
-    { text: 'Desc', value: 'description' },
-    { text: 'Desc big', value: 'description_full' },
-    { text: 'Slug', value: 'slug' },
-    { text: 'Show', value: 'display' },
-    { text: 'U. min', value: 'units_min' },
-    { text: 'U. max', value: 'units_max' },
-    { text: 'Price g.', value: 'price_gross' },
-    { text: 'Price s.', value: 'price_sale' },
-    { text: 'Price s1', value: 'price_sale1' },
-    { text: 'Updated', value: 'update_date' },
-    
-  ]
-}
-
 //necesito exportarla para poder filtrar
 const query = {
+  perpage: 25,
+
   table: "app_product",
   alias: "t",
 
@@ -54,6 +32,31 @@ const query = {
   where:[
     "t.delete_date IS NULL"
   ],
+}
+
+export const grid = {
+  perpage: query.perpage,
+
+  headers:[
+    {
+      text: 'nº',
+      align: 'start',
+      sortable: true,
+      value: 'id',
+    },
+    { text: 'Code', value: 'code_erp' },
+    { text: 'Desc', value: 'description' },
+    { text: 'Desc big', value: 'description_full' },
+    { text: 'Slug', value: 'slug' },
+    { text: 'Show', value: 'display' },
+    { text: 'U. min', value: 'units_min' },
+    { text: 'U. max', value: 'units_max' },
+    { text: 'Price g.', value: 'price_gross' },
+    { text: 'Price s.', value: 'price_sale' },
+    { text: 'Price s1', value: 'price_sale1' },
+    { text: 'Updated', value: 'update_date' },
+    
+  ]
 }
 
 //necesito exportar para poder filtrar
@@ -107,7 +110,7 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
     query.where.forEach(cond => objselect.where.push(cond))
   } 
 
-  objselect.limit.perpage = 100
+  objselect.limit.perpage = query.perpage
   objselect.limit.regfrom = 0
   if(!is_empty(objparam.page)){
     //pr(objparam.page,"page")
