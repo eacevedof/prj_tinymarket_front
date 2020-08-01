@@ -253,7 +253,7 @@ function ProductUpdate(){
           {
             is_string(formdata.url_image) ?
             (<div className="col-12">
-              <a className="link-dark" href={formdata.url_image} target="_blank">{formdata.url_image}</a>
+              <a className="link-dark" href={formdata.url_image} target="_blank" rel="noopener noreferrer">{formdata.url_image}</a>
               <img src={formdata.url_image} className="img-fluid" alt={formdata.url_image}/>
             </div>)
             :null
