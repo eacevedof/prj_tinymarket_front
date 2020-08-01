@@ -7,7 +7,7 @@ function InputSearch({text, fnsettext, foundrows}){
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
-  const refcode = useRef(null)
+  const refsearch = useRef(null)
 
   const formdefault = {
     search: ""
@@ -40,6 +40,7 @@ function InputSearch({text, fnsettext, foundrows}){
 
     try {
       fnsettext(formdata.search)
+      refsearch.current.focus()
     } 
     catch (error) {
       //console.log("error:",error.toString())
@@ -51,12 +52,7 @@ function InputSearch({text, fnsettext, foundrows}){
     
   }// on_submit
 
-  const async_onload = async () => {
- 
-  }
-
   useEffect(()=>{
-    async_onload()
     return ()=> console.log("inputsearch unmounting")
   },[])  
 
@@ -66,6 +62,7 @@ function InputSearch({text, fnsettext, foundrows}){
       <div className="col-8">
         <input type="text" className="form-control" aria-describedby="search" placeholder="filter" 
           
+          ref={refsearch}
           value={formdata.search}
           onChange={updateform}        
         />
