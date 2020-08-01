@@ -22,7 +22,7 @@ function PaginationSimple({objconf}){
     const char = (strchars.split(""))[Math.floor(Math.random()*(strchars.length-1))]
     const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString().concat(unique))
     
-    //console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
+    console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
     return rnd
   }
 
@@ -93,6 +93,13 @@ function PaginationSimple({objconf}){
 
   const get_dotted_button = (url,text) => {
     //alert(uniqueId())
+    /* solo con esto no da error *
+    return (
+      <li key={get_uuid(text)} className="page-item" >
+        <NavLink className="page-link" exact to={url}>{text}</NavLink>
+      </li>
+    )
+    */
     return (
       <>
       <li key={get_uuid(text)} className="page-item" >
