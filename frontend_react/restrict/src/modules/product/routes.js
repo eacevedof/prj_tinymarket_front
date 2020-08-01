@@ -1,13 +1,15 @@
 import React from 'react';
 import {Redirect} from "react-router-dom"
 
-import ProductIndex from "./product_index"
-import ProductInsert from "./forms/product_insert"
-import ProductClone from "./forms/product_clone"
-import ProductUpdate from "./forms/product_update"
-import ProductDetail from "./forms/product_detail"
-import ProductDelete from "./forms/product_delete"
-import ProductDeleteLogic from "./forms/product_deletelogic"
+import ProductProvider from "modules/product/product_context"
+
+import ProductIndex from "modules/product/product_index"
+import ProductInsert from "modules/product/forms/product_insert"
+import ProductClone from "modules/product/forms/product_clone"
+import ProductUpdate from "modules/product/forms/product_update"
+import ProductDetail from "modules/product/forms/product_detail"
+import ProductDelete from "modules/product/forms/product_delete"
+import ProductDeleteLogic from "modules/product/forms/product_deletelogic"
 
 export const routes = [
   {
@@ -36,7 +38,8 @@ export const routes = [
   },  
   {
     path:"/admin/products/:page(\\d+)",
-    component: (<ProductIndex />)
+    //se necesita el provider para arrastrar los filtros por las páginas
+    component: (<ProductProvider><ProductIndex /></ProductProvider>)
   },
   {
     path:"/admin/products/",

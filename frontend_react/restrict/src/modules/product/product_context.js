@@ -10,8 +10,8 @@ const ProductProvider = (props) => {
   return (
     <ProductContext.Provider
       value={{
-        set_strsearch,
-    }}
+        strsearch, set_strsearch
+      }}
     >
       {props.children}
     </ProductContext.Provider>
