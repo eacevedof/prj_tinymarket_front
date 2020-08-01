@@ -89,7 +89,7 @@ function PaginationSimple({objconf}){
     set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
-    console.log("paginationsimple.on_load:","ipage",ipage,"foundrows",foundrows,"hops",hops,"ipages",ipages,"arurls",arurls)
+    //console.log("paginationsimple.on_load:","ipage",ipage,"foundrows",foundrows,"hops",hops,"ipages",ipages,"arurls",arurls)
   }
 
   useEffect(()=>{
