@@ -1,4 +1,5 @@
 import {pr, get_urlvalue, is_empty} from "helpers/functions"
+import ProductProvider from "modules/product/product_context"
 
 const get_fields = arconfs => arconfs.
                               filter(objconf => !is_empty(objconf.table) ).
@@ -12,6 +13,7 @@ const get_fields_vals = arfields => {
   return arvalues
 }
 
+//filtro por url GET
 const get_filterand = arfilterconf => {
 
   const arfields = get_fields(arfilterconf)
@@ -22,6 +24,18 @@ const get_filterand = arfilterconf => {
     fields: arvalues.filter(obj => obj.value !== "").map(obj => ({field:obj.name, value:obj.value})),
   } 
 
+  return objfilter
+}
+
+//filtro caja de texto
+export const get_filteror = (arfilterconf, search) =>{
+  if(!search) return {}
+  const arfields = get_fields(arfilterconf)
+
+  const objfilter = {
+    op: "OR",
+    fields: arfields.map(obj => ({field:obj.name, value:search})),
+  }   
   return objfilter
 }
 

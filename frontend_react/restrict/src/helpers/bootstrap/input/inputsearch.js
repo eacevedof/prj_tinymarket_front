@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 
-function InputSearch(){
+function InputSearch({text, fnsettext, foundrows}){
 
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
@@ -30,8 +30,6 @@ function InputSearch(){
     console.log("updateform.formdata",formdata)
   }
 
-  const before_submit = () => {}
-
   const on_submit = async (evt)=>{
     console.log("product.insert.on_submit.formdata:",formdata)
     evt.preventDefault()
@@ -40,13 +38,11 @@ function InputSearch(){
     set_error("")
     set_success("")
 
-    //hacer insert y enviar fichero
-    before_submit()
     try {
-
+      fnsettext(formdata.search)
     } 
     catch (error) {
-      console.log("error:",error.toString())
+      //console.log("error:",error.toString())
       set_error(error.toString())
     } 
     finally {
@@ -74,7 +70,7 @@ function InputSearch(){
           onChange={updateform}        
         />
         <div className="form-text">
-          se puede usar como comandos
+          regs: {foundrows}
         </div>
       </div>
       <div className="col-4">

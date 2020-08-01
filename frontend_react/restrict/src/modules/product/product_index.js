@@ -21,22 +21,20 @@ import Footer from "components/common/footer"
 function ProductIndex() {
 
   const {page} = useParams()
-  const {strsearch, set_strsearch} = useContext(ProductContext)
+  const {txtsearch, set_txtsearch} = useContext(ProductContext)
   
   const history = useHistory()
   const [result, set_result] = useState([])
   const [foundrows, set_foundrows] = useState(0)
 
   async function async_load_products(){
-    const r = await async_get_list(page)
-
-    //pr(r,"R")
+    const r = await async_get_list(page, txtsearch)
     set_result(r.result)
-    //pr(r.foundrows)
     set_foundrows(r.foundrows)
   }
 
   const async_onload = async () => {
+    //pr(txtsearch)
     console.log("product.index.async_onload")
     const islogged = await async_islogged()
     if(islogged){
@@ -53,7 +51,7 @@ function ProductIndex() {
     async_onload()
 
     return ()=> console.log("product.index unmounting")
-  },[page])
+  },[page, txtsearch])
   
   return (
     <>
@@ -61,7 +59,9 @@ function ProductIndex() {
       <main className="container">
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
-        <InputSearch text="xx" />
+        
+        <InputSearch text={txtsearch} fnsettext={set_txtsearch} foundrows={foundrows} />
+
         <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
         <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />

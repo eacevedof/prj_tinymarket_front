@@ -3,9 +3,9 @@ import { pr, is_defined } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
 
-import get_filterand from "helpers/filter"
+import get_filterand, {get_filteror} from "helpers/filter"
 
-import {get_obj_list, filterconf} from "./queries/query_list"
+import {get_obj_list, filterconf, grid} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
 import {get_obj_update} from "./queries/query_update"
@@ -13,12 +13,13 @@ import {get_obj_delete} from "./queries/query_delete"
 import {get_obj_deletelogic} from "./queries/query_deletelogic"
 
 
-export const async_get_list = async (page) => {
+export const async_get_list = async (page, search="") => {
 
-  const ippage = 25
+  const ippage = grid.perpage
   const ifrom = ((page<1 ? 1:page) - 1) * ippage
 
-  const objfilter = get_filterand(filterconf)
+  //const objfilter = get_filterand(filterconf)//filtros por GET
+  const objfilter = get_filteror(filterconf, search)
   const objparam = {page:{ippage,ifrom},filters:objfilter}
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")

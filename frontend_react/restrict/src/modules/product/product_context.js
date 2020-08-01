@@ -5,12 +5,12 @@ import _ from "lodash"
 export const ProductContext = createContext();
 
 const ProductProvider = (props) => {
-  const [strsearch, set_strsearch] = useState("")
+  const [txtsearch, set_txtsearch] = useState("")
   
   return (
     <ProductContext.Provider
       value={{
-        strsearch, set_strsearch
+        txtsearch, set_txtsearch
       }}
     >
       {props.children}
