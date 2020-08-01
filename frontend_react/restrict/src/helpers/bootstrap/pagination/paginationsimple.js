@@ -6,20 +6,23 @@ import { uniqueId } from 'lodash';
 
 function PaginationSimple({objconf}){
 
+  const urlpattern = objconf.url
   const ipage = parseInt(objconf.page)
+  const foundrows = parseInt(objconf.foundrows)
+  const ippage = parseInt(objconf.ippage)
+
+
   const refli = useRef(null)
   const [npages, set_npages] = useState(0)
   const [urls, set_urls] = useState([])
   const [hops, set_hops] = useState([])
 
   const get_uuid = (d)=>{
-
     const strchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     const unique = uniqueId()
     //const char = Math.random().toString(36).substring(7);
     const char = (strchars.split(""))[Math.floor(Math.random()*(strchars.length-1))]
     const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString().concat(unique))
-    
     //console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
     return rnd
   }
@@ -72,11 +75,12 @@ function PaginationSimple({objconf}){
 
   const on_load = () => {
     //pr(objconf,"obconf")
-    const ipages = objconf.ippage>0 ? Math.ceil(objconf.foundrows / objconf.ippage) : 0
+    const ipages = ippage>0 ? Math.ceil(foundrows / ippage) : 0
     const buttons = get_buttons(ipage, ipages)
     //pr(buttons,"buttons")
-    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${objconf.url}/${ipage+1}`, text:ipage+1}))
+    const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:`${urlpattern}/${ipage+1}`, text:ipage+1}))
 
+    //si hay boton con puntos [...]
     let hops = []
     if(buttons[1] !== (buttons[0]+1)) hops.push(1)
     if(buttons[buttons.length-1] !== (buttons[buttons.length-2]+1)) hops.push(buttons[buttons.length-2])
@@ -85,9 +89,13 @@ function PaginationSimple({objconf}){
     set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
-    //pr(refli.current)
-    //refli.current.focus() no va!
+    console.log("paginationsimple.on_load:","ipage",ipage,"foundrows",foundrows,"hops",hops,"ipages",ipages,"arurls",arurls)
   }
+
+  useEffect(()=>{
+    on_load()
+    return ()=> console.log("paginationsimple unmounting")
+  },[objconf.page, objconf.foundrows])
 
   const get_dotted_button = (url,text) => {
     //alert(uniqueId())
@@ -107,19 +115,14 @@ function PaginationSimple({objconf}){
       </>      
     )
   }
-
-  useEffect(()=>{
-    on_load()
-    return ()=> console.log("paginationsimple unmounting")
-  },[objconf.page, objconf.foundrows])
-
+  
   return (
     <nav className="d-flex justify-content-center">
       <ul className="pagination">
         {
           objconf.page >1 ? (
             <li key={get_uuid("p")} className="page-item">
-              <NavLink className="page-link" exact to={objconf.url.concat(`/${objconf.page - 1}`)}>&laquo;</NavLink>
+              <NavLink className="page-link" exact to={urlpattern.concat(`/${objconf.page - 1}`)}>&laquo;</NavLink>
             </li>
           ):null
         }
@@ -149,7 +152,7 @@ function PaginationSimple({objconf}){
         {
           objconf.page < npages ? (
             <li key={get_uuid("n")} className="page-item">
-              <NavLink className="page-link" exact to={objconf.url.concat(`/${ipage + 1}`)}>&raquo;</NavLink>
+              <NavLink className="page-link" exact to={urlpattern.concat(`/${ipage + 1}`)}>&raquo;</NavLink>
             </li>
           ):null
         }
