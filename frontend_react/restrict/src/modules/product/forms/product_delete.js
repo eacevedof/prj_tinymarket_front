@@ -197,7 +197,7 @@ function ProductDelete(){
           <div className="col-md-6">
             <div className="form-group">
               <label htmlFor="file-url_image" className="form-label">Picture: </label>
-              <img src={formdata.url_image} className="img-fluid" />
+              <img src={formdata.url_image} className="img-fluid" alt={formdata.url_image}/>
             </div>
           </div>
 

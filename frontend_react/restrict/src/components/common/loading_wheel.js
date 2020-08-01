@@ -10,7 +10,7 @@ function LoadingWheel() {
       {
         is_loading ? (
         <div className="vertical-center">
-          <img src="/assets/img/loading.gif" />
+          <img src="/assets/img/loading.gif" alt="loading.gif" />
         </div>) : null
       }
     </>

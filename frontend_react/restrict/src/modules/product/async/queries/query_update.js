@@ -16,7 +16,7 @@ export const get_obj_update = (objparam={fields:{},keys:[]},dbfields=[])=>{
 
   if(!is_defined(objparam.keys)) return null
   //evita que se actualicen todos los registros que no son una entidad
-  if(objparam.keys.length==0) return null
+  if(objparam.keys.length === 0) return null
 
   if(is_defined(objparam.fields)){
     const onlyfields = dbfields.map(dbfield => dbfield.field_name)
