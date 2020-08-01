@@ -15,14 +15,12 @@ function PaginationSimple({objconf}){
   const get_uuid = (d)=>{
 
     const strchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    
     const unique = uniqueId()
-
     //const char = Math.random().toString(36).substring(7);
     const char = (strchars.split(""))[Math.floor(Math.random()*(strchars.length-1))]
     const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString().concat(unique))
     
-    console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
+    //console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
     return rnd
   }
 
@@ -105,7 +103,7 @@ function PaginationSimple({objconf}){
       <li key={get_uuid(text)} className="page-item" >
         <NavLink className="page-link" exact to={url}>{text}</NavLink>
       </li>
-      <li key={get_uuid(text)}><span className="page-link spanhover">...</span></li>
+      <p key={get_uuid(text)}><span className="page-link spanhover">...</span></p>
       </>      
     )
   }
