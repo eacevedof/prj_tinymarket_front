@@ -11,6 +11,7 @@ const Apiauth = {
     
     try {
       const data = new FormData()
+      data.append("apify-origindomain","*")
       data.append("user",objlogin.username)
       data.append("password",objlogin.password)
       
@@ -36,6 +37,7 @@ const Apiauth = {
     const url = `${BASE_URL}/apifiy/security/is-valid-token`
     try {
       const data = new FormData()
+      data.append("apify-origindomain","*")
       data.append("apify-usertoken",apifytoken)
 
       console.log("apidb.async_is_validtoken.url",url)
