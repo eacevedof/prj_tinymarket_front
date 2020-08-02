@@ -11,7 +11,7 @@ const Apidb = {
 
     try{
       const objform = new FormData()
-      objform.append("apify-origindomain","*")
+      //objform.append("apify-origindomain","*")
       objform.append("apify-usertoken",apifytoken)
       
       const fields = await axios.post(url,objform)
@@ -34,7 +34,7 @@ const Apidb = {
     try {
    
       const objform = objselect.get_query()
-      objform.append("apify-origindomain","*")
+      //objform.append("apify-origindomain","*")
       objform.append("apify-usertoken",apifytoken)
       
       console.log("apidb.async_get_list",url)
@@ -59,7 +59,7 @@ const Apidb = {
 
     try {
       const objform = objinsert.get_query()
-      objform.append("apify-origindomain","*")
+      //objform.append("apify-origindomain","*")
       objform.append("apify-usertoken",apifytoken)
       
       console.log("apidb.async_insert",url)
@@ -86,7 +86,7 @@ const Apidb = {
  
       const objform = objupdate.get_query()
       objform.append("apify-usertoken",apifytoken)
-      objform.append("apify-origindomain","*")
+      //objform.append("apify-origindomain","*")
 
       console.log("apidb.async_update",url)
       const response = await axios.post(url, objform)
@@ -111,7 +111,7 @@ const Apidb = {
 
     try {
       const objform = objdelete.get_query()
-      objform.append("apify-origindomain","*")
+      //objform.append("apify-origindomain","*")
       objform.append("apify-usertoken",apifytoken)
       
       console.log("apidb.async_delete",url)
