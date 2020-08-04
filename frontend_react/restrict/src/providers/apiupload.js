@@ -1,5 +1,6 @@
 import axios from "axios"
 import db from "helpers/localdb"
+import {URL_API_UPLOAD} from "config/constants"
 
 // https://github.com/eacevedof/prj_svelte/blob/master/tools/src/components/Tools.svelte
 const BASE_URL = process.env.REACT_APP_BASEURLAPI
@@ -7,8 +8,7 @@ const BASE_URL = process.env.REACT_APP_BASEURLAPI
 const Apiupload = {
   
   async_post: async (inputfile) => {
-    //const url = `${BASE_URL}/api/v1/products?page=1&perpage=100&s=${search}`
-    const url = `http://localhost:4000/upload`
+    const url = URL_API_UPLOAD
     const uploadtoken = db.select("token_upload")
     
     if(!inputfile || inputfile.name==="") return {file_1:""}
