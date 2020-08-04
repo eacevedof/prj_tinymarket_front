@@ -24,6 +24,15 @@ function ProductDetail(){
     {value:"1",text:"Yes"}
   ]
 
+  const get_seltext = id => {
+    const arfound = seldisplay.filter(obj => obj.value===id) || []
+    //pr(arfound)
+    //return ""
+    if(arfound.length>0)
+      return arfound[0]["text"]
+    return ""
+  }
+
   const [formdata, set_formdata] = useState({
     insert_date: "",
     insert_user:"react",
@@ -138,7 +147,7 @@ function ProductDetail(){
 
           <div className="row">
             <div className="col-6">Display</div>
-            <div className="col-6">{seldisplay.filter(obj => obj.value===formdata.display)[0]["text"]}</div>
+            <div className="col-6">{get_seltext(formdata.display)}</div>
           </div>
 
           <div className="row">
