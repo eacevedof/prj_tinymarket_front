@@ -27,6 +27,24 @@ const get_filterand = arfilterconf => {
   return objfilter
 }
 
+
+const get_cmdkeyval = strkey => strkey.split(";").map(strkv => strkv.trim()).map(strkv => strkv.split(":"))
+
+
+export const get_filtercmd = (arfilterconf, search) => {
+  if(!search) return {}
+  const cmd =  search.replace(">","").trim()
+  const kval = get_cmdkeyval(cmd)
+  pr(kval,"kval")
+  const arfields = get_fields(arfilterconf)
+
+  const objfilter = {
+    op: "OR",
+    fields: arfields.map(obj => ({field:obj.name, value:search})),
+  }   
+  return objfilter
+}
+
 //filtro caja de texto
 export const get_filteror = (arfilterconf, search) =>{
   if(!search) return {}

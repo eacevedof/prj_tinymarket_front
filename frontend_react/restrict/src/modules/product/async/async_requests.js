@@ -3,7 +3,7 @@ import { pr, is_defined } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
 
-import get_filterand, {get_filteror} from "helpers/filter"
+import get_filterand, {get_filteror, get_filtercmd} from "helpers/filter"
 
 import {get_obj_list, filterconf, grid} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
@@ -20,7 +20,8 @@ export const async_get_list = async (page, search="") => {
   //const ipages = ippage>0 ? Math.ceil(foundrows / ippage) : 0
 
   //const objfilter = get_filterand(filterconf)//filtros por GET
-  const objfilter = get_filteror(filterconf, search)
+  //const objfilter = get_filteror(filterconf, search)
+  const objfilter = get_filtercmd(filterconf, search)
   const objparam = {page:{ippage,ifrom},filters:objfilter}
   const objquery = get_obj_list(objparam)
   //pr(objquery,"objquery")
