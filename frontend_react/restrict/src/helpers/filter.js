@@ -1,6 +1,4 @@
 import {pr, get_urlvalue, is_empty} from "helpers/functions"
-import ProductProvider from "modules/product/product_context"
-//import {get_filtercmd} from "helpers/filtercmd"
 
 const get_fields = arconfs => arconfs.
                               filter(objconf => !is_empty(objconf.table) ).

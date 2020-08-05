@@ -13,13 +13,11 @@ const get_cmdkeyval = strkey => strkey.split(CMD_SEPARATOR).
                                   filter(ar => ar.length===2).
                                   map(ar => ({label:ar[0].trim().toLowerCase(),value:ar[1].trim()}))
 
-//const get_valuebylabels = arlabels => arlabels.map(strlabel => get_urlvalue(strlabel)).filter(strval => strval!=="")[0] || ""
 const get_value_by_label = (arlblsval, label) => arlblsval.filter(objlblval => objlblval.label === label).map(objlblval => objlblval.value)[0] || ""
 
 const get_value_by_labels = (arlabels, arlblsval) => arlabels.map(label => get_value_by_label(arlblsval, label))
 
 const get_mergedbylabel = (arfieldlbls, arlblval) => arfieldlbls.map(objflbls => ({name:objflbls.name, value:get_value_by_labels(objflbls.labels, arlblval)}))
-
 
 export const get_filtercmd = (arfilterconf, search) => {
   if(!search) return {}
