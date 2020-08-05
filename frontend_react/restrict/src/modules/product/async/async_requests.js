@@ -3,7 +3,8 @@ import { pr, is_defined } from "helpers/functions"
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
 
-import get_filterand, {get_filteror, get_filtercmd} from "helpers/filter"
+import get_filterand, {get_filteror} from "helpers/filter"
+import {get_filtercmd} from "helpers/filtercmd"
 
 import {get_obj_list, filterconf, grid} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
