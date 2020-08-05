@@ -1,6 +1,7 @@
 import { pr, is_empty } from "helpers/functions"
 
 
+const CMD_TAG=">"
 const CMD_SEPARATOR = ";"
 const KEYVAL_SEPARATOR = ":"
 
@@ -23,11 +24,19 @@ const get_fields_by_labels = (arfieldlabels, arlabels) => arlabels.map(label => 
 
 const get_value_by_labels = (arlblval, arlabels) => arlblval.filter(obj => arlabels.includes(obj.label)).map(obj => obj.value)[0] || ""
 
+
+export const is_command = search => {
+  if(!search) return false;
+  if(!(typeof search === 'string' || search instanceof String)) return false;
+  const str = search.trim()
+  if(!str) return false;
+  return (str.charAt(0)===CMD_TAG && str.includes(KEYVAL_SEPARATOR) && str.length>4)
+}
+
 //>code:28;desc:yuca
 export const get_filtercmd = (arfilterconf, search) => {
   if(!search) return {}
-  const cmd =  search.replace(">","").trim()
-
+  const cmd =  search.replace(CMD_TAG,"").trim()
 
   const arfieldlabels = get_fields(arfilterconf)
   //pr(arfieldlabels,"arfieldlabels"); return {}
