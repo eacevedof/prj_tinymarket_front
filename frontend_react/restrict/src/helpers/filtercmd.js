@@ -1,6 +1,8 @@
 import { pr, is_empty } from "helpers/functions"
 
+
 const CMD_SEPARATOR = ";"
+const KEYVAL_SEPARATOR = ":"
 
 const get_fields = arconfs => arconfs.
                                 filter(objconf => !is_empty(objconf.table) ).
@@ -9,30 +11,38 @@ const get_fields = arconfs => arconfs.
 
 const get_cmdkeyval = strkey => strkey.split(CMD_SEPARATOR).
                                   map(strkv => strkv.trim()).
-                                  map(strkv => strkv.split(CMD_SEPARATOR)).
+                                  map(strkv => strkv.split(KEYVAL_SEPARATOR)).
                                   filter(ar => ar.length===2).
                                   map(ar => ({label:ar[0].trim().toLowerCase(),value:ar[1].trim()}))
 
-const get_value_by_label = (arlblsval, label) => arlblsval.filter(objlblval => objlblval.label === label).map(objlblval => objlblval.value)[0] || ""
+//obtiene las etiquetas del cmd
+const get_labels = arlblval => arlblval.map(arlblval => arlblval.label)
+const get_name_by_label = (arfieldlabels, label) => arfieldlabels.filter(objflbls => objflbls.labels.includes(label)).map(objflbls => objflbls.name)
 
-const get_value_by_labels = (arlabels, arlblsval) => arlabels.map(label => get_value_by_label(arlblsval, label))
+const get_fields_by_labels = (arfieldlabels, arlabels) => arlabels.map(label => get_name_by_label(arfieldlabels, label))
 
-const get_mergedbylabel = (arfieldlbls, arlblval) => arfieldlbls.map(objflbls => ({name:objflbls.name, value:get_value_by_labels(objflbls.labels, arlblval)}))
+const get_value_by_labels = (arlblval, arlabels) => arlblval.filter(obj => arlabels.includes(obj.label)).map(obj => obj.value)[0] || ""
 
+//>code:28;desc:yuca
 export const get_filtercmd = (arfilterconf, search) => {
   if(!search) return {}
   const cmd =  search.replace(">","").trim()
-  
-  const arfieldlabels = get_fields(arfilterconf)  
-  const arlblval = get_cmdkeyval(cmd)
-  pr(arfieldlabels,"arfieldlabels")
-  pr(arlblval,"arlblval")
-  const x = get_mergedbylabel(arfieldlabels, arlblval)
-  pr(x,"x");return {}
 
-  const arvalues = []
+
+  const arfieldlabels = get_fields(arfilterconf)
+  //pr(arfieldlabels,"arfieldlabels"); return {}
+    
+  const arlblval = get_cmdkeyval(cmd)
+  //pr(arlblval,"arlblval"); return {}
+  const labels = get_labels(arlblval)
+  //pr(labels,"labels"); return {}
+  const arfields = get_fields_by_labels(arfieldlabels,labels).map(ar => ar[0])
+  //pr(arfields,"arfields"); return {}
+
+  const arvalues = arfieldlabels.filter(obj => arfields.includes(obj.name)).map( obj => ({name:obj.name, value: get_value_by_labels(arlblval, obj.labels)}))
+
   const objfilter = {
-    op: "OR",
+    op: "AND",
     fields: arvalues.filter(obj => obj.value !== "").map(obj => ({field:obj.name, value:obj.value})),
   }   
   return objfilter
