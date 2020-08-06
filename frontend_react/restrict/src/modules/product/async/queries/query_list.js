@@ -83,7 +83,6 @@ export const filterconf = [
   {}
 ]
 
-
 export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
 
   const objselect = helpapify.select
@@ -114,7 +113,7 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
     query.where.forEach(cond => objselect.where.push(cond))
   } 
 
-  objselect.limit.perpage = query.perpage
+  objselect.limit.perpage = CONFIG.PERPAGE
   objselect.limit.regfrom = 0
   if(!is_empty(objparam.page)){
     //pr(objparam.page,"page")
