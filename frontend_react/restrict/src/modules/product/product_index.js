@@ -29,10 +29,7 @@ function ProductIndex() {
   const [foundrows, set_foundrows] = useState(0)
 
 
-
   async function async_load_products(){
-    //if(!txtsearch)
-    //pr(db.select("products.search"))
     const r = await async_get_list(page, txtsearch)
     const ipages = grid.perpage>0 ? Math.ceil(r.foundrows / grid.perpage) : 0
     //pr(ipages,"ipages")
@@ -48,6 +45,10 @@ function ProductIndex() {
     const islogged = await async_islogged()
     if(islogged){
       HrefDom.document_title("Admin | Products")
+      const search = db.select(grid.CACHE_TAG)
+      alert(search)
+      if(!txtsearch && search)
+        set_txtsearch(search)      
       await async_load_products()
     }
     else{
