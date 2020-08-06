@@ -1,14 +1,12 @@
 import axios from "axios"
 import db from "helpers/localdb"
-import {URL_API_UPLOAD} from "config/constants"
+import {UPLOAD_BASEURL} from "config/constants"
 
-// https://github.com/eacevedof/prj_svelte/blob/master/tools/src/components/Tools.svelte
-const APIFY_BASEURL = process.env.REACT_APP_BASEURLAPI
 
 const Apiupload = {
   
   async_post: async (inputfile) => {
-    const url = URL_API_UPLOAD
+    const url = `${UPLOAD_BASEURL}/upload`
     const uploadtoken = db.select("token_upload")
     
     if(!inputfile || inputfile.name==="") return {file_1:""}
