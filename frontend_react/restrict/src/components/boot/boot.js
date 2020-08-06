@@ -1,11 +1,11 @@
 import React, {useContext, useEffect} from 'react';
-import {GlobalContext} from '../context/global_context';
+import {GlobalContext} from 'components/context/global_context';
 
-import db from "../../helpers/localdb"
-import {async_gettoken, async_islogged} from '../../modules/login/login_index'
+import db from "helpers/localdb"
+import {async_gettoken, async_islogged} from "modules/login/login_index"
 
-import {routes as dashroutes} from '../../modules/dashboard/routes';
-import {routes as prodroutes} from "../../modules/product/routes"
+import {routes as dashroutes} from 'modules/dashboard/routes';
+import {routes as prodroutes} from "modules/product/routes"
 
 import E404 from "../errors/404/e404"
 
