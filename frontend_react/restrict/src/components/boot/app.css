@@ -5,3 +5,7 @@
 .spanhover:hover{
   background-color: white;
 }
+
+.debug {
+  border:1px solid red!important;
+}

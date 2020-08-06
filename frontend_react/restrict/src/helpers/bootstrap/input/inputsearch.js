@@ -62,11 +62,11 @@ function InputSearch({fnsettext, foundrows}){
           regs: {foundrows}
         </div>
       </div>
-      <div className="col-1">
-        <button className="btn btn-primary" onClick={reset}><i className="fa fa-eraser" aria-hidden="true"></i></button>
-      </div>      
-      <div className="col-3">
+      <div className="col-2 col-md-1 col-lg-1">
         <SubmitAsync innertext="Search" type="primary" issubmitting={issubmitting} />
+      </div>      
+      <div className="col-1">
+        <button type="button" className="btn btn-secondary" onClick={reset}><i className="fa fa-eraser" aria-hidden="true"></i></button>
       </div>
     </form>
   )
