@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
 
-//import db from "helpers/localdb" 
+import db from "helpers/localdb" 
 import { pr } from 'helpers/functions';
 //import {ProductContext} from 'modules/product/product_context';
 import HrefDom from "helpers/href_dom"
@@ -27,6 +27,8 @@ function ProductIndex() {
   const history = useHistory()
   const [result, set_result] = useState([])
   const [foundrows, set_foundrows] = useState(0)
+
+
 
   async function async_load_products(){
     //if(!txtsearch)
@@ -67,7 +69,7 @@ function ProductIndex() {
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
         
-        <InputSearch fnsettext={set_txtsearch} foundrows={foundrows} />
+        <InputSearch cachetag={grid.CACHE_TAG} fnsettext={set_txtsearch} foundrows={foundrows} />
 
         <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
