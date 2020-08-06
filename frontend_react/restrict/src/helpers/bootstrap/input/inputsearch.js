@@ -5,7 +5,7 @@ import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import { pr } from 'helpers/functions';
 
 
-function InputSearch({cachetag, text, fnsettext, foundrows}){
+function InputSearch({cachekey, fnsettext, foundrows}){
   
   const [issubmitting, set_issubmitting] = useState(false)
   const [formdata, set_formdata] = useState({search:""})
@@ -14,14 +14,14 @@ function InputSearch({cachetag, text, fnsettext, foundrows}){
   const updateform = evt =>{
     const elem = evt.target
     set_formdata({search:elem.value})
-    console.log("updateform.formdata",formdata)
+    console.log("inputsearch.updateform.formdata",formdata)
   }
 
   const reset = evt => {
     set_formdata({search:""})
     fnsettext("")
     refsearch.current.focus()
-    db.save(cachetag, "")
+    db.save(cachekey, "")
   }
 
   const on_submit = async evt => {
@@ -31,13 +31,14 @@ function InputSearch({cachetag, text, fnsettext, foundrows}){
     set_issubmitting(true)
     fnsettext(formdata.search)
     refsearch.current.focus()
-    db.save(cachetag, formdata.search)
+    db.save(cachekey, formdata.search)
     set_issubmitting(false)
     
   }// on_submit
 
-  useEffect(()=>{
-    const search = db.select(cachetag)
+  useEffect(() => {
+    console.log("inputsearch.on_load")
+    const search = db.select(cachekey)
     //if(search){
       //console.log("inputsearch.useeffect search cache:",search)
       //set_formdata({search})

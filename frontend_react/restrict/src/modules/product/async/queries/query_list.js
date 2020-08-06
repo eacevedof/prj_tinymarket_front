@@ -35,7 +35,7 @@ const query = {
 }
 
 export const grid = {
-  CACHE_TAG: "products.search",
+  CACHE_KEY: "products.search",
   perpage: query.perpage,
 
   headers:[

@@ -1,16 +1,14 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {useParams} from "react-router-dom"
+import {useParams, useHistory} from "react-router-dom"
 
-import db from "helpers/localdb" 
 import { pr } from 'helpers/functions';
-//import {ProductContext} from 'modules/product/product_context';
+import db from "helpers/localdb" 
 import HrefDom from "helpers/href_dom"
 
 import {async_islogged} from 'modules/login/login_index'
-import {async_get_list} from "./async/async_requests"
+import {async_get_list} from "modules/product/async/async_requests"
 
-import {grid} from "./async/queries/query_list"
-import { useHistory } from 'react-router-dom';
+import {grid} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
@@ -46,9 +44,8 @@ function ProductIndex() {
     if(islogged){
       HrefDom.document_title("Admin | Products")
       
-      const search = db.select(grid.CACHE_TAG)
+      const search = db.select(grid.CACHE_KEY)
       if(!txtsearch && search){
-        //alert(search)
         set_txtsearch(search)
         return
       }
@@ -74,7 +71,7 @@ function ProductIndex() {
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
         
-        <InputSearch cachetag={grid.CACHE_TAG} text={txtsearch} fnsettext={set_txtsearch} foundrows={foundrows} />
+        <InputSearch cachekey={grid.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
         <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
