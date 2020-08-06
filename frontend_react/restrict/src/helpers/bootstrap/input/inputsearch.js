@@ -1,28 +1,17 @@
 import React, {useEffect, useState, useRef} from 'react';
 
+import db from "helpers/localdb" 
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
+import { pr } from 'helpers/functions';
 
-function InputSearch({text, fnsettext, foundrows}){
 
+function InputSearch({fnsettext, foundrows}){
+
+  const CACHE_TAG = "products.search"
+  
   const [issubmitting, set_issubmitting] = useState(false)
-  const [error, set_error] = useState("")
-  const [success, set_success] = useState("")
+  const [formdata, set_formdata] = useState({search:""})
   const refsearch = useRef(null)
-
-  const formdefault = {
-    search: ""
-  }
-
-  const [formdata, set_formdata] = useState({...formdefault})
-
-  const get_id = elem => {
-    const idpref = elem.id || ""
-    const parts = idpref.split("-")
-    //console.log("parts",parts)
-    if(parts.length>1) return parts[1]
-    //console.log("elem.idpref",idpref)
-    return idpref
-  }
 
   const updateform = evt =>{
     const elem = evt.target
@@ -30,29 +19,32 @@ function InputSearch({text, fnsettext, foundrows}){
     console.log("updateform.formdata",formdata)
   }
 
-  const on_submit = async (evt)=>{
-    console.log("product.insert.on_submit.formdata:",formdata)
+  const reset = evt => {
+    set_formdata({search:""})
+    fnsettext("")
+    refsearch.current.focus()
+    db.save(CACHE_TAG, "")
+  }
+
+  const on_submit = async evt => {
+    console.log("inputsearch.on_submit.formdata:",formdata)
     evt.preventDefault()
 
     set_issubmitting(true)
-    set_error("")
-    set_success("")
-
-    try {
-      fnsettext(formdata.search)
-      refsearch.current.focus()
-    } 
-    catch (error) {
-      //console.log("error:",error.toString())
-      set_error(error.toString())
-    } 
-    finally {
-      set_issubmitting(false)
-    }
+    fnsettext(formdata.search)
+    refsearch.current.focus()
+    db.save(CACHE_TAG, formdata.search)
+    set_issubmitting(false)
     
   }// on_submit
 
   useEffect(()=>{
+    const search = db.select(CACHE_TAG)
+    if(search){
+      set_formdata({search})
+      fnsettext(search)
+    }
+      
     return ()=> console.log("inputsearch unmounting")
   },[])  
 
@@ -70,7 +62,10 @@ function InputSearch({text, fnsettext, foundrows}){
           regs: {foundrows}
         </div>
       </div>
-      <div className="col-4">
+      <div className="col-1">
+        <button className="btn btn-primary" onClick={reset}><i className="fa fa-eraser" aria-hidden="true"></i></button>
+      </div>      
+      <div className="col-3">
         <SubmitAsync innertext="Search" type="primary" issubmitting={issubmitting} />
       </div>
     </form>

@@ -27,7 +27,7 @@ const get_value_by_labels = (arlblval, arlabels) => arlblval.filter(obj => arlab
 
 export const is_command = search => {
   if(!search) return false;
-  //if(!(typeof search === 'string' || search instanceof String)) return false;
+  if(!(typeof search === 'string' || search instanceof String)) return false;
   const str = search.trim()
   if(!str) return false;
   return (str.charAt(0)===CMD_TAG && str.includes(KEYVAL_SEPARATOR) && str.length>4)
