@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom"
 
 //import db from "helpers/localdb" 
 import { pr } from 'helpers/functions';
-import {ProductContext} from 'modules/product/product_context';
+//import {ProductContext} from 'modules/product/product_context';
 import HrefDom from "helpers/href_dom"
 
 import {async_islogged} from 'modules/login/login_index'
@@ -22,7 +22,7 @@ import Footer from "components/common/footer"
 function ProductIndex() {
 
   const {page} = useParams()
-  const {txtsearch, set_txtsearch} = useContext(ProductContext)
+  const [txtsearch, set_txtsearch] = useState("")
   
   const history = useHistory()
   const [result, set_result] = useState([])

@@ -41,6 +41,7 @@ function InputSearch({fnsettext, foundrows}){
   useEffect(()=>{
     const search = db.select(CACHE_TAG)
     if(search){
+      console.log("inputsearch.useeffect search cache:",search)
       set_formdata({search})
       fnsettext(search)
     }
