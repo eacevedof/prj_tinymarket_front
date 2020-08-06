@@ -1,6 +1,13 @@
 import helpapify from "helpers/apify"
 import {is_empty, pr} from "helpers/functions"
 
+export const CONFIG = {
+  CACHE_KEY: "products.search",
+  PERPAGE: 25,
+  GRIDKEY: "id",
+  URL_PAGINATION: "",
+}
+
 //necesito exportarla para poder filtrar
 const query = {
   perpage: 25,

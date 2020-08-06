@@ -8,7 +8,7 @@ import HrefDom from "helpers/href_dom"
 import {async_islogged} from 'modules/login/login_index'
 import {async_get_list} from "modules/product/async/async_requests"
 
-import {grid} from "modules/product/async/queries/query_list"
+import {grid, CONFIG} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
@@ -29,9 +29,9 @@ function ProductIndex() {
 
   async function async_load_products(){
     const r = await async_get_list(page, txtsearch)
-    const ipages = grid.perpage>0 ? Math.ceil(r.foundrows / grid.perpage) : 0
-    //pr(ipages,"ipages")
-    if(page>ipages) history.push(`/admin/products/1`)
+    const ipages = CONFIG.PERPAGE>0 ? Math.ceil(r.foundrows / CONFIG.PERPAGE) : 0
+
+    if(page>ipages) history.push(CONFIG.URL_PAGINATION.replace("%page%",1))
 
     set_result(r.result)
     set_foundrows(r.foundrows)
@@ -44,7 +44,7 @@ function ProductIndex() {
     if(islogged){
       HrefDom.document_title("Admin | Products")
       
-      const search = db.select(grid.CACHE_KEY)
+      const search = db.select(CONFIG.CACHE_KEY)
       if(!txtsearch && search){
         set_txtsearch(search)
         return
@@ -71,11 +71,11 @@ function ProductIndex() {
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
         
-        <InputSearch cachekey={grid.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
+        <InputSearch cachekey={CONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
-        <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
+        <PaginationSimple objconf={{page, foundrows, ippage:CONFIG.PERPAGE, url:CONFIG.URL_PAGINATION}} />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />
-        <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
+        <PaginationSimple objconf={{page, foundrows, ippage:CONFIG.PERPAGE, url:CONFIG.URL_PAGINATION}} />
       </main>
       <Footer />
     </>
