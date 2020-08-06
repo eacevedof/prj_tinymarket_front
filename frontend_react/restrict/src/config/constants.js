@@ -2,7 +2,7 @@ export const APP_ENV = process.env.NODE_ENV
 export const APP_VERSION = process.env.REACT_APP_ENV_APPVERSION
 
 //habría que probar process.env.<VARIABLE_KEY>
-alert(JSON.stringify(process.env))
+//alert(JSON.stringify(process.env))
 /**/
 //necesita: token_dbsapify
 export const APIFY_BASEURL = process.env.REACT_APP_ENV_APIFY_BASEURL
