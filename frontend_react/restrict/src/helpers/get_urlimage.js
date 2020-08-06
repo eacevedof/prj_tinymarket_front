@@ -1,4 +1,4 @@
-const APIFY_BASEURL = process.env.REACT_APP_BASEURLAPI
+const APIFY_BASEURL = process.env.ENV_APIFY_BASEURL
 
 export default function get_urlimage(prodimg){
   const defimage = APIFY_BASEURL+"/pictures/products/product_0.png"

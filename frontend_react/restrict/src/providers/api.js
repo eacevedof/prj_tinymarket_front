@@ -1,6 +1,6 @@
 import axios from "axios"
 //import get_localip from "../../helpers/get_localip"
-const APIFY_BASEURL = process.env.REACT_APP_BASEURLAPI
+const APIFY_BASEURL = process.env.ENV_APIFY_BASEURL
 
 
 const Api = {
