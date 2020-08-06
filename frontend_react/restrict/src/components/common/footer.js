@@ -10,8 +10,7 @@ function footer() {
           <p className="text-center">
             © {new Date().getFullYear()} 
             &nbsp;&nbsp;Admin pannel
-            <sub>&nbsp;&nbsp; {APP_VERSION}</sub>
-            <sub>&nbsp;&nbsp; {APP_ENV}</sub>
+            <small>&nbsp;&nbsp; {APP_VERSION}&nbsp;&nbsp; {APP_ENV}</small>
           </p>
         </nav>
       </div>
