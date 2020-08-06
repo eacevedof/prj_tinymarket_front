@@ -1,13 +1,13 @@
 import axios from "axios"
 //import get_localip from "../../helpers/get_localip"
-const BASE_URL = process.env.REACT_APP_BASEURLAPI
+const APIFY_BASEURL = process.env.REACT_APP_BASEURLAPI
 
 
 const Api = {
   //localip: get_localip(),
 
   get_async_products: async (search="") => {
-    const url = `${BASE_URL}/api/v1/products?page=1&perpage=100&s=${search}`
+    const url = `${APIFY_BASEURL}/api/v1/products?page=1&perpage=100&s=${search}`
     
     try {
       console.log("api.get_async_products...",url)
@@ -24,7 +24,7 @@ const Api = {
   },
 
   get_async_chekcemail: async (email) => {
-    const url = `${BASE_URL}/api/v1/user/email`
+    const url = `${APIFY_BASEURL}/api/v1/user/email`
     
     try {
       const data = new FormData()
@@ -51,7 +51,7 @@ const Api = {
   },
 
   send_async_order: async (formdata) => {
-    const url = `${BASE_URL}/api/v1/order/purchase`
+    const url = `${APIFY_BASEURL}/api/v1/order/purchase`
     
     try {
       console.log("api.send_async_order...",url)

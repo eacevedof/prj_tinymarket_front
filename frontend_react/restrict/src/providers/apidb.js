@@ -1,4 +1,4 @@
-import {BASE_URL,CONTEXT,DB_NAME} from "../config/constants"
+import {APIFY_BASEURL,CONTEXT,DB_NAME} from "../config/constants"
 import axios from "axios"
 import db from "helpers/localdb"
 import {pr, is_undefined, get_error} from "../helpers/functions"
@@ -7,7 +7,7 @@ const Apidb = {
   
   async_get_fields: async (table) =>{
     const apifytoken = db.select("token_dbsapify")
-    const url = `${BASE_URL}/apify/fields/${CONTEXT}/${DB_NAME}/${table}`
+    const url = `${APIFY_BASEURL}/apify/fields/${CONTEXT}/${DB_NAME}/${table}`
 
     try{
       const objform = new FormData()
@@ -28,7 +28,7 @@ const Apidb = {
 
   async_get_list: async objselect => {
     const apifytoken = db.select("token_dbsapify")
-    const url = `${BASE_URL}/apify/read?context=${CONTEXT}&schemainfo=${DB_NAME}`
+    const url = `${APIFY_BASEURL}/apify/read?context=${CONTEXT}&schemainfo=${DB_NAME}`
 
     //hay que enviar header: apify-auth: token
     try {
@@ -55,7 +55,7 @@ const Apidb = {
 
   async_insert: async (objinsert) => {
     const apifytoken = db.select("token_dbsapify")
-    const url = `${BASE_URL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
+    const url = `${APIFY_BASEURL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
 
     try {
       const objform = objinsert.get_query()
@@ -80,7 +80,7 @@ const Apidb = {
 
   async_update: async (objupdate) => {
     const apifytoken = db.select("token_dbsapify")
-    const url = `${BASE_URL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
+    const url = `${APIFY_BASEURL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
     //hay que enviar header: apify-auth: token
     try {
  
@@ -107,7 +107,7 @@ const Apidb = {
   async_delete: async(objdelete) => {
 
     const apifytoken = db.select("token_dbsapify")
-    const url = `${BASE_URL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
+    const url = `${APIFY_BASEURL}/apify/write?context=${CONTEXT}&schemainfo=${DB_NAME}`
 
     try {
       const objform = objdelete.get_query()

@@ -3,7 +3,7 @@ import db from "helpers/localdb"
 import {URL_API_UPLOAD} from "config/constants"
 
 // https://github.com/eacevedof/prj_svelte/blob/master/tools/src/components/Tools.svelte
-const BASE_URL = process.env.REACT_APP_BASEURLAPI
+const APIFY_BASEURL = process.env.REACT_APP_BASEURLAPI
 
 const Apiupload = {
   

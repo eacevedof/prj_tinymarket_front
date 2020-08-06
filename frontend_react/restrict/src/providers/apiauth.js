@@ -1,4 +1,4 @@
-import {BASE_URL} from "../config/constants"
+import {APIFY_BASEURL} from "../config/constants"
 import axios from "axios"
 import {is_undefined, pr, get_error} from "../helpers/functions"
 import db from "../helpers/localdb"
@@ -7,7 +7,7 @@ const Apiauth = {
 
   async_get_apifytoken: async (objlogin)=>{
 
-    const url = `${BASE_URL}/apifiy/security/login`
+    const url = `${APIFY_BASEURL}/apifiy/security/login`
     
     try {
       const data = new FormData()
@@ -34,7 +34,7 @@ const Apiauth = {
   async_is_validtoken: async () => {
     const apifytoken = db.select("token_dbsapify")
     //pr(apifytoken,"async_is_valid_token recuperado de db");
-    const url = `${BASE_URL}/apifiy/security/is-valid-token`
+    const url = `${APIFY_BASEURL}/apifiy/security/is-valid-token`
     try {
       const data = new FormData()
       //data.append("apify-origindomain","*")
