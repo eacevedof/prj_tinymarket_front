@@ -5,12 +5,11 @@ export const CONFIG = {
   CACHE_KEY: "products.search",
   PERPAGE: 25,
   GRIDKEY: "id",
-  URL_PAGINATION: "",
+  URL_PAGINATION: "/admin/products/%page%",
 }
 
 //necesito exportarla para poder filtrar
 const query = {
-  perpage: 25,
 
   table: "app_product",
   alias: "t",
@@ -42,9 +41,6 @@ const query = {
 }
 
 export const grid = {
-  CACHE_KEY: "products.search",
-  perpage: query.perpage,
-
   headers:[
     {
       text: 'nº',
