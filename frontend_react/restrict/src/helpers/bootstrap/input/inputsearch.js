@@ -8,7 +8,7 @@ import { pr } from 'helpers/functions';
 function InputSearch({cachetag, text, fnsettext, foundrows}){
   
   const [issubmitting, set_issubmitting] = useState(false)
-  const [formdata, set_formdata] = useState({search:text})
+  const [formdata, set_formdata] = useState({search:""})
   const refsearch = useRef(null)
 
   const updateform = evt =>{
@@ -37,12 +37,14 @@ function InputSearch({cachetag, text, fnsettext, foundrows}){
   }// on_submit
 
   useEffect(()=>{
-    //const search = db.select(cachetag)
+    const search = db.select(cachetag)
     //if(search){
       //console.log("inputsearch.useeffect search cache:",search)
       //set_formdata({search})
       //fnsettext(search)
     //}
+    //pr(text)
+    set_formdata({search})
       
     return ()=> console.log("inputsearch unmounting")
   },[])  

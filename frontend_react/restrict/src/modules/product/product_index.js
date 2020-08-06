@@ -45,14 +45,14 @@ function ProductIndex() {
     const islogged = await async_islogged()
     if(islogged){
       HrefDom.document_title("Admin | Products")
-      const search = db.select(grid.CACHE_TAG)
       
+      const search = db.select(grid.CACHE_TAG)
       if(!txtsearch && search){
-        alert(search)
+        //alert(search)
         set_txtsearch(search)
         return
       }
-        
+      
       await async_load_products()
     }
     else{
