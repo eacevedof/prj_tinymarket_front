@@ -46,9 +46,13 @@ function ProductIndex() {
     if(islogged){
       HrefDom.document_title("Admin | Products")
       const search = db.select(grid.CACHE_TAG)
-      alert(search)
-      if(!txtsearch && search)
-        set_txtsearch(search)      
+      
+      if(!txtsearch && search){
+        alert(search)
+        set_txtsearch(search)
+        return
+      }
+        
       await async_load_products()
     }
     else{
@@ -70,7 +74,7 @@ function ProductIndex() {
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb arbreads={[]}/>
         
-        <InputSearch cachetag={grid.CACHE_TAG} fnsettext={set_txtsearch} foundrows={foundrows} />
+        <InputSearch cachetag={grid.CACHE_TAG} text={txtsearch} fnsettext={set_txtsearch} foundrows={foundrows} />
 
         <PaginationSimple objconf={{page, foundrows, ippage:grid.perpage, url:"/admin/products/%page%"}} />
         <TableAction arhead={grid.headers} ardata={result} objconf={null} />

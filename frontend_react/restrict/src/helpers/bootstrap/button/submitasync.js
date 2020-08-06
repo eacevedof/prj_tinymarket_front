@@ -2,7 +2,7 @@ import React from 'react';
 
 //type: primary, secondary, success, danger, warning, info, light, dark
 function SubmitAsync({innertext, type, issubmitting}) {
-  console.log("submit","innertext:",innertext,"type:", type,"issubmitting:", issubmitting)
+  //console.log("submit","innertext:",innertext,"type:", type,"issubmitting:", issubmitting)
 
   if(!type) type="success"
 

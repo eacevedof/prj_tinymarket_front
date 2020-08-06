@@ -5,10 +5,10 @@ import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import { pr } from 'helpers/functions';
 
 
-function InputSearch({cachetag, fnsettext, foundrows}){
+function InputSearch({cachetag, text, fnsettext, foundrows}){
   
   const [issubmitting, set_issubmitting] = useState(false)
-  const [formdata, set_formdata] = useState({search:""})
+  const [formdata, set_formdata] = useState({search:text})
   const refsearch = useRef(null)
 
   const updateform = evt =>{
