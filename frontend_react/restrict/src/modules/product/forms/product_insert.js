@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-
+import {MODCONFIG} from "modules/product/config/config"
 import {pr, is_empty, is_defined} from "helpers/functions"
 import {async_insert} from "../async/async_requests"
 
@@ -110,14 +110,14 @@ function ProductInsert() {
     async_onload()
     return ()=> console.log("product.insert.unmounting")
   },[])
-
+  
   return (
     <>
       <Navbar />
       <main className="container">
         
         <h1 className="mt-2 mb-2">Product insert</h1>
-        <Breadscrumb arbreads={[]}/>
+        <Breadscrumb urls={MODCONFIG.SCRUMBS.GENERIC}/>
 
         <form className="row g-3" onSubmit={on_submit}>
           {success!==""? <AlertSimple message={success} type="success" />: null}

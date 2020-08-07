@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
-
+import {MODCONFIG} from "modules/product/config/config"
 import {pr, is_empty, is_string} from "helpers/functions"
 import {async_get_by_id, async_update} from "../async/async_requests"
 
@@ -156,7 +156,7 @@ function ProductUpdate(){
       <main className="container">
         
         <h1 className="mt-2 mb-2">Product update</h1>
-        <Breadscrumb arbreads={[]}/>
+        <Breadscrumb urls={MODCONFIG.SCRUMBS.GENERIC}/>
 
         <form className="row g-3" onSubmit={on_submit}>
           

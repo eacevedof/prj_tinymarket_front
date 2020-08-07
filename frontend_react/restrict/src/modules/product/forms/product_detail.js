@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {MODCONFIG} from "modules/product/config/config"
 import {pr} from "helpers/functions"
 
 import {useParams} from "react-router-dom"
@@ -97,7 +98,7 @@ function ProductDetail(){
       <main className="container">
         
         <h1 className="mt-2 mb-2">Product Info</h1>
-        <Breadscrumb arbreads={[]}/>
+        <Breadscrumb urls={MODCONFIG.SCRUMBS.GENERIC}/>
         <div>
           {error!==""? <AlertSimple message={error} type="danger" />: null}
           {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}

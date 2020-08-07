@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
-
+import {MODCONFIG} from "modules/product/config/config"
 import {pr, is_empty} from "helpers/functions"
 import {async_get_by_id, async_deletelogic} from "../async/async_requests"
 
@@ -147,7 +147,7 @@ function ProductDeleteLogic(){
       <main className="container">
         
         <h1 className="mt-2 mb-2">Product delete log.</h1>
-        <Breadscrumb arbreads={[]}/>
+        <Breadscrumb urls={MODCONFIG.SCRUMBS.GENERIC}/>
 
         <form className="row g-3" onSubmit={on_submit}>
           {success!==""? <AlertSimple message={success} type="success" />: null}
