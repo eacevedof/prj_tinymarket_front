@@ -29,11 +29,14 @@ function ProductIndex() {
 
 
   async function async_load_products(){
-    const r = await async_get_list(page, txtsearch)
+    //alert(page)
+    const r = await async_get_list(page, txtsearch)    
+    //pr(r.foundrows)
+    //pr(r.result)
     const ipages = get_pages(r.foundrows, VIEWCONFIG.PERPAGE)
-
+    //alert(page)
     if(page>ipages) history.push(VIEWCONFIG.URL_PAGINATION.replace("%page%",1))
-
+    
     set_result(r.result)
     set_foundrows(r.foundrows)
   }

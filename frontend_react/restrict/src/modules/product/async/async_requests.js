@@ -1,4 +1,4 @@
-import { pr, is_defined } from "helpers/functions"
+import { pr, is_defined, get_pagefrom } from "helpers/functions"
 
 import apidb from "providers/apidb"
 import apiup from "providers/apiupload"
@@ -6,7 +6,7 @@ import apiup from "providers/apiupload"
 import get_filterand, {get_filteror} from "helpers/filter"
 import {get_filtercmd, is_command} from "helpers/filtercmd"
 
-import {get_obj_list, filterconf, grid} from "./queries/query_list"
+import {get_obj_list, filterconf, VIEWCONFIG} from "./queries/query_list"
 import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
 import {get_obj_update} from "./queries/query_update"
@@ -16,8 +16,9 @@ import {get_obj_deletelogic} from "./queries/query_deletelogic"
 
 export const async_get_list = async (page, search="") => {
 
-  const ippage = grid.perpage
-  const ifrom = ((page<1 ? 1:page) - 1) * ippage
+  const ippage = VIEWCONFIG.PERPAGE
+  const ifrom = get_pagefrom(page, ippage)
+  //const ifrom = ((page<1 ? 1:page) - 1) * ippage
   //const ipages = ippage>0 ? Math.ceil(foundrows / ippage) : 0
 
   //const objfilter = get_filterand(filterconf)//filtros por GET

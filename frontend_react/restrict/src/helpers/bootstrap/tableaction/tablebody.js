@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import Tdaction from "./tdaction"
+import Tdaction from "helpers/bootstrap/tableaction/tdaction"
 
 function TableBody({arhead, ardata, objconf}) {
 

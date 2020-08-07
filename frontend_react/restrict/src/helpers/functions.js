@@ -50,4 +50,6 @@ export const get_urlvalue = (strkey, url) => {
   
 }
 
-export const get_pages = (itotal, iperpage) => iperpage>0 ? Math.ceil(itotal / iperpage) : 0
+export const get_pages = (itotal, iperpage) => iperpage>0 ? Math.ceil(parseInt(itotal) / iperpage) : 0
+
+export const get_pagefrom = (ipage, iperpage) => ((ipage<1 ? 1 : ipage) - 1) * iperpage
