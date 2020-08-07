@@ -90,46 +90,45 @@ function PaginationSimple({objconf}){
   },[objconf.page, objconf.foundrows])
 
 
-  const get_li_button = (url, text) => (
-    <li key={get_uuid()} className="page-item" >
+  const get_li_simple = (url, text) => (
+    <li key={get_uuid()} className="page-item">
       <NavLink className="page-link" exact to={url}>{text}</NavLink>
     </li>
   )
 
-  const get_dotted_button = () => (<li key={get_uuid()}><span className="page-link spanhover">...</span></li>)
+  const get_li_active = (url, text) => (
+    <li key={get_uuid()} className="page-item active">
+      <NavLink className="page-link" exact to={url}>{text}</NavLink>
+    </li>
+  )
+
+  const get_li_dotted = () => (<li key={get_uuid()}><span className="page-link spanhover">...</span></li>)
   
+  const get_li_arrow = (type, page) => (
+    <li key={get_uuid()} className="page-item">
+      <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage)}>{type==="l" ? "\u00AB" : "\u00BB"}</NavLink>
+    </li>
+  )
+
   return (
     <nav className="d-flex justify-content-center">
       <ul className="pagination">
         {
-          objconf.page >1 ? (
-            <li key={get_uuid()} className="page-item">
-              <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage-1)}>&laquo;</NavLink>
-            </li>
-          ):null
+          objconf.page >1 ? get_li_arrow("l", ipage-1) : null
         }
 
         {
-          urls.map((objurl) => (
+          urls.map(objurl => 
             objurl.text==objconf.page ?
-              (
-                <li key={get_uuid()} className="page-item active" ref={refli}>
-                  <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                </li> 
-              )
-              : //si no es la página actual
-              hops.includes(objurl.text) ? get_dotted_button() :get_li_button(objurl.url, objurl.text)
-          ))
+              get_li_active(objurl.url, objurl.text)
+            : //si no es la página actual
+              hops.includes(objurl.text) ? get_li_dotted() :get_li_simple(objurl.url, objurl.text)
+          )
         }
         
         {
-          objconf.page < npages ? (
-            <li key={get_uuid("n")} className="page-item">
-              <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage+1)}>&raquo;</NavLink>
-            </li>
-          ):null
+          objconf.page < npages ? get_li_arrow("r", ipage+1) : null
         }
-
       </ul>
     </nav>
   )
