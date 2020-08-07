@@ -49,3 +49,5 @@ export const get_urlvalue = (strkey, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
   
 }
+
+export const get_pages = (itotal, iperpage) => iperpage>0 ? Math.ceil(itotal / iperpage) : 0

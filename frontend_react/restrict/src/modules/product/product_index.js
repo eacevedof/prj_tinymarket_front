@@ -1,14 +1,15 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useParams, useHistory} from "react-router-dom"
+import {MODCONFIG} from "modules/product/config/config"
 
-import { pr } from 'helpers/functions';
+import { pr, get_pages } from 'helpers/functions';
 import db from "helpers/localdb" 
 import HrefDom from "helpers/href_dom"
 
 import {async_islogged} from 'modules/login/login_index'
 import {async_get_list} from "modules/product/async/async_requests"
 
-import {grid, CONFIG, get_pages} from "modules/product/async/queries/query_list"
+import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
@@ -29,9 +30,9 @@ function ProductIndex() {
 
   async function async_load_products(){
     const r = await async_get_list(page, txtsearch)
-    const ipages = get_pages(r.foundrows)
+    const ipages = get_pages(r.foundrows, VIEWCONFIG.PERPAGE)
 
-    if(page>ipages) history.push(CONFIG.URL_PAGINATION.replace("%page%",1))
+    if(page>ipages) history.push(VIEWCONFIG.URL_PAGINATION.replace("%page%",1))
 
     set_result(r.result)
     set_foundrows(r.foundrows)
@@ -41,20 +42,20 @@ function ProductIndex() {
     //pr(txtsearch)
     console.log("product.index.async_onload")
     const islogged = await async_islogged()
-    if(islogged){
-      HrefDom.document_title("Admin | Products")
-      
-      const search = db.select(CONFIG.CACHE_KEY)
-      if(!txtsearch && search){
-        set_txtsearch(search)
-        return
-      }
-      
-      await async_load_products()
-    }
-    else{
+    
+    if(!islogged){
       history.push("/admin")
+      return
     }
+
+    HrefDom.document_title("Admin | Products")    
+    const search = db.select(VIEWCONFIG.CACHE_KEY)
+    if(!txtsearch && search){
+      set_txtsearch(search)
+      return
+    }
+    
+    await async_load_products()
   }
 
   useEffect(()=>{
@@ -69,13 +70,13 @@ function ProductIndex() {
       <Navbar />
       <main className="container">
         <h1 className="mt-2 mb-2">Products</h1>
-        <Breadscrumb urls={CONFIG.SCRUMBS}/>
+        <Breadscrumb urls={MODCONFIG.SCRUMBS.GENERIC}/>
         
-        <InputSearch cachekey={CONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
+        <InputSearch cachekey={VIEWCONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
-        <PaginationSimple objconf={{page, foundrows, ippage:CONFIG.PERPAGE, url:CONFIG.URL_PAGINATION}} />
-        <TableAction arhead={grid.headers} ardata={result} objconf={CONFIG} />
-        <PaginationSimple objconf={{page, foundrows, ippage:CONFIG.PERPAGE, url:CONFIG.URL_PAGINATION}} />
+        <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
+        <TableAction arhead={grid.headers} ardata={result} objconf={VIEWCONFIG} />
+        <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
       </main>
       <Footer />
     </>

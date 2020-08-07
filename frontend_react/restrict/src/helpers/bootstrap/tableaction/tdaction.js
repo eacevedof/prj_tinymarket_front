@@ -25,7 +25,7 @@ function Tdaction({objrow, objconf}) {
 
   const get_li = (objaction, action)=> 
     objaction[action]!="" ? (  
-      <li>
+      <li key={shortid.generate()}>
         <NavLink className="dropdown-item" exact to={objaction[action]}> 
           <span><i className="fa fa-info-circle"></i>&nbsp;{get_ucased(action)}</span>
         </NavLink>

@@ -1,14 +1,8 @@
 import helpapify from "helpers/apify"
 import {is_empty, pr} from "helpers/functions"
 
-export const CONFIG = {
-  
-  SCRUMBS:[
-    {url:"/admin",text:"Dashboard"},
-    {url:"/admin/products/1",text:"Products"},
-    {url:"/admin/product/insert",text:"New product"},
-  ],  
-  
+export const VIEWCONFIG = {
+ 
   CACHE_KEY: "products.search",
   
   PERPAGE: 25,
@@ -27,9 +21,7 @@ export const CONFIG = {
 
 }
 
-export const get_pages = foundrows => CONFIG.PERPAGE>0 ? Math.ceil(foundrows / CONFIG.PERPAGE) : 0
-
-//necesito exportarla para poder filtrar
+//consulta
 const query = {
 
   table: "app_product",
@@ -61,6 +53,7 @@ const query = {
   ],
 }
 
+//configuración ui grid
 export const grid = {
   headers:[
     {
@@ -84,7 +77,7 @@ export const grid = {
   ]
 }
 
-//necesito exportar para poder filtrar
+//configuración filtros
 export const filterconf = [
   {
     //tabla principal
@@ -104,6 +97,7 @@ export const filterconf = [
   {}
 ]
 
+//fabfica de query
 export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
 
   const objselect = helpapify.select
@@ -134,7 +128,7 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
     query.where.forEach(cond => objselect.where.push(cond))
   } 
 
-  objselect.limit.perpage = CONFIG.PERPAGE
+  objselect.limit.perpage = VIEWCONFIG.PERPAGE
   objselect.limit.regfrom = 0
   if(!is_empty(objparam.page)){
     //pr(objparam.page,"page")
@@ -146,4 +140,4 @@ export const get_obj_list = (objparam={filters:{}, page:{}, orderby:{}})=>{
   //pr(objselect,"get_obj_list.objselect")
   return objselect
 
-}//get_list
+}//get_obj_list

@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import shortid from "shortid"
 
 //import {GlobalContext} from '../../context/global_context';
 function Breadscrumb({urls}) {
 
   const get_li = objli => (
-    <li className="breadcrumb-item">
+    <li key={shortid.generate()} className="breadcrumb-item">
       <NavLink exact to={objli.url}>
         {objli.text}
       </NavLink>       
