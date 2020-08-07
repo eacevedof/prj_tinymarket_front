@@ -69,7 +69,7 @@ function ProductIndex() {
       <Navbar />
       <main className="container">
         <h1 className="mt-2 mb-2">Products</h1>
-        <Breadscrumb arbreads={[]}/>
+        <Breadscrumb urls={CONFIG.SCRUMBS}/>
         
         <InputSearch cachekey={CONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 

@@ -2,10 +2,21 @@ import helpapify from "helpers/apify"
 import {is_empty, pr} from "helpers/functions"
 
 export const CONFIG = {
+  
+  SCRUMBS:[
+    {url:"/admin",text:"Dashboard"},
+    {url:"/admin/products/1",text:"Products"},
+    {url:"/admin/product/insert",text:"New product"},
+  ],  
+  
   CACHE_KEY: "products.search",
+  
   PERPAGE: 25,
+  
   KEYFIELD: "id",
+  
   URL_PAGINATION: "/admin/products/%page%",
+  
   ACTIONS: {
     detail: `/admin/product/%key%`,
     update: `/admin/product/update/%key%`,
@@ -13,6 +24,7 @@ export const CONFIG = {
     deletelogic: `/admin/product/delete-logic/%key%`,
     clone: `/admin/product/clone/%key%`,    
   },
+
 }
 
 export const get_pages = foundrows => CONFIG.PERPAGE>0 ? Math.ceil(foundrows / CONFIG.PERPAGE) : 0
