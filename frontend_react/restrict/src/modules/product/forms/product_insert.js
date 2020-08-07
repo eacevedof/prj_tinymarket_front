@@ -215,11 +215,12 @@ function ProductInsert() {
               <input type="file" className="form-control" id="file-url_image" 
                 onChange={updateform}
               />
+              <small>max: {maxsize}</small>
               {
                 !is_empty(formdata.url_image) && is_defined(formdata.url_image.name) ?
                 (<ul>
-                  <li>{formdata.url_image.name}</li>
-                  <li>{formdata.url_image.type}</li>
+                  <li><small>filename: {formdata.url_image.name}</small></li>
+                  <li><small>size: {formdata.url_image.size}</small></li>
                 </ul>)
                 :null
               }

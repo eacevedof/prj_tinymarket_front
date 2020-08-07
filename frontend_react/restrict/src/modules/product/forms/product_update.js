@@ -257,6 +257,15 @@ function ProductUpdate(){
                 ref={reffile}
                 onChange={updateform}
               />
+              <small>max: {maxsize}</small>
+              {
+                !is_empty(inputfile) && is_defined(inputfile.name) ?
+                (<ul>
+                  <li><small>filename: {inputfile.name}</small></li>
+                  <li><small>size: {inputfile.size}</small></li>
+                </ul>)
+                :null
+              }
             </div>
           </div>
           <div className="col-12">
