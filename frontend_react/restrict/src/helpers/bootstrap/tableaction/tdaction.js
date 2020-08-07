@@ -8,16 +8,32 @@ function Tdaction({objrow, objconf}) {
   const ddid = `dd-${id}`
   const chkid = `chk-${id}`
 
-  const keyname = (objconf!=null && typeof(objconf.key)!="undefined") ? objconf.key : "id"
+  const keyname = (objconf!=null && typeof(objconf.KEYFIELD)!="undefined") ? objconf.KEYFIELD : "id"
   const keyval = objrow[keyname]
 
-  const objurl = {
-    detail: `/admin/product/${keyval}`,
-    update: `/admin/product/update/${keyval}`,
-    delete: `/admin/product/delete/${keyval}`,
-    deletelogic: `/admin/product/delete-logic/${keyval}`,
-    clone: `/admin/product/clone/${keyval}`,
+  const get_replaced = (string,key) => !string ? "" : string.replace("%key%",key)
+
+  const objaction = {
+    detail: get_replaced(objconf.ACTIONS.detail, keyval),
+    update: get_replaced(objconf.ACTIONS.update, keyval),
+    delete: get_replaced(objconf.ACTIONS.delete, keyval),
+    deletelogic: get_replaced(objconf.ACTIONS.deletelogic, keyval),
+    clone: get_replaced(objconf.ACTIONS.clone, keyval),
   }
+
+  const get_ucased = string => string.charAt(0).toUpperCase() + string.slice(1);
+
+  const get_li = (objaction, action)=> 
+    objaction[action]!="" ? (  
+      <li>
+        <NavLink className="dropdown-item" exact to={objaction[action]}> 
+          <span><i className="fa fa-info-circle"></i>&nbsp;{get_ucased(action)}</span>
+        </NavLink>
+      </li>
+    ): null
+  
+
+  const get_lis = objaction => Object.keys(objaction).map(action => get_li(objaction, action))
 
   return (
     <>
@@ -33,31 +49,7 @@ function Tdaction({objrow, objconf}) {
             <span><i className="fa fa-bars"></i></span>
           </button>
           <ul className="dropdown-menu" aria-labelledby={ddid}>
-            <li>
-              <NavLink className="dropdown-item" exact to={objurl.detail}> 
-                <span><i className="fa fa-info-circle"></i>&nbsp;Detail</span>
-              </NavLink>
-            </li>            
-            <li>
-              <NavLink className="dropdown-item" exact to={objurl.update}> 
-                <span><i className="fa fa-pencil"></i>&nbsp;Update</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="dropdown-item" exact to={objurl.delete}> 
-                <span><i className="fa fa-trash"></i>&nbsp;Delete</span>
-              </NavLink>  
-            </li>
-            <li>
-              <NavLink className="dropdown-item" exact to={objurl.deletelogic}> 
-                <span><i className="fa fa-trash"></i>&nbsp;Delete L</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="dropdown-item" exact to={objurl.clone}> 
-                <span><i className="fa fa-files-o"></i>&nbsp;Clone</span>
-              </NavLink>
-            </li>
+            {get_lis(objaction)}
           </ul>
         </div>  
       </td>

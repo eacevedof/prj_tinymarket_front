@@ -8,7 +8,7 @@ import HrefDom from "helpers/href_dom"
 import {async_islogged} from 'modules/login/login_index'
 import {async_get_list} from "modules/product/async/async_requests"
 
-import {grid, CONFIG} from "modules/product/async/queries/query_list"
+import {grid, CONFIG, get_pages} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
@@ -29,7 +29,7 @@ function ProductIndex() {
 
   async function async_load_products(){
     const r = await async_get_list(page, txtsearch)
-    const ipages = CONFIG.PERPAGE>0 ? Math.ceil(r.foundrows / CONFIG.PERPAGE) : 0
+    const ipages = get_pages(r.foundrows)
 
     if(page>ipages) history.push(CONFIG.URL_PAGINATION.replace("%page%",1))
 
@@ -74,7 +74,7 @@ function ProductIndex() {
         <InputSearch cachekey={CONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
         <PaginationSimple objconf={{page, foundrows, ippage:CONFIG.PERPAGE, url:CONFIG.URL_PAGINATION}} />
-        <TableAction arhead={grid.headers} ardata={result} objconf={null} />
+        <TableAction arhead={grid.headers} ardata={result} objconf={CONFIG} />
         <PaginationSimple objconf={{page, foundrows, ippage:CONFIG.PERPAGE, url:CONFIG.URL_PAGINATION}} />
       </main>
       <Footer />

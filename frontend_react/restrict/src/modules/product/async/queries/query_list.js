@@ -4,9 +4,18 @@ import {is_empty, pr} from "helpers/functions"
 export const CONFIG = {
   CACHE_KEY: "products.search",
   PERPAGE: 25,
-  GRIDKEY: "id",
+  KEYFIELD: "id",
   URL_PAGINATION: "/admin/products/%page%",
+  ACTIONS: {
+    detail: `/admin/product/%key%`,
+    update: `/admin/product/update/%key%`,
+    delete: `/admin/product/delete/%key%`,
+    deletelogic: `/admin/product/delete-logic/%key%`,
+    clone: `/admin/product/clone/%key%`,    
+  },
 }
+
+export const get_pages = foundrows => CONFIG.PERPAGE>0 ? Math.ceil(foundrows / CONFIG.PERPAGE) : 0
 
 //necesito exportarla para poder filtrar
 const query = {
