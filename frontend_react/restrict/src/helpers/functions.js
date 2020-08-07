@@ -1,3 +1,5 @@
+import shortid from "shortid"
+
 export const is_undefined = mxvar => (typeof mxvar === "undefined")
 
 export const is_defined = mxvar => (typeof mxvar !== "undefined")
@@ -53,3 +55,12 @@ export const get_urlvalue = (strkey, url) => {
 export const get_pages = (itotal, iperpage) => iperpage>0 ? Math.ceil(parseInt(itotal) / iperpage) : 0
 
 export const get_pagefrom = (ipage, iperpage) => ((ipage<1 ? 1 : ipage) - 1) * iperpage
+
+export const get_uuid = () => shortid.generate()
+
+export const get_uuid2 = ()=>{
+  const strchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+  const char = (strchars.split(""))[Math.floor(Math.random()*(strchars.length-1))]
+  const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString())
+  return rnd
+}

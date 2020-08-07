@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { NavLink } from "react-router-dom";
 import { pr } from 'helpers/functions';
-import { uniqueId } from 'lodash';
+import shortid from "shortid"
 
 
 function PaginationSimple({objconf}){
@@ -17,16 +17,8 @@ function PaginationSimple({objconf}){
   const [urls, set_urls] = useState([])
   const [hops, set_hops] = useState([])
 
-  const get_uuid = (d)=>{
-    const strchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    const unique = uniqueId()
-    //const char = Math.random().toString(36).substring(7);
-    const char = (strchars.split(""))[Math.floor(Math.random()*(strchars.length-1))]
-    const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString().concat(unique))
-    //console.log("d",d,"char",char,"unique:",unique,"rnd:",rnd)
-    return rnd
-  }
-
+  const get_uuid = () => shortid.generate()
+  
   const get_buttons = (ipage,ipages) => {
 
     if(ipages==0) return []
@@ -98,14 +90,7 @@ function PaginationSimple({objconf}){
   },[objconf.page, objconf.foundrows])
 
   const get_dotted_button = (url,text) => {
-    //alert(uniqueId())
-    /* solo con esto no da error *
-    return (
-      <li key={get_uuid(text)} className="page-item" >
-        <NavLink className="page-link" exact to={url}>{text}</NavLink>
-      </li>
-    )
-    */
+
     return (
       <>
       <li key={get_uuid(text)} className="page-item" >
