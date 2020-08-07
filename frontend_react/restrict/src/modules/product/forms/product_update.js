@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useParams} from "react-router-dom"
 import {MODCONFIG} from "modules/product/config/config"
-import {pr, is_empty, is_string} from "helpers/functions"
-import {async_get_by_id, async_update} from "../async/async_requests"
+import {pr, is_defined, is_empty, is_string} from "helpers/functions"
+import {async_get_by_id, async_update, async_get_maxuploadsize} from "../async/async_requests"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
@@ -20,6 +20,7 @@ function ProductUpdate(){
   const reffile = useRef(null)
 
   const [issubmitting, set_issubmitting] = useState(false)
+  const [maxsize, set_maxsize] = useState(0)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
   const [inputfile,set_inputfile] = useState(null)
@@ -86,7 +87,14 @@ function ProductUpdate(){
     console.log("updateform.formdata",formdata)
   }
 
-  const before_submit = () => {}
+  const before_submit = () => {
+    //pr(formdata.url_image.size);pr(maxsize)
+    if(is_defined(inputfile.size)){
+      if(inputfile.size > maxsize)
+        //throw new Error(`File is larger than allowed. File:${inputfile.size}, allowed:${maxsize}`)
+        throw `File ${inputfile.name} is larger than allowed. File size: ${inputfile.size}, Max allowed: ${maxsize}`
+    }
+  }
 
   const async_refresh = async () => {
     await async_onload()
@@ -99,11 +107,12 @@ function ProductUpdate(){
     set_issubmitting(true)
     set_error("")
     set_success("")
-    //hacer insert y enviar fichero
-    before_submit()
     
     try{
-      console.log("on_submit.inputfile",inputfile)
+      console.log("product.update.on_submit.inputfile",inputfile)
+      //hacer insert y enviar fichero
+      before_submit()
+
       let url_image = formdata.url_image
       if(inputfile){
         //pr(inputfile)
@@ -134,6 +143,9 @@ function ProductUpdate(){
 
   const async_onload = async () => {
     set_issubmitting(true)
+    const size = await async_get_maxuploadsize()
+    set_maxsize(size)
+
     const r = await async_get_by_id(id)
     console.log("product.update.onload.r",r)
     const temp = {...formdata, ...r}
