@@ -89,48 +89,36 @@ function PaginationSimple({objconf}){
     return ()=> console.log("paginationsimple unmounting")
   },[objconf.page, objconf.foundrows])
 
-  const get_dotted_button = (url,text) => {
 
-    return (
-      <>
-      <li key={get_uuid(text)} className="page-item" >
-        <NavLink className="page-link" exact to={url}>{text}</NavLink>
-      </li>
-      <li key={get_uuid(text)}><span className="page-link spanhover">...</span></li>
-      </>      
-    )
-  }
+  const get_li_button = (url, text) => (
+    <li key={get_uuid()} className="page-item" >
+      <NavLink className="page-link" exact to={url}>{text}</NavLink>
+    </li>
+  )
+
+  const get_dotted_button = () => (<li key={get_uuid()}><span className="page-link spanhover">...</span></li>)
   
   return (
     <nav className="d-flex justify-content-center">
       <ul className="pagination">
         {
           objconf.page >1 ? (
-            <li key={get_uuid("p")} className="page-item">
+            <li key={get_uuid()} className="page-item">
               <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage-1)}>&laquo;</NavLink>
             </li>
           ):null
         }
 
         {
-          urls.map((objurl, i) => (
+          urls.map((objurl) => (
             objurl.text==objconf.page ?
               (
-                <li key={get_uuid(objurl.text)} className="page-item active" ref={refli}>
+                <li key={get_uuid()} className="page-item active" ref={refli}>
                   <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
                 </li> 
               )
               : //si no es la página actual
-              (
-                hops.includes(objurl.text) ? 
-                  get_dotted_button(objurl.url, objurl.text)
-                :
-                (
-                  <li key={get_uuid(objurl.text)} className="page-item">
-                    <NavLink className="page-link" exact to={objurl.url}>{objurl.text}</NavLink>
-                  </li>
-                )
-              )
+              hops.includes(objurl.text) ? get_dotted_button() :get_li_button(objurl.url, objurl.text)
           ))
         }
         
