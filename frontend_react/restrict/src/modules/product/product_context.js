@@ -1,16 +1,14 @@
+//product_context.js
 import React, {createContext, useState} from 'react';
-//import objorder from "../../models/order"
-import _ from "lodash"
-
 export const ProductContext = createContext();
 
 const ProductProvider = (props) => {
-  const [txtsearch, set_txtsearch] = useState("")
+  const [someglobal, set_someglobal] = useState("")
   
   return (
     <ProductContext.Provider
       value={{
-        txtsearch, set_txtsearch
+        someglobal, set_someglobal
       }}
     >
       {props.children}
