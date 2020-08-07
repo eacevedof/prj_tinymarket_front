@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {MODCONFIG} from "modules/product/config/config"
 import {pr, is_empty, is_defined} from "helpers/functions"
-import {async_insert} from "../async/async_requests"
+import {async_insert, async_get_maxuploadsize} from "modules/product/async/async_requests"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
@@ -18,6 +18,7 @@ function ProductInsert() {
   ]
 
   const [issubmitting, set_issubmitting] = useState(false)
+  const [maxsize, set_maxsize] = useState(0)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
   const refcode = useRef(null)
@@ -67,7 +68,14 @@ function ProductInsert() {
     //console.log("updateform.formdata",formdata,"formdata.url_image",formdata.url_image)
   }
 
-  const before_submit = () => {}
+  const before_submit = () => {
+    //pr(formdata.url_image.size);pr(maxsize)
+    if(is_defined(formdata.url_image.size)){
+      if(formdata.url_image.size > maxsize)
+        //throw new Error(`File is larger than allowed. File:${formdata.url_image.size}, allowed:${maxsize}`)
+        throw `File ${formdata.url_image.name} is larger than allowed. File size: ${formdata.url_image.size}, Max allowed: ${maxsize}`
+    }
+  }
 
   const on_submit = async (evt)=>{
     console.log("product.insert.on_submit.formdata:",formdata)
@@ -77,9 +85,10 @@ function ProductInsert() {
     set_error("")
     set_success("")
 
-    //hacer insert y enviar fichero
-    before_submit()
     try {
+      //hacer insert y enviar fichero
+      before_submit()
+
       const r = await async_insert(formdata)
       console.log("product.insert.on_submit.r",r)
       if(r.error){
@@ -102,6 +111,9 @@ function ProductInsert() {
   }// on_submit
 
   const async_onload = async () => {
+    
+    const size = await async_get_maxuploadsize()
+    set_maxsize(size)
     refcode.current.focus()
   }
 

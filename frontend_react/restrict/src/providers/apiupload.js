@@ -32,7 +32,29 @@ const Apiupload = {
         error: "Error uploading file. "+e
       }      
     }
-  },  
+  },
+
+  async_get_maxsize: async () => {
+    const url = `${UPLOAD_BASEURL}/get-max-upload-size`
+    const uploadtoken = db.select("token_upload")
+
+    if(!uploadtoken) throw "Upload token not found!"
+    
+    try {
+      const data = new FormData()
+      data.append("resource-usertoken",uploadtoken)
+      const response = await axios.post(url, data)
+      console.log("apiupload.async_get_maxsize.response.data.data.maxuploadsize:",response.data.data.maxuploadsize)
+      const size = response.data.data.maxuploadsize
+      return size
+    } 
+    catch (e) {
+      console.error("ERROR: apiupload.async_get_maxsize.url:",url,"e:",e)
+      return {
+        error: "Error getting upload size. "+e
+      }      
+    }
+  },   
 
 }
 

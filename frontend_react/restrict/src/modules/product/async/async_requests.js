@@ -132,3 +132,8 @@ export const async_deletelogic = async (formdata)=>{
   const r = await apidb.async_update(objquery)
   return r
 }
+
+export const async_get_maxuploadsize = async () => {
+  const r = await apiup.async_get_maxsize()
+  return r
+}
