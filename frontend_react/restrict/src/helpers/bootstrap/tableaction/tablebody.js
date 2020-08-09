@@ -17,7 +17,6 @@ function TableBody({arhead, ardata, objconf}) {
     return true
   }
 
-
   const is_singleaction = is_singleactions(objconf)
   const is_multiaction = is_singleactions(objconf)
 
