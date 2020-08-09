@@ -26,6 +26,8 @@ function ProductIndex() {
   const history = useHistory()
   const [result, set_result] = useState([])
   const [foundrows, set_foundrows] = useState(0)
+  const [multiaction, set_multiaction] = useState("")
+  const [multiselect, set_multiselect] = useState([])
 
 
   async function async_load_products(){
@@ -78,7 +80,7 @@ function ProductIndex() {
         <InputSearch cachekey={VIEWCONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
-        <TableAction arhead={grid.headers} ardata={result} objconf={VIEWCONFIG} />
+        <TableAction arhead={grid.headers} ardata={result} objconf={VIEWCONFIG} fnmultiselect={set_multiselect} fnmultiaction={set_multiaction} />
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
       </main>
       <Footer />

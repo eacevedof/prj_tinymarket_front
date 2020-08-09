@@ -86,7 +86,6 @@ function ProductInsert() {
     set_success("")
 
     try {
-      //hacer insert y enviar fichero
       before_submit()
 
       const r = await async_insert(formdata)

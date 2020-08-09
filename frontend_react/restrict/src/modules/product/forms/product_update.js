@@ -149,7 +149,6 @@ function ProductUpdate(){
     const r = await async_get_by_id(id)
     console.log("product.update.onload.r",r)
     const temp = {...formdata, ...r}
-    //console.log("product.onload.formdata:")
     set_formdata(temp)
 
     console.log("product.update.onload.formdata:",formdata)

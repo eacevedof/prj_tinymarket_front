@@ -19,6 +19,11 @@ export const VIEWCONFIG = {
     clone: `/admin/product/clone/%key%`,    
   },
 
+  MULTIACTIONS: {
+    delete: "Delete",
+    deletelogic: "Delete L",
+  }
+
 }
 
 //consulta
