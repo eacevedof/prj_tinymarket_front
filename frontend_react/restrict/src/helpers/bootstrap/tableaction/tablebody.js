@@ -4,7 +4,7 @@ import Tdaction from "helpers/bootstrap/tableaction/tdaction"
 import Tdmultiaction from "helpers/bootstrap/tableaction/tdmultiaction"
 import { get_uuid, is_defined } from 'helpers/functions';
 
-function TableBody({arhead, ardata, objconf}) {
+function TableBody({arhead, ardata, objconf, multiconf}) {
 
   useEffect(()=>{
     return ()=> console.log("tablebody unmounting")
@@ -17,8 +17,15 @@ function TableBody({arhead, ardata, objconf}) {
     return true
   }
 
+  const is_multiactions = multiconf => {
+    if(!is_defined(multiconf.ACTIONS)) return false
+    const actions = Object.keys(multiconf.ACTIONS)
+    if(actions.length === 0) return false
+    return true
+  }  
+
   const is_singleaction = is_singleactions(objconf)
-  const is_multiaction = is_singleactions(objconf)
+  const is_multiaction = is_multiactions(multiconf)
 
   const fieldshead = arhead.map(objh => objh.value)
 
