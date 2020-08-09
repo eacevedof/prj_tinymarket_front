@@ -12,7 +12,7 @@ function TableHead({arhead,objconf, multiconf}) {
     if(!is_defined(objconf.ACTIONS)) return false
     const actions = Object.keys(objconf.ACTIONS)
     if(actions.length === 0) return false
-    return true    
+    return true
   }
 
   const is_multiaction = multiconf => {
@@ -22,7 +22,7 @@ function TableHead({arhead,objconf, multiconf}) {
     return true
   }
 
-
+  //boton multiaction
   const get_th_multiaction = multiconf => is_multiaction(multiconf) ? (
     <tr>
       <th colSpan="2">
@@ -40,18 +40,15 @@ function TableHead({arhead,objconf, multiconf}) {
   ) : null  
 
   const get_th_checkall = ()=> (
-    <>
     <th>
       <div className="form-check">
         <input className="form-check-input" type="checkbox" id="chk-all" />
         <label className="form-check-label" htmlFor="chk-all"></label>
       </div>
-    </th>
-    <th>
-      Action
-    </th>
-    </>    
+    </th>    
   )
+
+  const get_th_action = () => <th>Action</th>
 
   const get_tds = ar => ar.map( (objth,i) => <th key={i} scope="col">{objth.text}</th>) // get_tds
 
@@ -61,8 +58,8 @@ function TableHead({arhead,objconf, multiconf}) {
       
       <tr>
         { is_multiaction(multiconf) ? get_th_checkall() :null }
-
-        {get_tds(arhead)}
+        { is_singleactions(objconf) ? get_th_action() : null }
+        { get_tds(arhead) }
       </tr>
     </thead>
   )
