@@ -74,10 +74,19 @@ function PaginationSimple({objconf}){
 
     //si hay boton con puntos [...]
     let hops = []
+    //si el segundo no es igual al primero + 1
     if(buttons[1] !== (buttons[0]+1)) hops.push(1)
-    if(buttons[buttons.length-1] !== (buttons[buttons.length-2]+1)) hops.push(buttons[buttons.length-2])
+    //si el ultimo no es igual al penultimo + 1
+    if(buttons[buttons.length-1] !== (buttons[buttons.length-2]+1)) hops.push(buttons.length-1)
   
-    //pr(hops,"hops")
+    if(hops.length===1) arurls.splice(hops[0],0,{url:"...",text:".0."})
+    else if(hops.length===2) {
+      arurls.splice(hops[0],0,{url:"...",text:".1."})
+      arurls.splice(hops[1]+1,0,{url:"...",text:".2."})
+    }
+
+    //console.log("hops",hops)
+    //pr(arurls,"arurls")
     set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
@@ -120,7 +129,7 @@ function PaginationSimple({objconf}){
             objurl.text==objconf.page ?
               get_li_active(objurl.url, objurl.text)
             : //si no es la página actual
-              hops.includes(objurl.text) ? get_li_dotted() : get_li_simple(objurl.url, objurl.text)
+              objurl.url==="..." ? get_li_dotted() : get_li_simple(objurl.url, objurl.text)
           )
         }
         
