@@ -21,7 +21,7 @@ export const VIEWCONFIG = {
 
   MULTIACTIONS: {
     delete: "Delete",
-    deletelogic: "Delete L",
+    deletelogic: "Delete l",
   }
 
 }

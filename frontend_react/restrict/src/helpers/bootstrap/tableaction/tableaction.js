@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import TableHead from "./tablehead"
 import TableBody from "./tablebody"
 
-function TableAction({arhead, ardata, objconf, fnmultiselect, fnmultiaction}) {
+function TableAction({arhead, ardata, objconf, multiconf}) {
+
+
 
   useEffect(()=>{
     return ()=> console.log("tableaction unmounting")
@@ -10,8 +12,8 @@ function TableAction({arhead, ardata, objconf, fnmultiselect, fnmultiaction}) {
 
   return (
     <table className="table">
-      <TableHead arhead={arhead} objconf={objconf} />
-      <TableBody arhead={arhead} ardata={ardata} objconf={objconf} />
+      <TableHead arhead={arhead} objconf={objconf} multiconf={multiconf} />
+      <TableBody arhead={arhead} ardata={ardata} objconf={objconf} multiconf={multiconf} />
     </table>
   )
 }

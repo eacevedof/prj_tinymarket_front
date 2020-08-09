@@ -80,7 +80,14 @@ function ProductIndex() {
         <InputSearch cachekey={VIEWCONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
-        <TableAction arhead={grid.headers} ardata={result} objconf={VIEWCONFIG} fnmultiselect={set_multiselect} fnmultiaction={set_multiaction} />
+        
+        <TableAction 
+          arhead={grid.headers} 
+          ardata={result} 
+          objconf={VIEWCONFIG}
+          multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, action:"", selection:[] }} 
+        />
+
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
       </main>
       <Footer />
