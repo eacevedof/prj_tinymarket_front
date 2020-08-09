@@ -12,6 +12,7 @@ export const VIEWCONFIG = {
   URL_PAGINATION: "/admin/products/%page%",
   
   ACTIONS: {
+    //hay que aplicar texto e iconos
     detail: `/admin/product/%key%`,
     update: `/admin/product/update/%key%`,
     delete: `/admin/product/delete/%key%`,

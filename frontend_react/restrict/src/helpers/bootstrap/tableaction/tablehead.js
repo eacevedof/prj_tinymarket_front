@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import { is_defined, get_uuid } from 'helpers/functions';
+import { is_defined, get_uuid, pr } from 'helpers/functions';
 
 
-function TableHead({arhead,objconf, multiconf}) {
+function TableHead({arhead, objconf, multiconf}) {
 
   useEffect(()=>{
     return ()=> console.log("tablehead unmounting")
@@ -20,6 +20,10 @@ function TableHead({arhead,objconf, multiconf}) {
     const actions = Object.keys(multiconf.ACTIONS)
     if(actions.length === 0) return false
     return true
+  }
+
+  const on_check = (evt) => {
+    alert(evt.target.checked)
   }
 
   //boton multiaction
@@ -42,7 +46,7 @@ function TableHead({arhead,objconf, multiconf}) {
   const get_th_checkall = ()=> (
     <th>
       <div className="form-check">
-        <input className="form-check-input" type="checkbox" id="chk-all" />
+        <input className="form-check-input" type="checkbox" id="chk-all" onChange={on_check} />
         <label className="form-check-label" htmlFor="chk-all"></label>
       </div>
     </th>    
