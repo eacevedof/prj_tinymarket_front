@@ -13,11 +13,11 @@ export const VIEWCONFIG = {
   
   ACTIONS: {
     //hay que aplicar texto e iconos
-    detail: `/admin/product/%key%`,
-    update: `/admin/product/update/%key%`,
-    delete: `/admin/product/delete/%key%`,
-    deletelogic: `/admin/product/delete-logic/%key%`,
-    clone: `/admin/product/clone/%key%`,    
+    detail: {url:"/admin/product/%key%", icon:"fa fa-info-circle", text:"Detail"},
+    update: {url:"/admin/product/update/%key%", icon:"a fa-pencil", text:"Update"},
+    delete: {url:"/admin/product/delete/%key%", icon:"fa fa-trash", text:"Delete"},
+    deletelogic: {url:"/admin/product/delete-logic/%key%", icon:"fa fa-trash", text:"Delete L"},
+    clone: {url:"/admin/product/clone/%key%", icon:"fa fa-files-o", text:"Clone"}, 
   },
 
   MULTIACTIONS: {
