@@ -104,7 +104,7 @@ function PaginationSimple({objconf}){
 
   const get_li_dotted = () => (<li key={get_uuid()}><span className="page-link spanhover">...</span></li>)
   
-  const get_li_arrow = (type, page) => (
+  const get_li_arrow = (type, ipage) => (
     <li key={get_uuid()} className="page-item">
       <NavLink className="page-link" exact to={urlpattern.replace("%page%",ipage)}>{type==="l" ? "\u00AB" : "\u00BB"}</NavLink>
     </li>
@@ -113,22 +113,18 @@ function PaginationSimple({objconf}){
   return (
     <nav className="d-flex justify-content-center">
       <ul className="pagination">
-        {
-          objconf.page >1 ? get_li_arrow("l", ipage-1) : null
-        }
+        { objconf.page >1 ? get_li_arrow("l", ipage-1) : null }
 
         {
           urls.map(objurl => 
             objurl.text==objconf.page ?
               get_li_active(objurl.url, objurl.text)
             : //si no es la página actual
-              hops.includes(objurl.text) ? get_li_dotted() :get_li_simple(objurl.url, objurl.text)
+              hops.includes(objurl.text) ? get_li_dotted() : get_li_simple(objurl.url, objurl.text)
           )
         }
         
-        {
-          objconf.page < npages ? get_li_arrow("r", ipage+1) : null
-        }
+        { objconf.page < npages ? get_li_arrow("r", ipage+1) : null }
       </ul>
     </nav>
   )
