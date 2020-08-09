@@ -11,25 +11,20 @@ function Tdaction({objrow, objconf}) {
 
   const get_replaced = (string, key) => !string ? "" : string.replace("%key%",key)
 
-  const objaction = {
-    detail: get_replaced(objconf.ACTIONS.detail.url, keyval),
-    update: get_replaced(objconf.ACTIONS.update.url, keyval),
-    delete: get_replaced(objconf.ACTIONS.delete.url, keyval),
-    deletelogic: get_replaced(objconf.ACTIONS.deletelogic.url, keyval),
-    clone: get_replaced(objconf.ACTIONS.clone.url, keyval),
-  }
 
-  const get_li = (objaction, action)=> 
-    //null
-    objaction[action]!="" ? (  
+
+  const get_li = (actions, action)=> {
+    const objaction = actions[action]
+    return objaction.url !="" ? (  
       <li key={get_uuid()}>
-        <NavLink className="dropdown-item" exact to={objaction[action]}> 
-          <span><i className="fa fa-info-circle"></i>&nbsp;{objaction[action]}</span>
+        <NavLink className="dropdown-item" exact to={get_replaced(objaction.url, keyval)}> 
+          <span><i className={objaction.icon}></i>&nbsp;{objaction.text}</span>
         </NavLink>
       </li>
     ): null
-  
-  const get_lis = objaction => Object.keys(objaction).map(action => get_li(objaction, action))
+  }
+
+  const get_lis = () => Object.keys(objconf.ACTIONS).map(action => get_li(objconf.ACTIONS, action))
 
   return (
     <td>
@@ -38,7 +33,7 @@ function Tdaction({objrow, objconf}) {
           <span><i className="fa fa-bars"></i></span>
         </button>
         <ul className="dropdown-menu" aria-labelledby={ddid}>
-          {get_lis(objaction)}
+          {get_lis()}
         </ul>
       </div>  
     </td>
