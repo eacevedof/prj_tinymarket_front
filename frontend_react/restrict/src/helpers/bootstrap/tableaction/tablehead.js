@@ -1,8 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
+import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
 import { is_defined, get_uuid, pr } from 'helpers/functions';
 
 
 function TableHead({arhead, objconf, multiconf}) {
+
+  const {ismultiaction, set_ismultiaction} = useContext(TableContext)
 
   useEffect(()=>{
     return ()=> console.log("tablehead unmounting")
@@ -22,8 +25,9 @@ function TableHead({arhead, objconf, multiconf}) {
     return true
   }
 
-  const on_check = (evt) => {
-    alert(evt.target.checked)
+  const on_multicheck = evt => {
+    //alert(evt.target.checked)
+    set_ismultiaction(evt.target.checked)
   }
 
   //boton multiaction
@@ -46,7 +50,7 @@ function TableHead({arhead, objconf, multiconf}) {
   const get_th_checkall = ()=> (
     <th>
       <div className="form-check">
-        <input className="form-check-input" type="checkbox" id="chk-all" onChange={on_check} />
+        <input className="form-check-input" type="checkbox" id="chk-all" onChange={on_multicheck} />
         <label className="form-check-label" htmlFor="chk-all"></label>
       </div>
     </th>    

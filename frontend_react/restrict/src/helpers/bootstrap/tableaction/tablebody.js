@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 
+import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
 import Tdaction from "helpers/bootstrap/tableaction/tdaction"
 import Tdmultiaction from "helpers/bootstrap/tableaction/tdmultiaction"
 import { get_uuid, is_defined } from 'helpers/functions';
 
 function TableBody({arhead, ardata, objconf, multiconf}) {
+
+  const {ismultiaction, set_ismultiaction} = useContext(TableContext)
 
   useEffect(()=>{
     return ()=> console.log("tablebody unmounting")
@@ -31,7 +34,7 @@ function TableBody({arhead, ardata, objconf, multiconf}) {
 
   const get_tds = objrow => {
     return fieldshead
-            .map( (strfield,i) => {
+            .map( strfield => {
               return <td key={get_uuid()}>{objrow[strfield]}</td>
             })
   }

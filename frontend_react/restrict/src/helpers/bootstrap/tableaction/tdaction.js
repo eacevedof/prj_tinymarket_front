@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+//import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
 import { NavLink } from "react-router-dom";
 import { get_uuid } from 'helpers/functions';
 
@@ -6,12 +7,12 @@ import { get_uuid } from 'helpers/functions';
 function Tdaction({objrow, objconf}) {
   const ddid = get_uuid()
   
+  //const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
+
   const keyname = (objconf!=null && typeof(objconf.KEYFIELD)!="undefined") ? objconf.KEYFIELD : "id"
   const keyval = objrow[keyname]
 
   const get_replaced = (string, key) => !string ? "" : string.replace("%key%",key)
-
-
 
   const get_li = (actions, action)=> {
     const objaction = actions[action]
