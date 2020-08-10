@@ -11,11 +11,8 @@ function PaginationSimple({objconf}){
   const foundrows = parseInt(objconf.foundrows)
   const ippage = parseInt(objconf.ippage)
 
-
-  const refli = useRef(null)
   const [npages, set_npages] = useState(0)
   const [urls, set_urls] = useState([])
-  const [hops, set_hops] = useState([])
 
   const get_uuid = () => shortid.generate()
   
@@ -24,7 +21,7 @@ function PaginationSimple({objconf}){
     if(ipages==0) return []
     if(ipages==1) return []
 
-    const ibuttons = 8
+    const ibuttons = 3
     const ihalf = Math.ceil(ibuttons/2)
 
     //botones por izq y derecha
@@ -73,7 +70,7 @@ function PaginationSimple({objconf}){
     const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:urlpattern.replace("%page%",ipage+1), text:ipage+1}))
 
     //si hay boton con puntos [...]
-    let hops = []
+    const hops = []
     //si el segundo no es igual al primero + 1
     if(buttons[1] !== (buttons[0]+1)) hops.push(1)
     //si el ultimo no es igual al penultimo + 1
@@ -87,7 +84,6 @@ function PaginationSimple({objconf}){
 
     //console.log("hops",hops)
     //pr(arurls,"arurls")
-    set_hops(hops)
     set_npages(ipages)
     set_urls(arurls)
     //console.log("paginationsimple.on_load:","ipage",ipage,"foundrows",foundrows,"hops",hops,"ipages",ipages,"arurls",arurls)
