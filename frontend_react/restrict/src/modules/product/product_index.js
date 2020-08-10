@@ -14,6 +14,7 @@ import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 import Navbar from "components/common/navbar"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
 import Spinnergrow from "helpers/bootstrap/spinner/spinnergrow"
+import TableProvider from "helpers/bootstrap/tableaction/tablecontext"
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
 import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
@@ -88,12 +89,14 @@ function ProductIndex() {
           issubmitting ?
             <Spinnergrow type="info" />
           :
+          <TableProvider>
             <TableAction 
               arhead={grid.headers} 
               ardata={result} 
               objconf={VIEWCONFIG}
               multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, action:"", selection:[] }} 
             />
+          </TableProvider>
         }
 
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
