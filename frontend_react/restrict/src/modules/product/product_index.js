@@ -13,6 +13,7 @@ import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
 import InputSearch from "helpers/bootstrap/input/inputsearch"
+import Spinnergrow from "helpers/bootstrap/spinner/spinnergrow"
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
 import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
@@ -21,6 +22,7 @@ import Footer from "components/common/footer"
 function ProductIndex() {
 
   const {page} = useParams()
+  const [issubmitting, set_issubmitting] = useState(false)
   const [txtsearch, set_txtsearch] = useState("")
   
   const history = useHistory()
@@ -31,7 +33,7 @@ function ProductIndex() {
 
 
   async function async_load_products(){
-    //alert(page)
+    set_issubmitting(true)
     const r = await async_get_list(page, txtsearch)    
     //pr(r.foundrows)
     //pr(r.result)
@@ -39,6 +41,7 @@ function ProductIndex() {
     //alert(page)
     if(page>ipages) history.push(VIEWCONFIG.URL_PAGINATION.replace("%page%",1))
     
+    set_issubmitting(false)
     set_result(r.result)
     set_foundrows(r.foundrows)
   }
@@ -81,12 +84,17 @@ function ProductIndex() {
 
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
         
-        <TableAction 
-          arhead={grid.headers} 
-          ardata={result} 
-          objconf={VIEWCONFIG}
-          multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, action:"", selection:[] }} 
-        />
+        {
+          issubmitting ?
+            <Spinnergrow type="info" />
+          :
+            <TableAction 
+              arhead={grid.headers} 
+              ardata={result} 
+              objconf={VIEWCONFIG}
+              multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, action:"", selection:[] }} 
+            />
+        }
 
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />
       </main>
