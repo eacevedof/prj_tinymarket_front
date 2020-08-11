@@ -7,11 +7,6 @@ function TableHead({arhead, objconf, multiconf}) {
 
   const {ismultiaction, set_ismultiaction} = useContext(TableContext)
 
-  useEffect(()=>{
-
-    return ()=> console.log("tablehead unmounting")
-  },[])
-
   const is_singleactions = objconf => {
     if(!is_defined(objconf.ACTIONS)) return false
     const actions = Object.keys(objconf.ACTIONS)
@@ -26,12 +21,15 @@ function TableHead({arhead, objconf, multiconf}) {
     return true
   }
 
-
-
   const on_multicheck = evt => {
     //alert(evt.target.checked)
     set_ismultiaction(evt.target.checked)
   }
+
+  useEffect(()=>{
+    console.log("tablehead mounting")
+    return ()=> console.log("tablehead unmounting")
+  },[])
 
   //boton multiaction
   const get_th_multiaction = multiconf => is_multiaction(multiconf) ? (

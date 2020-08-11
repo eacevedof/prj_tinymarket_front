@@ -10,7 +10,7 @@ function Tdmultiaction({objrow, objconf}) {
   const is_inmulti = ikey => multivalues.includes(ikey)
 
   const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
-  const [checked, set_checked] = useState(is_inmulti(ikey))
+  const [checked, set_checked] = useState(ismultiaction)
     
   
 
@@ -50,11 +50,14 @@ function Tdmultiaction({objrow, objconf}) {
     //remove_value(ikey)
   }  
 
+  /*
   useEffect(()=>{
-    set_checked(is_inmulti(ikey))
+    console.log("tdmultiaction mounting")
+    //set_checked(is_inmulti(ikey))
+    set_checked(true)
     return ()=> console.log("tdmultiaction unmounting")
   },[ismultiaction])
-
+*/
   /*
   useEffect(()=>{
     
