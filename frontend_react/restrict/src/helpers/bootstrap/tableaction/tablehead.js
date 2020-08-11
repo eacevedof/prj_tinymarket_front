@@ -5,7 +5,7 @@ import { is_defined, get_uuid, pr } from 'helpers/functions';
 
 function TableHead({arhead, objconf, multiconf}) {
 
-  const {ismultiaction, set_ismultiaction} = useContext(TableContext)
+  const {ismultiaction, set_ismultiaction, multivalues} = useContext(TableContext)
 
   const is_conf_singleactions = objconf => {
     if(!is_defined(objconf.ACTIONS)) return false
@@ -26,13 +26,14 @@ function TableHead({arhead, objconf, multiconf}) {
     set_ismultiaction(ischecked)
   }
 
+
   useEffect(()=>{
     console.log("tablehead mounting")
     return ()=> console.log("tablehead unmounting")
   },[ismultiaction])
 
   //boton multiaction
-  const get_th_multiaction = multiconf => is_conf_multiaction(multiconf) ? (
+  const get_th_multiaction = multiconf => is_conf_multiaction(multiconf) && multivalues.length > 0 ? (
     <tr>
       <th colSpan="2">
         <button type="button" className="btn btn-secondary dropdown-toggle"  id="grid-ulmultiaction" data-toggle="dropdown" aria-expanded="false">
