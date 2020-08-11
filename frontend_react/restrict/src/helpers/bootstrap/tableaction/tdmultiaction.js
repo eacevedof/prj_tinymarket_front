@@ -23,6 +23,7 @@ function Tdmultiaction({objrow, objconf}) {
     else{
       const nv = multivalues.filter(ival => ival != ikey)
       set_multivalues(nv)
+      set_ismultiaction(false)
     }
   }
   

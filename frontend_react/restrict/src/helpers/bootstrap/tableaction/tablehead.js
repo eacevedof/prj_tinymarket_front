@@ -26,11 +26,10 @@ function TableHead({arhead, objconf, multiconf}) {
     set_ismultiaction(ischecked)
   }
 
-
   useEffect(()=>{
     console.log("tablehead mounting")
     return ()=> console.log("tablehead unmounting")
-  },[ismultiaction])
+  },[multivalues])
 
   //boton multiaction
   const get_th_multiaction = multiconf => is_conf_multiaction(multiconf) && multivalues.length > 0 ? (
