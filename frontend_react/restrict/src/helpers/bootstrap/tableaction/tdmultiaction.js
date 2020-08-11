@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useCallback, useMemo} from 'react';
 import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
 import { get_uuid, pr } from 'helpers/functions';
 
@@ -7,10 +7,10 @@ function Tdmultiaction({objrow, objconf}) {
   const ikey = parseInt(objrow.id)
   const uuid = get_uuid()
 
-  const is_inmulti = ikey => multivalues.includes(ikey)
+  //const is_inmulti = ikey => multivalues.includes(ikey)
 
   const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
-  const [checked, set_checked] = useState(ismultiaction)
+  const [checked, set_checked] = useState(false)
   
   const on_singlecheck = evt => {
     const ischecked = evt.target.checked
@@ -31,7 +31,7 @@ function Tdmultiaction({objrow, objconf}) {
   }
 
   const check_true = () => {
-    set_checked(true)
+    //set_checked(true)
     //pr(multivalues)
     if(!multivalues.includes(ikey)) add_value(ikey)
     //add_value(ikey)
@@ -42,6 +42,16 @@ function Tdmultiaction({objrow, objconf}) {
     if(multivalues.includes(ikey)) remove_value(ikey)
     //remove_value(ikey)
   }  
+
+  const fn = useCallback(() => {
+    console.log("usecallback returns the function ")
+  }, [ismultiaction])
+
+  const v = useMemo(() => {
+    //console.log("usememo returns a value")
+    set_checked(ismultiaction)
+    return ismultiaction
+  }, [ismultiaction])
 
   /*
   useEffect(()=>{

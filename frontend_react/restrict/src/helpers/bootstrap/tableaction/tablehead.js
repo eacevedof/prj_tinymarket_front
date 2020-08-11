@@ -29,7 +29,7 @@ function TableHead({arhead, objconf, multiconf}) {
   useEffect(()=>{
     console.log("tablehead mounting")
     return ()=> console.log("tablehead unmounting")
-  },[])
+  },[ismultiaction])
 
   //boton multiaction
   const get_th_multiaction = multiconf => is_multiaction(multiconf) ? (
@@ -51,7 +51,7 @@ function TableHead({arhead, objconf, multiconf}) {
   const get_th_checkall = ()=> (
     <th>
       <div className="form-check">
-        <input className="form-check-input" type="checkbox" id="chk-all" onChange={on_multicheck} />
+        <input className="form-check-input" type="checkbox" id="chk-all" onChange={on_multicheck} checked={ismultiaction} />
         <label className="form-check-label" htmlFor="chk-all"></label>
       </div>
     </th>    
