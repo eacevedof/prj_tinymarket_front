@@ -12,10 +12,9 @@ function Tdmultiaction({objrow, objconf}) {
   
   const on_singlecheck = evt => {
     const ischecked = evt.target.checked
-    const value = parseInt(evt.target.value)
-    const values = [...multivalues]
-
- 
+    const ivalue = parseInt(evt.target.value)
+    if(ischecked) add_value(ivalue)
+    else remove_value(ivalue)
   }
 
   const remove_value = value => {
@@ -37,17 +36,21 @@ function Tdmultiaction({objrow, objconf}) {
   const check_true = () => {
     set_checked(true)
     //pr(multivalues)
-    if(!multivalues.includes(ikey))
-      add_value(ikey)
+    if(!multivalues.includes(ikey)) add_value(ikey)
   }
 
+  const check_false = () => {
+    set_checked(false)
+    if(multivalues.includes(ikey)) remove_value(ikey)
+  }  
 
   useEffect(()=>{
     if(ismultiaction) check_true()
+    else check_false()
     //if(ismultiaction) console.log("is multi action",ismultiaction,ikey)
     //pr(multivalues,"multivalues")
     return ()=> console.log("tdmultiaction unmounting")
-  },[ismultiaction])
+  },[])
 
   return (
     <td>
