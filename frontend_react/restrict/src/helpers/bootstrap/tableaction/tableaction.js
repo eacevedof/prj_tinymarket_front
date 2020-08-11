@@ -7,7 +7,7 @@ import { pr } from 'helpers/functions';
 
 function TableAction({arhead, ardata, objconf, multiconf}) {
 
-  const {ismultiaction, set_ismultiaction, multivalues, issingle, set_issinge} = useContext(TableContext)
+  const {multivalues} = useContext(TableContext)
 
   useEffect(()=>{
     console.log("tableaction.multivalues",multivalues)

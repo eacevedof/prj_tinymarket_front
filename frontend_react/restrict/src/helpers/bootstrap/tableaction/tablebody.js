@@ -3,12 +3,11 @@ import React, {useEffect, useContext} from 'react';
 import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
 import Tdaction from "helpers/bootstrap/tableaction/tdaction"
 import Tdmultiaction from "helpers/bootstrap/tableaction/tdmultiaction"
-import { get_uuid, is_defined, pr } from 'helpers/functions';
+import { get_uuid, is_defined} from 'helpers/functions';
 
 function TableBody({arhead, ardata, objconf, multiconf}) {
 
-  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues,
-    issingle, set_issinge} = useContext(TableContext)
+  const {ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
 
   const add_all = () => {
     const keys = ardata.map(objrow => parseInt(objrow.id))
@@ -57,7 +56,7 @@ function TableBody({arhead, ardata, objconf, multiconf}) {
 
     return (
       <tr key={get_uuid()}>
-        {is_multiaction ? <Tdmultiaction objrow={objrow} objconf={objconf} /> : null }
+        {is_multiaction ? <Tdmultiaction objrow={objrow} /> : null }
         {is_singleaction ? <Tdaction objrow={objrow} objconf={objconf} /> : null }
         {get_tds(objrow)}
       </tr>

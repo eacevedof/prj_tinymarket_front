@@ -2,16 +2,12 @@ import React, {useContext, useEffect, useState, useCallback, useMemo} from 'reac
 import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
 import { get_uuid, pr } from 'helpers/functions';
 
-function Tdmultiaction({objrow, objconf}) {
+function Tdmultiaction({objrow}) {
   
   const ikey = parseInt(objrow.id)
   const uuid = get_uuid()
 
-  //const is_inmulti = ikey => multivalues.includes(ikey)
-
-  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues,
-    issingle, set_issingle} = useContext(TableContext)
-
+  const {set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
   const [checked, set_checked] = useState(multivalues.includes(ikey))
 
   const on_singlecheck = (evt) => {
@@ -21,8 +17,8 @@ function Tdmultiaction({objrow, objconf}) {
       set_multivalues([...multivalues, ikey])
     }
     else{
-      const nv = multivalues.filter(ival => ival != ikey)
-      set_multivalues(nv)
+      const ar = multivalues.filter(ival => ival !== ikey)
+      set_multivalues(ar)
       set_ismultiaction(false)
     }
   }
