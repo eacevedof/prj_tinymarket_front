@@ -4,12 +4,16 @@ import { get_uuid, pr } from 'helpers/functions';
 
 function Tdmultiaction({objrow, objconf}) {
   
-  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
-  const [checked, set_checked] = useState(false)
-  
   const ikey = parseInt(objrow.id)
   const uuid = get_uuid()
+
+  const is_inmulti = ikey => multivalues.includes(ikey)
+
+  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
+  const [checked, set_checked] = useState(is_inmulti(ikey))
+    
   
+
   const on_singlecheck = evt => {
     const ischecked = evt.target.checked
     const ivalue = parseInt(evt.target.value)
@@ -47,13 +51,28 @@ function Tdmultiaction({objrow, objconf}) {
   }  
 
   useEffect(()=>{
+    set_checked(is_inmulti(ikey))
+    return ()=> console.log("tdmultiaction unmounting")
+  },[ismultiaction])
+
+  /*
+  useEffect(()=>{
+    
+    if(is_inmulti(ikey)) set_checked(true)
+    else set_checked(false)
+
+    return ()=> console.log("tdmultiaction unmounting")
+  },[])
+*/
+/*
+  useEffect(()=>{
     if(ismultiaction) check_true()
     else check_false()
     //if(ismultiaction) console.log("is multi action",ismultiaction,ikey)
     //pr(multivalues,"multivalues")
     return ()=> console.log("tdmultiaction unmounting")
   },[ismultiaction])
-
+*/
   return (
     <td>
       <div className="form-check">

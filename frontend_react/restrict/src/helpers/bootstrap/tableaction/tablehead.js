@@ -8,6 +8,7 @@ function TableHead({arhead, objconf, multiconf}) {
   const {ismultiaction, set_ismultiaction} = useContext(TableContext)
 
   useEffect(()=>{
+
     return ()=> console.log("tablehead unmounting")
   },[])
 
@@ -24,6 +25,8 @@ function TableHead({arhead, objconf, multiconf}) {
     if(actions.length === 0) return false
     return true
   }
+
+
 
   const on_multicheck = evt => {
     //alert(evt.target.checked)

@@ -3,15 +3,27 @@ import React, {useEffect, useContext} from 'react';
 import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
 import Tdaction from "helpers/bootstrap/tableaction/tdaction"
 import Tdmultiaction from "helpers/bootstrap/tableaction/tdmultiaction"
-import { get_uuid, is_defined } from 'helpers/functions';
+import { get_uuid, is_defined, pr } from 'helpers/functions';
 
 function TableBody({arhead, ardata, objconf, multiconf}) {
 
-  const {ismultiaction, set_ismultiaction} = useContext(TableContext)
+  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
+
+  const add_all = () => {
+    const keys = ardata.map(objrow => parseInt(objrow.id))
+    set_multivalues(keys)
+  }  
+
+  const remove_all = () => {
+    set_multivalues([])
+  }
 
   useEffect(()=>{
+    if(ismultiaction) add_all()
+    else remove_all()
+
     return ()=> console.log("tablebody unmounting")
-  },[])
+  },[ismultiaction])
   
   const is_singleactions = objconf => {
     if(!is_defined(objconf.ACTIONS)) return false
