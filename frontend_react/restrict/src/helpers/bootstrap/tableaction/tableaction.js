@@ -18,7 +18,10 @@ function TableAction({arhead, ardata, objconf, multiconf}) {
 
   return (
     <>
-      <DropdownTable multiconf={multiconf} />
+      {
+        multivalues.length > 0 ? <DropdownTable multiconf={multiconf} /> : null
+      }
+      
       <table className="table">
         <TableHead arhead={arhead} objconf={objconf} multiconf={multiconf} />
         <TableBody arhead={arhead} ardata={ardata} objconf={objconf} multiconf={multiconf} />

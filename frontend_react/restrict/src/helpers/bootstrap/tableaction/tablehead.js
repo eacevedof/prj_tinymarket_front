@@ -31,22 +31,7 @@ function TableHead({arhead, objconf, multiconf}) {
     return ()=> console.log("tablehead.unmounting")
   },[multivalues])
 
-  //boton multiaction
-  const get_th_multiaction = multiconf => is_conf_multiaction(multiconf) && multivalues.length > 0 ? (
-    <tr>
-      <th colSpan="2">
-        <button type="button" className="btn btn-secondary dropdown-toggle"  id="grid-ulmultiaction" data-toggle="dropdown" aria-expanded="false">
-          Multiaction
-        </button>          
-        <ul className="dropdown-menu" aria-labelledby="grid-ulmultiaction">
-          {Object.keys(multiconf.ACTIONS).map(action => <li key={get_uuid()} ><button className="dropdown-item" type="button">{multiconf.ACTIONS[action]}</button></li>)}
-        </ul>
-      </th>
-      <th>
-        <button type="button" className="btn btn-success"><i className="fa fa-check-circle" aria-hidden="true"></i></button>
-      </th>
-    </tr>
-  ) : null  
+
 
   const get_th_checkall = ()=> (
     <th>
@@ -62,9 +47,7 @@ function TableHead({arhead, objconf, multiconf}) {
   const get_tds = ar => ar.map( (objth,i) => <th key={i} scope="col">{objth.text}</th>) // get_tds
 
   return (
-    <thead>
-      {get_th_multiaction(multiconf)}
-      
+    <thead>      
       <tr>
         { is_conf_multiaction(multiconf) ? get_th_checkall() :null }
         { is_conf_singleactions(objconf) ? get_th_action() : null }
