@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react';
-import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
+import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
 import { is_defined, get_uuid, pr } from 'helpers/functions';
 
 

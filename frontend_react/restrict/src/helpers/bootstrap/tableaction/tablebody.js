@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react';
 
-import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
+import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
 import Tdaction from "helpers/bootstrap/tableaction/tdaction"
 import Tdmultiaction from "helpers/bootstrap/tableaction/tdmultiaction"
 import { get_uuid, is_defined} from 'helpers/functions';
@@ -22,7 +22,7 @@ function TableBody({arhead, ardata, objconf, multiconf}) {
     else if(ardata.length == multivalues.length) remove_all()
 
     return ()=> console.log("tablebody.unmounting")
-    
+
   },[ismultiaction])
   
   const is_conf_singleactions = objconf => {
