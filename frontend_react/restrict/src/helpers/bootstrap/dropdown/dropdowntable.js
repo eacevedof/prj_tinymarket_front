@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
 import { get_uuid, pr } from 'helpers/functions';
 
-function DropdownTable({multiconf}) {
+function DropdownTable({multiconf, set_action}) {
   
   const [selected, set_selected] = useState("...select")
 
   const on_click = evt => {
     //pr(evt.target.value)
     set_selected(evt.target.value)
+  }
+
+  const on_confirm = evt => {
+    //pr(selected)
+    set_action(selected)
   }
 
   return (
@@ -25,7 +30,7 @@ function DropdownTable({multiconf}) {
         </ul>
       </div>
       <div className="col-2 float-left pl-0">
-        <button type="button" className="btn btn-success"><i className="fa fa-check-circle" aria-hidden="true"></i></button>
+        <button type="button" className="btn btn-success"><i className="fa fa-check-circle" aria-hidden="true" onClick={on_confirm}></i></button>
       </div>
     </div>
   )

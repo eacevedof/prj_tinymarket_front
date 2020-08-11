@@ -9,7 +9,7 @@ import { pr } from 'helpers/functions';
 
 function TableAction({arhead, ardata, objconf, multiconf}) {
 
-  const {multivalues} = useContext(TableContext)
+  const {multivalues, set_multiaction} = useContext(TableContext)
 
   useEffect(()=>{
     console.log("tableaction.mounting")
@@ -19,7 +19,7 @@ function TableAction({arhead, ardata, objconf, multiconf}) {
   return (
     <>
       {
-        multivalues.length > 0 ? <DropdownTable multiconf={multiconf} /> : null
+        multivalues.length > 0 ? <DropdownTable multiconf={multiconf} set_action={set_multiaction} /> : null
       }
       
       <table className="table">

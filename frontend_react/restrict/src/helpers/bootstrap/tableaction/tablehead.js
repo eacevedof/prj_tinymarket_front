@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react';
 import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
-import { is_defined, get_uuid, pr } from 'helpers/functions';
+import { is_defined, pr } from 'helpers/functions';
 
 
 function TableHead({arhead, objconf, multiconf}) {
@@ -30,7 +30,6 @@ function TableHead({arhead, objconf, multiconf}) {
     console.log("tablehead.mounting")
     return ()=> console.log("tablehead.unmounting")
   },[multivalues])
-
 
 
   const get_th_checkall = ()=> (
