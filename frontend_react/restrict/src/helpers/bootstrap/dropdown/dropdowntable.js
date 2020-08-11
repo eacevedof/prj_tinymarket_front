@@ -1,17 +1,24 @@
-import React from 'react';
-import { get_uuid } from 'helpers/functions';
+import React, {useState} from 'react';
+import { get_uuid, pr } from 'helpers/functions';
 
 function DropdownTable({multiconf}) {
   
+  const [selected, set_selected] = useState("...select")
+
+  const on_click = evt => {
+    //pr(evt.target.value)
+    set_selected(evt.target.value)
+  }
+
   return (
     <div className="row">
       <button type="button" className="btn btn-secondary dropdown-toggle"  id="grid-ulmultiaction" data-toggle="dropdown" aria-expanded="false">
-        Multiaction
+        {selected}
       </button>          
       <ul className="dropdown-menu" aria-labelledby="grid-ulmultiaction">
         {Object.keys(multiconf.ACTIONS).map(action => (
             <li key={get_uuid()}>
-              <button className="dropdown-item" type="button">{multiconf.ACTIONS[action]}</button>
+              <button type="button" className="dropdown-item" value={multiconf.ACTIONS[action]} onClick={on_click}>{multiconf.ACTIONS[action]}</button>
             </li>
           ))}
       </ul>
