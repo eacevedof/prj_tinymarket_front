@@ -7,7 +7,8 @@ import { get_uuid, is_defined, pr } from 'helpers/functions';
 
 function TableBody({arhead, ardata, objconf, multiconf}) {
 
-  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
+  const {ismultiaction, set_ismultiaction, multivalues, set_multivalues,
+    issingle, set_issinge} = useContext(TableContext)
 
   const add_all = () => {
     const keys = ardata.map(objrow => parseInt(objrow.id))
@@ -19,6 +20,7 @@ function TableBody({arhead, ardata, objconf, multiconf}) {
   }
 
   useEffect(()=>{
+    console.log("tablebody.useeffect",ismultiaction)
     if(ismultiaction) add_all()
     else remove_all()
 

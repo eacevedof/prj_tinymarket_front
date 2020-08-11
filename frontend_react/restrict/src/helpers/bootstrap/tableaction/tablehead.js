@@ -7,14 +7,14 @@ function TableHead({arhead, objconf, multiconf}) {
 
   const {ismultiaction, set_ismultiaction} = useContext(TableContext)
 
-  const is_singleactions = objconf => {
+  const is_conf_singleactions = objconf => {
     if(!is_defined(objconf.ACTIONS)) return false
     const actions = Object.keys(objconf.ACTIONS)
     if(actions.length === 0) return false
     return true
   }
 
-  const is_multiaction = multiconf => {
+  const is_conf_multiaction = multiconf => {
     if(!is_defined(multiconf.ACTIONS)) return false
     const actions = Object.keys(multiconf.ACTIONS)
     if(actions.length === 0) return false
@@ -22,8 +22,8 @@ function TableHead({arhead, objconf, multiconf}) {
   }
 
   const on_multicheck = evt => {
-    //alert(evt.target.checked)
-    set_ismultiaction(evt.target.checked)
+    const ischecked = evt.target.checked
+    set_ismultiaction(ischecked)
   }
 
   useEffect(()=>{
@@ -32,7 +32,7 @@ function TableHead({arhead, objconf, multiconf}) {
   },[ismultiaction])
 
   //boton multiaction
-  const get_th_multiaction = multiconf => is_multiaction(multiconf) ? (
+  const get_th_multiaction = multiconf => is_conf_multiaction(multiconf) ? (
     <tr>
       <th colSpan="2">
         <button type="button" className="btn btn-secondary dropdown-toggle"  id="grid-ulmultiaction" data-toggle="dropdown" aria-expanded="false">
@@ -66,8 +66,8 @@ function TableHead({arhead, objconf, multiconf}) {
       {get_th_multiaction(multiconf)}
       
       <tr>
-        { is_multiaction(multiconf) ? get_th_checkall() :null }
-        { is_singleactions(objconf) ? get_th_action() : null }
+        { is_conf_multiaction(multiconf) ? get_th_checkall() :null }
+        { is_conf_singleactions(objconf) ? get_th_action() : null }
         { get_tds(arhead) }
       </tr>
     </thead>
