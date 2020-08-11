@@ -20,7 +20,7 @@ function TableAction({arhead, ardata, objconf, multiconf}) {
     <>
       <DropdownTable multiconf={multiconf} />
       <table className="table">
-        <TableHead arhead={arhead} objconf={objconf} multiconf={multiconf}  />
+        <TableHead arhead={arhead} objconf={objconf} multiconf={multiconf} />
         <TableBody arhead={arhead} ardata={ardata} objconf={objconf} multiconf={multiconf} />
       </table>
     </>
