@@ -5,10 +5,9 @@ import { get_uuid } from 'helpers/functions';
 
 
 function Tdaction({objrow, objconf}) {
+  
   const ddid = get_uuid()
   
-  //const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
-
   const keyname = (objconf!=null && typeof(objconf.KEYFIELD)!="undefined") ? objconf.KEYFIELD : "id"
   const keyval = objrow[keyname]
 
