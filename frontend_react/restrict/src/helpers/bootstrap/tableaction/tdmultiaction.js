@@ -11,30 +11,23 @@ function Tdmultiaction({objrow, objconf}) {
 
   const {ismultiaction, set_ismultiaction, multivalues, set_multivalues} = useContext(TableContext)
   const [checked, set_checked] = useState(ismultiaction)
-    
   
-
   const on_singlecheck = evt => {
     const ischecked = evt.target.checked
-    const ivalue = parseInt(evt.target.value)
-    if(ischecked) add_value(ivalue)
-    else remove_value(ivalue)
+    if(ischecked) check_true()
+    else check_false()
   }
 
   const remove_value = value => {
     const values = [...multivalues]
     values.splice(values.indexOf(value))
     set_multivalues(values)
+    //if(ismultiaction) set_ismultiaction(false) esto desactiva todo
   }
 
   const add_value = ivalue => {
-    //console.log("multivalues:",[...multivalues])
-    const v = [...multivalues,ivalue]
-    //const values = [...new Set([...multivalues, ivalue])]
-    //pr(multivalues, "multivalues")
-    //pr(values,`values of ${ikey}`)
-    //set_multivalues(values)
-    set_multivalues(v)
+    const values = [...multivalues,ivalue]
+    set_multivalues(values)
   }
 
   const check_true = () => {
