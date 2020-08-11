@@ -27,8 +27,8 @@ function TableHead({arhead, objconf, multiconf}) {
   }
 
   useEffect(()=>{
-    console.log("tablehead mounting")
-    return ()=> console.log("tablehead unmounting")
+    console.log("tablehead.mounting")
+    return ()=> console.log("tablehead.unmounting")
   },[multivalues])
 
   //boton multiaction

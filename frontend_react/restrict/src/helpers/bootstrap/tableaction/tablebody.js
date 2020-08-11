@@ -17,11 +17,12 @@ function TableBody({arhead, ardata, objconf, multiconf}) {
   const remove_all = () => set_multivalues([])
   
   useEffect(()=>{
-    console.log("tablebody.useeffect",ismultiaction)
+    console.log("tablebody.mounting")
     if(ismultiaction) add_all()
     else if(ardata.length == multivalues.length) remove_all()
 
-    return ()=> console.log("tablebody unmounting")
+    return ()=> console.log("tablebody.unmounting")
+    
   },[ismultiaction])
   
   const is_conf_singleactions = objconf => {

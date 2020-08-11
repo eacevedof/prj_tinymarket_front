@@ -10,8 +10,8 @@ function TableAction({arhead, ardata, objconf, multiconf}) {
   const {multivalues} = useContext(TableContext)
 
   useEffect(()=>{
-    console.log("tableaction.multivalues",multivalues)
-    return ()=> console.log("tableaction unmounting")
+    console.log("tableaction.mounting")
+    return ()=> console.log("tableaction.unmounting")
   },[multivalues])
 
   return (
