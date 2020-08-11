@@ -19,7 +19,7 @@ function TableAction({arhead, ardata, objconf, multiconf}) {
   return (
     <>
       {
-        multivalues.length > 0 ? <DropdownTable multiconf={multiconf} set_action={set_multiaction} /> : null
+        multivalues.length > 0 ? <DropdownTable multiconf={multiconf} fnconfirm={multiconf.fnmultiaction(multivalues)} /> : null
       }
       
       <table className="table">

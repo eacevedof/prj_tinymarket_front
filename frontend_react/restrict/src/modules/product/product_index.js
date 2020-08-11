@@ -32,6 +32,15 @@ function ProductIndex() {
   const [multiaction, set_multiaction] = useState("")
   const [multiselect, set_multiselect] = useState([])
 
+  const async_multidelete = async keys => {
+    alert("async multidelete")
+  }
+
+  const on_multiconfirm = keys => async straction => {
+    switch(straction){
+      case "delete": await async_multidelete(keys)
+    }
+  }
 
   async function async_load_products(){
     set_issubmitting(true)
@@ -94,7 +103,7 @@ function ProductIndex() {
               arhead={grid.headers} 
               ardata={result} 
               objconf={VIEWCONFIG}
-              multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, action:"", selection:[] }} 
+              multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, fnmultiaction:on_multiconfirm }} 
             />
           </TableProvider>
         }

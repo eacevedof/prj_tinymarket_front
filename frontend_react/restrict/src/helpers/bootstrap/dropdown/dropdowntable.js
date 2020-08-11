@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { get_uuid, pr } from 'helpers/functions';
 
-function DropdownTable({multiconf, set_action}) {
+function DropdownTable({multiconf, fnconfirm}) {
   
   const [selected, set_selected] = useState("...select")
 
@@ -11,8 +11,7 @@ function DropdownTable({multiconf, set_action}) {
   }
 
   const on_confirm = evt => {
-    //pr(selected)
-    set_action(selected)
+    fnconfirm("delete")
   }
 
   return (
