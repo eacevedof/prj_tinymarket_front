@@ -14,10 +14,8 @@ function TableBody({arhead, ardata, objconf, multiconf}) {
     set_multivalues(keys)
   }  
 
-  const remove_all = () => {
-    set_multivalues([])
-  }
-
+  const remove_all = () => set_multivalues([])
+  
   useEffect(()=>{
     console.log("tablebody.useeffect",ismultiaction)
     if(ismultiaction) add_all()
