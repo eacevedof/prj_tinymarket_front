@@ -24,7 +24,7 @@ function Tdmultiaction({objrow, objconf}) {
   }
 
   const add_value = ivalue => {
-    console.log("multivalues:",[...multivalues])
+    //console.log("multivalues:",[...multivalues])
     const v = [...multivalues,ivalue]
     //const values = [...new Set([...multivalues, ivalue])]
     //pr(multivalues, "multivalues")
@@ -37,11 +37,13 @@ function Tdmultiaction({objrow, objconf}) {
     set_checked(true)
     //pr(multivalues)
     if(!multivalues.includes(ikey)) add_value(ikey)
+    //add_value(ikey)
   }
 
   const check_false = () => {
     set_checked(false)
     if(multivalues.includes(ikey)) remove_value(ikey)
+    //remove_value(ikey)
   }  
 
   useEffect(()=>{
@@ -50,7 +52,7 @@ function Tdmultiaction({objrow, objconf}) {
     //if(ismultiaction) console.log("is multi action",ismultiaction,ikey)
     //pr(multivalues,"multivalues")
     return ()=> console.log("tdmultiaction unmounting")
-  },[])
+  },[ismultiaction])
 
   return (
     <td>
