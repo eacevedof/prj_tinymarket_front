@@ -13,7 +13,7 @@ function DropdownTable({multiconf, fnconfirm}) {
   const on_confirm = evt => {
     fnconfirm("delete")
   }
-
+  
   return (
     <div className="row">
       <div className="col-3">
@@ -23,7 +23,13 @@ function DropdownTable({multiconf, fnconfirm}) {
         <ul className="dropdown-menu" aria-labelledby="grid-ulmultiaction">
           {Object.keys(multiconf.ACTIONS).map(action => (
               <li key={get_uuid()}>
-                <button type="button" className="dropdown-item" value={multiconf.ACTIONS[action]} onClick={on_click}>{multiconf.ACTIONS[action]}</button>
+                <button 
+                  type="button" 
+                  className="dropdown-item" 
+                  
+                  value={action} 
+                  onClick={on_click}
+                  >{multiconf.ACTIONS[action][text]}</button>
               </li>
             ))}
         </ul>
