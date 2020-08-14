@@ -3,19 +3,17 @@ import { get_uuid, pr } from 'helpers/functions';
 
 function DropdownTable({multiconf, fnconfirm}) {
 
-
   const [selected, set_selected] = useState("")
   const [seltext, set_seltext] = useState("...select")
 
-
-  const on_click = evt => {
-   
+  const on_click = evt => {   
     set_selected(evt.target.value)
     set_seltext(evt.target.getAttribute("text"))    
   }
 
   const on_confirm = evt => {
-    fnconfirm("delete")
+    //alert(evt.target)
+    fnconfirm(selected)
   }
   
   return (
@@ -34,13 +32,16 @@ function DropdownTable({multiconf, fnconfirm}) {
                   value={action}
                   text={multiconf.ACTIONS[action]["text"]}
                   onClick={on_click}
+                  
                   >{multiconf.ACTIONS[action]["text"]}</button>
               </li>
             ))}
         </ul>
       </div>
       <div className="col-2 float-left pl-0">
-        <button type="button" className="btn btn-success"><i className="fa fa-check-circle" aria-hidden="true" onClick={on_confirm}></i></button>
+        <button type="button" className="btn btn-success" onClick={on_confirm}>
+          <i className="fa fa-check-circle" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   )
