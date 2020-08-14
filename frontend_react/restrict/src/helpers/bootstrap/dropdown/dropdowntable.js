@@ -3,11 +3,15 @@ import { get_uuid, pr } from 'helpers/functions';
 
 function DropdownTable({multiconf, fnconfirm}) {
 
-  const [selected, set_selected] = useState("...select")
+
+  const [selected, set_selected] = useState("")
+  const [seltext, set_seltext] = useState("...select")
+
 
   const on_click = evt => {
-    //pr(evt.target.value)
+   
     set_selected(evt.target.value)
+    set_seltext(evt.target.getAttribute("text"))    
   }
 
   const on_confirm = evt => {
@@ -18,7 +22,7 @@ function DropdownTable({multiconf, fnconfirm}) {
     <div className="row">
       <div className="col-3">
         <button type="button" className="btn btn-secondary dropdown-toggle"  id="grid-ulmultiaction" data-toggle="dropdown" aria-expanded="false">
-          {selected}
+          {seltext}
         </button>          
         <ul className="dropdown-menu" aria-labelledby="grid-ulmultiaction">
           {Object.keys(multiconf.ACTIONS).map(action => (
@@ -27,7 +31,8 @@ function DropdownTable({multiconf, fnconfirm}) {
                   type="button" 
                   className="dropdown-item" 
                   
-                  value={action} 
+                  value={action}
+                  text={multiconf.ACTIONS[action]["text"]}
                   onClick={on_click}
                   >{multiconf.ACTIONS[action]["text"]}</button>
               </li>
