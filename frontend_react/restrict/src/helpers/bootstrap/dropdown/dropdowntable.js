@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { get_uuid, pr } from 'helpers/functions';
 
 function DropdownTable({multiconf, fnconfirm}) {
-  
+
   const [selected, set_selected] = useState("...select")
 
   const on_click = evt => {
@@ -29,7 +29,7 @@ function DropdownTable({multiconf, fnconfirm}) {
                   
                   value={action} 
                   onClick={on_click}
-                  >{multiconf.ACTIONS[action][text]}</button>
+                  >{multiconf.ACTIONS[action]["text"]}</button>
               </li>
             ))}
         </ul>
