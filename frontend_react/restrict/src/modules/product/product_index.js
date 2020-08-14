@@ -12,6 +12,8 @@ import {async_get_list, async_multidelete, async_multideletelogic} from "modules
 import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
 import InputSearch from "helpers/bootstrap/input/inputsearch"
 import Spinnergrow from "helpers/bootstrap/spinner/spinnergrow"
 import TableProvider from "helpers/bootstrap/tableaction/tablecontext"
@@ -24,6 +26,8 @@ function ProductIndex() {
 
   const {page} = useParams()
   const [issubmitting, set_issubmitting] = useState(false)
+  const [error, set_error] = useState("")
+  const [success, set_success] = useState("")
   const [txtsearch, set_txtsearch] = useState("")
   
   const history = useHistory()
@@ -34,12 +38,15 @@ function ProductIndex() {
     
     switch(straction){
       case "delete": 
-        await async_multidelete(keys) 
+        await async_multidelete(keys)
+        set_success("products deleted: ".concat(keys.toString())) 
       break
       case "deletelogic":
          await async_multideletelogic(keys)
+         set_success("products deleted: ".concat(keys.toString()))
       break
     }
+    await async_load_products()
   }
 
   async function async_load_products(){
@@ -89,6 +96,9 @@ function ProductIndex() {
       <main className="container">
         <h1 className="mt-2 mb-2">Products</h1>
         <Breadscrumb urls={MODCONFIG.SCRUMBS.GENERIC}/>
+        
+        {success!==""? <ToastSimple message={success} title="Success" isvisible={true} />: null}
+        {error!==""? <ToastSimple message={error} title="Error" isvisible={true} />: null}       
         
         <InputSearch cachekey={VIEWCONFIG.CACHE_KEY} fnsettext={set_txtsearch} foundrows={foundrows} />
 
