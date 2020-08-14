@@ -62,9 +62,17 @@ function PaginationSimple({objconf}){
     return buttons
   }
 
+  const get_npages = (totrows, ippage) => ippage>0 ? Math.ceil(totrows / ippage) : 0
+
   const on_load = () => {
     //pr(objconf,"obconf")
-    const ipages = ippage>0 ? Math.ceil(foundrows / ippage) : 0
+    const ipages = get_npages(foundrows, ippage)
+    if(ipages<2){
+      set_npages(ipages)
+      set_urls([])
+      return 
+    }
+    
     const buttons = get_buttons(ipage, ipages)
     //pr(buttons,"buttons")
     const arurls = [...Array(ipages).keys()].filter(i => buttons.includes(i+1)).map(ipage => ({url:urlpattern.replace("%page%",ipage+1), text:ipage+1}))
