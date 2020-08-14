@@ -43,7 +43,7 @@ function ProductIndex() {
       break
       case "deletelogic":
          await async_multideletelogic(keys)
-         set_success("products deleted: ".concat(keys.toString()))
+         set_success("products deleted: ".concat(keys.toString())) 
       break
     }
     await async_load_products()

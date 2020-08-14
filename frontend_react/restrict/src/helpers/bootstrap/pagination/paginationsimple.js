@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { NavLink } from "react-router-dom";
-import { pr } from 'helpers/functions';
+import React, {useEffect, useState, useRef} from 'react'
+import { pr } from 'helpers/functions'
+import { NavLink } from "react-router-dom"
 import shortid from "shortid"
 
 
