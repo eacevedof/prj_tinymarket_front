@@ -11,7 +11,9 @@ import {get_obj_entity} from "./queries/query_entity"
 import {get_obj_insert} from "./queries/query_insert"
 import {get_obj_update} from "./queries/query_update"
 import {get_obj_delete} from "./queries/query_delete"
+import {get_obj_multidelete} from "./queries/query_multidelete"
 import {get_obj_deletelogic} from "./queries/query_deletelogic"
+import {get_obj_multideletelogic} from "./queries/query_multideletelogic"
 
 
 export const async_get_list = async (page, search="") => {
@@ -135,5 +137,19 @@ export const async_deletelogic = async (formdata)=>{
 
 export const async_get_maxuploadsize = async () => {
   const r = await apiup.async_get_maxsize()
+  return r
+}
+
+export const async_multidelete = async arkeys => {
+  const objparam = {key:"id", keys:arkeys}
+  const objquery = get_obj_multidelete(objparam)
+  const r = await apidb.async_delete(objquery)
+  return r
+}
+
+export const async_multideletelogic = async arkeys => {
+  const objparam = {key:"id", keys:arkeys}
+  const objquery = get_obj_multideletelogic(objparam)
+  const r = await apidb.async_update(objquery)
   return r
 }
