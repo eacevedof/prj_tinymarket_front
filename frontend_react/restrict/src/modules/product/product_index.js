@@ -29,16 +29,23 @@ function ProductIndex() {
   const history = useHistory()
   const [result, set_result] = useState([])
   const [foundrows, set_foundrows] = useState(0)
-  const [multiaction, set_multiaction] = useState("")
-  const [multiselect, set_multiselect] = useState([])
-
+ 
   const async_multidelete = async keys => {
     alert("async multidelete")
   }
+  const async_multideletelogic = async keys => {
+    alert("async multideletelogic")
+  }
 
   const on_multiconfirm = keys => async straction => {
+    pr(keys)
     switch(straction){
-      case "delete": await async_multidelete(keys)
+      case "delete": 
+        await async_multidelete(keys) 
+      break
+      case "deletelogic":
+         await async_multideletelogic(keys)
+      break
     }
   }
 

@@ -21,8 +21,8 @@ export const VIEWCONFIG = {
   },
 
   MULTIACTIONS: {
-    delete: {fn: null, icon:"fa fa-trash", text:"Delete"},
-    deletelogic: {fn: null, icon:"fa fa-trash", text:"Delete L"},
+    delete: {icon:"fa fa-trash", text:"Delete"},
+    deletelogic: {icon:"fa fa-trash", text:"Delete L"},
   }
 
 }
