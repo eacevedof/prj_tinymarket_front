@@ -7,7 +7,7 @@ import db from "helpers/localdb"
 import HrefDom from "helpers/href_dom"
 
 import {async_islogged} from 'modules/login/login_index'
-import {async_get_list} from "modules/product/async/async_requests"
+import {async_get_list, async_multidelete, async_multideletelogic} from "modules/product/async/async_requests"
 
 import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 
@@ -30,15 +30,8 @@ function ProductIndex() {
   const [result, set_result] = useState([])
   const [foundrows, set_foundrows] = useState(0)
  
-  const async_multidelete = async keys => {
-    alert("async multidelete")
-  }
-  const async_multideletelogic = async keys => {
-    alert("async multideletelogic")
-  }
-
   const on_multiconfirm = keys => async straction => {
-    pr(keys)
+    
     switch(straction){
       case "delete": 
         await async_multidelete(keys) 
