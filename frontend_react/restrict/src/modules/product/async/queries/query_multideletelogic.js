@@ -16,11 +16,11 @@ export const get_obj_multideletelogic = (objparam={key:"", keys:[]})=>{
   objdellog.extra = {autosysfields:1, useruuid: db.select("useruuid")}
 
   if(is_empty(objparam.key) || is_empty(objparam.keys)){
-    objdelete.where.push(`1!=1`)
-    return objdelete
+    objdellog.where.push(`1!=1`)
+    return objdellog
   }
     
   const strkeys = objparam.keys.join(",")
-  objdelete.where.push(`${objparam.key} IN (${strkeys})`)
+  objdellog.where.push(`${objparam.key} IN (${strkeys})`)
   return objdellog
 }
