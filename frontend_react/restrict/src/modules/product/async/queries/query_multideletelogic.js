@@ -1,6 +1,6 @@
 
 import helpapify from "helpers/apify"
-import {isset} from "helpers/functions"
+import {isset, is_empty} from "helpers/functions"
 import db from "helpers/localdb"
 
 const query = {
@@ -8,22 +8,19 @@ const query = {
   alias: "t",
 }
 
-export const get_obj_multideletelogic = (objparam={fields:{},keys:[]})=>{
+export const get_obj_multideletelogic = (objparam={key:"", keys:[]})=>{
   const objdellog = helpapify.deletelogic
   objdellog.reset()
   objdellog.delete_platform = "3"
   objdellog.table = query.table
   objdellog.extra = {autosysfields:1, useruuid: db.select("useruuid")}
 
-  if(isset(objparam.fields) && isset(objparam.fields)){
-    const fields = Object.keys(objparam.fields)
-    fields.forEach( field => {
-      if(!objparam.keys.includes(field))
-        return
-      objdellog.where.push(`${field}='${objparam.fields[field]}'`)
-    })
-    
+  if(is_empty(objparam.key) || is_empty(objparam.keys)){
+    objdelete.where.push(`1!=1`)
+    return objdelete
   }
-
+    
+  const strkeys = objparam.keys.join(",")
+  objdelete.where.push(`${objparam.key} IN (${strkeys})`)
   return objdellog
 }
