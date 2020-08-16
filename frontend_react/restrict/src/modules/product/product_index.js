@@ -35,7 +35,7 @@ function ProductIndex() {
   const [foundrows, set_foundrows] = useState(0)
  
   const on_multiconfirm = keys => async straction => {
-    
+    pr(straction,"straction")
     switch(straction){
       case "delete": 
         await async_multidelete(keys)

@@ -1,6 +1,6 @@
 
 import helpapify from "helpers/apify"
-import {isset, is_empty} from "helpers/functions"
+import {isset, is_empty, pr} from "helpers/functions"
 import db from "helpers/localdb"
 
 const query = {
@@ -15,11 +15,11 @@ export const get_obj_multideletelogic = (objparam={key:"", keys:[]})=>{
   objdellog.table = query.table
   objdellog.extra = {autosysfields:1, useruuid: db.select("useruuid")}
 
-  if(is_empty(objparam.key) || is_empty(objparam.keys)){
+  if(is_empty(objparam.key) || is_empty(objparam.keys) || objparam.key==="" || objparam.keys.length===0){
     objdellog.where.push(`1!=1`)
     return objdellog
   }
-    
+  pr(objparam,"objparam in")  
   const strkeys = objparam.keys.join(",")
   objdellog.where.push(`${objparam.key} IN (${strkeys})`)
   return objdellog
