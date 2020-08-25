@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useParams, useHistory} from "react-router-dom"
 import {MODCONFIG} from "modules/product/config/config"
 
-import { pr, get_pages } from 'helpers/functions';
+import { pr, get_pages, get_localip } from 'helpers/functions';
 import db from "helpers/localdb" 
 import HrefDom from "helpers/href_dom"
 
@@ -65,6 +65,7 @@ function ProductIndex() {
 
   const async_onload = async () => {
     //pr(txtsearch)
+    pr(get_localip(),"localip")
     console.log("product.index.async_onload")
     const islogged = await async_islogged()
     

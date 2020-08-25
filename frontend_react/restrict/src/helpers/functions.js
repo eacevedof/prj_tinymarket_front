@@ -71,21 +71,26 @@ export const get_localip = () => {
                               window.webkitRTCPeerConnection || false)
 
   if(window.RTCPeerConnection){
-
+    
     const peerconn = new RTCPeerConnection({iceServers:[]})
+    //pr(peerconn,"peercon")
     const noop = function(){}
 
-    peerconn.createDataChannel('');
-    peerconn.createOffer(peerconn.setLocalDescription.bind(peerconn), noop);
+    peerconn.createDataChannel("")
+    //peerconn.createOffer(peerconn.setLocalDescription.bind(peerconn), noop)
+    peerconn.createOffer().then(function(sdp){
+      const ar = sdp.sdp.split("\n")
+      arIp.push(ar[0].split(' ')[4]);
+    })
 
     peerconn.onicecandidate = function(event){
-      if (event && event.candidate && event.candidate.candidate){
-        const ar = event.candidate.candidate.split("\n");
-        arIp.push(ar[0].split(' ')[4]);
-      }
+      if (!event || !event.candidate || !event.candidate.candidate) return;
+      event.candidate.candidate.forEach(x => {
+        arIp.push(x)
+      });
     }
 
   }
-  
+
   return arIp;
 }
