@@ -150,7 +150,7 @@ export const async_multidelete = async arkeys => {
 export const async_multideletelogic = async arkeys => {
   const objparam = {key:"id", keys:arkeys}
   const objquery = get_obj_multideletelogic(objparam)
-  pr(objquery,"objquery")
+  //pr(objquery,"objquery")
   const r = await apidb.async_update(objquery)
   return r
 }

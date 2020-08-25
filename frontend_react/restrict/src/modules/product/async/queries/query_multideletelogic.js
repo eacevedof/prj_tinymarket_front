@@ -19,7 +19,7 @@ export const get_obj_multideletelogic = (objparam={key:"", keys:[]})=>{
     objdellog.where.push(`1!=1`)
     return objdellog
   }
-  pr(objparam,"objparam in")  
+  //pr(objparam,"objparam in")
   const strkeys = objparam.keys.join(",")
   objdellog.where.push(`${objparam.key} IN (${strkeys})`)
   return objdellog
