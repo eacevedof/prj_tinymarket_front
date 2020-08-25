@@ -64,3 +64,28 @@ export const get_uuid2 = ()=>{
   const rnd = char.concat((Math.floor((Math.random()*100)+1)).toString())
   return rnd
 }
+
+export const get_localip = () => {
+  let arIp = []
+  window.RTCPeerConnection = (window.RTCPeerConnection || window.mozRTCPeerConnection || 
+                              window.webkitRTCPeerConnection || false)
+
+  if(window.RTCPeerConnection){
+
+    const peerconn = new RTCPeerConnection({iceServers:[]})
+    const noop = function(){}
+
+    peerconn.createDataChannel('');
+    peerconn.createOffer(peerconn.setLocalDescription.bind(peerconn), noop);
+
+    peerconn.onicecandidate = function(event){
+      if (event && event.candidate && event.candidate.candidate){
+        const ar = event.candidate.candidate.split("\n");
+        arIp.push(ar[0].split(' ')[4]);
+      }
+    }
+
+  }
+  
+  return arIp;
+}
