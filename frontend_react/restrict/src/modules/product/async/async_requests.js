@@ -44,12 +44,15 @@ export const async_get_by_id = async (id) => {
   const objparam = {filters:{fields:[{field:"id",value:id}]}}
   const query = get_obj_entity(objparam)
   const r = await apidb.async_get_list(query)
+  
+  if(is_defined(r.error)) throw r.error
+  
   if(is_defined(r.result.length))
     return r.result[0]
   return r
 }
 
-export const async_insert = async (formdata)=>{
+export const async_insert = async (formdata) => {
   //console.log("product.async_request.async_insert.formdata",formdata)
   let url_image = ""
 
@@ -61,10 +64,12 @@ export const async_insert = async (formdata)=>{
   const objquery = get_obj_insert(objparam)
 
   r = await apidb.async_insert(objquery)
+  if(is_defined(r.error)) throw r.error
+
   return r
 }
 
-export const async_update = async (formdata)=>{
+export const async_update = async (formdata) => {
   console.log("url_image",formdata.url_image)
   
   let r = null
@@ -89,6 +94,9 @@ export const async_update = async (formdata)=>{
   const objquery = get_obj_update(objparam, dbfields)
   //console.log("objparam",objquery)
   r = await apidb.async_update(objquery)
+  
+  if(is_defined(r.error)) throw r.error
+
   return r
 }
 
@@ -102,12 +110,14 @@ export const async_delete = async (formdata)=>{
   //pr(objquery,"objquery")
   const r = await apidb.async_delete(objquery)
   //pr(r,"async_delete.r")
+  if(is_defined(r.error)) throw r.error
+
   return r
 }
 
 export const async_clone = async (formdata)=>{
   const temp = {...formdata}
-  const fieldsdel = ["i","id"]
+  const fieldsdel = ["i", "id"]
   fieldsdel.forEach(field => {
     delete temp[field] 
   })
@@ -117,6 +127,8 @@ export const async_clone = async (formdata)=>{
   const objparam = {fields:temp}
   const objquery = get_obj_insert(objparam)
   const r = await apidb.async_insert(objquery)
+
+  if(is_defined(r.error)) throw r.error
 
   return r
 }
@@ -132,6 +144,9 @@ export const async_deletelogic = async (formdata)=>{
   const objparam = {fields:objdellog, keys}
   const objquery = get_obj_deletelogic(objparam, dbfields)
   const r = await apidb.async_update(objquery)
+  
+  if(is_defined(r.error)) throw r.error
+  
   return r
 }
 
@@ -144,6 +159,9 @@ export const async_multidelete = async arkeys => {
   const objparam = {key:"id", keys:arkeys}
   const objquery = get_obj_multidelete(objparam)
   const r = await apidb.async_delete(objquery)
+
+  if(is_defined(r.error)) throw r.error
+
   return r
 }
 
@@ -152,5 +170,8 @@ export const async_multideletelogic = async arkeys => {
   const objquery = get_obj_multideletelogic(objparam)
   //pr(objquery,"objquery")
   const r = await apidb.async_update(objquery)
+
+  if(is_defined(r.error)) throw r.error
+
   return r
 }
