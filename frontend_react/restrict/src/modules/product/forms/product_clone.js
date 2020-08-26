@@ -68,19 +68,12 @@ function ProductClone(){
     before_submit()
     try {
       const r = await async_clone(formdata)
-      console.log("product.clon.on_submit.r",r)
-      if(r.error){
-        set_error(r.error)
-      }
-      else{
-        set_success("Product cloned. Nº: ".concat(r))
-        set_formdata({...formdefault})
-        refcode.current.focus()
-      }
+      set_success("Product cloned. Nº: ".concat(r))
+      //set_formdata({...formdefault})
+      refcode.current.focus()
     } 
     catch (error) {
-      console.log("error:",error.toString())
-      set_error(error.toString())
+      set_error(error)
     } 
     finally {
       set_issubmitting(false)
@@ -89,14 +82,23 @@ function ProductClone(){
   }// on_submit
 
   const async_onload = async () => {
-    set_issubmitting(true)
-    const r = await async_get_by_id(id)
-    console.log("product.clone.onload.r",r)
-    const temp = {...formdata, ...r}
-    set_formdata(temp)
+    
     console.log("product.clone.onload.formdata:",formdata)
-    set_issubmitting(false)
-  }
+    set_issubmitting(true)
+    try {
+      const r = await async_get_by_id(id)
+      console.log("product.clone.onload.r",r)
+      const temp = {...formdata, ...r}
+      set_formdata(temp)  
+    }
+    catch (error){
+      set_error(error)
+    }
+    finally {
+      set_issubmitting(false)
+    }
+
+  }// async_onload
 
   useEffect(()=>{
     async_onload()
