@@ -47,7 +47,7 @@ function ProductUpdate(){
     order_by:"100",
     display:"0",
     url_image: "",
-    id_user:1,
+    id_user: -1,
   }
 
   const [formdata, set_formdata] = useState({
@@ -63,27 +63,33 @@ function ProductUpdate(){
     return idpref
   }
 
+  const updatefile = elem => {
+    const id = get_id(elem)
+    if(id !== "url_image") return 
+
+    if(!is_empty(elem.files[0]))
+      set_inputfile(elem.files[0])
+    else 
+      set_inputfile(null)
+  }
+
   const updateform = evt => {
-    //set_email(e.target.value)
     //console.log("updateform.e.target",e.target)
+    //pr("updateform.evt.target",evt.target)
     const elem = evt.target
     console.log("updateform.element:",elem)
 
     const id = get_id(elem)
     console.log("updateform.id",id)
-    const temp = {...formdata}
 
-    if(id === "url_image" && !is_empty(elem.files)){
-      set_inputfile(elem.files[0])
-    }
-    else {
-      let value = elem.value
-      console.log("updateform.value",value)
-      temp[id] = value
-    }
+    const tmpform = { ...formdata }
+    //pr(elem.value,"v")
 
-    console.log("updateform.value temp:",temp)
-    set_formdata(temp)
+    tmpform[id] = elem.value.includes("C:\\fakepath\\") ? "" : elem.value
+    updatefile(elem)
+
+    console.log("updateform.value tmpform:",tmpform)
+    set_formdata(tmpform)
     console.log("updateform.formdata",formdata)
   }
 
@@ -114,13 +120,9 @@ function ProductUpdate(){
       //hacer insert y enviar fichero
       before_submit()
 
-      let url_image = formdata.url_image
-      if(inputfile){
-        //pr(inputfile)
-        url_image = inputfile
-      }
+      const url_image = inputfile ? inputfile : formdata.url_image
+      const r = await async_update({...formdata, url_image})
 
-      const r = await async_update({...formdata,url_image})
       console.log("product.update.on_submit.r",r)
       if(r.error){
         set_error(r.error)

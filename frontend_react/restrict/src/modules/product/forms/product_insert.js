@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {MODCONFIG} from "modules/product/config/config"
-import {pr, is_empty, is_defined} from "helpers/functions"
+import {pr, is_empty, isset, is_defined} from "helpers/functions"
 import {async_insert, async_get_maxuploadsize} from "modules/product/async/async_requests"
 
 import Navbar from "components/common/navbar"
@@ -69,8 +69,8 @@ function ProductInsert() {
   }
 
   const before_submit = () => {
-    //pr(formdata.url_image.size);pr(maxsize)
-    if(is_defined(formdata.url_image.size)){
+
+    if(isset(formdata.url_image) && is_defined(formdata.url_image.size)){
       if(formdata.url_image.size > maxsize)
         //throw new Error(`File is larger than allowed. File:${formdata.url_image.size}, allowed:${maxsize}`)
         throw `File ${formdata.url_image.name} is larger than allowed. File size: ${formdata.url_image.size}, Max allowed: ${maxsize}`
