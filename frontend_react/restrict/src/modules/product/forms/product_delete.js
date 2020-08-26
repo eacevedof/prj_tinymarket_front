@@ -66,42 +66,43 @@ function ProductDelete(){
     //hacer insert y enviar fichero
     before_submit()
     
-    try{
+    try {
       const r = await async_delete(formdata)
       console.log("product.delete.on_submit.r",r)
-      if(r.error){
-        set_error(r.error)
-      }
-      else{
-        set_success("Num regs deleted: ".concat(r))
-        //async_onload()
-        set_isdeleted(true)
-        refcode.current.focus()
-      }
-      
+      set_success("Num regs deleted: ".concat(r))
+      //async_onload()
+      set_isdeleted(true)
+      refcode.current.focus()
     }
-    catch(error){
-      console.log("error:",error.toString())
-      set_error(error.toString())
+    catch (error) {
+      set_error(error)
     }
-    finally{
+    finally {
       set_issubmitting(false)
     }
   } // on_submit
 
   const async_onload = async () => {
     set_issubmitting(true)
-    const r = await async_get_by_id(id)
-    console.log("product.delete.onload.r",r)
-    const temp = {...formdata, ...r}
-    console.log("product.delete.onload.temp",temp)
-    set_formdata(temp)
-    if(is_empty(r)){
-      set_error("Product not found")
-      set_isdeleted(true)
+    try {
+      const r = await async_get_by_id(id)
+
+      console.log("product.delete.onload.r",r)
+      const tmpform = {...formdata, ...r}
+      console.log("product.delete.onload.tmpform",tmpform)
+      set_formdata(tmpform)
+      if(is_empty(r)){
+        set_error("Product not found")
+        set_isdeleted(true)
+      }
+    } 
+    catch (error) {
+      set_error(error)
+    } 
+    finally {
+      console.log("product.delete.onload.formdata:",formdata)
+      set_issubmitting(false)      
     }
-    console.log("product.delete.onload.formdata:",formdata)
-    set_issubmitting(false)
   }
 
   useEffect(()=>{
