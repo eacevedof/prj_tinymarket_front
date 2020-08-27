@@ -7,7 +7,7 @@ import {async_gettoken, async_islogged} from "modules/login/login_index"
 import {routes as dashroutes} from 'modules/dashboard/routes';
 import {routes as prodroutes} from "modules/product/routes"
 
-import E404 from "../errors/404/e404"
+import E404 from "modules/errors/404/e404"
 
 import {
   BrowserRouter as Router,
