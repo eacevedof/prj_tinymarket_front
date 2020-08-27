@@ -12,15 +12,15 @@ import {async_get_list, async_multidelete, async_multideletelogic} from "modules
 import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
-import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
-import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
-import InputSearch from "helpers/bootstrap/input/inputsearch"
-import Spinnergrow from "helpers/bootstrap/spinner/spinnergrow"
-import TableProvider from "helpers/bootstrap/tableaction/tablecontext"
-import TableAction from "helpers/bootstrap/tableaction/tableaction"
-import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
+import AlertSimple from 'components/bootstrap/alert/alertsimple'
+import ToastSimple from 'components/bootstrap/toast/toastsimple'
+import InputSearch from "components/bootstrap/input/inputsearch"
+import Spinnergrow from "components/bootstrap/spinner/spinnergrow"
+import TableProvider from "components/bootstrap/tableaction/tablecontext"
+import TableAction from "components/bootstrap/tableaction/tableaction"
+import PaginationSimple from "components/bootstrap/pagination/paginationsimple"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb'
-import RefreshAsync from 'helpers/bootstrap/button/refreshasync'
+import RefreshAsync from 'components/bootstrap/button/refreshasync'
 import Footer from "components/common/footer"
 
 function ProductIndex() {

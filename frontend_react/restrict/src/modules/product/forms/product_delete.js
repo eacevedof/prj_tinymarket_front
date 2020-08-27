@@ -6,11 +6,11 @@ import {async_get_by_id, async_delete} from "modules/product/async/async_request
 import {seldisplay} from "modules/common/options"
 
 import Navbar from "components/common/navbar"
-import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
-import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
+import AlertSimple from 'components/bootstrap/alert/alertsimple'
+import ToastSimple from 'components/bootstrap/toast/toastsimple'
 import Breadscrumb from 'components/common/bootstrap/breadscrumb'
-import RefreshAsync from 'helpers/bootstrap/button/refreshasync'
-import SubmitAsync from 'helpers/bootstrap/button/submitasync'
+import RefreshAsync from 'components/bootstrap/button/refreshasync'
+import SubmitAsync from 'components/bootstrap/button/submitasync'
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
