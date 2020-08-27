@@ -92,7 +92,7 @@ function ProductDeleteLogic(){
     await async_onload()
   }  
 
-  const on_submit = async (evt)=>{
+  const on_submit = async evt => {
     console.log("product.deletelogic.on_submit.formdata:",formdata)
     evt.preventDefault()
 
@@ -102,21 +102,14 @@ function ProductDeleteLogic(){
 
     before_submit()
     
-    try{
+    try {
       const r = await async_deletelogic(formdata)
-      
       console.log("product.deletelogic.on_submit.r",r)
-      if(r.error){
-        set_error(r.error)
-      }
-      else{
-        set_success("Num regs deleted: ".concat(r))
-        async_onload()
-      }
+      set_success("Num regs deleted: ".concat(r))
+      async_onload()
     }
     catch(error){
-      console.log("product.deletelogic.on_submit.error:",error.toString())
-      set_error(error.toString())
+      set_error(error)
     }
     finally{
       set_issubmitting(false)
@@ -125,15 +118,23 @@ function ProductDeleteLogic(){
 
   const async_onload = async () => {
     set_issubmitting(true)
-    const r = await async_get_by_id(id)
-    console.log("product.deletelogic.onload.r",r)
-    const temp = {...formdata, ...r}
-    console.log("product.deletelogic.onload.temp",temp)
-    set_formdata(temp)
-    if(r.delete_date!=="" && r.delete_date!==null) set_isdeleted(true)
-    set_sysdata({...temp})
-    console.log("product.deletelogic.onload.formdata:",formdata)
-    set_issubmitting(false)
+    
+    try {
+      const r = await async_get_by_id(id)
+      console.log("product.deletelogic.onload.r",r)
+      const tmpform = {...formdata, ...r}      
+      console.log("product.deletelogic.onload.tmpform",tmpform)
+      set_formdata(tmpform)
+      if(r.delete_date!=="" && r.delete_date!==null) set_isdeleted(true)
+      set_sysdata({...tmpform})
+      console.log("product.deletelogic.onload.formdata:",formdata)      
+    }
+    catch(error){
+      set_error(error)
+    }
+    finally{
+      set_issubmitting(false)
+    }
   }
 
   useEffect(()=>{
