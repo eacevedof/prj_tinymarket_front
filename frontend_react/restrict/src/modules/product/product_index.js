@@ -19,7 +19,7 @@ import Spinnergrow from "helpers/bootstrap/spinner/spinnergrow"
 import TableProvider from "helpers/bootstrap/tableaction/tablecontext"
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
 import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
-import Breadscrumb from 'components/common/bootstrap/breadscrumb';
+import Breadscrumb from 'components/common/bootstrap/breadscrumb'
 import Footer from "components/common/footer"
 
 function ProductIndex() {
