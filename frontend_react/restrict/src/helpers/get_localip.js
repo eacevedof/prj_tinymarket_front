@@ -1,5 +1,6 @@
-function get_localip()
-{
+//no funciona!!!
+function get_localip(){
+
   var ip = false;
   
   window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection || false;
