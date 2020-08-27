@@ -6,7 +6,7 @@ import {async_insert, async_get_maxuploadsize} from "modules/product/async/async
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
 import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
-import SubmitAsync from 'helpers/bootstrap/button/submitasync';
+import SubmitAsync from 'helpers/bootstrap/button/submitasync'
 import Breadscrumb from 'components/common/bootstrap/breadscrumb'
 import Footer from "components/common/footer"
 
@@ -105,11 +105,19 @@ function ProductInsert() {
   }// on_submit
 
   const async_onload = async () => {
-    
-    const size = await async_get_maxuploadsize()
-    set_maxsize(size)
-    refcode.current.focus()
-  }
+    set_issubmitting(true)
+    try {
+      const size = await async_get_maxuploadsize()
+      set_maxsize(size)
+      refcode.current.focus()
+    }
+    catch(error){
+      set_error(error)
+    }
+    finally{
+      set_issubmitting(false)
+    }
+  }// async_onload
 
   useEffect(()=>{
     console.log("product.insert.useeffect")
