@@ -90,18 +90,13 @@ function ProductInsert() {
 
       const r = await async_insert(formdata)
       console.log("product.insert.on_submit.r",r)
-      if(r.error){
-        set_error(r.error)
-      }
-      else{
-        set_success("New product added. Nº: ".concat(r))
-        set_formdata({...formdefault})
-        refcode.current.focus()
-      }
+
+      set_success("New product added. Nº: ".concat(r))
+      set_formdata({...formdefault})
+      refcode.current.focus()
     } 
     catch (error) {
-      console.log("error:",error.toString())
-      set_error(error.toString())
+      set_error(error)
     } 
     finally {
       set_issubmitting(false)

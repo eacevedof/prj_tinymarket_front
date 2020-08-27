@@ -109,6 +109,7 @@ function ProductIndex() {
           issubmitting ?
             <Spinnergrow type="info" />
           :
+          <>
           <TableProvider>
             <TableAction 
               arhead={grid.headers} 
@@ -117,6 +118,7 @@ function ProductIndex() {
               multiconf={{ACTIONS:VIEWCONFIG.MULTIACTIONS, fnmultiaction:on_multiconfirm }} 
             />
           </TableProvider>
+          </>
         }
 
         <PaginationSimple objconf={{page, foundrows, ippage:VIEWCONFIG.PERPAGE, url:VIEWCONFIG.URL_PAGINATION}} />

@@ -124,20 +124,16 @@ function ProductUpdate(){
       const r = await async_update({...formdata, url_image})
 
       console.log("product.update.on_submit.r",r)
-      if(r.error){
-        set_error(r.error)
-      }
-      else{
-        set_success("Num regs updated: ".concat(r))
-        async_onload()
-        set_inputfile(null)
-        refcode.current.focus()
-        reffile.current.value = null
-      }
+ 
+      set_success("Num regs updated: ".concat(r))
+      async_onload()
+      set_inputfile(null)
+      refcode.current.focus()
+      reffile.current.value = null
+      
     }
     catch(error){
-      console.log("product.update.on_submit.error:",error.toString())
-      set_error(error.toString())
+      set_error(error)
     }
     finally{
       set_issubmitting(false)
@@ -146,17 +142,24 @@ function ProductUpdate(){
 
   const async_onload = async () => {
     set_issubmitting(true)
-    const size = await async_get_maxuploadsize()
-    set_maxsize(size)
-
-    const r = await async_get_by_id(id)
-    console.log("product.update.onload.r",r)
-    const temp = {...formdata, ...r}
-    set_formdata(temp)
-
-    console.log("product.update.onload.formdata:",formdata)
-    set_issubmitting(false)
-    refcode.current.focus()
+    try {
+      const size = await async_get_maxuploadsize()
+      set_maxsize(size)
+      const r = await async_get_by_id(id)
+      console.log("product.update.onload.r",r)
+      const temp = {...formdata, ...r}
+      set_formdata(temp)
+  
+      console.log("product.update.onload.formdata:",formdata)
+      set_issubmitting(false)
+      refcode.current.focus()      
+    }
+    catch (error) {
+      set_error(error)
+    }
+    finally {
+      set_issubmitting(false)
+    }
   }
 
   useEffect(()=>{
