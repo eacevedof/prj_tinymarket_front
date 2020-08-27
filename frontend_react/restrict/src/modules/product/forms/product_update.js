@@ -8,7 +8,7 @@ import {seldisplay} from "modules/common/options"
 import Navbar from "components/common/navbar"
 import AlertSimple from 'components/bootstrap/alert/alertsimple'
 import ToastSimple from 'components/bootstrap/toast/toastsimple'
-import Breadscrumb from 'components/common/bootstrap/breadscrumb'
+import Breadscrumb from 'components/bootstrap/breadscrumb/breadscrumb'
 import RefreshAsync from 'components/bootstrap/button/refreshasync'
 import SubmitAsync from 'components/bootstrap/button/submitasync'
 import Sysfields from "components/common/sysfields"

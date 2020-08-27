@@ -8,7 +8,7 @@ import Navbar from "components/common/navbar"
 import AlertSimple from 'components/bootstrap/alert/alertsimple'
 import ToastSimple from 'components/bootstrap/toast/toastsimple'
 import SubmitAsync from 'components/bootstrap/button/submitasync'
-import Breadscrumb from 'components/common/bootstrap/breadscrumb'
+import Breadscrumb from 'components/bootstrap/breadscrumb/breadscrumb'
 import Footer from "components/common/footer"
 
 function ProductInsert() {
