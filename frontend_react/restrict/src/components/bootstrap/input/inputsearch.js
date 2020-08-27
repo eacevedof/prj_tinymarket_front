@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 
 import db from "helpers/localdb" 
-import SubmitAsync from 'helpers/bootstrap/button/submitasync';
+import SubmitAsync from 'components/bootstrap/button/submitasync';
 import { pr } from 'helpers/functions';
 
 

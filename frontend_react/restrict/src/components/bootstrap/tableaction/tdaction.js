@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-//import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
+//import { TableContext } from "components/bootstrap/tableaction/tablecontext"
 import { NavLink } from "react-router-dom";
 import { get_uuid } from 'helpers/functions';
 

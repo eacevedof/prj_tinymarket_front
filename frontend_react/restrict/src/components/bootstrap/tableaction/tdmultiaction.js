@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
+import { TableContext } from "components/bootstrap/tableaction/tablecontext"
 import { get_uuid, pr } from 'helpers/functions';
 
 function Tdmultiaction({objrow}) {

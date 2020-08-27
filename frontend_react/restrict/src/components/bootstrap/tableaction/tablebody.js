@@ -1,8 +1,8 @@
 import React, {useEffect, useContext} from 'react';
 
-import { TableContext } from "helpers/bootstrap/tableaction/tablecontext"
-import Tdaction from "helpers/bootstrap/tableaction/tdaction"
-import Tdmultiaction from "helpers/bootstrap/tableaction/tdmultiaction"
+import { TableContext } from "components/bootstrap/tableaction/tablecontext"
+import Tdaction from "components/bootstrap/tableaction/tdaction"
+import Tdmultiaction from "components/bootstrap/tableaction/tdmultiaction"
 import { get_uuid, is_defined} from 'helpers/functions';
 
 function TableBody({arhead, ardata, objconf, multiconf}) {

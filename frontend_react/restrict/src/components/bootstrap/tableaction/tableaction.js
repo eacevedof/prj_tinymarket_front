@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from 'react';
 
-import {TableContext} from "helpers/bootstrap/tableaction/tablecontext"
-import DropdownTable from "helpers/bootstrap/dropdown/dropdowntable"
-import TableHead from "helpers/bootstrap/tableaction/tablehead"
-import TableBody from "helpers/bootstrap/tableaction/tablebody"
+import {TableContext} from "components/bootstrap/tableaction/tablecontext"
+import DropdownTable from "components/bootstrap/dropdown/dropdowntable"
+import TableHead from "components/bootstrap/tableaction/tablehead"
+import TableBody from "components/bootstrap/tableaction/tablebody"
 
 import { pr } from 'helpers/functions';
 
