@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {MODCONFIG} from "modules/product/config/config"
 import {pr, is_empty, isset, is_defined} from "helpers/functions"
 import {async_insert, async_get_maxuploadsize} from "modules/product/async/async_requests"
+import {seldisplay} from "modules/common/options"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
@@ -11,11 +12,6 @@ import Breadscrumb from 'components/common/bootstrap/breadscrumb'
 import Footer from "components/common/footer"
 
 function ProductInsert() {
-
-  const seldisplay = [
-    {value:"0",text:"No"},
-    {value:"1",text:"Yes"}
-  ]
 
   const [issubmitting, set_issubmitting] = useState(false)
   const [maxsize, set_maxsize] = useState(0)

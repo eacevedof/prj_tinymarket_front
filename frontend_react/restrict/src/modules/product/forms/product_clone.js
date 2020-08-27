@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom"
 import {MODCONFIG} from "modules/product/config/config"
 import {pr} from "helpers/functions"
 import {async_get_by_id, async_clone} from "modules/product/async/async_requests"
+import {seldisplay} from "modules/common/options"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
@@ -22,10 +23,6 @@ function ProductClone(){
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
 
-  const seldisplay = [
-    {value:"0",text:"No"},
-    {value:"1",text:"Yes"}
-  ]
   const formdefault = {
     insert_user:"",
     insert_date:"",

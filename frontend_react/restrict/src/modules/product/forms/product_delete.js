@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom"
 import {MODCONFIG} from "modules/product/config/config"
 import { pr, is_empty } from 'helpers/functions';
 import {async_get_by_id, async_delete} from "modules/product/async/async_requests"
+import {seldisplay} from "modules/common/options"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
@@ -22,11 +23,6 @@ function ProductDelete(){
   const [success, set_success] = useState("")
   const refcode = useRef(null)
   const [isdeleted, set_isdeleted] = useState(false)
-
-  const seldisplay = [
-    {value:"0",text:"No"},
-    {value:"1",text:"Yes"}
-  ]
 
   const [formdata, set_formdata] = useState({
     insert_user:"",

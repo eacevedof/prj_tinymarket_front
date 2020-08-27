@@ -4,6 +4,7 @@ import {pr} from "helpers/functions"
 
 import {useParams} from "react-router-dom"
 import {async_get_by_id} from "modules/product/async/async_requests"
+import {seldisplay} from "modules/common/options"
 
 import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
@@ -19,11 +20,6 @@ function ProductDetail(){
   const [issubmitting, set_issubmitting] = useState(false)
   const [error, set_error] = useState("")
   const [success, set_success] = useState("")
-
-  const seldisplay = [
-    {value:"0",text:"No"},
-    {value:"1",text:"Yes"}
-  ]
 
   const get_seltext = id => {
     const arfound = seldisplay.filter(obj => obj.value===id) || []
