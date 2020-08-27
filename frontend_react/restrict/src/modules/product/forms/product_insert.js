@@ -4,8 +4,8 @@ import {pr, is_empty, isset, is_defined} from "helpers/functions"
 import {async_insert, async_get_maxuploadsize} from "modules/product/async/async_requests"
 
 import Navbar from "components/common/navbar"
-import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
-import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import Footer from "components/common/footer"

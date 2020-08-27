@@ -3,11 +3,11 @@ import {MODCONFIG} from "modules/product/config/config"
 import {pr} from "helpers/functions"
 
 import {useParams} from "react-router-dom"
-import {async_get_by_id} from "../async/async_requests"
+import {async_get_by_id} from "modules/product/async/async_requests"
 
 import Navbar from "components/common/navbar"
-import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
-import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import Sysfields from "components/common/sysfields"
@@ -67,19 +67,16 @@ function ProductDetail(){
       
       if(!r){
         set_error("Product not found!")
-      }
-      else if(r.error){
-        set_error(r.error)
+        return
       }
       else{
-        const temp = {...formdata, ...r}
-        set_formdata(temp)
+        const tmpform = {...formdata, ...r}
+        set_formdata(tmpform)
         set_success(`Product Nº:${id} refreshed!`)
       } 
     }
     catch(error){
-      console.log("product.detail.onload.error:",error.toString())
-      set_error(error.toString())
+      set_error(error)
     }
     finally{
       set_issubmitting(false)
@@ -89,7 +86,7 @@ function ProductDetail(){
 
   useEffect(()=>{
     async_onload()
-    return ()=> console.log("product.insert unmounting")
+    return ()=> console.log("product.detail unmounting")
   },[])
 
   return (

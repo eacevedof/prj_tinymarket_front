@@ -12,8 +12,8 @@ import {async_get_list, async_multidelete, async_multideletelogic} from "modules
 import {VIEWCONFIG, grid} from "modules/product/async/queries/query_list"
 
 import Navbar from "components/common/navbar"
-import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
-import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
 import InputSearch from "helpers/bootstrap/input/inputsearch"
 import Spinnergrow from "helpers/bootstrap/spinner/spinnergrow"
 import TableProvider from "helpers/bootstrap/tableaction/tablecontext"

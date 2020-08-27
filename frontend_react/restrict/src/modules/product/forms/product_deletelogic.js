@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
 import {MODCONFIG} from "modules/product/config/config"
 import {pr, is_empty} from "helpers/functions"
-import {async_get_by_id, async_deletelogic} from "../async/async_requests"
+import {async_get_by_id, async_deletelogic} from "modules/product/async/async_requests"
 
 import Navbar from "components/common/navbar"
-import AlertSimple from 'helpers/bootstrap/alert/alertsimple';
-import ToastSimple from 'helpers/bootstrap/toast/toastsimple';
+import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
+import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
 import Breadscrumb from 'components/common/bootstrap/breadscrumb';
 import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
 import SubmitAsync from 'helpers/bootstrap/button/submitasync';
