@@ -20,6 +20,7 @@ import TableProvider from "helpers/bootstrap/tableaction/tablecontext"
 import TableAction from "helpers/bootstrap/tableaction/tableaction"
 import PaginationSimple from "helpers/bootstrap/pagination/paginationsimple"
 import Breadscrumb from 'components/common/bootstrap/breadscrumb'
+import RefreshAsync from 'helpers/bootstrap/button/refreshasync'
 import Footer from "components/common/footer"
 
 function ProductIndex() {
@@ -110,6 +111,7 @@ function ProductIndex() {
             <Spinnergrow type="info" />
           :
           <>
+          <RefreshAsync issubmitting={issubmitting} fnrefresh={async_load_products} />
           <TableProvider>
             <TableAction 
               arhead={grid.headers} 

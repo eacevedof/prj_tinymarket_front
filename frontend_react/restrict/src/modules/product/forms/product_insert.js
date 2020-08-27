@@ -26,7 +26,7 @@ function ProductInsert() {
 
   const formdefault = {
     //id: -1,
-    id_user:1, //hay que cambiarlo por un hash, es el owner del producto
+    id_user:-1, //hay que cambiarlo por un hash, es el owner del producto
     
     code_erp:"",
     description:"",

@@ -9,7 +9,7 @@ import Navbar from "components/common/navbar"
 import AlertSimple from 'helpers/bootstrap/alert/alertsimple'
 import ToastSimple from 'helpers/bootstrap/toast/toastsimple'
 import Breadscrumb from 'components/common/bootstrap/breadscrumb'
-import RefreshAsync from 'helpers/bootstrap/button/refreshasync';
+import RefreshAsync from 'helpers/bootstrap/button/refreshasync'
 import Sysfields from "components/common/sysfields"
 import Footer from "components/common/footer"
 
